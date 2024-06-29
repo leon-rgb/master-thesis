@@ -3,6 +3,130 @@
 \chapter{Concept}
 \label{chap:concept}
 
+In this chapter, we describe the intents defined for the smart home system chatbot. These intents aim to provide users with a versatile and intuitive interface for interacting with their smart home devices. The primary focus is on ensuring the chatbot can understand and respond to a wide range of user inputs, offering functionalities that surpass current smart home solutions.
+
+\section{Intent Engineering}
+
+Intents are fundamental to the functionality of the chatbot. Each intent represents a specific user request or command that the system needs to understand and act upon. The design of these intents considers the limitations of existing voice assistants and aims to provide a more flexible and user-friendly experience.
+
+\subsection{Iteration 1: Basic Intents}
+
+\paragraph{Providing Device Status}
+
+\begin{itemize}
+    \item \textbf{Intent Name:} GetDeviceStatus
+    \item \textbf{Examples:}
+    \begin{itemize}
+        \item "What is the temperature in the living room?"
+        \item "What is the status of the thermostat in the living room?"
+        \item "Is it warm in the living room?"
+    \end{itemize}
+    \item \textbf{Entities:}
+    \begin{itemize}
+        \item DeviceType (e.g., thermostat, lights)
+        \item Room (e.g., living room, bedroom)
+    \end{itemize}
+    \item \textbf{Action/Response:} Providing information about the specified device in the given room, such as the temperature and power status of a thermostat.
+\end{itemize}
+
+This intent aims to provide a more conversational approach to querying device statuses. Unlike existing solutions that require specific device names, our chatbot can understand various formulations, allowing users to ask for the temperature without needing to specify the exact device name or its location.
+
+\paragraph{Changing Device Status}
+
+\begin{itemize}
+    \item \textbf{Intent Name:} SetDeviceStatus
+    \item \textbf{Examples:}
+    \begin{itemize}
+        \item "Set the temperature to 22 degrees in the living room."
+        \item "Turn off the lights in the bedroom."
+        \item "Make it cooler in the kitchen."
+    \end{itemize}
+    \item \textbf{Entities:}
+    \begin{itemize}
+        \item DeviceType (e.g., thermostat, lights)
+        \item Room (e.g., living room, bedroom)
+        \item DesiredStatus (e.g., temperature, on/off state)
+        \item DesiredValue (e.g., specific temperature, on/off)
+    \end{itemize}
+    \item \textbf{Action/Response:} Executing the specified action to set the desired status of the mentioned device in the given room, such as adjusting the temperature for a thermostat or turning lights on or off.
+\end{itemize}
+
+This intent enhances user experience by allowing natural language commands to control devices. The chatbot interprets a wider range of user commands, enabling users to control their devices more intuitively and without needing to remember specific device names.
+
+\subsection{Iteration 2: Intermediate Intents}
+
+\paragraph{Assistance for Creating Automations}
+
+\begin{itemize}
+    \item \textbf{Intent Name:} CreateAutomation
+    \item \textbf{Examples:}
+    \begin{itemize}
+        \item "Set up an automation for turning off lights at 10 PM."
+        \item "Create a rule to adjust thermostat settings when I leave home."
+        \item "Can you help me with automating my smart blinds?"
+        \item "Notify me if any windows are open."
+    \end{itemize}
+    \item \textbf{Entities:}
+    \begin{itemize}
+        \item DeviceType (e.g., lights, thermostat, blinds)
+        \item TriggerEvent (e.g., time-based, occupancy, temperature change)
+        \item Condition (optional, e.g., specific temperature threshold)
+        \item Action (e.g., turn off, adjust settings)
+        \item Location (optional, e.g., living room, bedroom)
+    \end{itemize}
+    \item \textbf{Action/Response:} Assisting the user in defining and setting up a smart home automation, including specifying the devices involved, the triggering event, any conditions, and the desired actions. The chatbot may also provide suggestions for common automation scenarios.
+\end{itemize}
+
+Creating automations is a common use case in smart home systems. This intent aims to streamline the process, allowing users to set up complex automations through simple conversational interactions, thus reducing the need for technical knowledge or precise phrasing.
+
+\paragraph{Interpret the Device Control}
+
+\begin{itemize}
+    \item \textbf{Intent Name:} DeviceControlInterpretation
+    \item \textbf{Examples:}
+    \begin{itemize}
+        \item "Why did the lights in the bathroom turn on just now?"
+        \item "Can you explain the reason for the thermostat adjusting the temperature?"
+        \item "What triggered the blinds to open in the living room?"
+    \end{itemize}
+    \item \textbf{Entities:}
+    \begin{itemize}
+        \item DeviceType (e.g., lights, thermostat, blinds)
+        \item Location (optional, e.g., bathroom, living room)
+        \item Action (e.g., turn on, adjust temperature, open)
+        \item TriggerSource (e.g., automation, manual activation)
+        \item Timestamp (optional, for specifying a time reference)
+        \item Reason (optional, e.g., reason for an automation that the user provided when creating it)
+    \end{itemize}
+    \item \textbf{Action/Response:} Providing an explanation for recent smart home device actions. The chatbot interprets the cause of device events, distinguishing between automation-driven events and those triggered manually by the user. It may also consider time-based context when explaining device actions.
+\end{itemize}
+
+This intent addresses a gap in current systems by explaining the reasons behind device actions. It improves transparency and user trust in smart home systems by providing clear explanations for automated and manual device actions.
+
+\subsection{Iteration 3: Complex Intents}
+
+\paragraph{Analyzing Energy Consumption}
+
+\begin{itemize}
+    \item \textbf{Intent Name:} AnalyzeEnergyConsumption
+    \item \textbf{Examples:}
+    \begin{itemize}
+        \item "Can you analyze the energy consumption in my home?"
+        \item "Provide insights into power usage over the last week."
+        \item "How can I optimize energy consumption in the living room?"
+    \end{itemize}
+    \item \textbf{Entities:}
+    \begin{itemize}
+        \item AnalysisType (e.g., overall consumption, specific devices)
+        \item TimeFrame (e.g., last week, last month)
+        \item Room (e.g., living room, kitchen)
+    \end{itemize}
+    \item \textbf{Action/Response:} Generating a detailed analysis of energy consumption based on the specified parameters. It includes insights into overall energy usage, specific device contributions, and recommendations for optimizing energy consumption in the specified room or timeframe.
+\end{itemize}
+
+Energy consumption analysis is a valuable addition to smart home capabilities. This intent provides users with actionable insights into their energy use, helping them to make informed decisions about energy efficiency and cost savings.
+
+
 %% Auslagern in eigenes chapter??? %%
 \section{Preleminary Interviews to Gain Knowledge, Requirements and Ideas}
 Preceding to further actions Interviews with a few individuals were conducted to gain knowledge, requirements and ideas for this thesis.
