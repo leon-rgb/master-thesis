@@ -234,7 +234,47 @@ The success of the smart home chatbot can be evaluated through:
 The interviews provided a comprehensive understanding of the requirements and considerations for developing a smart home system chatbot. Key insights include the importance of choosing the right technologies, ensuring robust data management, and addressing user privacy concerns. By focusing on practical intents and leveraging existing frameworks, the development of a user-friendly and effective smart home chatbot is achievable.
 
 
-\section{Requirements}
+\section{Requirements of the Chatbot}
+
+This section outlines the functional and non-functional requirements of the chatbot designed for integration with smart home systems, particularly focusing on the Bosch Smart Home system.
+
+\subsection{Functional Requirements}
+
+\begin{itemize}
+    \item \textbf{Intent Addressing}: The chatbot should accurately address the defined intents. The extent of this capability depends on the progress made by the deadline of this thesis.
+    
+    \item \textbf{Language Support}: The chatbot should support both German and English languages. It should respond in the same language as the user's input. For example, if a user query is in German, the chatbot should reply in German, and likewise for English.
+    
+    \item \textbf{Integrability}: The chatbot should be easily integrable into existing smart home systems, particularly the Bosch Smart Home system. Integration should require only a mapper class/code capable of splitting the chatbot's output into the natural language response for the user and a system output (a JSON in this work) that maps to the smart home system's functionalities.
+    
+    \item \textbf{Context Awareness}: The chatbot should maintain context within a session to handle follow-up questions and commands effectively, providing a more natural interaction experience.
+    
+    \item \textbf{Command Execution}: The chatbot should be capable of executing specific commands related to smart home functionalities, such as turning devices on or off, adjusting settings, and providing status updates.
+    
+    \item \textbf{Error Handling}: The chatbot should be able to handle errors gracefully, providing helpful feedback to users when it cannot understand a request or when an action cannot be completed.
+\end{itemize}
+
+\subsection{Non-Functional Requirements}
+
+\begin{itemize}
+    \item \textbf{Security and Safety}: The chatbot may handle sensitive data, including information about users' devices and smart home system logs. It is crucial to ensure this information is not exposed to unauthorized parties. Self-hosting the LLM could enhance security.
+    
+    \item \textbf{Cost-Effectiveness}: The solution should be cost-effective. Self-hosting the LLM could reduce costs associated with third-party services.
+    
+    \item \textbf{Usability}: The chatbot should be user-friendly, providing clear and concise responses. The interface should be intuitive for users with varying levels of technical expertise. 
+    
+    \item \textbf{Performance}: While performance is not the primary focus for this proof of concept, the chatbot should respond within a reasonable time to avoid negatively impacting usability. Quick response times are essential for maintaining a smooth user experience.
+    
+    \item \textbf{Scalability}: The chatbot should be designed to scale with an increasing number of users and interactions. This ensures that it can handle larger volumes of data and more complex queries as usage grows.
+    
+    \item \textbf{Reliability}: The chatbot should be reliable, with minimal downtime. It should consistently provide accurate and timely responses to user queries.
+    
+    \item \textbf{Maintainability}: The chatbot system should be easy to maintain and update. Clear documentation and modular design can facilitate easier maintenance and the addition of new features.
+\end{itemize}
+
+\subsection{}
+These requirements provide a comprehensive foundation for developing a smart home chatbot that is functional, secure, and user-friendly. The focus on integrability with existing systems, particularly the Bosch Smart Home system, ensures practical applicability, while attention to security and cost-effectiveness supports sustainable deployment.
+
 
 \section{Idea}
 
