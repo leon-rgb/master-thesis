@@ -162,6 +162,78 @@ In the following all guided questions are listed:
            
 \end{enumerate}
 
+\subsection{Interview Summary}
+\label{sec:interview_summary}
+
+The following summary captures the insights and recommendations from these interviews.
+
+\subsection{Feasibility and Key Considerations}
+
+The feasibility of implementing a smart home chatbot was generally supported by all interviewees, albeit with some caveats:
+
+\begin{itemize}
+    \item \textbf{Technical Feasibility}: It is crucial to use proven frameworks and consider whether an LLM is necessary or if Named Entity Recognition (NER) would suffice, particularly given budget constraints. LLMs require significant resources, which may be impractical without a robust client-server architecture.
+    \item \textbf{User Experience}: The chatbot must simplify user interactions with smart home devices, removing the need for exact device names and understanding user patterns for better automation.
+    \item \textbf{Market Viability}: There are concerns about privacy and trust, which affect the acceptance of AI and chatbots in the market.
+\end{itemize}
+
+\subsubsection{Interesting and Selected Intents}
+
+The interviewees proposed several useful intents for the chatbot:
+
+\begin{itemize}
+    \item \textbf{Device Control}: Activating or deactivating devices, querying the status of doors and windows, and setting temperatures.
+    \item \textbf{Automation Assistance}: Simplifying the creation of automations, such as scheduling device operations and explaining device actions.
+    \item \textbf{Energy Management}: Providing insights into energy consumption and optimization suggestions.
+    \item \textbf{User-Specific Recommendations}: Customizing suggestions based on user behavior and preferences, such as recommending automations for commonly adjusted settings.
+\end{itemize}
+
+\subsubsection{Tools, Technologies, and Models}
+
+Several tools and technologies were recommended for developing the chatbot:
+
+\begin{itemize}
+    \item \textbf{LLM vs. NER}: While LLMs offer broad capabilities, NER may be sufficient for specific use cases. But a LLm fine-tuned or customized to suit a specific application can also work out great.
+    \item \textbf{Frameworks and Platforms}:  Tools like Microsoft Bot Framework\footnote{\url{https://github.com/microsoft/botframework-sdk}}, Conversational Language Understanding\footnote{\url{https://learn.microsoft.com/en-us/azure/ai-services/language-service/conversational-language-understanding/overview}}, Dialogflow\footnote{\url{https://cloud.google.com/dialogflow}}, and LangChain\footnote{\url{https://www.langchain.com/}} were mentioned as tools for different use cases. Except Dialogflow and the Azure Service Conversational Language Understanding they are open source. Potentially a Spring Boot\footnote{\url{https://spring.io/}} or Node.js\footnote{\url{https://nodejs.org/}} application could suit the use case of this thesis.
+    \item \textbf{Data Management}: Organizing data with configurations that map intents to actions, and ensuring the chatbot can correctly interpret inputs is vital.
+\end{itemize}
+
+\subsubsection{Data Organization and Sources}
+
+Effective data organization and source identification are a key aspect for achieving the desired chatbot functionality:
+
+\begin{itemize}
+    \item \textbf{Configurations and Scenarios}: Initial iterations should use predefined configurations, mapping intents to device actions.
+    \item \textbf{Data Collection}: Gathering diverse user inputs to train models and create accurate annotations is essential for generalizability. They are also useful for the evaluation of the performance of the chatbot
+    \item \textbf{Potential Sources}: Logs from smart home devices , external services, and user behavior data should be considered. For the beginning the most important data is about the devices of a user since it is crucial for all of the defined intents and the most essential part of a smart home.
+\end{itemize}
+
+\subsubsection{Common Issues and Pitfalls}
+
+While the initial intention was to find out about general issues and pitfalls that often occur in the development of chatbot-powered applications in the interviews the direction 
+Several potential challenges were highlighted:
+
+\begin{itemize}
+    \item \textbf{Complexity of Automations}: Creating sophisticated automations might be challenging and require a balance between simplicity and functionality.
+    \item \textbf{Data Privacy and Trust}: Addressing user concerns about privacy and the reliability of AI-generated information is crucial.
+    \item \textbf{Resource Constraints}: Ensuring sufficient computational resources for LLMs, if used, and managing the cost of development.
+\end{itemize}
+
+\subsubsection{Evaluation of Success}
+
+The success of the smart home chatbot can be evaluated through:
+
+\begin{itemize}
+    \item \textbf{Performance Metrics}: Comparing expected outcomes with actual results using metrics like the F1 score.
+    \item \textbf{User Experience}: Conducting user evaluations to assess satisfaction and the effectiveness of interactions.
+    \item \textbf{Prototyping and Testing}: Iterative testing with real users to refine the chatbot's capabilities and ensure it meets user needs.
+\end{itemize}
+
+\subsection{Conclusion}
+
+The interviews provided a comprehensive understanding of the requirements and considerations for developing a smart home system chatbot. Key insights include the importance of choosing the right technologies, ensuring robust data management, and addressing user privacy concerns. By focusing on practical intents and leveraging existing frameworks, the development of a user-friendly and effective smart home chatbot is achievable.
+
+
 \section{Requirements}
 
 \section{Idea}
