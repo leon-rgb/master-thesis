@@ -1,0 +1,10 @@
+Requirements - functional (Sprache, Intents,) , non-functional (nicht wirklich, da Prototyp, aber möglichst "sicher" (eigener Server) günstig und Antworten sollen halbwegs schnell sein um evaluieren zu können)
+Functional:
+•	Intent: 
+•	Language: the languages the chatbot focuses on are German and English. When a user request is in German the chatbot should answer in German (analogous for English)
+•	Integrability: The chatbot should be easily integrable into existing Smart Home Systems, especially the Bosch Smart Home system. This means that the only necessary part to integrate the chatbot into a system should be a mapper class/code that is able of splitting the chatbots output into the natural language output a user sees and a system output (which in this work is a JSON) and maps this system output to the functionality of the smart home system.
+Non-Functional:
+•	Security / Safety:
+•	Cost-effective / cheap: 
+•	Usability: 
+•	Performance: is not too important for this work since it is a proof of concept. However, for showcasing and evaluating the chatbot must answer in a justified time. Otherwise, it could be a confounding factor for usability for example.
