@@ -237,6 +237,15 @@ The interviews provided a comprehensive understanding of the requirements and co
 \section{Requirements of the Chatbot}
 
 This section outlines the functional and non-functional requirements of the chatbot designed for integration with smart home systems, particularly focusing on the Bosch Smart Home system.
+They are formulated in a general way and not from the view of a specific role.
+The requirements were gathered primarily by drawing conclusions from the preliminary interviews.
+
+To shortly discuss requirement types it is well known that  software requirements can be classified into two categories: \glspl{fr} and \glspl{nfr}. 
+A common ground is that \glspl{fr} describe what the system shall do (describe specific behaviors and capabilities of the system) where in contrast \glspl{nfr} describe how a system shall do something (focus on quality attributes, constraints, and overall system characteristics).
+But in practice, researchers unveiled that it is hard to draw a line between these two types of requirements. \glspl{nfr} often stay very vague and are therefore hard to analyze \cite{nfr_fr}.
+But because it is still the most widespread definitions, it is applied in this work.
+
+The following requirements provide a comprehensive foundation for developing a smart home chatbot that is functional, secure, and user-friendly. The focus on integrability with existing systems, particularly the Bosch Smart Home system, ensures practical applicability, while attention to maintainability and cost-effectiveness supports sustainable deployment.
 
 \subsection{Functional Requirements}
 
@@ -259,26 +268,88 @@ This section outlines the functional and non-functional requirements of the chat
 \begin{itemize}
     \item \textbf{Security and Safety}: The chatbot may handle sensitive data, including information about users' devices and smart home system logs. It is crucial to ensure this information is not exposed to unauthorized parties. Self-hosting the LLM could enhance security.
     
-    \item \textbf{Cost-Effectiveness}: The solution should be cost-effective. Self-hosting the LLM could reduce costs associated with third-party services.
+    \item \textbf{Cost-Effectiveness}: The solution should be cost-effective since LLM-based software can get expensive easily. Self-hosting the LLM could reduce costs associated with third-party services.
     
     \item \textbf{Usability}: The chatbot should be user-friendly, providing clear and concise responses. The interface should be intuitive for users with varying levels of technical expertise. 
     
     \item \textbf{Performance}: While performance is not the primary focus for this proof of concept, the chatbot should respond within a reasonable time to avoid negatively impacting usability. Quick response times are essential for maintaining a smooth user experience.
-    
-    \item \textbf{Scalability}: The chatbot should be designed to scale with an increasing number of users and interactions. This ensures that it can handle larger volumes of data and more complex queries as usage grows.
-    
-    \item \textbf{Reliability}: The chatbot should be reliable, with minimal downtime. It should consistently provide accurate and timely responses to user queries.
-    
-    \item \textbf{Maintainability}: The chatbot system should be easy to maintain and update. Clear documentation and modular design can facilitate easier maintenance and the addition of new features.
+        
+    \item \textbf{Maintainability}: The chatbot system should be easy to maintain and update. Clear documentation and modular design can facilitate easier maintenance and the addition of new features which is always nice to have but also necessary for the Iterative approach of this thesis.
 \end{itemize}
 
-\subsection{}
-These requirements provide a comprehensive foundation for developing a smart home chatbot that is functional, secure, and user-friendly. The focus on integrability with existing systems, particularly the Bosch Smart Home system, ensures practical applicability, while attention to security and cost-effectiveness supports sustainable deployment.
+\section{Protoype Design and Architecture}
+In this section, we outline the design and architecture of the smart home chatbot prototype. This prototype aims to facilitate seamless and intuitive interactions between users and their smart home devices by leveraging advanced natural language processing (NLP) techniques and smart home integration capabilities.
+
+\subsection{Overview}
+
+The smart home chatbot prototype consists of several key components, each playing a vital role in the system's overall functionality. These components include the NLP engine, the intent processing module, the smart home integration layer, and the user interface. Together, they form a cohesive system capable of understanding and executing user commands within a smart home environment.
+
+\subsection{System Architecture}
+
+The architecture of the smart home chatbot prototype is designed to be modular and scalable, ensuring ease of maintenance and future enhancements. The system is divided into the following main modules:
+
+\begin{itemize}
+\item \textbf{Natural Language Processing (NLP) Engine}
+\item \textbf{Intent Processing Module}
+\item \textbf{Smart Home Integration Layer}
+\item \textbf{User Interface (UI)}
+\item \textbf{Data Management and Storage}
+\end{itemize}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\textwidth]{smart_home_chatbot_architecture.png}
+\caption{High-Level Architecture of the Smart Home Chatbot Prototype}
+\label{fig
+}
+\end{figure}
+
+\subsubsection{Natural Language Processing}
+
+The NLP engine is responsible for interpreting user inputs and converting them into structured data that the system can process. It employs a large language model (LLM) or Named Entity Recognition (NER) techniques, depending on the complexity and requirements of the task. The NLP engine comprises the following components:
+
+\begin{itemize}
+\item \textbf{Preprocessing}: Handles tokenization, stemming, and stop-word removal to prepare user inputs for analysis.
+\item \textbf{Intent Recognition}: Identifies the user's intent from the input text.
+\item \textbf{Entity Extraction}: Extracts relevant entities such as device types, room names, desired states, and values from the input.
+\end{itemize}
 
 
-\section{Idea}
+\subsubsection{Smart Home Integration Layer}
 
-\section{Architecture}
+The smart home integration layer bridges the chatbot and the smart home devices. It translates the processed intents into actionable commands for the smart home system.
+
+\subsubsection{User Interface (UI)}
+
+The user interface is the front-end component that interacts with users. It can be a mobile app, web interface, or integrated into existing smart home apps. The UI is designed to be user-friendly, supporting both German and English languages, and includes:
+
+\begin{itemize}
+\item \textbf{Chat Interface}: Allows users to input their queries and receive responses from the chatbot.
+\item \textbf{Voice Interface (optional)}: Supports voice commands for hands-free operation.
+\item \textbf{Feedback Mechanism}: Enables users to provide feedback on the chatbot's performance, helping to refine and improve the system.
+\end{itemize}
+
+\subsubsection{Data Management}
+
+Effective data management is crucial for the chatbot's performance and reliability. This component handles the storage and retrieval of user data, device logs, and conversation histories. It includes:
+
+\begin{itemize}
+\item \textbf{Database}: Stores device information, user preferences, and conversation logs.
+\item \textbf{Data Privacy Controls}: Implements measures to ensure that user data is handled in compliance with privacy regulations.
+\item \textbf{Analytics Engine}: Analyzes user interactions and device data to provide insights and optimize the chatbot's performance.
+\end{itemize}
+
+\subsection{Integration with Bosch Smart Home System}
+
+\subsection{Challenges and Considerations}
+
+Several challenges and considerations were addressed during the design and development of the prototype:
+
+\begin{itemize}
+\item \textbf{Complexity of Automations}: Balancing simplicity and functionality in user-defined automations.
+\item \textbf{Multilingual Support}: Providing accurate and contextually appropriate responses in both German and English.
+\end{itemize}
+
 
 %\section{further parts of the prototype - NLP Pipeline, Integration into the Bosch SH App,...}
 
