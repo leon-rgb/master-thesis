@@ -15,4 +15,5 @@ For Safety and cost-effectiveness self hosting an LLM could be the best solution
 
 -----------------
 -The design should match to the existing Bosch Smart Home app.
-more reqs??
+-Getting relevant data from a users smart home must be computing ressource effective since the tiny smart home devices do not have much ressources. Therefore inefficient data handling can lead to errors or even a system crash.
+more reqs?
