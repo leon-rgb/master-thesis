@@ -204,13 +204,14 @@ It also includes a "Small Talk Module" which improves users satisfaction with th
 
 Recent advancements in large language models (LLMs) have demonstrated significant potential across a range of tasks, including mathematical reasoning, natural dialogue, and program synthesis. Despite these advancements, current state-of-the-art models like GPT-4 still face challenges in accurately utilizing tools via API calls. These challenges include generating precise input arguments and avoiding the hallucination of incorrect API usages.
 
-To address these limitations, \citeauthor{patil2023gorillalargelanguagemodel} introduced Gorilla, a fine-tuned LLaMA-based model specifically designed to enhance the performance of LLMs in writing API calls. Gorilla leverages a document retriever to adapt to test-time document changes, significantly mitigating hallucination issues and improving the accuracy of API call generation. The model's capabilities were rigorously evaluated using APIBench, a comprehensive dataset of APIs from HuggingFace, TorchHub, and TensorHub.
+To address these limitations, \citet{patil2023gorillalargelanguagemodel} introduced Gorilla, a fine-tuned LLaMA-based model specifically designed to enhance the performance of LLMs in writing API calls. Gorilla leverages a document retriever to adapt to test-time document changes, significantly mitigating hallucination issues and improving the accuracy of API call generation. The model's capabilities were rigorously evaluated using APIBench (a comprehensive dataset of APIs from HuggingFace, TorchHub, and TensorHub).
 
-Gorilla's innovative approach integrates retrieval-aware training, which allows it to remain updated with frequently changing documentation and thus ensures more reliable and applicable outputs. The model outperforms GPT-4 in functional correctness of API calls, demonstrating superior adaptability and reduced error rates. This makes Gorilla a notable advancement in the field of tool usage by LLMs, potentially transforming the way these models interact with a dynamic set of cloud APIs and other computational tools.
+Gorilla's innovative approach integrates retrieval-aware training, which allows it to remain updated with frequently changing documentation and thus ensures more reliable and applicable outputs. The model outperforms GPT-4 in functional correctness of API calls, demonstrating good adaptability and reduced error rates. This makes Gorilla an advancement in the field of tool usage by LLMs, potentially transforming the way these models interact with a dynamic set of cloud APIs and other computational tools.
 
-Further contributing to this field, \citeauthor{srinivasan2023nexusraven} introduced NexusRaven-13B, an open-source LLM for function calls that originates from the CodeLLAMA-13B lineage. NexusRaven-13B employs a unique data curation via multi-step refinement, ensuring high-quality training data without relying on GPT-4 distillation. It matches GPT-3.5 in zero-shot function-calling accuracy and significantly surpasses GPT-4 when combined with a demonstration retrieval augmentation. NexusRaven-13B achieves 60\% higher function call success rate compared to Gorilla in the cybersecurity domain and 30\% higher than GPT-4 when using a demonstration retrieval system.
+Further contributing to this field, \citet{srinivasan2023nexusraven} introduced NexusRaven-13B, an open-source LLM for function calls that originates from the CodeLLAMA-13B lineage. NexusRaven-13B employs a unique data curation via multi-step refinement, ensuring high-quality training data without relying on GPT-4 distillation. It matches GPT-3.5 in zero-shot function-calling accuracy and significantly surpasses GPT-4 when combined with a demonstration retrieval augmentation. NexusRaven-13B achieves 60\% higher function call success rate compared to Gorilla in the cybersecurity domain and 30\% higher than GPT-4 when using a demonstration retrieval system.
 
-The success of models like Gorilla and NexusRaven-13B indicates a promising direction for future research, emphasizing the integration of retrieval mechanisms and fine-tuning techniques to enhance the practical utility of LLMs in real-world applications. For more details, refer to the original works by Patil et al. (2023) and Srinivasan et al. (2023).
+In general much research is done in the area of function calling with \glspl{llm}.
+The success of models like Gorilla and NexusRaven-13B shows that using retrieval systems and fine-tuning can make LLMs more useful in real-world tasks and with that indicate a promising direction of future research.
 
 However, a problem for this thesis is that different current language models should be tried out to find the model that suits the use case the best. But there is no standard of how function calling is achieved and also not every model supports function calling per se.
 
@@ -220,5 +221,30 @@ A solution to this could be to use the fact that most models are able to generat
 \subsection{Evaluating Language Models}
 \subsubsection{Natural Language Outputs}
 \subsubsection{Function Calls}
+The \gls{bfcl} provides a comprehensive evaluation of the ability of \glspl{llm} to generate accurate function calls \cite{berkeley-function-calling-leaderboard}. 
+This work introduces a dataset of 2,000 question-function-answer pairs covering multiple programming languages and diverse application domains. 
+The leaderboard evaluates models on various function calling scenarios, including simple, multiple, parallel, and parallel multiple functions, as well as function relevance detection and support for different programming languages. 
+Two main evaluation methods are employed: \gls{ast} Evaluation, which assesses the structural correctness of generated function calls, and Executable Function Evaluation, which tests the actual execution of generated function calls, including API responses for REST calls.
+The \gls{ast} can be seen in \cref{fig:ast} and checks for an outputed function by a model if the correct function, parameters and values were generated.
+
+The leaderboard compares various models, both proprietary (e.g., GPT-4, Claude) and open-source (e.g., Gorilla OpenFunctions, Llama3), on function calling tasks. 
+Additionally, it considers practical aspects of model deployment by measuring cost and latency for different models. 
+The study identifies several common challenges faced by LLMs in function calling, such as handling complex parameter conversions and generating malformed function calls. 
+Importantly, the research suggests that fine-tuned open-source models can be competitive with proprietary models for simple function calling tasks, though more complex scenarios may still favor larger proprietary models. 
+This work provides valuable insights into the current state of function calling capabilities in LLMs and offers a standardized benchmark for evaluating and comparing different models in this critical area of AI application development.
+
+\begin{figure}[h]
+  \centering
+  \captionsetup{justification=centering}
+  \includegraphics[width=0.85\textwidth]{graphics/bfcl-ast.jpeg}
+  \caption{Visualization of the \gls{ast} Evaluation\\Source: \citet{berkeley-function-calling-leaderboard}}
+  \label{fig:ast}
+\end{figure}
+
+The \gls{bfcl} work is highly relevant to developing a smart home chatbot. 
+Function calling is essential to effectively control smart home devices and perform complex tasks. 
+The leaderboard's evaluation of open-source models provides valuable insights into potential candidates for the chatbot's language model, offering cost-effective alternatives to proprietary solutions. 
+Moreover, the \gls{bfcl}'s evaluation methodology can inspire the assessment framework for the smart home chatbot. 
+With this inspiration the thesis can ensure a comprehensive analysis of the chatbot's performance in handling diverse function calls.
 
 %\blinddocument
