@@ -25,6 +25,9 @@
 
 In this chapter, we present the evaluation methodology and results for the smart home chatbot. The evaluation focuses on two key aspects: the semantic similarity of the responses and the accuracy of the generated JSON commands. Additionally, we discuss the initial approach using classification metrics, the challenges encountered, and the refined approach to address these challenges.
 
+\section{Evaluation Dataset}
+
+
 \section{Evaluation Metrics}
 
 \subsection{Semantic Similarity}
@@ -57,21 +60,86 @@ JSON accuracy evaluates the correctness of the structured data outputs generated
 def evaluate_jsons(generated_responses, generated_jsons, expected_json_values):
     correct_count = 0
     total_count = len(generated_responses)
+    total_keys = 0
+    correct_keys = 0
+    json_accuracy_flags = []
 
-    for generated_json, expected_json in zip(generated_jsons, expected_json_values):
+    for response, generated_json, expected_json in zip(generated_responses, generated_jsons, expected_json_values):
         if expected_json is not None and isinstance(expected_json, str):
-            expected_json = json.loads(expected_json)
+            try:
+                expected_json = json.loads(expected_json)
+            except json.JSONDecodeError:
+                json_accuracy_flags.append(False)
+                continue
         
         if expected_json is None and generated_json is None:
             correct_count += 1
-        elif expected_json == generated_json:
-            correct_count += 1
+            json_accuracy_flags.append(True)
+            continue
 
+        if expected_json is None:
+            if generated_json.get("action") == "none": 
+                correct_count += 1
+                json_accuracy_flags.append(True)
+                continue
+            json_accuracy_flags.append(False)
+            continue
+        
+        if generated_json is None:
+            json_accuracy_flags.append(False)
+            continue
+
+        try:
+            keys_correct = compare_jsons(generated_json, expected_json)
+            if keys_correct:
+                correct_count += 1
+                json_accuracy_flags.append(True)
+            else:
+                json_accuracy_flags.append(False)
+            
+            for key in expected_json:
+                total_keys += 1
+                if generated_json.get(key) == expected_json.get(key):
+                    correct_keys += 1
+        except AttributeError:
+            json_accuracy_flags.append(False)
+    
     accuracy = correct_count / total_count
-    return accuracy
+    key_accuracy = correct_keys / total_keys if total_keys > 0 else 0
+    return accuracy, key_accuracy, json_accuracy_flags
   \end{lstlisting}
     \caption{Code for Classificiation of the models responded JSONs}
     \label{lst:evalMetrics1}
+\end{Listing}
+
+\begin{Listing}
+    \begin{lstlisting}[language=Python]
+def normalize_value(value):
+    """Normalize the value for comparison."""
+    try:
+        # Try to convert strings that represent numbers to float
+        return float(value)
+    except (ValueError, TypeError):
+        # If it's not a number or it's already a number, return it as is
+        return value
+
+def compare_jsons(generated_json, expected_json):
+    """Compare two JSON objects with normalized values."""
+    if generated_json is None or expected_json is None:
+        return generated_json == expected_json
+    
+    for key in expected_json:
+        if key not in generated_json:
+            return False
+        # normalize value if the key is "value"
+        if key == "value":
+            return normalize_value(generated_json[key]) == normalize_value(expected_json[key])
+        else:
+            return generated_json[key] == expected_json[key]
+    return True
+    \end{lstlisting}
+    \caption{Code for comparing actual and expected JSONs}
+    \label{lst:compare-json}   
 \end{Listing}
 
 \section{Initial Approach Using Classification Metrics}
@@ -124,19 +192,26 @@ To address the issues with the initial approach, we refined our evaluation metho
 
 \begin{Listing}
     \begin{lstlisting}[language=Python]
-    def refined_classification_metrics(similarities, json_accuracy_flags, similarity_threshold=0.8):
-        y_true = []
-        y_pred = []
-    
-        for similarity, json_correct in zip(similarities, json_accuracy_flags):
-            y_true.append(1 if json_correct else 0)
-            y_pred.append(1 if similarity >= similarity_threshold and json_correct else 0)
-    
-        precision = precision_score(y_true, y_pred)
-        recall = recall_score(y_true, y_pred)
-        f1 = f1_score(y_true, y_pred)
-    
-        return precision, recall, f1
+    def calculate_classification_metrics(similarities, json_accuracy_flags, similarity_threshold=0.8):
+    y_true = []
+    y_pred = []
+
+    for similarity, json_correct in zip(similarities, json_accuracy_flags):
+        # True label is positive if JSON is correct
+        y_true.append(1 if json_correct else 0)
+
+        # Predicted positive if similarity is above threshold and JSON is correct
+        if similarity >= similarity_threshold and json_correct:
+            y_pred.append(1)
+        else:
+            y_pred.append(0)
+
+    # Calculate precision, recall, and F1 score
+    precision = precision_score(y_true, y_pred)
+    recall = recall_score(y_true, y_pred)
+    f1 = f1_score(y_true, y_pred)
+
+    return precision, recall, f1
   \end{lstlisting}
     \caption{Refined Classification Metrics}
     \label{lst:classificationRefined}
@@ -168,6 +243,8 @@ Here, you need to discuss about evaluation of your research result. You may wann
 ... what is the result of your e.g., Questionnaire or experimentation.. 
 Presentation of Findings
 Data Analysis
+\subsection{User Experience Demonstration}
+% include screenshots of example conversations 
 
 \section{Discussion}
 % not always response in correct language --> could be solved in telling the model in 

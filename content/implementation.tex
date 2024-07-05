@@ -2,6 +2,37 @@
 
 \chapter{Implementation}
 \label{chap:implementation}
-You design your own chapters, starting from here
 
+\section{Technology Stack}
+% Android Studio, Java and Android SDK
+% Ollama v0.1.47 and Ollama API
+% JSON
+
+
+\section{Server}
+The initial plan was to use the bwCloud\footnote{\url{https://www.bw-cloud.org/}}, a currently free service that can be used of students and researchers of different institutions accross Baden-Würrtemberg, Germany.
+It was easy to get the needed ressources for this project which where eigth VCPUs, 16GB RAM and also enough memory for the size of the \glspl{llm} that were planned to use.
+When trying out to run models directly on the server the response times were okay for models up to approximately 10 Billion perameters although the used server has no GPU.
+However, when testing customized models through HTTP Requests the response times were much higher than expected.
+Especially the first response often took over one minute with preceeding requests taking minimum 30 seconds depending on the length of the generated respone.
+The first request usually takes longer when the model used is not allready loaded into the RAM.
+
+Because of the occuring difficulties and with wanting to use as low budget as possible we decided to use an existing private Computer with more Ressources and used IPv6 Host Exposure for a specific port on which the Ollama API was running.
+The computer had an NVIDIA GeForce 980 ti graphics card with 6GB VRAM and 32GB RAM with 3600MHz.
+Even longer model responses usually only took a few seconds to receive.
+
+\subsection{Model Customization}
+
+
+
+\section{User Interface}
+\subsection{Chatbot in Action}
+\section{Data Management}
+\section{Challenges and Solutions}
+Several challenges and considerations were addressed during the design and development of the prototype:
+
+\begin{itemize}
+\item \textbf{Complexity of Automations}: Balancing simplicity and functionality in user-defined automations.
+\item \textbf{Multilingual Support}: Providing accurate and contextually appropriate responses in both German and English.
+\end{itemize}
 %\blinddocument

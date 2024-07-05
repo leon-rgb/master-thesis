@@ -15,13 +15,13 @@ In this subsection, the focus are the specific foundations that are crucial for 
 Including key elements for this thesis such as a definition for a Smart Home and Natural Language Understanding which enables chatbots to understand a users input message.
 Other elements such as a general architecture and typical building blocks for chatbots are also presented.
 
-\subsection*{Smart Home} 
+\subsection{Smart Home} 
 A smart home devices main aspect is that its original functionality is augmented through network capabilities \cite{schiefer_smart_2015,balakrishnan_smart_2018} and should enhance especially comfort\cite{matsui_information_2018, balakrishnan_smart_2018} but also security\cite{balakrishnan_smart_2018} or energy efficiency\cite{matsui_information_2018, balakrishnan_smart_2018} for example. 
 Therefore a smart home consists of such devices and provides additional infrastructure like an app to control the devices. 
 These infrastructures often allow automation of the devices.
 Since its functionality is based on connected devices and often sensors it is often named in the context of the Internet of Things (IoT) \cite{atzori_internet_2010}. 
 
-\subsection*{Chatbot Types and Classifications}
+\subsection{Chatbot Types and Classifications}
 % lehmann
 Based on Lehmann \cite{lehmann_chatbot-guide_2021} there are three main types of chatbots: decision-tree-based, keyword-based, and advanced context-aware bots. 
 Decision-tree-based bots follow a predefined flowchart in response to user queries, often identified by menus and buttons. 
@@ -38,7 +38,7 @@ Inter-agent chatbots, omnipresent in nature, facilitate inter-chatbot communicat
 \textbf{Human-aided} chatbots incorporate human computation for flexibility and robustness.
 The \textbf{build method} distinguishes between open-source platforms allowing intervention and closed platforms acting as black boxes but providing immediate access to advanced technologies, often found in large companies.
 
-\subsection*{Chatbot Building Blocks}
+\subsection{Chatbot Building Blocks}
 In this subsection building blocks and architectural insights that can be identified in different literature are collected and explained. 
 It is mostly based on Lehmann \cite{lehmann_chatbot-guide_2021} and \cite{adamopoulou_overview_2020} if not mentioned otherwise.
 
@@ -82,7 +82,7 @@ In general, the chatbot architecture by Adamopoulou and Moussiades\cite{adamopou
 \fi
 
 
-\subsection*{Prototype and Iterative Development}
+\subsection{Prototype and Iterative Development}
 
 This subsection is based on Sommerville \cite{sommerville_software_2011} according to who "iterative development of the prototype is essential".
 The process for developing a prototype is shown in \cref{fig:prototype-process} and summed up consists of planning, developing and evaluating.
@@ -115,12 +115,39 @@ It is useful to start projects like this thesis with a prototype with thought ou
 \end{figure}
 
 \newpage
+\subsection{Function Calling in Language Models}
+Based on ChatGPT function calling can be summarized as:
+
+\begin{quote}
+Function calling in language models refers to the ability of a language model to interact with external functions or APIs during a conversation. This feature enhances the model's capabilities by allowing it to perform specific tasks, retrieve real-time information, or execute actions beyond its built-in knowledge base.
+\end{quote} \cite{openai2024function}
+
+\noindent
+Function calling in language models allows the model to interact with external tools, APIs, or functions during the generation process. This capability enables the model to access up-to-date information, perform specific tasks, and provide more accurate and contextually relevant responses \cite{mistral2024function, openai2024function, google2024function}.
+The process of function calling typically involves the following steps:
+
+\begin{itemize}
+\item \textbf{Function Declaration:} The user defines a set of functions with their names, descriptions, and parameters \cite{mistral2024function}.
+
+\item \textbf{Model Processing:} When given a prompt, the model determines whether to use one of the declared functions based on the context and requirements of the query \cite{mistral2024function, openai2024function}.
+
+\item \textbf{Function Call Generation:} If the model decides to use a function, it generates a structured output (usually in JSON format) containing the function name and necessary arguments \cite{mistral2024function, openai2024function}.
+
+\item \textbf{External Execution:} The application receives the function call details from the model and executes the corresponding function or API call \cite{mistral2024function, google2024function}.
+
+\item \textbf{Response Integration:} The result from the external function is then provided back to the model, which uses this information to generate a final response \cite{mistral2024function, google2024function}.
+\end{itemize}
+This approach allows language models to overcome limitations such as accessing real-time data or performing specific computations, making them more versatile and powerful in various applications \cite{google2024function}.
+
+Function calling is particularly relevant to a smart home chatbot as it significantly enhances the bot's capabilities and usefulness. In the context of a smart home, function calling enables the chatbot to interact directly with various devices, APIs, and databases, allowing it to perform tasks such as controlling devices, retrieving real-time information about device states, and analyzing power consumption data \cite{google2024function}. For instance, when a user asks to "turn off the living room lights," the chatbot can use function calling to execute the appropriate command on the smart home system. Similarly, for queries about power consumption or device information, the chatbot can call specific functions to access and analyze the relevant data, providing accurate and up-to-date responses \cite{mistral2024function, openai2024function}. This integration of function calling makes the chatbot a more effective interface between the user and the smart home ecosystem, enhancing the user's ability to understand and control their smart home environment.
+
+\newpage
 \section{Related work}
 This section presents literature that is related to this thesis.
 While chatbots are ever known to be used in areas like customer service it is interesting to see work on how chatbots are used in smart homes or for complex scenarios like managing containerized networks.
 Some literature has the nice side effect that it also presents the architecture of the developed system and can inspire the architecture of the chatbot that should be developed in this thesis.
 
-\subsection*{Chatbots for Smart Homes}
+\subsection{Chatbots for Smart Homes}
 Various literature exists that contains some kind of chatbot in the context of Smart Homes.
 Most of these chatbots perform the same task as nowadays common Voice assistants as for example the Google Assistant\footnote{\href{https://assistant.google.com/}{assistant.google.com}} which is capable of understanding written request but also transforming speech into written requests which also includes managing smart devices added to Google Home\footnote{\href{https://home.google.com/intl/de_de/the-latest/}{home.google.com}}, an app for managing a smart home.
 
@@ -147,7 +174,7 @@ The presented chatbot called Safebot is intended as an extension to smart home a
 Also, users could notify the bot that an response was not appropriate resulting in also teaching it.
 The learning is purely based on natural languages in contrast to chatbots that for example use knowledge bases with structured data.
 
-\subsection*{Chatbots for complex Scenarios}
+\subsection{Chatbots for complex Scenarios}
 Various chatbots for many different use cases exist. 
 As the intention of this work is to test how far a chatbot can go in answering complex queries to a smart home the question aligns if approaches exist for answering (complex) questions in a closed domain based on available data.
 An example for this is the work of Ait-Mlouk and Jiang \cite{ait-mlouk_kbot_2020} which approached to develop a knowledge graph based chatbot that can find information in linked data through NLU.
@@ -173,5 +200,25 @@ A different work \cite{carlander-reuterfelt_jaicob_2020} approached to develop a
 The architecture includes information retrieval from a knowledge base, parsing the received document and answering a query based on the search in the knowledge base.
 It also includes a "Small Talk Module" which improves users satisfaction with the system and increase the overall interest in chatting with it.
 
-%noch etwas Fülltext
+\subsection{Advancements in Function Calling of Language Models}
+
+Recent advancements in large language models (LLMs) have demonstrated significant potential across a range of tasks, including mathematical reasoning, natural dialogue, and program synthesis. Despite these advancements, current state-of-the-art models like GPT-4 still face challenges in accurately utilizing tools via API calls. These challenges include generating precise input arguments and avoiding the hallucination of incorrect API usages.
+
+To address these limitations, \citeauthor{patil2023gorillalargelanguagemodel} introduced Gorilla, a fine-tuned LLaMA-based model specifically designed to enhance the performance of LLMs in writing API calls. Gorilla leverages a document retriever to adapt to test-time document changes, significantly mitigating hallucination issues and improving the accuracy of API call generation. The model's capabilities were rigorously evaluated using APIBench, a comprehensive dataset of APIs from HuggingFace, TorchHub, and TensorHub.
+
+Gorilla's innovative approach integrates retrieval-aware training, which allows it to remain updated with frequently changing documentation and thus ensures more reliable and applicable outputs. The model outperforms GPT-4 in functional correctness of API calls, demonstrating superior adaptability and reduced error rates. This makes Gorilla a notable advancement in the field of tool usage by LLMs, potentially transforming the way these models interact with a dynamic set of cloud APIs and other computational tools.
+
+Further contributing to this field, \citeauthor{srinivasan2023nexusraven} introduced NexusRaven-13B, an open-source LLM for function calls that originates from the CodeLLAMA-13B lineage. NexusRaven-13B employs a unique data curation via multi-step refinement, ensuring high-quality training data without relying on GPT-4 distillation. It matches GPT-3.5 in zero-shot function-calling accuracy and significantly surpasses GPT-4 when combined with a demonstration retrieval augmentation. NexusRaven-13B achieves 60\% higher function call success rate compared to Gorilla in the cybersecurity domain and 30\% higher than GPT-4 when using a demonstration retrieval system.
+
+The success of models like Gorilla and NexusRaven-13B indicates a promising direction for future research, emphasizing the integration of retrieval mechanisms and fine-tuning techniques to enhance the practical utility of LLMs in real-world applications. For more details, refer to the original works by Patil et al. (2023) and Srinivasan et al. (2023).
+
+However, a problem for this thesis is that different current language models should be tried out to find the model that suits the use case the best. But there is no standard of how function calling is achieved and also not every model supports function calling per se.
+
+A solution to this could be to use the fact that most models are able to generate \gls{json} and map it to actual function calls with parameters. This approach leverages the inherent structure and flexibility of JSON, making it a versatile and effective method for implementing function calling across various LLMs.
+
+
+\subsection{Evaluating Language Models}
+\subsubsection{Natural Language Outputs}
+\subsubsection{Function Calls}
+
 %\blinddocument
