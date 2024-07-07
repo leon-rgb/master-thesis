@@ -120,18 +120,18 @@ Based on ChatGPT function calling can be summarized as:
 
 \begin{quote}
 Function calling in language models refers to the ability of a language model to interact with external functions or APIs during a conversation. This feature enhances the model's capabilities by allowing it to perform specific tasks, retrieve real-time information, or execute actions beyond its built-in knowledge base.
-\end{quote} \cite{openai2024function}
+\end{quote} \cite{openai2024function-chatgpt}
 
 \noindent
-Function calling in language models allows the model to interact with external tools, APIs, or functions during the generation process. This capability enables the model to access up-to-date information, perform specific tasks, and provide more accurate and contextually relevant responses \cite{mistral2024function, openai2024function, google2024function}.
+Function calling in language models allows the model to interact with external tools, APIs, or functions during the generation process. This capability enables the model to access up-to-date information, perform specific tasks, and provide more accurate and contextually relevant responses \cite{mistral2024function, openai2024function-article, google2024function}.
 The process of function calling typically involves the following steps:
 
 \begin{itemize}
 \item \textbf{Function Declaration:} The user defines a set of functions with their names, descriptions, and parameters \cite{mistral2024function}.
 
-\item \textbf{Model Processing:} When given a prompt, the model determines whether to use one of the declared functions based on the context and requirements of the query \cite{mistral2024function, openai2024function}.
+\item \textbf{Model Processing:} When given a prompt, the model determines whether to use one of the declared functions based on the context and requirements of the query \cite{mistral2024function, openai2024function-article}.
 
-\item \textbf{Function Call Generation:} If the model decides to use a function, it generates a structured output (usually in JSON format) containing the function name and necessary arguments \cite{mistral2024function, openai2024function}.
+\item \textbf{Function Call Generation:} If the model decides to use a function, it generates a structured output (usually in JSON format) containing the function name and necessary arguments \cite{mistral2024function, openai2024function-article}.
 
 \item \textbf{External Execution:} The application receives the function call details from the model and executes the corresponding function or API call \cite{mistral2024function, google2024function}.
 
@@ -139,7 +139,7 @@ The process of function calling typically involves the following steps:
 \end{itemize}
 This approach allows language models to overcome limitations such as accessing real-time data or performing specific computations, making them more versatile and powerful in various applications \cite{google2024function}.
 
-Function calling is particularly relevant to a smart home chatbot as it significantly enhances the bot's capabilities and usefulness. In the context of a smart home, function calling enables the chatbot to interact directly with various devices, APIs, and databases, allowing it to perform tasks such as controlling devices, retrieving real-time information about device states, and analyzing power consumption data \cite{google2024function}. For instance, when a user asks to "turn off the living room lights," the chatbot can use function calling to execute the appropriate command on the smart home system. Similarly, for queries about power consumption or device information, the chatbot can call specific functions to access and analyze the relevant data, providing accurate and up-to-date responses \cite{mistral2024function, openai2024function}. This integration of function calling makes the chatbot a more effective interface between the user and the smart home ecosystem, enhancing the user's ability to understand and control their smart home environment.
+Function calling is particularly relevant to a smart home chatbot as it significantly enhances the bot's capabilities and usefulness. In the context of a smart home, function calling enables the chatbot to interact directly with various devices, APIs, and databases, allowing it to perform tasks such as controlling devices, retrieving real-time information about device states, and analyzing power consumption data \cite{google2024function}. For instance, when a user asks to "turn off the living room lights," the chatbot can use function calling to execute the appropriate command on the smart home system. Similarly, for queries about power consumption or device information, the chatbot can call specific functions to access and analyze the relevant data, providing accurate and up-to-date responses \cite{mistral2024function, openai2024function-article}. This integration of function calling makes the chatbot a more effective interface between the user and the smart home ecosystem, enhancing the user's ability to understand and control their smart home environment.
 
 \newpage
 \section{Related work}
@@ -217,9 +217,94 @@ However, a problem for this thesis is that different current language models sho
 
 A solution to this could be to use the fact that most models are able to generate \gls{json} and map it to actual function calls with parameters. This approach leverages the inherent structure and flexibility of JSON, making it a versatile and effective method for implementing function calling across various LLMs.
 
+\subsection{Similar Approaches to this thesis for Home Assistant}
+A project very similar to what we want to achieve with this work is the Home LLM project which integrates a local \gls{llm} with Home Assistant\footnote{\url{https://www.home-assistant.io/}} (a widely used open source solution for home automation) to act as a personal assistant for controlling smart home devices \cite{acon96_home_llm}. It consists of two main components: the Home \gls{llm} models and the Local \gls{llm} Conversation integration.
+
+The Local \gls{llm} Conversation integration provides a custom component that allows the locally running \gls{llm} to function as a "conversation agent" within Home Assistant. Users can interact with the model via a chat interface or through Speech-to-Text and Text-to-Speech addons. The integration supports running the model either directly within Home Assistant or on a separate machine using various backends such as Ollama or LocalAI.
+
+The Home \gls{llm} models are fine-tuned versions of various large language models under 5 billion parameters, designed to control smart home devices and perform basic question-answering tasks. The fine-tuning was done using a custom synthetic dataset that teaches the model function calling based on device information. Models are available on HuggingFace in different sizes and languages.
+
+The project includes a synthetic dataset aimed at covering basic operations in Home Assistant, such as turning devices on and off, supporting various entity types like light, media player, climate and switch. Training for the models involved fine-tuning, and an experimental Home Assistant Add-on facilitates running the project entirely on the Home Assistant system.
+
+Another project, exemplified by \texttt{dadaloop82/MyHomeSmart-HASS-AppDeamon} on GitHub \cite{dadaloop82_MyHomeSmart_HASS_AppDeamon}, focuses on enhancing home automation capabilities through the integration of artificial intelligence techniques. This repository leverages AppDaemon within the Home Assistant framework to autonomously create and execute dynamic automations. Central to its functionality is the use of decision tree models implemented with Python's scikit-learn library. These models analyze sensor data to make informed decisions, such as adjusting temperatures or controlling devices based on predefined objectives and user habits.
+
+The repository provides configuration files for specifying entities and defining automation rules tailored to user preferences.
+
+With this unusual approach that rethinks how current smart home applications work, the project aims to empower users with intelligent automation systems that enhance the efficiency and adaptability of home management tasks.
+
+While the Home \gls{llm} project provides a solid foundation for integrating \glspl{llm} with smart home systems and MyHomeSmart-HASS-AppDeamon focuses on a new way for intelligent automation, this thesis expands on this work in several significant ways:
+
+\begin{itemize}
+\item \textbf{Exploration of Larger Models:} The Home LLM project primarily focuses on smaller language models under 5 billion parameters that have been fine-tuned for specific tasks. In contrast, this thesis explores the use of larger models, up to 12 billion parameters.
+
+\item \textbf{Diverse and Complex Intents:} The scope of the Home LLM project is largely confined to basic device control and simple question-answering. This thesis extends beyond these functionalities and the MyHomeSmart-HASS-AppDeamon approach to address more diverse and complex intents. This includes creating automations, querying the rationale behind system actions, and performing analytical tasks. These additional capabilities require the \gls{llm} to understand and process more intricate commands and contextual information, demonstrating a higher level of intelligence and utility.
+
+\item \textbf{Advanced Interaction Capabilities:} While the Home LLM project enables interaction through chat interfaces and Speech-to-Text and Text-to-Speech addons and MyHomeSmart-HASS-AppDeamon tries to reason from user actions and preferences, This thesis investigates more advanced interaction paradigms. This includes understanding user queries at a deeper semantic level and providing more accurate and contextually relevant responses.
+
+\item \textbf{Evaluating Generalization Without Fine-Tuning:} A key focus of this thesis is to determine how far larger models can be pushed without the need for fine-tuning, by leveraging pre-trained capabilities and customizing them for specific use cases. This approach aims to save on computational resources and time, offering a more efficient pathway to deploying sophisticated \glspl{llm} in smart home environments.
+
+\item \textbf{Comprehensive Evaluation Metrics:} In addition to the standard metrics used for evaluating \glspl{llm}, This thesis incorporates a broader set of evaluation criteria to assess the performance of these models in real-world scenarios. This includes metrics for natural language understanding, function calling accuracy, and user satisfaction, ensuring a holistic evaluation of the model's capabilities.
+
+\item \textbf{Providing a ready-to-use solution:} While both mentioned projects are rather for technology interested and knowing persons this thesis aims to develop an chatbot that is seemlessly integrated into the Bosch Smart Home App, enabling also users without technical expertise to use this technology and in general prevent the need for a manual setup.
+\end{itemize}
+
+By addressing these areas, this thesis aims to provide a more robust and versatile solution for integrating \glspl{llm} into smart home systems, pushing the boundaries of what these models can achieve in terms of functionality and user interaction.
+
+\subsubsection{Training a Large Language Model for Smart Home Automation}
+The owner of the Home LLM repository provided us insights on how to build a model similar to his upon request.
+Even if our intention is not on fine-tuning an LLM, such information can be very helpful, for example to get inspired by the training data format. 
+The primary focus in the process is on constructing a comprehensive dataset that represents various scenarios where a personal assistant interacts with Home Assistant. This dataset, which forms the core of the project, consists of thousands of examples demonstrating different interactions, such as controlling devices or responding to user queries.
+
+The dataset is formatted to include all necessary information for the model to understand and execute tasks. An example format might look like this:
+
+\begin{Listing}[h]
+  \begin{lstlisting}
+    You are 'Al', a helpful AI Assistant that controls the devices in a house. Complete the following task as instructed or answer the following question with the information provided only.
+    The current time and date is 08:12 AM on Thursday March 14, 2024
+    Services: light.turn_off(), light.turn_on(rgb_color,brightness), fan.turn_on(), fan.turn_off()
+    Devices:
+    light.office 'Office Light' = on;80%
+    fan.office 'Office fan' = off
+    light.kitchen 'Kitchen Light' = on;80%;red
+    light.bedroom 'Bedroom Light' = off
+    
+    please turn on the lights in the kitchen now
+    I'll turn the lights on for you right away
+    ```homeassistant
+    { "service": "light.turn_on", "target_device": "light.kitchen" }
+  \end{lstlisting}
+  \caption{Classification Metrics}
+  \label{lst:homeLLM}
+\end{Listing}
+
+Training involves instruct fine-tuning using HuggingFace Trainer scripts, ensuring the model learns to complete tasks based on user requests by providing variations of these scenarios. Critical steps include matching the model's instruct/chat format, masking out the context during training, and fine-tuning hyper-parameters like learning rate and training schedule.
+An evaluation framework is essential to measure model accuracy and compare training runs, ensuring effective model performance.
+
 
 \subsection{Evaluating Language Models}
+Evaluating language models involves assessing their performance across various dimensions to ensure they meet the requirements of specific applications. This section explores different metrics and methods used to evaluate the outputs of language models, particularly focusing on natural language outputs and function calls, which are crucial for developing a smart home chatbot.
+
 \subsubsection{Natural Language Outputs}
+Evaluating the natural language outputs of a smart home chatbot can leverage several metrics commonly used for assessing \glspl{llm}. Key metrics include:
+
+\begin{itemize}
+\item \textbf{Perplexity}: This metric measures how well the model predicts sample text, indicating fluency and coherence of the chatbot's responses \cite{biswas2023evaluating}. This could be less relevant for this thesis since predicting text sequences is not directly relevant for the approached smart home chatbot.
+
+\item \textbf{Accuracy}: It assesses the correctness of the chatbot's responses, which is particularly important for tasks like device control and power consumption analysis in a smart home context \cite{biswas2023evaluating}.
+
+\item \textbf{F1-score}: This metric balances precision and recall, useful for evaluating the chatbot's performance on specific smart home tasks \cite{biswas2023evaluating}. One issue with this metric for works like this master thesis can be that it can be difficult to define what correct and incorrect cases are since initially this metric is meant for classification tasks.
+
+\item \textbf{ROUGE and BLEU scores}: These measure the similarity between the chatbot's responses and reference texts, helping assess the quality of generated explanations or instructions related to smart home operations \cite{biswas2023evaluating}.
+
+\item \textbf{Question Answering Metrics}: Including accuracy and F1-score but also others, these are crucial for evaluating the chatbot's ability to correctly answer user queries about their smart home \cite{biswas2023evaluating}.
+
+\item \textbf{Named Entity Recognition Metrics}: These are important for assessing the chatbot's ability to identify and understand references to specific devices or areas in the home \cite{biswas2023evaluating}.
+
+\item \textbf{Semantic Similarity}: This measures how similar two pieces of text are in terms of meaning. Sentence similarity models convert texts into vectors (embeddings) that capture semantic information and calculate how close they are. This task is useful for information retrieval and clustering/grouping \cite{huggingface_sentence_similarity}. Various approaches and measures can be used to evaluate semantic similarity, including cosine similarity, Jaccard index, and more complex methods involving neural embeddings \cite{Slimani_2013}. This topic is quite complex and an own research area but the simplest way to apply this evaluation technique in works like this master thesis is to use a small language model that does the calculation.
+\end{itemize}
+
+Additionally, human evaluation metrics can be valuable in assessing the chatbot's helpfulness and relevance in the smart home context. This could involve user studies where participants rate the chatbot's responses on scales of usefulness, clarity, and appropriateness \cite{guo2023evaluatinglargelanguagemodels}.
+
 \subsubsection{Function Calls}
 The \gls{bfcl} provides a comprehensive evaluation of the ability of \glspl{llm} to generate accurate function calls \cite{berkeley-function-calling-leaderboard}. 
 This work introduces a dataset of 2,000 question-function-answer pairs covering multiple programming languages and diverse application domains. 
@@ -236,7 +321,7 @@ This work provides valuable insights into the current state of function calling 
 \begin{figure}[h]
   \centering
   \captionsetup{justification=centering}
-  \includegraphics[width=0.85\textwidth]{graphics/bfcl-ast.jpeg}
+  \includegraphics[width=0.9\textwidth]{graphics/bfcl-ast.jpeg}
   \caption{Visualization of the \gls{ast} Evaluation\\Source: \citet{berkeley-function-calling-leaderboard}}
   \label{fig:ast}
 \end{figure}
@@ -246,5 +331,3 @@ Function calling is essential to effectively control smart home devices and perf
 The leaderboard's evaluation of open-source models provides valuable insights into potential candidates for the chatbot's language model, offering cost-effective alternatives to proprietary solutions. 
 Moreover, the \gls{bfcl}'s evaluation methodology can inspire the assessment framework for the smart home chatbot. 
 With this inspiration the thesis can ensure a comprehensive analysis of the chatbot's performance in handling diverse function calls.
-
-%\blinddocument
