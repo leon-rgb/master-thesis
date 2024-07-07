@@ -4,10 +4,22 @@
 \label{chap:implementation}
 
 \section{Technology Stack}
-% Android Studio, Java and Android SDK
-% Ollama v0.1.47 and Ollama API
-% JSON
+The implementation of the chatbot system leverages a diverse set of technologies, each chosen for its specific capabilities and compatibility with the existing Bosch Smart Home ecosystem. Figure \ref{fig:techstack} illustrates the technology stack overlaid on the base architecture.
 
+Android Studio serves as the primary integrated development environment, facilitating the extension of the existing Bosch Smart Home Android application. The client-side development utilizes Java programming language in conjunction with Android 14 SDK, ensuring compatibility with the latest Android features and optimizations.
+
+To enhance the user interface and manage the chat functionality efficiently, the implementation incorporates modern Android components. RecyclerView is employed for rendering the message exchange between the user and the chatbot, providing smooth scrolling and efficient memory usage. Concurrency tools, specifically ExecutorService and CompletableFuture, are utilized to handle API calls in the background, ensuring a responsive user interface while managing asynchronous operations.
+
+On the server side, Ollama v0.1.47 is deployed for hosting, customizing, and invoking the language model. The Ollama API facilitates seamless interaction between the client application and the server-hosted language model.
+
+JSON (JavaScript Object Notation) serves as the primary data exchange format between the server and client components. This lightweight and human-readable format is used both for constructing API calls to the Ollama API and for transmitting the language model's responses back to the client.
+\begin{figure}[h]
+    \centering
+    \captionsetup{justification=centering}
+    \includegraphics[width=0.9\textwidth]{graphics/techstack.png}
+    \caption{Technology stack visualized on base architecture}
+    \label{fig:techstack}
+\end{figure}
 
 \section{Server}
 The initial plan was to use the bwCloud\footnote{\url{https://www.bw-cloud.org/}}, a currently free service that can be used of students and researchers of different institutions accross Baden-Würrtemberg, Germany.
@@ -23,11 +35,13 @@ Even longer model responses usually only took a few seconds to receive.
 
 \section{Model Customization}
 \subsection{Model Selection}
+\subsection{Modelfiles}
+\subsection{Prompt Engineering}
 
+\section{Data Management}
 
 \section{User Interface}
 \subsection{Chatbot in Action}
-\section{Data Management}
 \section{Challenges and Solutions}
 Several challenges and considerations were addressed during the design and development of the prototype:
 
