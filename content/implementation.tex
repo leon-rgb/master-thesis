@@ -12,7 +12,7 @@ To enhance the user interface and manage the chat functionality efficiently, the
 
 On the server side, Ollama v0.1.47 is deployed for hosting, customizing, and invoking the language model. The Ollama API facilitates seamless interaction between the client application and the server-hosted language model.
 
-JSON (JavaScript Object Notation) serves as the primary data exchange format between the server and client components. This lightweight and human-readable format is used both for constructing API calls to the Ollama API and for transmitting the language model's responses back to the client.
+\gls{json} serves as the primary data exchange format between the server and client components. This lightweight and human-readable format is used both for constructing API calls to the Ollama API and for transmitting the language model's responses back to the client.
 \begin{figure}[h]
     \centering
     \captionsetup{justification=centering}
@@ -34,9 +34,26 @@ The computer had an NVIDIA GeForce 980 ti graphics card with 6GB VRAM and 32GB R
 Even longer model responses usually only took a few seconds to receive.
 
 \section{Model Customization}
+This section is all about the language models themselves. It covers which model where selected and why, how the models where customized with so called "Modelfiles" and an engineered prompt.
 \subsection{Model Selection}
+The model selection was based on parameter count, popularity, ranking in the \gls{bfcl} and availability in the ollama models library.
+The parameter count should be lower than 15 Billion since it wouldn't really run on the server setup described in the last section.
+The model should be either under the most popular models filter on the Ollama library website \footnote{\url{https://ollama.com/library?sort=popular}}
+
+"home-3b-v3",
+"qwen2-7b-instruct",
+"sqwen2-1.5b-instruct",
+"mistral-7b-instruct",
+"gemma-2b-instruct",
+"gemma-instruct",
+"zephyr",
+"llama3",
+"llama3-instruct"
+"phi3"
+%TODO add gorilla, fireflies, new gemini/gemma model?
 \subsection{Modelfiles}
 \subsection{Prompt Engineering}
+
 
 \section{Data Management}
 
@@ -48,5 +65,8 @@ Several challenges and considerations were addressed during the design and devel
 \begin{itemize}
 \item \textbf{Complexity of Automations}: Balancing simplicity and functionality in user-defined automations.
 \item \textbf{Multilingual Support}: Providing accurate and contextually appropriate responses in both German and English.
+\item \textbf{Historical Data}: ...
+\item \textbf{Availability of System Logs}: ...
+\item \textbf{Security Issue}: trusted domains
 \end{itemize}
 %\blinddocument

@@ -58,10 +58,8 @@ JSON accuracy evaluates the correctness of the structured data outputs generated
 \begin{Listing}
     \begin{lstlisting}[language=Python]
 def evaluate_jsons(generated_responses, generated_jsons, expected_json_values):
-    correct_count = 0
+    correct_count = total_keys = correct_keys = 0
     total_count = len(generated_responses)
-    total_keys = 0
-    correct_keys = 0
     json_accuracy_flags = []
 
     for response, generated_json, expected_json in zip(generated_responses, generated_jsons, expected_json_values):
@@ -70,25 +68,21 @@ def evaluate_jsons(generated_responses, generated_jsons, expected_json_values):
                 expected_json = json.loads(expected_json)
             except json.JSONDecodeError:
                 json_accuracy_flags.append(False)
-                continue
-        
+                continue        
         if expected_json is None and generated_json is None:
             correct_count += 1
             json_accuracy_flags.append(True)
             continue
-
         if expected_json is None:
             if generated_json.get("action") == "none": 
                 correct_count += 1
                 json_accuracy_flags.append(True)
                 continue
             json_accuracy_flags.append(False)
-            continue
-        
+            continue        
         if generated_json is None:
             json_accuracy_flags.append(False)
             continue
-
         try:
             keys_correct = compare_jsons(generated_json, expected_json)
             if keys_correct:

@@ -259,19 +259,24 @@ The dataset is formatted to include all necessary information for the model to u
 
 \begin{Listing}[h]
   \begin{lstlisting}
-    You are 'Al', a helpful AI Assistant that controls the devices in a house. Complete the following task as instructed or answer the following question with the information provided only.
+    <|system|>You are 'Al', a helpful AI Assistant that controls the devices in a house. Complete the following task as instructed or answer the following question with the information provided only.
     The current time and date is 08:12 AM on Thursday March 14, 2024
+    
     Services: light.turn_off(), light.turn_on(rgb_color,brightness), fan.turn_on(), fan.turn_off()
+    
     Devices:
     light.office 'Office Light' = on;80%
     fan.office 'Office fan' = off
     light.kitchen 'Kitchen Light' = on;80%;red
-    light.bedroom 'Bedroom Light' = off
+    light.bedroom 'Bedroom Light' = off<|endoftext|>
     
-    please turn on the lights in the kitchen now
-    I'll turn the lights on for you right away
+    <|user|>
+    please turn on the lights in the kitchen now<|endoftext|>
+
+    <|assistant|>I'll turn the lights on for you right way
     ```homeassistant
     { "service": "light.turn_on", "target_device": "light.kitchen" }
+    ```<|endoftext|>
   \end{lstlisting}
   \caption{Classification Metrics}
   \label{lst:homeLLM}
@@ -321,7 +326,7 @@ This work provides valuable insights into the current state of function calling 
 \begin{figure}[h]
   \centering
   \captionsetup{justification=centering}
-  \includegraphics[width=0.9\textwidth]{graphics/bfcl-ast.jpeg}
+  \includegraphics[width=0.96\textwidth]{graphics/bfcl-ast.jpeg}
   \caption{Visualization of the \gls{ast} Evaluation\\Source: \citet{berkeley-function-calling-leaderboard}}
   \label{fig:ast}
 \end{figure}
