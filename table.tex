@@ -1,0 +1,20 @@
+\begin{tabular}{lllllll}
+\toprule
+Model & Parameters & Size & Popularity (Ollama) & BFCL Ranking (2024-07-06) & Organization & Notes \\
+\midrule
+"home-3b-v3" & 3b & 1.7GB & 2.3K & - & - & Model was selected because it was fine-tuned to control devices with Home Assistant \cite{acon96_home_llm} \\
+"qwen2-7b-instruct" & 7b & 4.4GB & 281.6K & - & Alibaba & - \\
+"qwen2-1.5b-instruct" & 1.5b & 0.9GB & 281.6K & - & Alibaba & - \\
+"mistral-7b-instruct" & 7b & 4.1GB & 2.8M & - & Mistral AI & Only the commercial models are on the BCFL. \\
+"gemma-2b-instruct" & 2b & 1.7GB & 3.9M & - & Google & - \\
+"gemma-instruct" & 7b & 5GB & 3.9M & 43.82 & Google & "gemma2" came out in the later phase of this thesis. Therefore we used gemma also. \\
+"zephyr" & 7b & 4.1GB & 107.8K & - & Mistral AI & - \\
+"llama3" & 8b & 4.7GB & 4.5M & - & Meta & - \\
+"llama3-instruct" & 8b & 4.7GB & 4.5M & 60.29 & Meta & We noticed that the "instruct" version performed slightly better for our task than plain llama3. Therefore we usually took the instruct versions of other models if available. \\
+"phi2" & 2.7b & 1.6GB & 200.1K & - & Microsoft & "phi3" came out in the later phase of this thesis. Therefore we used phi2 also. \\
+"phi3-3.8b" & 3.8b & 2.2GB & 2.1M & - & Microsoft & - \\
+"phi3-14b" & 14b & 7.9GB & 2.1M & - & Microsoft & - \\
+"gemma2" & 9b & 5.4GB & 290.1K & - & Google & - \\
+"gorilla-openfunctions-v2" & 6.9b & 2.7GB & >1K & 84.65 & Gorilla LLM & The model was no added to Ollama by Gorilla LLM but a user that made it executable on Ollama. \\
+\bottomrule
+\end{tabular}

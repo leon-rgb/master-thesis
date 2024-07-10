@@ -343,6 +343,7 @@ The UI module is designed to be intuitive and responsive, providing real-time up
 It displays each token of the \gls{llm} when received and therefore creates the impression that it is writing with the user.
 
 \subsubsection{Message Adapter}
+\label{subsec:messageadapter}
 The Message Adapter is responsible for efficiently managing and displaying chat messages within the UI. Its primary functions include:
 \begin{itemize}
     \item Message Rendering: Converts message data into viewable UI elements.
@@ -353,6 +354,7 @@ The Message Adapter is responsible for efficiently managing and displaying chat 
 This module enhances the user experience by ensuring smooth scrolling and efficient memory usage, even with long conversations.
 
 \subsubsection{API Client \& Request Builder}
+\label{subsec:apiclient}
 The API Client \& Request Builder module serves as the communication bridge between the client application and the server-side LLM. Its key responsibilities include:
 \begin{itemize}
     \item Request Formation: Constructs properly formatted API requests based on user inputs and system state.
@@ -373,6 +375,7 @@ The Data Manager module acts as the central data handler for the client-side app
 This module ensures data consistency across the application and provides a unified interface for data-related operations.
 
 \subsubsection{Response Handler}
+\label{subsec:responsehandler}
 The Response Handler module processes the responses received from the server and orchestrates appropriate actions within the client application. Its key responsibilities include:
 \begin{itemize}
     \item Response Interpretation and Splitting: Analyzes the server's response to determine required actions. For this the response needs to splitted into a natural language answer and a format that can be transformed into system actions.
@@ -383,6 +386,7 @@ The Response Handler module processes the responses received from the server and
 This module plays a critical role in translating server responses into meaningful actions and feedback within the client application.
 
 \subsection{Supported Devices}
+\label{subsec:devices}
 To keep the complexity of the system low only a few devices were selected to be supported to be handled by the chatbot.
 The selected devices are thermostat, door-window contact and smart plug which all are of the first generation of Bosch devices since we had them easily available in the office.
 The devices match the initial idea of the chatbot to help in the enregy crisis and global warming through analyzing capabilites of a users' smart home.

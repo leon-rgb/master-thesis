@@ -22,7 +22,7 @@ On the server side, Ollama v0.1.47 is deployed for hosting, customizing, and inv
 \end{figure}
 
 \section{Server}
-The initial plan was to use the bwCloud\footnote{\url{https://www.bw-cloud.org/}}, a currently free service that can be used of students and researchers of different institutions accross Baden-Würrtemberg, Germany.
+The initial plan was to use the bwCloud\footnote{\url{https://www.bw-cloud.org/}}, a currently free service that can be used of students and researchers of different institutions accross Baden-Württemberg, Germany.
 It was easy to get the needed ressources for this project which where eigth VCPUs, 16GB RAM and also enough memory for the size of the \glspl{llm} that were planned to use.
 When trying out to run models directly on the server the response times were okay for models up to approximately 10 Billion perameters although the used server has no GPU.
 However, when testing customized models through HTTP Requests the response times were much higher than expected.
@@ -36,37 +36,306 @@ Even longer model responses usually only took a few seconds to receive.
 \section{Model Customization}
 This section is all about the language models themselves. It covers which model where selected and why, how the models where customized with so called "Modelfiles" and an engineered prompt.
 \subsection{Model Selection}
+Initially the model in the focus of this work was llama3 since it was one of the most recent models and seen everywhere when starting with the .
+However, it makes sense to try out other models and see how they perform therfore we came up with a solid model selection.
 The model selection was based on parameter count, popularity, ranking in the \gls{bfcl} and availability in the ollama models library.
+Another condition for the model was to support German.
 The parameter count should be lower than 15 Billion since it wouldn't really run on the server setup described in the last section.
 The model should be either under the most popular models filter on the Ollama library website \footnote{\url{https://ollama.com/library?sort=popular}}
 
-"home-3b-v3",
-"qwen2-7b-instruct",
-"sqwen2-1.5b-instruct",
-"mistral-7b-instruct",
-"gemma-2b-instruct",
-"gemma-instruct",
-"zephyr",
-"llama3",
-"llama3-instruct"
-"phi3"
-%TODO add gorilla, fireflies, new gemini/gemma model?
+% Define a new column type 'Y' for wider last column
+\newcolumntype{Y}{>{\hsize=1.2\hsize}X}
+\begin{table}[h!]
+    \centering
+    \begin{tabularx}{\textwidth}{lXXp{3cm}Xl}
+    \toprule
+    Model & Parameters & Size & Popularity \newline (Ollama) & BFCL \newline Accuracy & Organization \\
+    \midrule
+    home-3b-v3 & 3b & 1.7GB & 2.3K & - & - \\
+    qwen2-7b-instruct & 7b & 4.4GB & 281.6K & - & Alibaba \\
+    qwen2-1.5b-instruct & 1.5b & 0.9GB & 281.6K & - & Alibaba \\
+    mistral-7b-instruct & 7b & 4.1GB & 2.8M & - & Mistral AI \\
+    gemma-2b-instruct & 2b & 1.7GB & 3.9M & - & Google \\
+    gemma-instruct & 7b & 5GB & 3.9M & 43.82 & Google \\
+    zephyr & 7b & 4.1GB & 107.8K & - & Mistral AI \\
+    llama3 & 8b & 4.7GB & 4.5M & - & Meta \\
+    llama3-instruct & 8b & 4.7GB & 4.5M & 60.29 & Meta \\
+    phi2 & 2.7b & 1.6GB & 200.1K & - & Microsoft \\
+    phi3-3.8b & 3.8b & 2.2GB & 2.1M & - & Microsoft \\
+    phi3-14b & 14b & 7.9GB & 2.1M & - & Microsoft \\
+    gemma2 & 9b & 5.4GB & 290.1K & - & Google \\
+    gorilla-openfunctions-v2 & 6.9b & 2.7GB & <1K & 84.65 & Gorilla LLM \\
+    \bottomrule
+    \end{tabularx}
+    \caption{Overview of the models used.}
+\end{table}
+
+Here are some additional notes to this table:
+\begin{itemize}
+    \item The model \textit{home-3b-v3} was selected because it was fine-tuned to control devices with Home Assistant \cite{acon96_home_llm}.
+    \item Only the commercial models from \textit{Mistral AI} are on the BCFL.
+    \item \textit{Gemma2} and \textit{Phi3} were released later in the thesis phase, so \textit{gemma} and \textit{phi2} were also used.
+    \item We noticed that the \textit{instruct} version of \textit{llama3} performed slightly better for our task than the plain version. Therefore, we usually preferred the instruct versions of other models if available.
+    \item The model \textit{gorilla-openfunctions-v2} was not added to Ollama by Gorilla LLM but by a user who made it executable on Ollama.
+    \item The \gls{bfcl} accuracy rating is according to the following date: 2024-07-06
+    \item The popularity in the Ollama library is based on the amount of pulls of a model. It is one count per model which includes each different version of the model (e.g. instruct, different sizes).
+\end{itemize}
+
 \subsection{Modelfiles}
+Modelfiles are configuration files used to customize and fine-tune language models for specific applications. They allow developers to define instructions, examples, and parameters that guide the model's behavior, ensuring more accurate and contextually appropriate responses. In the context of this project, modelfiles were crucial for tailoring the language model to understand and interact with the Bosch Smart Home system effectively.
+The Ollama software uses modelfiles to create and share models. Let's examine the key components of our custom modelfile for the Bosch Smart Home chatbot:
+
+\begin{Listing}
+\begin{lstlisting}[language=bash]
+FROM llama3:instruct
+PARAMETER temperature 0.95
+\end{lstlisting}
+\caption{Base Model and Temperature Setting}
+\label{lst:base_model}
+\end{Listing}
+
+The section in \cref{lst:base_model} specifies the base model (llama3:instruct) and sets the temperature parameter. As shown in this listing, the temperature value of 0.95 allows for more creative responses while maintaining coherence.
+
+\begin{Listing}
+\begin{lstlisting}[language=bash]
+SYSTEM """
+You are 'SHBot' (Smart Home Bot), a helpful AI Assistant that controls smart home devices. Complete tasks or answer questions based on a provided device list. Always respond in the language of the user request and keep answers brief.
+Answer in the following format containing a natural language response to the user and a json:
+natural language answer to the user
+{
+'action': 'intent/action',
+'value': 'optional value for an action',
+'deviceID': 'ID of the device',
+'device': 'device type',
+'room': 'device room',
+'name': 'device name'
+}
+Important: Always place the json at the end of your response.
+"""
+\end{lstlisting}
+\caption{System Message - Part 1: Role Definition and Response Format}
+\label{lst:system_message_1}
+\end{Listing}
+
+Listing \ref{lst:system_message_1} shows the first part of the system message, which defines the bot's role and sets the expected response format. It instructs the model to provide both a natural language answer and a structured JSON output, which is crucial for integrating the chatbot's responses with the smart home system.
+
+\begin{Listing}
+\begin{lstlisting}[language=bash]
+SYSTEM """
+Available Actions:
+'none'
+'turn-on'
+'turn-off'
+'change-temperature(value needed)'
+Devices:
+'socket': can use 'turn-on' and 'turn-off'
+'thermostat' or 'RADIATOR_THERMOSTAT': The measured temperature can be viewed on each individual thermostat (RADIATOR_THERMOSTAT). It is typically structured like this: "id": "TemperatureLevel", "state": { "temperature": 22.5 }
+'room-climate-control': can use 'change-temperature(value)'. This is a virtual device in the smart home that manages the temperature (called setPointTemperature) of the thermostats in the same room. If no thermostat exists, the system won't create a room climate control.
+'door-window-contact': can't use the actions, only provides information whether its opened or closed.
+"""
+\end{lstlisting}
+\caption{System Message - Part 2: Available Actions and Device Types}
+\label{lst:system_message_2}
+\end{Listing}
+
+Listing \ref{lst:system_message_2} outlines the available actions and device types in the Bosch Smart Home system. This section provides the model with crucial information about the capabilities and limitations of each device type, enabling more accurate responses to user queries.
+
+\begin{Listing}
+\begin{lstlisting}[language=bash]
+SYSTEM """
+Example conversations:
+For this example assume the user has the following devices:
+'[{"type": "POWER_METER_SWITCH", "name": "TV", "deviceID": "device123", "state": [{"id": "PowerSwitch", "state": {"switchState": "OFF"}}], "room": "Schlafzimmer"}, {"type": "SHUTTER_CONTACT", "name": "WindowSensor-67890", "deviceID": "device456", "state": [{"id": "ShutterContact", "state": {"value": "CLOSED"}}], "room": "Wohnzimmer"}]'
+MESSAGE user Can you turn on my TV?
+MESSAGE assistant Sure, turning on the TV now. { "action": "turn-on", "deviceID": "device123", "device": "POWER_METER_SWITCH", "room": "Schlafzimmer", "name": "TV" }
+MESSAGE user Sind alle Fenster geschlossen?
+MESSAGE assistant Ja, alle Tür-Fenster-Kontakte sind geschlossen.
+"""
+\end{lstlisting}
+\caption{Example Conversations and Device List}
+\label{lst:example_conversations}
+\end{Listing}
+
+Listing \ref{lst:example_conversations} provides example conversations to guide the model's responses. It includes a sample device list and demonstrates how the model should interpret user queries and format its responses, including the use of different languages and the structured JSON output.
+
+By incorporating these detailed instructions and examples, as shown in Listings \ref{lst:base_model} through \ref{lst:example_conversations}, the modelfile ensures that the language model can effectively understand and respond to user queries about their Bosch Smart Home devices, providing accurate information and executing commands as needed.
+
+
 \subsection{Prompt Engineering}
+
+Prompt engineering is the process of designing and refining input prompts to elicit desired responses from language models. It involves crafting specific instructions, context, and examples to guide the model's output effectively. In the context of our Bosch Smart Home chatbot, prompt engineering was crucial for ensuring accurate and relevant responses to user queries about their smart home devices.
+
+The process of building the prompt is closely intertwined with the development of the modelfile. In our modelfile, we defined how the model should act and specified that it would be provided with a device list for each user. This integration of prompt engineering and modelfile development was essential for creating a cohesive and effective chatbot system.
+
+Several approaches were considered for implementing the prompt engineering:
+
+\begin{enumerate}
+    \item \textbf{Utilizing context data:} Some recent models can handle additional context data alongside the user prompt. This would allow for the device list and other relevant information to be provided through this mechanism.
+
+    \item \textbf{Dynamic SYSTEM message updates:} This approach involves changing the SYSTEM message dynamically with each user's device list.
+
+    \item \textbf{Incorporating the device list in the user message:}
+    \begin{enumerate}
+        \item Building a message history where the first message always contains the current device list, followed by the user's actual message.
+        \item Combining the device list and user message in a single prompt, formatted as ``devices: $<>$, message:$<>$''.
+        \item Extending the previous approach with a ``mode'' parameter, alternating between ``get-data'' and ``answer-user'' modes based on whether the model has sufficient information to respond.
+    \end{enumerate}
+\end{enumerate}
+
+Due to our objective of testing different models, the first option of using context data was not suitable, as it would limit our flexibility in model selection.
+
+The ``mode'' approach showed promise in initial tests but proved complex to implement fully. Determining when to switch between modes and managing background calls to the model when it needed more data presented significant challenges.
+
+Dynamically changing the SYSTEM message for each interaction was considered inefficient due to the overhead of updating and sending the entire message via API for every request. We briefly considered implementing a server-side function to update the modelfile with the device list, but ultimately chose a different method.
+
+The final approach we adopted was building a message history. This method proved to be intuitive and straightforward to implement on the client side. By including the device list as the first message in the history, followed by the user's actual query, we could provide the necessary context to the model without overly complicating the implementation or limiting our ability to test different models.
+
+This approach allowed us to maintain flexibility in our model selection while effectively providing the necessary context for accurate responses to user queries about their Bosch Smart Home devices.
+
 
 
 \section{Data Management}
+Additionally to the \gls{json} data exchange between client and server the data of the smart home itself has to be managed in order to put it into the \gls{json} and transmit it and also handle the \gls{json} received from the server.
+The Bosch Smart Home app has an internal data model to store the current state of the users smart home. It updates this model when starting the app and on certain events.
+Therefore, two options were available for managing the device data: either using the available data model or sending requests through the available internal API of the system.
+To keep the latency low we deviced to use the internal data model and filter relevant data out. As described in \cref{subsec:devices} three devices were considered for the prototype.
+Therefore we only used data relevant for the user from this devices. Since there was much unnecessary data in each device state we collected only the data described in \cref{tab:device_state_data_detailed}
+\begin{table}[h!]
+    \centering
+    \begin{tabularx}{\textwidth}{|p{3cm}|X|}
+    \hline
+    \textbf{Device Type} & \textbf{Collected State Data} \\ \hline
+    Smart Plug & 
+    \textbf{powerConsumption}: Current power usage in watts \newline
+    \textbf{energyConsumption}: Total energy consumed over time in kilowatt-hours \newline
+    \textbf{switchState}: Whether the device is turned ON or OFF \\ \hline
+    Thermostat & 
+    \textbf{valvePosition}: Position of the radiator valve \newline
+    \textbf{childLock}: Whether the child lock is ON or OFF \newline
+    \textbf{temperature}: Current temperature measured by the thermostat in Celsius \\ \hline
+    Room Climate Control & 
+    This is not a real device. It is virtually managing all thermostats in one room to achieve a desired temperature.
+    \textbf{ventilationMode}: Whether ventilation mode is active. \newline
+    \textbf{boostMode}: Whether boost mode is active. This mode is used to increase the heat output for a short time \newline
+    \textbf{operationMode}: Current operation mode (automatic or manual) \newline
+    \textbf{setpointTemperature}: Desired temperature set by the user in Celsius \newline
+    \textbf{currentTemperature}: Actual room temperature in Celsius \\ \hline
+    Door Window Contact & 
+    \textbf{contactState}: Whether the window or door is OPEN or CLOSED \\ \hline
+    \end{tabularx}
+    \caption{Detailed state data collected from different smart home devices}
+    \label{tab:device_state_data_detailed}
+\end{table}
+
+Of course when controling devices the data model has to be updated in parallel to updating the devices themselves.
+
+Another point for data management are the system logs of the Bosch Smart Home system to for example reason why something happened in the system and data from external sources to for example analyze how the electricity price changed.
+Since we were not able to implement this it is mentioned in \cref{sec:challenges-solutions}.
+
 
 \section{User Interface}
-\subsection{Chatbot in Action}
+\label{sec:ui}
+% in the main activity in the Bosch Smart Home app multiple views can be selected in the bottom like "Favourites" and "Room". The Toolbar in the top is always shown while in the main activity. Extending this existing functionality we added a button saying "CHATBOT" to the toolbar which can be seen in \cref{fig:ui-homescreen} to have the chatbot functionality available no matter where you are currently in the main activity. This provides a simple but efficient way to get to the chatbot.
+% In \cref{fig:chatactivity} an overview of the actual chatbot \gls{ui} is shown. The toolbar here consists of an "Up Button" how it is often called in Android which is just a button to get back to the main activity. It also has an heading "Smart Home Chatbot".
+% Directly under the toolbar another bar is shown which is more of an development feature. It makes it possible to select different models (that can also correspond to different endpoints) through a dropdown (spinner) and is shown more detailed in \cref{fig:model-select}. A message is always sent to the currently selected model/endpoint.
+% Just below this model selection the heart of the chatbot \gls{ui} can be seen which is the chat history consisting of the messages the user wrote at the right in an olive green and the messages of "SHBot" (abbreviation of Smart Home Chatbot) on the left with white background. The time on which a message was sent/received is also shown.
+% The message history shown in \cref{fig:ui-chatactivity} shows a conversation about the functionality of the chatbot. As you can see it summarized its functionality quite well by describing possible action, providing an example and also limitations. Only a bit buggy is the last sentence which is probably due to the fact that the chatbot usually answers with natural language in the beginning and a json in the end of a message.
+% As a note: the chat history is only persisted in the current session and is lost upon reentering the chatbot activity which was sufficient for the prototypical use.
+% In the bottom of the whole chatbot \gls{ui} the input field for the user and a button to send his message are available. When clicking on the field the keyboard of the Android device expands.
+% In our case the keyboard also has feature to use speech-to-text.
+
+The user interface of our Smart Home Chatbot was designed to seamlessly integrate with the existing Bosch Smart Home app while providing easy access to the chatbot functionality. Figure \ref{fig:ui-overview} provides an overview of the user interface implementation.
+The chatbot activity is built upon the Android AppCompatActivity class, ensuring compatibility across different Android versions and providing a consistent look and feel with the rest of the application.
+In the main activity of the Bosch Smart Home app, users can select multiple views such as "Favourites" and "Rooms" using the bottom navigation. To make the chatbot easily accessible from any part of the main activity, we extended the existing functionality by adding a "CHATBOT" button to the toolbar, as shown in Figure \ref{fig:ui-homescreen}. This simple yet efficient solution allows users to access the chatbot from anywhere within the main activity.
+
+Figure \ref{fig:ui-chatactivity} displays the layout of the chatbot \gls{ui}. The toolbar features an "Up Button," a common Android navigation element, allowing users to return to the main activity. The toolbar also includes the heading "Smart Home Chatbot" for clear identification.
+Below the toolbar, we implemented a development feature that allows selection of different models or endpoints through a dropdown menu (spinner), as detailed in Figure \ref{fig:model-select}. This feature enables testing and comparison of various models during development. Messages are always sent to the currently selected model/endpoint.
+
+\begin{figure}[t]
+    \centering
+      \begin{subfigure}{.48\textwidth}
+        \includegraphics[width=\textwidth]{graphics/homescreen.jpg}
+        \caption{Availability of the chatbot in the main app activity}
+        \label{fig:ui-homescreen}
+      \end{subfigure} \hfill
+      \begin{subfigure}{.48\textwidth}
+        \includegraphics[width=\textwidth]{graphics/chatactivity.jpg}
+        \caption{View of the chatbot activity}
+        \label{fig:ui-chatactivity}
+        \end{subfigure}
+      \caption{Overview of the User Interface}
+      \label{fig:ui-overview}
+    \end{figure}
+
+The core of the chatbot \gls{ui} is the chat history, displayed below the model selection. User messages appear on the right side in olive green, while responses from "SHBot" (Smart Home Chatbot) are shown on the left with a white background. Each message includes a timestamp indicating when it was sent or received.
+A notable feature of the chatbot's response mechanism is the real-time display of each token as it is received from the language model. This creates the effect of the chatbot "writing" its response in real-time, enhancing the interactive feel of the conversation and providing immediate feedback to the user.
+The conversation shown in Figure \ref{fig:ui-chatactivity} demonstrates the chatbot's ability to summarize its functionality, describing possible actions, providing examples, and outlining limitations. A minor inconsistency is noted in the last sentence, likely due to the chatbot's typical response format of natural language followed by JSON data.
+It's worth noting that the chat history is only maintained for the current session and is not persisted when re-entering the chatbot activity, which was deemed sufficient for the prototype.
+
+\begin{figure}[b]
+    \centering
+      \begin{subfigure}[t]{.48\textwidth}
+        \vspace*{0pt}
+        \includegraphics[width=\textwidth]{graphics/model-select.jpg}
+        \caption{Expanded Model Selection}
+        \label{fig:model-select}
+      \end{subfigure} \hfill
+      \begin{subfigure}[t]{.48\textwidth}
+        \vspace*{0pt}
+        \includegraphics[width=\textwidth]{graphics/keyboard.jpg}
+        \caption{View when writing a message}
+        \label{fig:keyboard}
+        \end{subfigure}
+      \caption{Details of the Chatbot User Interface}
+      \label{fig:ui-details}
+\end{figure}
+
+At the bottom of the chatbot \gls{ui}, users can find an input field for typing messages and a send button. When the input field is selected, the Android device's keyboard appears, as shown in Figure \ref{fig:keyboard}. The keyboard also includes a speech-to-text feature, enhancing accessibility and user convenience.
+Figure \ref{fig:ui-details} provides additional details of the chatbot user interface, showcasing the expanded model selection dropdown and the view when composing a message.
+
+This user interface design, built on AppCompatActivity, ensures that the Smart Home Chatbot is easily accessible, intuitive to use, and seamlessly integrated with the existing Bosch Smart Home app functionality. The real-time token display feature adds a dynamic and engaging element to the user experience.
+
+\section{Message Management}
+As previously described in \cref{subsec:messageadapter}, the Message Adapter module manages and triggers the displaying of chat messages in the UI, making it possible to render message data, managing chat history, visually differentiating user and assistant messages, and enabling dynamic updates without full UI refreshes. \\
+The implementation of this module leverages Android's RecyclerView component, which provides an efficient and flexible way to display large sets of data. RecyclerView is particularly well-suited for chat applications due to its ability to recycle and reuse view holders, minimizing memory usage and enhancing scrolling performance.
+
+
+The Message Adapter extends RecyclerView.Adapter and implements a custom ViewHolder pattern. This pattern allows for efficient view recycling and type-specific rendering of messages. Two main types of ViewHolders are defined: one for user messages and another for assistant responses. This differentiation enables distinct visual styling for each message type as shown in , enhancing readability and user experience.\\
+To manage the chat history, the adapter maintains an internal list of message objects. Each message object encapsulates data such as the message content, timestamp, and sender type (user or assistant). The adapter provides methods to add new messages and update existing ones, triggering appropriate UI updates through notifyItemInserted() and notifyItemChanged() methods respectively.
+
+Dynamic updates are achieved through the use of DiffUtil, an Android utility class that calculates the difference between two lists. When new messages are added or existing ones are updated (even thought updating mussages is not supported in our prototype), DiffUtil computes the minimal set of changes needed to update the UI, allowing for smooth animations and efficient rendering.
+To ensure a responsive user interface, message loading and processing operations are performed asynchronously using Java's ExecutorService. This approach prevents blocking the main thread from tasks like waiting for building the request to the chatbot and awaiting its answer.
+
+
+\section{Request Building}
+As previously described in \cref{subsec:apiclient}, the Request Builder within the API Client \& Request Builder module constructs properly formatted API requests, sends them, parses server responses, and handles asynchronous operations.
+For this section we want to explain how the request are built and sent. 
+For the Request only a few of the last messages are considered to ensure low latency and 
+
+
+\section{Response Handling and Action Triggering}
+As previously described in \cref{subsec:responsehandler}, the Response Handler module interprets server responses, determining necessary client actions such as response analysis and orchestration. This section explains how we implemented this functionality in more detail.
+% the response is retrieved as a stream of tokens by the Ollama software thorugh the command ""
+% splitting the response string in natural language response and json (if json exists)
+
+
 \section{Challenges and Solutions}
-Several challenges and considerations were addressed during the design and development of the prototype:
+\label{sec:challenges-solutions}
+There were several challenges and considerations that had to be taken into account when designing and developing the prototype:
 
 \begin{itemize}
-\item \textbf{Complexity of Automations}: Balancing simplicity and functionality in user-defined automations.
-\item \textbf{Multilingual Support}: Providing accurate and contextually appropriate responses in both German and English.
-\item \textbf{Historical Data}: ...
-\item \textbf{Availability of System Logs}: ...
-\item \textbf{Security Issue}: trusted domains
+    \item \textbf{Complexity of Automations}: Balancing simplicity and functionality in user-defined automations proved challenging. The vast possibilities of Bosch Smart Home automations made it difficult to build a comprehensive assistant. Even if the language model could understand the capabilities of the automations, mapping this to a JSON output and triggering a function to create specific automations would be complex. A potential solution would have been to define a set of automation types that could be created, but time constraints prevented this development.
+    
+    \item \textbf{Multilingual Support}: Providing accurate and contextually appropriate responses in both German and English was difficult in some scenarios. The chatbot occasionally struggled to consistently answer in German when the user's last input was in German, despite understanding the request. A possible reason could be that the device list provided to the model is always in English. Potential solutions include providing the model with information about the Bosch Smart Home app's current language, adapting the device list's language accordingly, or fine-tuning the model. Time limitations prevented the implementation of these solutions.
+
+    \item \textbf{Historical Data}: During the thesis, historical data of the Bosch Smart Home devices was not available. Only the current state of devices could be accessed. Some variables in this state store summarized historical data, such as the total power consumption for smart plugs. A potential solution could have been to mock the data to test what data format would be sufficient for the model to correctly answer user requests and interpret the data.
+
+    \item \textbf{Availability of System Logs}: Beginning with the second iteration of intents, system logs would have acted as a solid foundation for short-term historical data, including state changes of devices, automations, and errors. However, this information is only available inside the Bosch Smart Home Controller and therefore encapsulated from the Android App. Time constraints prevented the development of functionality to share these logs with the app.
+
+    \item \textbf{Data from External Sources}: Integrating data from external sources, such as the "Statistisches Bundesamt" (Federal Statistical Office of Germany), could have provided valuable insights for energy cost analysis in the user's home. This data, including information on inflation in energy costs (gas, district heating, electricity, etc.), could have been used to analyze why energy costs increased and offer suggestions for energy savings based on unnecessary automations. Implementing this would require data retrieval and ingestion from defined sources (URLs), potentially using \gls{rag} with Ollama or Langchain. While time constraints prevented the implementation of this feature in our prototype, we explored the necessary data and methods. Our experiments showed that providing the language model with a list of devices containing (artificial) historical data, information on related automations, and inflation indices gave sufficient context for reasoning, although not always with perfect accuracy.
+    
+    \item \textbf{Security Issue}: The Bosch Smart Home app initially did not support API calls to arbitrary domains. To address this, we needed to modify the security settings for the prototype to enable calls to the Ollama API on a specific device. This change was implemented only for the chatbot functionality, while the rest of the app maintained its original security configuration.
+
+    \item \textbf{Model Performance}: Incrementally improving model outputs proved challenging. In our case, this was achieved by analyzing the output of our evaluation script, identifying low-quality outputs, and addressing them in the modelfile by adding more examples or instructive text. The evaluation script itself is described in \cref{sec:modelperform}.
 \end{itemize}
 %\blinddocument
