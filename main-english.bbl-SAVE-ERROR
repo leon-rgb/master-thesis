@@ -1,0 +1,1496 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{anyt/global//global/global/global}
+    \entry{acon96_home_llm}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=1b10729e0378f46488843f62137ea35b}{%
+           family={acon96},
+           familyi={a\bibinitperiod}}}%
+      }
+      \strng{namehash}{1b10729e0378f46488843f62137ea35b}
+      \strng{fullhash}{1b10729e0378f46488843f62137ea35b}
+      \strng{fullhashraw}{1b10729e0378f46488843f62137ea35b}
+      \strng{bibnamehash}{1b10729e0378f46488843f62137ea35b}
+      \strng{authorbibnamehash}{1b10729e0378f46488843f62137ea35b}
+      \strng{authornamehash}{1b10729e0378f46488843f62137ea35b}
+      \strng{authorfullhash}{1b10729e0378f46488843f62137ea35b}
+      \strng{authorfullhashraw}{1b10729e0378f46488843f62137ea35b}
+      \field{labelalpha}{aco24}
+      \field{sortinit}{a}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{home-llm}
+      \field{year}{2024}
+      \verb{urlraw}
+      \verb https://github.com/acon96/home-llm
+      \endverb
+      \verb{url}
+      \verb https://github.com/acon96/home-llm
+      \endverb
+    \endentry
+    \entry{atzori_internet_2010}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=ad2aa762c0a8006a1914b9298952e5d8}{%
+           family={Atzori},
+           familyi={A\bibinitperiod},
+           given={Luigi},
+           giveni={L\bibinitperiod}}}%
+        {{hash=2dbff5b960cb21204fc50b6941f42947}{%
+           family={Iera},
+           familyi={I\bibinitperiod},
+           given={Antonio},
+           giveni={A\bibinitperiod}}}%
+        {{hash=04b46031fe439f48519cec659c1d7e36}{%
+           family={Morabito},
+           familyi={M\bibinitperiod},
+           given={Giacomo},
+           giveni={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{81d69f6a7998d24b021610d2ad8b5b37}
+      \strng{fullhash}{d7d33a3e93b65ab811b96314bcf90b0a}
+      \strng{fullhashraw}{d7d33a3e93b65ab811b96314bcf90b0a}
+      \strng{bibnamehash}{d7d33a3e93b65ab811b96314bcf90b0a}
+      \strng{authorbibnamehash}{d7d33a3e93b65ab811b96314bcf90b0a}
+      \strng{authornamehash}{81d69f6a7998d24b021610d2ad8b5b37}
+      \strng{authorfullhash}{d7d33a3e93b65ab811b96314bcf90b0a}
+      \strng{authorfullhashraw}{d7d33a3e93b65ab811b96314bcf90b0a}
+      \field{labelalpha}{AIM10}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{This paper addresses the Internet of Things. Main enabling factor of this promising paradigm is the integration of several technologies and communications solutions. Identification and tracking technologies, wired and wireless sensor and actuator networks, enhanced communication protocols (shared with the Next Generation Internet), and distributed intelligence for smart objects are just the most relevant. As one can easily imagine, any serious contribution to the advance of the Internet of Things must necessarily be the result of synergetic activities conducted in different fields of knowledge, such as telecommunications, informatics, electronics and social science. In such a complex scenario, this survey is directed to those who want to approach this complex discipline and contribute to its development. Different visions of this Internet of Things paradigm are reported and enabling technologies reviewed. What emerges is that still major issues shall be faced by the research community. The most relevant among them are addressed in details.}
+      \field{issn}{1389-1286}
+      \field{journaltitle}{Computer Networks}
+      \field{month}{10}
+      \field{number}{15}
+      \field{shorttitle}{The {Internet} of {Things}}
+      \field{title}{The {Internet} of {Things}: {A} survey}
+      \field{urlday}{17}
+      \field{urlmonth}{1}
+      \field{urlyear}{2024}
+      \field{volume}{54}
+      \field{year}{2010}
+      \field{urldateera}{ce}
+      \field{pages}{2787\bibrangedash 2805}
+      \range{pages}{19}
+      \verb{doi}
+      \verb 10.1016/j.comnet.2010.05.010
+      \endverb
+      \verb{file}
+      \verb ScienceDirect Snapshot:C\:\\Users\\lop1le\\Zotero\\storage\\KBUX4Z94\\S1389128610001568.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/S1389128610001568
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/S1389128610001568
+      \endverb
+      \keyw{Internet of Things,Pervasive computing,RFID systems}
+    \endentry
+    \entry{ait-mlouk_kbot_2020}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=f052edf707eaaf0520ceaf2ef2da7f94}{%
+           family={Ait-Mlouk},
+           familyi={A\bibinithyphendelim M\bibinitperiod},
+           given={Addi},
+           giveni={A\bibinitperiod}}}%
+        {{hash=c794b92e8de967079fb2391920ea9db6}{%
+           family={Jiang},
+           familyi={J\bibinitperiod},
+           given={Lili},
+           giveni={L\bibinitperiod}}}%
+      }
+      \strng{namehash}{a9e14b277524ad0799cdda9f16c411ae}
+      \strng{fullhash}{a9e14b277524ad0799cdda9f16c411ae}
+      \strng{fullhashraw}{a9e14b277524ad0799cdda9f16c411ae}
+      \strng{bibnamehash}{a9e14b277524ad0799cdda9f16c411ae}
+      \strng{authorbibnamehash}{a9e14b277524ad0799cdda9f16c411ae}
+      \strng{authornamehash}{a9e14b277524ad0799cdda9f16c411ae}
+      \strng{authorfullhash}{a9e14b277524ad0799cdda9f16c411ae}
+      \strng{authorfullhashraw}{a9e14b277524ad0799cdda9f16c411ae}
+      \field{labelalpha}{AJ20}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{With the rapid progress of the semantic web, a huge amount of structured data has become available on the web in the form of knowledge bases (KBs). Making these data accessible and useful for end-users is one of the main objectives of chatbots over linked data. Building a chatbot over linked data raises different challenges, including user queries understanding, multiple knowledge base support, and multilingual aspect. To address these challenges, we first design and develop an architecture to provide an interactive user interface. Secondly, we propose a machine learning approach based on intent classification and natural language understanding to understand user intents and generate SPARQL queries. We especially process a new social network dataset (i.e., myPersonality) and add it to the existing knowledge bases to extend the chatbot capabilities by understanding analytical queries. The system can be extended with a new domain on-demand, flexible, multiple knowledge base, multilingual, and allows intuitive creation and execution of different tasks for an extensive range of topics. Furthermore, evaluation and application cases in the chatbot are provided to show how it facilitates interactive semantic data towards different real application scenarios and showcase the proposed approach for a knowledge graph and data-driven chatbot.}
+      \field{issn}{2169-3536}
+      \field{journaltitle}{IEEE Access}
+      \field{note}{Conference Name: IEEE Access}
+      \field{shorttitle}{{KBot}}
+      \field{title}{{KBot}: {A} {Knowledge} {Graph} {Based} {ChatBot} for {Natural} {Language} {Understanding} {Over} {Linked} {Data}}
+      \field{urlday}{18}
+      \field{urlmonth}{1}
+      \field{urlyear}{2024}
+      \field{volume}{8}
+      \field{year}{2020}
+      \field{urldateera}{ce}
+      \field{pages}{149220\bibrangedash 149230}
+      \range{pages}{11}
+      \verb{doi}
+      \verb 10.1109/ACCESS.2020.3016142
+      \endverb
+      \verb{file}
+      \verb IEEE Xplore Abstract Record:C\:\\Users\\lop1le\\Zotero\\storage\\RMFPPTIT\\9165716.html:text/html;IEEE Xplore Full Text PDF:C\:\\Users\\lop1le\\Zotero\\storage\\GB97JTG7\\Ait-Mlouk and Jiang - 2020 - KBot A Knowledge Graph Based ChatBot for Natural .pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://ieeexplore.ieee.org/abstract/document/9165716
+      \endverb
+      \verb{url}
+      \verb https://ieeexplore.ieee.org/abstract/document/9165716
+      \endverb
+      \keyw{Complex Chatbots}
+    \endentry
+    \entry{adamopoulou_overview_2020}{inproceedings}{}{}
+      \name{author}{2}{}{%
+        {{hash=71852b18d494d375dafb1fd51bbf6ffa}{%
+           family={Adamopoulou},
+           familyi={A\bibinitperiod},
+           given={Eleni},
+           giveni={E\bibinitperiod}}}%
+        {{hash=cefe13b8082c0035d480cb67914bef14}{%
+           family={Moussiades},
+           familyi={M\bibinitperiod},
+           given={Lefteris},
+           giveni={L\bibinitperiod}}}%
+      }
+      \name{editor}{3}{}{%
+        {{hash=1e8c0f25f4b16ae4e93267e21adf8b6d}{%
+           family={Maglogiannis},
+           familyi={M\bibinitperiod},
+           given={Ilias},
+           giveni={I\bibinitperiod}}}%
+        {{hash=21a8d775d1dfc200d7740622e3e051db}{%
+           family={Iliadis},
+           familyi={I\bibinitperiod},
+           given={Lazaros},
+           giveni={L\bibinitperiod}}}%
+        {{hash=29dfba0209013a8c21846222e86a4465}{%
+           family={Pimenidis},
+           familyi={P\bibinitperiod},
+           given={Elias},
+           giveni={E\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \list{location}{1}{%
+        {Cham}%
+      }
+      \list{publisher}{1}{%
+        {Springer International Publishing}%
+      }
+      \strng{namehash}{c928a47bbfed8c804e8e5ed85a3b5fc7}
+      \strng{fullhash}{c928a47bbfed8c804e8e5ed85a3b5fc7}
+      \strng{fullhashraw}{c928a47bbfed8c804e8e5ed85a3b5fc7}
+      \strng{bibnamehash}{c928a47bbfed8c804e8e5ed85a3b5fc7}
+      \strng{authorbibnamehash}{c928a47bbfed8c804e8e5ed85a3b5fc7}
+      \strng{authornamehash}{c928a47bbfed8c804e8e5ed85a3b5fc7}
+      \strng{authorfullhash}{c928a47bbfed8c804e8e5ed85a3b5fc7}
+      \strng{authorfullhashraw}{c928a47bbfed8c804e8e5ed85a3b5fc7}
+      \strng{editorbibnamehash}{503990b2450b4ddeb39f8e79e76591bd}
+      \strng{editornamehash}{4249fd30cbc1aec72982a0ff69c1c881}
+      \strng{editorfullhash}{503990b2450b4ddeb39f8e79e76591bd}
+      \strng{editorfullhashraw}{503990b2450b4ddeb39f8e79e76591bd}
+      \field{labelalpha}{AM20}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The use of chatbots evolved rapidly in numerous fields in recent years, including Marketing, Supporting Systems, Education, Health Care, Cultural Heritage, and Entertainment. In this paper, we first present a historical overview of the evolution of the international community’s interest in chatbots. Next, we discuss the motivations that drive the use of chatbots, and we clarify chatbots’ usefulness in a variety of areas. Moreover, we highlight the impact of social stereotypes on chatbots design. After clarifying necessary technological concepts, we move on to a chatbot classification based on various criteria, such as the area of knowledge they refer to, the need they serve and others. Furthermore, we present the general architecture of modern chatbots while also mentioning the main platforms for their creation. Our engagement with the subject so far, reassures us of the prospects of chatbots and encourages us to study them in greater extent and depth.}
+      \field{booktitle}{Artificial {Intelligence} {Applications} and {Innovations}}
+      \field{isbn}{978-3-030-49186-4}
+      \field{series}{{IFIP} {Advances} in {Information} and {Communication} {Technology}}
+      \field{title}{An {Overview} of {Chatbot} {Technology}}
+      \field{year}{2020}
+      \field{pages}{373\bibrangedash 383}
+      \range{pages}{11}
+      \verb{doi}
+      \verb 10.1007/978-3-030-49186-4_31
+      \endverb
+      \verb{file}
+      \verb Full Text PDF:C\:\\Users\\lop1le\\Zotero\\storage\\VZVWA3NY\\Adamopoulou and Moussiades - 2020 - An Overview of Chatbot Technology.pdf:application/pdf
+      \endverb
+      \keyw{Artificial Intelligence,Chatbot,Chatbot architecture,Machine learning,NLU}
+    \endentry
+    \entry{ahmed_smart_2020}{inproceedings}{}{}
+      \name{author}{5}{}{%
+        {{hash=c13ef938f426905626bd1a967e867519}{%
+           family={Ahmed},
+           familyi={A\bibinitperiod},
+           given={Sakib},
+           giveni={S\bibinitperiod}}}%
+        {{hash=78a3ad26b5626fb993475e1a3a634943}{%
+           family={Paul},
+           familyi={P\bibinitperiod},
+           given={Debashish},
+           giveni={D\bibinitperiod}}}%
+        {{hash=5be37f3c1dac0e224c36342798fb271a}{%
+           family={Masnun},
+           familyi={M\bibinitperiod},
+           given={Rubaiya},
+           giveni={R\bibinitperiod}}}%
+        {{hash=09b3af6bc98fc54274c961036bfdd805}{%
+           family={Shanto},
+           familyi={S\bibinitperiod},
+           given={Minhaz\bibnamedelimb Uddin\bibnamedelima Ahmed},
+           giveni={M\bibinitperiod\bibinitdelim U\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=d29d013f9116887dd433d3cf89ffd480}{%
+           family={Farah},
+           familyi={F\bibinitperiod},
+           given={Tanjila},
+           giveni={T\bibinitperiod}}}%
+      }
+      \strng{namehash}{1a296c2611be186f81ce33e77726070f}
+      \strng{fullhash}{caeea8694e1971c0c0deee1b6ee968aa}
+      \strng{fullhashraw}{caeea8694e1971c0c0deee1b6ee968aa}
+      \strng{bibnamehash}{caeea8694e1971c0c0deee1b6ee968aa}
+      \strng{authorbibnamehash}{caeea8694e1971c0c0deee1b6ee968aa}
+      \strng{authornamehash}{1a296c2611be186f81ce33e77726070f}
+      \strng{authorfullhash}{caeea8694e1971c0c0deee1b6ee968aa}
+      \strng{authorfullhashraw}{caeea8694e1971c0c0deee1b6ee968aa}
+      \field{labelalpha}{APM+20}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Internet of things and Automation systems have taken over the world at present times. Home security has always been a field of concern among mass people. Making home security systems safer, cheaper and easy to understand is a challenge that many engineers around the world are striving to achieve in developing countries. Considering the economic condition of people of a developing country like Bangladesh, we propose an IoT based smart home security and automation system named `Facebook messenger Chatbot' which is made using Raspberry PI as the central processor. It will enable its users to use it free of cost as Facebook messenger app is free in Bangladesh. People can use it from home or any remote location and can control digital home appliances like fans, lights etc. Smart door locking system, face recognition, gas leakage detection, temperature detection and control, humidity detection, fire detection, which has been done through collecting data from different sensors and passing them to Raspberry PI and then PI passes these to the BOT through a REST API, are the additional features that make our security system safer, effective and easier to use compared to other existing approaches.}
+      \field{booktitle}{2020 {IEEE} {Region} 10 {Symposium} ({TENSYMP})}
+      \field{month}{6}
+      \field{note}{ISSN: 2642-6102}
+      \field{title}{Smart {Home} {Shield} and {Automation} {System} {Using} {Facebook} {Messenger} {Chatbot}}
+      \field{urlday}{18}
+      \field{urlmonth}{1}
+      \field{urlyear}{2024}
+      \field{year}{2020}
+      \field{urldateera}{ce}
+      \field{pages}{1791\bibrangedash 1794}
+      \range{pages}{4}
+      \verb{doi}
+      \verb 10.1109/TENSYMP50017.2020.9230716
+      \endverb
+      \verb{file}
+      \verb IEEE Xplore Abstract Record:C\:\\Users\\lop1le\\Zotero\\storage\\TYATS3KV\\9230716.html:text/html;IEEE Xplore Full Text PDF:C\:\\Users\\lop1le\\Zotero\\storage\\9LQ7SW7I\\Ahmed et al. - 2020 - Smart Home Shield and Automation System Using Face.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://ieeexplore.ieee.org/abstract/document/9230716
+      \endverb
+      \verb{url}
+      \verb https://ieeexplore.ieee.org/abstract/document/9230716
+      \endverb
+      \keyw{Smart Home Chatbot}
+    \endentry
+    \entry{caldiera1994goal}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=64e80193ddf05cfd7705520c3cf19e56}{%
+           family={Basili},
+           familyi={B\bibinitperiod},
+           given={Victor\bibnamedelima R},
+           giveni={V\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+        {{hash=cc5e4237807f0245e579a9cdeaaf3216}{%
+           family={Caldiera},
+           familyi={C\bibinitperiod},
+           given={Gianluigi},
+           giveni={G\bibinitperiod}}}%
+        {{hash=a601e384768f4f11c00bd5544be2ae9b}{%
+           family={Rombach},
+           familyi={R\bibinitperiod},
+           given={H\bibnamedelima Dieter},
+           giveni={H\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+      }
+      \strng{namehash}{abe10d3886d0162ac5420e1b6ed4a095}
+      \strng{fullhash}{6d597720b308c92d4f005e2a311ed35e}
+      \strng{fullhashraw}{6d597720b308c92d4f005e2a311ed35e}
+      \strng{bibnamehash}{6d597720b308c92d4f005e2a311ed35e}
+      \strng{authorbibnamehash}{6d597720b308c92d4f005e2a311ed35e}
+      \strng{authornamehash}{abe10d3886d0162ac5420e1b6ed4a095}
+      \strng{authorfullhash}{6d597720b308c92d4f005e2a311ed35e}
+      \strng{authorfullhashraw}{6d597720b308c92d4f005e2a311ed35e}
+      \field{labelalpha}{BCR94}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Encyclopedia of software engineering}
+      \field{title}{The goal question metric approach}
+      \field{year}{1994}
+      \field{pages}{528\bibrangedash 532}
+      \range{pages}{5}
+    \endentry
+    \entry{biswas2023evaluating}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=e614f724d6b38fd0c0ec1dd573b52938}{%
+           family={Biswas},
+           familyi={B\bibinitperiod},
+           given={Rajdeep},
+           giveni={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{e614f724d6b38fd0c0ec1dd573b52938}
+      \strng{fullhash}{e614f724d6b38fd0c0ec1dd573b52938}
+      \strng{fullhashraw}{e614f724d6b38fd0c0ec1dd573b52938}
+      \strng{bibnamehash}{e614f724d6b38fd0c0ec1dd573b52938}
+      \strng{authorbibnamehash}{e614f724d6b38fd0c0ec1dd573b52938}
+      \strng{authornamehash}{e614f724d6b38fd0c0ec1dd573b52938}
+      \strng{authorfullhash}{e614f724d6b38fd0c0ec1dd573b52938}
+      \strng{authorfullhashraw}{e614f724d6b38fd0c0ec1dd573b52938}
+      \field{labelalpha}{Bis23}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://www.linkedin.com/pulse/evaluating-large-language-models-llms-standard-set-metrics-biswas-ecjlc}}
+      \field{title}{Evaluating Large Language Models (LLMs): A Standard Set of Metrics for Accurate Assessment}
+      \field{year}{2023}
+    \endentry
+    \entry{baby_home_2017}{inproceedings}{}{}
+      \name{author}{3}{}{%
+        {{hash=28a3ea0a00ca45541eef3998c52a53e9}{%
+           family={Baby},
+           familyi={B\bibinitperiod},
+           given={Cyril\bibnamedelima Joe},
+           giveni={C\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=f6ae1abeb13aecdbd4669e3418ab4f6b}{%
+           family={Khan},
+           familyi={K\bibinitperiod},
+           given={Faizan\bibnamedelima Ayyub},
+           giveni={F\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=8dcb0663e98034248f5dc9b389b65ac0}{%
+           family={Swathi},
+           familyi={S\bibinitperiod},
+           given={J.\bibnamedelimi N.},
+           giveni={J\bibinitperiod\bibinitdelim N\bibinitperiod}}}%
+      }
+      \strng{namehash}{df96b1eed68592c7de448f4d4a90b28c}
+      \strng{fullhash}{aa52eb01ace7b3bd025516627c154285}
+      \strng{fullhashraw}{aa52eb01ace7b3bd025516627c154285}
+      \strng{bibnamehash}{aa52eb01ace7b3bd025516627c154285}
+      \strng{authorbibnamehash}{aa52eb01ace7b3bd025516627c154285}
+      \strng{authornamehash}{df96b1eed68592c7de448f4d4a90b28c}
+      \strng{authorfullhash}{aa52eb01ace7b3bd025516627c154285}
+      \strng{authorfullhashraw}{aa52eb01ace7b3bd025516627c154285}
+      \field{labelalpha}{BKS17}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Home automation - controlling the fans, lights and other electrical appliances in a house using Internet of things is widely preferred in recent days. In this paper, we propose a web application using which the fans, lights and other electrical appliances can be controlled over the Internet. The important features of the web application is that firstly, we have a chatbot algorithm such that the user can text information to control the functioning of the electrical appliances at home. The messages sent using the chatbot is processed using Natural Language processing techniques. Secondly, any device connected to the local area network of the house can control the devices and other appliances in the house. Thirdly, the web application used to enable home automation also has a security feature that only enables certain users to access the application. And finally, it also has a functionality of sending an email alert when intruder is detected using motion sensors.}
+      \field{booktitle}{2017 {Innovations} in {Power} and {Advanced} {Computing} {Technologies} (i-{PACT})}
+      \field{month}{4}
+      \field{title}{Home automation using {IoT} and a chatbot using natural language processing}
+      \field{urlday}{18}
+      \field{urlmonth}{1}
+      \field{urlyear}{2024}
+      \field{year}{2017}
+      \field{urldateera}{ce}
+      \field{pages}{1\bibrangedash 6}
+      \range{pages}{6}
+      \verb{doi}
+      \verb 10.1109/IPACT.2017.8245185
+      \endverb
+      \verb{file}
+      \verb IEEE Xplore Abstract Record:C\:\\Users\\lop1le\\Zotero\\storage\\XMCM38DQ\\8245185.html:text/html;IEEE Xplore Full Text PDF:C\:\\Users\\lop1le\\Zotero\\storage\\KCCYLART\\Baby et al. - 2017 - Home automation using IoT and a chatbot using natu.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://ieeexplore.ieee.org/abstract/document/8245185
+      \endverb
+      \verb{url}
+      \verb https://ieeexplore.ieee.org/abstract/document/8245185
+      \endverb
+      \keyw{Smart Home Chatbot}
+    \endentry
+    \entry{balakrishnan_smart_2018}{inproceedings}{}{}
+      \name{author}{3}{}{%
+        {{hash=85918d582d8901189d55a92ef54bee5c}{%
+           family={Balakrishnan},
+           familyi={B\bibinitperiod},
+           given={Sumathi},
+           giveni={S\bibinitperiod}}}%
+        {{hash=0bc626c890be91a0824de760550b33a6}{%
+           family={Vasudavan},
+           familyi={V\bibinitperiod},
+           given={Hemalata},
+           giveni={H\bibinitperiod}}}%
+        {{hash=9ebd8854ce87ae19c88651f60365edad}{%
+           family={Murugesan},
+           familyi={M\bibinitperiod},
+           given={Raja\bibnamedelima Kumar},
+           giveni={R\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {New York, NY, USA}%
+      }
+      \list{publisher}{1}{%
+        {Association for Computing Machinery}%
+      }
+      \strng{namehash}{a4770ca34c2f4418a79ae1942b3ca88f}
+      \strng{fullhash}{4693782e84c1bf205cbc92b285a6ff2b}
+      \strng{fullhashraw}{4693782e84c1bf205cbc92b285a6ff2b}
+      \strng{bibnamehash}{4693782e84c1bf205cbc92b285a6ff2b}
+      \strng{authorbibnamehash}{4693782e84c1bf205cbc92b285a6ff2b}
+      \strng{authornamehash}{a4770ca34c2f4418a79ae1942b3ca88f}
+      \strng{authorfullhash}{4693782e84c1bf205cbc92b285a6ff2b}
+      \strng{authorfullhashraw}{4693782e84c1bf205cbc92b285a6ff2b}
+      \field{labelalpha}{BVM18}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{In recent years, smart homes have become increasingly popular with the deployment of Internet of Things (IoT). Rapid diffusion of sensing technology also enabled advancement in smart homes. The advancements in these technologies surroundings smart homes have produced many convenient products and services for the smart home consumers. Contradicting to the term convenience, there are still areas to improve to achieve an effective and simple smart home environment. In this paper, a literature survey on the smart home definition, purpose, benefit, and technology are discussed. Furthermore, there is an emphasis on the challenges faced to make smart home an ideal and simple environment to live. There are also proposed solution for some of its challenges.}
+      \field{booktitle}{Proceedings of the 6th {International} {Conference} on {Information} {Technology}: {IoT} and {Smart} {City}}
+      \field{isbn}{978-1-4503-6629-8}
+      \field{series}{{ICIT} '18}
+      \field{shorttitle}{Smart {Home} {Technologies}}
+      \field{title}{Smart {Home} {Technologies}: {A} {Preliminary} {Review}}
+      \field{urlday}{17}
+      \field{urlmonth}{1}
+      \field{urlyear}{2024}
+      \field{year}{2018}
+      \field{urldateera}{ce}
+      \field{pages}{120\bibrangedash 127}
+      \range{pages}{8}
+      \verb{doi}
+      \verb 10.1145/3301551.3301575
+      \endverb
+      \verb{file}
+      \verb Full Text PDF:C\:\\Users\\lop1le\\Zotero\\storage\\5FV4V7AE\\Balakrishnan et al. - 2018 - Smart Home Technologies A Preliminary Review.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://dl.acm.org/doi/10.1145/3301551.3301575
+      \endverb
+      \verb{url}
+      \verb https://dl.acm.org/doi/10.1145/3301551.3301575
+      \endverb
+      \keyw{Home Automation,Sensors Technology,Smart Home}
+    \endentry
+    \entry{chkroun_safe_2021}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=f24b479757bd0719e6f18f492c6cf814}{%
+           family={Chkroun},
+           familyi={C\bibinitperiod},
+           given={Merav},
+           giveni={M\bibinitperiod}}}%
+        {{hash=7b71612f95dc2f1c097dd34d17105bb0}{%
+           family={Azaria},
+           familyi={A\bibinitperiod},
+           given={Amos},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \strng{namehash}{efe570a712c89e676223f4957370a928}
+      \strng{fullhash}{efe570a712c89e676223f4957370a928}
+      \strng{fullhashraw}{efe570a712c89e676223f4957370a928}
+      \strng{bibnamehash}{efe570a712c89e676223f4957370a928}
+      \strng{authorbibnamehash}{efe570a712c89e676223f4957370a928}
+      \strng{authornamehash}{efe570a712c89e676223f4957370a928}
+      \strng{authorfullhash}{efe570a712c89e676223f4957370a928}
+      \strng{authorfullhashraw}{efe570a712c89e676223f4957370a928}
+      \field{labelalpha}{CA21}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Smart home assistants, which enable users to control home appliances and can be used for holding entertaining conversations, have become an inseparable part of many people’s homes. Recently, there have been many attempts to allow end-users to teach a home assistant new commands, responses, and rules, which can then be shared with a larger community. However, allowing end-users to teach an agent new responses, which are shared with a large community, opens the gate to malicious users, who can teach the agent inappropriate responses in order to promote their own business, products, or political views. In this paper, we present a platform that enables users to collaboratively teach a smart home assistant (or chatbot) responses using natural language. We present a method of collectively detecting malicious users and using the commands taught by the malicious users to further mitigate activity of future malicious users. We ran an experiment with 192 subjects and show the effectiveness of our platform.}
+      \field{issn}{1424-8220}
+      \field{journaltitle}{Sensors}
+      \field{month}{1}
+      \field{note}{Number: 19 Publisher: Multidisciplinary Digital Publishing Institute}
+      \field{number}{19}
+      \field{title}{A {Safe} {Collaborative} {Chatbot} for {Smart} {Home} {Assistants}}
+      \field{urlday}{18}
+      \field{urlmonth}{1}
+      \field{urlyear}{2024}
+      \field{volume}{21}
+      \field{year}{2021}
+      \field{urldateera}{ce}
+      \field{pages}{6641}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.3390/s21196641
+      \endverb
+      \verb{file}
+      \verb Full Text PDF:C\:\\Users\\lop1le\\Zotero\\storage\\FHPZZLZ9\\Chkroun and Azaria - 2021 - A Safe Collaborative Chatbot for Smart Home Assist.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://www.mdpi.com/1424-8220/21/19/6641
+      \endverb
+      \verb{url}
+      \verb https://www.mdpi.com/1424-8220/21/19/6641
+      \endverb
+      \keyw{Smart Home Chatbot}
+    \endentry
+    \entry{carlander-reuterfelt_jaicob_2020}{article}{}{}
+      \name{author}{6}{}{%
+        {{hash=4e4ed5ff8ff186f650200c60502792dd}{%
+           family={Carlander-Reuterfelt},
+           familyi={C\bibinithyphendelim R\bibinitperiod},
+           given={Daniel},
+           giveni={D\bibinitperiod}}}%
+        {{hash=b048f20edbd5863f175826dedccf90ca}{%
+           family={Carrera},
+           familyi={C\bibinitperiod},
+           given={Álvaro},
+           giveni={Á\bibinitperiod}}}%
+        {{hash=20bed70fcabc737a1f9f94c85c4d62bf}{%
+           family={Iglesias},
+           familyi={I\bibinitperiod},
+           given={Carlos\bibnamedelima A.},
+           giveni={C\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=476b50b58a557adc1138b0ef112358fa}{%
+           family={Araque},
+           familyi={A\bibinitperiod},
+           given={Óscar},
+           giveni={Ó\bibinitperiod}}}%
+        {{hash=51c2af0a9ac90c5f7f2543bb96cfc1c5}{%
+           family={Sánchez\bibnamedelima Rada},
+           familyi={S\bibinitperiod\bibinitdelim R\bibinitperiod},
+           given={Juan\bibnamedelima Fernando},
+           giveni={J\bibinitperiod\bibinitdelim F\bibinitperiod}}}%
+        {{hash=eda642f25deeb85e7e0391cea8e84b0d}{%
+           family={Muñoz},
+           familyi={M\bibinitperiod},
+           given={Sergio},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{26eda81b4a8cc0a800eb6cee1e34a2ae}
+      \strng{fullhash}{717af8ec75f8a807e31b776336da8ac7}
+      \strng{fullhashraw}{717af8ec75f8a807e31b776336da8ac7}
+      \strng{bibnamehash}{717af8ec75f8a807e31b776336da8ac7}
+      \strng{authorbibnamehash}{717af8ec75f8a807e31b776336da8ac7}
+      \strng{authornamehash}{26eda81b4a8cc0a800eb6cee1e34a2ae}
+      \strng{authorfullhash}{717af8ec75f8a807e31b776336da8ac7}
+      \strng{authorfullhashraw}{717af8ec75f8a807e31b776336da8ac7}
+      \field{labelalpha}{CCI+20}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{The application of natural language to improve students' interaction with information systems is demonstrated to be beneficial. In particular, advances in cognitive computing enable a new way of interaction that accelerates insight from existing information sources, thereby contributing to the process of learning. This work aims at researching the application of cognitive computing in blended learning environments. We propose a modular cognitive agent architecture for pedagogical question answering, featuring social dialogue (small talk), improved for a specific knowledge domain. This system has been implemented as a personal agent to assist students in learning Data Science and Machine Learning techniques. Its implementation includes the training of machine learning models and natural language understanding algorithms in a human-like interface. The effectiveness of the system has been validated through an experiment.}
+      \field{issn}{2169-3536}
+      \field{journaltitle}{IEEE Access}
+      \field{note}{Conference Name: IEEE Access}
+      \field{shorttitle}{{JAICOB}}
+      \field{title}{{JAICOB}: {A} {Data} {Science} {Chatbot}}
+      \field{urlday}{18}
+      \field{urlmonth}{1}
+      \field{urlyear}{2024}
+      \field{volume}{8}
+      \field{year}{2020}
+      \field{urldateera}{ce}
+      \field{pages}{180672\bibrangedash 180680}
+      \range{pages}{9}
+      \verb{doi}
+      \verb 10.1109/ACCESS.2020.3024795
+      \endverb
+      \verb{file}
+      \verb IEEE Xplore Abstract Record:C\:\\Users\\lop1le\\Zotero\\storage\\Z3GYW7XT\\9200315.html:text/html;IEEE Xplore Full Text PDF:C\:\\Users\\lop1le\\Zotero\\storage\\3BIZZGJH\\Carlander-Reuterfelt et al. - 2020 - JAICOB A Data Science Chatbot.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://ieeexplore.ieee.org/abstract/document/9200315
+      \endverb
+      \verb{url}
+      \verb https://ieeexplore.ieee.org/abstract/document/9200315
+      \endverb
+      \keyw{Complex Chatbots}
+    \endentry
+    \entry{dadaloop82_MyHomeSmart_HASS_AppDeamon}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=d3f06aa9f8cc12505502a58add304f66}{%
+           family={dadaloop82},
+           familyi={d\bibinitperiod}}}%
+      }
+      \strng{namehash}{d3f06aa9f8cc12505502a58add304f66}
+      \strng{fullhash}{d3f06aa9f8cc12505502a58add304f66}
+      \strng{fullhashraw}{d3f06aa9f8cc12505502a58add304f66}
+      \strng{bibnamehash}{d3f06aa9f8cc12505502a58add304f66}
+      \strng{authorbibnamehash}{d3f06aa9f8cc12505502a58add304f66}
+      \strng{authornamehash}{d3f06aa9f8cc12505502a58add304f66}
+      \strng{authorfullhash}{d3f06aa9f8cc12505502a58add304f66}
+      \strng{authorfullhashraw}{d3f06aa9f8cc12505502a58add304f66}
+      \field{labelalpha}{dad22}
+      \field{sortinit}{d}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{MyHomeSmart-HASS-AppDeamon}
+      \field{year}{2022}
+      \verb{urlraw}
+      \verb [https://github.com/dadaloop82/MyHomeSmart-HASS-AppDeamon](https://github.com/dadaloop82/MyHomeSmart-HASS-AppDeamon)
+      \endverb
+      \verb{url}
+      \verb [https://github.com/dadaloop82/MyHomeSmart-HASS-AppDeamon](https://github.com/dadaloop82/MyHomeSmart-HASS-AppDeamon)
+      \endverb
+    \endentry
+    \entry{nfr_fr}{inproceedings}{}{}
+      \name{author}{3}{}{%
+        {{hash=f5a1bbba17ce129395b71a2c6015ba12}{%
+           family={Eckhardt},
+           familyi={E\bibinitperiod},
+           given={Jonas},
+           giveni={J\bibinitperiod}}}%
+        {{hash=b1eb34e7886e3235f1e22c02468b3d31}{%
+           family={Vogelsang},
+           familyi={V\bibinitperiod},
+           given={Andreas},
+           giveni={A\bibinitperiod}}}%
+        {{hash=d187899fd5740ab121c4caeee380d2e1}{%
+           family={Fernández},
+           familyi={F\bibinitperiod},
+           given={Daniel\bibnamedelima Méndez},
+           giveni={D\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Austin, Texas}%
+      }
+      \list{publisher}{1}{%
+        {Association for Computing Machinery}%
+      }
+      \strng{namehash}{8a3a1a1b1f4ba8a357f770787c930e81}
+      \strng{fullhash}{85f90c81a0ff5cb5e8f7be13718f354f}
+      \strng{fullhashraw}{85f90c81a0ff5cb5e8f7be13718f354f}
+      \strng{bibnamehash}{85f90c81a0ff5cb5e8f7be13718f354f}
+      \strng{authorbibnamehash}{85f90c81a0ff5cb5e8f7be13718f354f}
+      \strng{authornamehash}{8a3a1a1b1f4ba8a357f770787c930e81}
+      \strng{authorfullhash}{85f90c81a0ff5cb5e8f7be13718f354f}
+      \strng{authorfullhashraw}{85f90c81a0ff5cb5e8f7be13718f354f}
+      \field{labelalpha}{EVF16}
+      \field{sortinit}{E}
+      \field{sortinithash}{8da8a182d344d5b9047633dfc0cc9131}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 38th International Conference on Software Engineering}
+      \field{isbn}{9781450339001}
+      \field{series}{ICSE '16}
+      \field{title}{Are "Non-Functional" Requirements Really Non-Functional? An Investigation of Non-Functional Requirements in Practice}
+      \field{year}{2016}
+      \field{pages}{832\bibrangedash 842}
+      \range{pages}{11}
+      \verb{doi}
+      \verb 10.1145/2884781.2884788
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1145/2884781.2884788
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1145/2884781.2884788
+      \endverb
+      \keyw{model-based development,empirical studies,non-functional requirements,classification}
+    \endentry
+    \entry{huggingface_sentence_similarity}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=1fd152f750da41d64d5e76ee7e0c8ac1}{%
+           family={Face},
+           familyi={F\bibinitperiod},
+           given={Hugging},
+           giveni={H\bibinitperiod}}}%
+      }
+      \strng{namehash}{1fd152f750da41d64d5e76ee7e0c8ac1}
+      \strng{fullhash}{1fd152f750da41d64d5e76ee7e0c8ac1}
+      \strng{fullhashraw}{1fd152f750da41d64d5e76ee7e0c8ac1}
+      \strng{bibnamehash}{1fd152f750da41d64d5e76ee7e0c8ac1}
+      \strng{authorbibnamehash}{1fd152f750da41d64d5e76ee7e0c8ac1}
+      \strng{authornamehash}{1fd152f750da41d64d5e76ee7e0c8ac1}
+      \strng{authorfullhash}{1fd152f750da41d64d5e76ee7e0c8ac1}
+      \strng{authorfullhashraw}{1fd152f750da41d64d5e76ee7e0c8ac1}
+      \field{labelalpha}{Fac24}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Sentence Similarity}
+      \field{year}{2024}
+      \verb{urlraw}
+      \verb https://huggingface.co/tasks/sentence-similarity
+      \endverb
+      \verb{url}
+      \verb https://huggingface.co/tasks/sentence-similarity
+      \endverb
+    \endentry
+    \entry{guo2023evaluatinglargelanguagemodels}{misc}{}{}
+      \name{author}{11}{}{%
+        {{hash=4bc6d1246e7f329aee0fb3b8fe9e90f0}{%
+           family={Guo},
+           familyi={G\bibinitperiod},
+           given={Zishan},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=6ce51590810bb391bb83c7c1d0bc8ad6}{%
+           family={Jin},
+           familyi={J\bibinitperiod},
+           given={Renren},
+           giveni={R\bibinitperiod}}}%
+        {{hash=2069ae3ae188262d66ed8e61d78aac2b}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={Chuang},
+           giveni={C\bibinitperiod}}}%
+        {{hash=ac51f35d6965708332c5e669374249cc}{%
+           family={Huang},
+           familyi={H\bibinitperiod},
+           given={Yufei},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=135168e27ee83a9547e3a9c5c7c34d2b}{%
+           family={Shi},
+           familyi={S\bibinitperiod},
+           given={Dan},
+           giveni={D\bibinitperiod}}}%
+        {{hash=6d111cfb9033ae80d8d9f61037a7b842}{%
+           family={Supryadi},
+           familyi={S\bibinitperiod}}}%
+        {{hash=8ff3d593affa033f04f3973ab13da0b7}{%
+           family={Yu},
+           familyi={Y\bibinitperiod},
+           given={Linhao},
+           giveni={L\bibinitperiod}}}%
+        {{hash=92f7474e36f4f2b59a14e85c0e738e40}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={Yan},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=021a0c3f03a355961aefcfcbfd179304}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Jiaxuan},
+           giveni={J\bibinitperiod}}}%
+        {{hash=4027811bde8c2be969e888b9db7e0a94}{%
+           family={Xiong},
+           familyi={X\bibinitperiod},
+           given={Bojian},
+           giveni={B\bibinitperiod}}}%
+        {{hash=4cbf98f3827c68037e4c0dd119ae5106}{%
+           family={Xiong},
+           familyi={X\bibinitperiod},
+           given={Deyi},
+           giveni={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{ea164dc4b0061b6868a6c9366d54683c}
+      \strng{fullhash}{eb0c21edea0deb2dd0dc8d39110b70d1}
+      \strng{fullhashraw}{eb0c21edea0deb2dd0dc8d39110b70d1}
+      \strng{bibnamehash}{eb0c21edea0deb2dd0dc8d39110b70d1}
+      \strng{authorbibnamehash}{eb0c21edea0deb2dd0dc8d39110b70d1}
+      \strng{authornamehash}{ea164dc4b0061b6868a6c9366d54683c}
+      \strng{authorfullhash}{eb0c21edea0deb2dd0dc8d39110b70d1}
+      \strng{authorfullhashraw}{eb0c21edea0deb2dd0dc8d39110b70d1}
+      \field{labelalpha}{GJL+23}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{cs.CL}
+      \field{eprinttype}{arXiv}
+      \field{title}{Evaluating Large Language Models: A Comprehensive Survey}
+      \field{year}{2023}
+      \verb{doi}
+      \verb 10.48550/arXiv.2310.19736
+      \endverb
+      \verb{eprint}
+      \verb 2310.19736
+      \endverb
+      \verb{urlraw}
+      \verb https://arxiv.org/abs/2310.19736
+      \endverb
+      \verb{url}
+      \verb https://arxiv.org/abs/2310.19736
+      \endverb
+    \endentry
+    \entry{google2024function}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=57f3af2a3d1051c172ab3c3db7d5409d}{%
+           family={{Google Cloud}},
+           familyi={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{57f3af2a3d1051c172ab3c3db7d5409d}
+      \strng{fullhash}{57f3af2a3d1051c172ab3c3db7d5409d}
+      \strng{fullhashraw}{57f3af2a3d1051c172ab3c3db7d5409d}
+      \strng{bibnamehash}{57f3af2a3d1051c172ab3c3db7d5409d}
+      \strng{authorbibnamehash}{57f3af2a3d1051c172ab3c3db7d5409d}
+      \strng{authornamehash}{57f3af2a3d1051c172ab3c3db7d5409d}
+      \strng{authorfullhash}{57f3af2a3d1051c172ab3c3db7d5409d}
+      \strng{authorfullhashraw}{57f3af2a3d1051c172ab3c3db7d5409d}
+      \field{labelalpha}{Goo24}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://cloud.google.com/vertex-ai/generative-ai/docs/multimodal/function-calling}}
+      \field{note}{Accessed: 2024-07-05}
+      \field{title}{Function calling}
+      \field{year}{2024}
+    \endentry
+    \entry{jasinski_chatbot-based_2023}{inproceedings}{}{}
+      \name{author}{4}{}{%
+        {{hash=3697e71786efe07c108a450310a00afe}{%
+           family={Jasinski},
+           familyi={J\bibinitperiod},
+           given={Andrzej},
+           giveni={A\bibinitperiod}}}%
+        {{hash=d32e628881ed4370c656517178858e6a}{%
+           family={Qiao},
+           familyi={Q\bibinitperiod},
+           given={Yuansong},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=c21a05bc3e67dc313cb6c17849ddaeed}{%
+           family={Fallon},
+           familyi={F\bibinitperiod},
+           given={Enda},
+           giveni={E\bibinitperiod}}}%
+        {{hash=ed7b7f50fb854305305b2b9dac082860}{%
+           family={Flynn},
+           familyi={F\bibinitperiod},
+           given={Ronan},
+           giveni={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{f33f22de292bce9b6198c24a64c22455}
+      \strng{fullhash}{7f8dbefa80d9aa39bf304df8355f5406}
+      \strng{fullhashraw}{7f8dbefa80d9aa39bf304df8355f5406}
+      \strng{bibnamehash}{7f8dbefa80d9aa39bf304df8355f5406}
+      \strng{authorbibnamehash}{7f8dbefa80d9aa39bf304df8355f5406}
+      \strng{authornamehash}{f33f22de292bce9b6198c24a64c22455}
+      \strng{authorfullhash}{7f8dbefa80d9aa39bf304df8355f5406}
+      \strng{authorfullhashraw}{7f8dbefa80d9aa39bf304df8355f5406}
+      \field{labelalpha}{JQFF23}
+      \field{sortinit}{J}
+      \field{sortinithash}{b2f54a9081ace9966a7cb9413811edb4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{This paper presents an implementation of a feedback mechanism for a workflow management framework. A chatbot that uses natural language processing (NLP) is central to the proposed feedback mechanism. NLP is used to transform text-based plain language input, both human-written and machine-generated, into a form that the framework can use to generate a workflow for execution in an environment of interest. The example environment described here is containerized network management, in which the workflow management framework, using feedback, can detect anomalies and mitigate potential incidents.}
+      \field{booktitle}{2023 {IEEE} 9th {International} {Conference} on {Network} {Softwarization} ({NetSoft})}
+      \field{month}{6}
+      \field{note}{ISSN: 2693-9789}
+      \field{title}{Chatbot-based {Feedback} for {Dynamically} {Generated} {Workflows} in {Docker} {Networks}}
+      \field{urlday}{18}
+      \field{urlmonth}{1}
+      \field{urlyear}{2024}
+      \field{year}{2023}
+      \field{urldateera}{ce}
+      \field{pages}{287\bibrangedash 289}
+      \range{pages}{3}
+      \verb{doi}
+      \verb 10.1109/NetSoft57336.2023.10175429
+      \endverb
+      \verb{file}
+      \verb IEEE Xplore Abstract Record:C\:\\Users\\lop1le\\Zotero\\storage\\5KPFLHXH\\10175429.html:text/html;IEEE Xplore Full Text PDF:C\:\\Users\\lop1le\\Zotero\\storage\\MANL36FF\\Jasinski et al. - 2023 - Chatbot-based Feedback for Dynamically Generated W.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://ieeexplore.ieee.org/abstract/document/10175429
+      \endverb
+      \verb{url}
+      \verb https://ieeexplore.ieee.org/abstract/document/10175429
+      \endverb
+      \keyw{Complex Chatbots}
+    \endentry
+    \entry{lehmann_chatbot-guide_2021}{incollection}{}{}
+      \name{author}{1}{}{%
+        {{hash=8a37187530b44075a3b55a636e4d976a}{%
+           family={Lehmann},
+           familyi={L\bibinitperiod},
+           given={Julia},
+           giveni={J\bibinitperiod}}}%
+      }
+      \name{editor}{1}{}{%
+        {{hash=dcbb09d8ead1945db577493fb18e0c6d}{%
+           family={Detscher},
+           familyi={D\bibinitperiod},
+           given={Stefan},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {de}%
+      }
+      \list{location}{1}{%
+        {Wiesbaden}%
+      }
+      \list{publisher}{1}{%
+        {Springer Fachmedien}%
+      }
+      \strng{namehash}{8a37187530b44075a3b55a636e4d976a}
+      \strng{fullhash}{8a37187530b44075a3b55a636e4d976a}
+      \strng{fullhashraw}{8a37187530b44075a3b55a636e4d976a}
+      \strng{bibnamehash}{8a37187530b44075a3b55a636e4d976a}
+      \strng{authorbibnamehash}{8a37187530b44075a3b55a636e4d976a}
+      \strng{authornamehash}{8a37187530b44075a3b55a636e4d976a}
+      \strng{authorfullhash}{8a37187530b44075a3b55a636e4d976a}
+      \strng{authorfullhashraw}{8a37187530b44075a3b55a636e4d976a}
+      \strng{editorbibnamehash}{dcbb09d8ead1945db577493fb18e0c6d}
+      \strng{editornamehash}{dcbb09d8ead1945db577493fb18e0c6d}
+      \strng{editorfullhash}{dcbb09d8ead1945db577493fb18e0c6d}
+      \strng{editorfullhashraw}{dcbb09d8ead1945db577493fb18e0c6d}
+      \field{labelalpha}{Leh21}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Neue Technologien wie künstliche Intelligenz und Messaging wirken wie ein Katalysator für den Chatbot-Trend und virtuelle Assistenten sind aus dem Alltag von Nutzern und Unternehmen nicht mehr wegzudenken. Dieser Artikel beschreibt, wie Chatbots funktionieren, welche Einsatzgebiete es gibt und welcher Mehrwert erwartet werden kann. Er gibt Ratschläge für die Gestaltung eines schlüssigen Chatbot-Konzepts und weist auf mögliche Stolperfallen bei der Umsetzung hin. So entsteht ein praktischer Guide von der Chatbot-Idee hin zur erfolgreichen Entwicklung von KI-basierten virtuellen Assistenten.}
+      \field{booktitle}{Digitales {Management} und {Marketing}: {So} nutzen {Unternehmen} die {Marktchancen} der {Digitalisierung}}
+      \field{isbn}{978-3-658-33731-5}
+      \field{title}{Der {Chatbot}-{Guide}}
+      \field{urlday}{2}
+      \field{urlmonth}{1}
+      \field{urlyear}{2024}
+      \field{year}{2021}
+      \field{urldateera}{ce}
+      \field{pages}{305\bibrangedash 325}
+      \range{pages}{21}
+      \verb{doi}
+      \verb 10.1007/978-3-658-33731-5_19
+      \endverb
+      \verb{file}
+      \verb Full Text PDF:C\:\\Users\\lop1le\\Zotero\\storage\\643EDKQH\\Lehmann - 2021 - Der Chatbot-Guide.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1007/978-3-658-33731-5_19
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1007/978-3-658-33731-5_19
+      \endverb
+    \endentry
+    \entry{luo_critical_2022}{article}{}{}
+      \name{author}{4}{}{%
+        {{hash=b4268fea0dd0879774f39e30b1bdab3c}{%
+           family={Luo},
+           familyi={L\bibinitperiod},
+           given={Bei},
+           giveni={B\bibinitperiod}}}%
+        {{hash=4bc99eef079dcf0abdc0d747d1f2a577}{%
+           family={Lau},
+           familyi={L\bibinitperiod},
+           given={Raymond\bibnamedelimb Y.\bibnamedelimi K.},
+           giveni={R\bibinitperiod\bibinitdelim Y\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+        {{hash=33d700fe2f0013f7cc19fde393dc0844}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Chunping},
+           giveni={C\bibinitperiod}}}%
+        {{hash=1075bbb7117e513bea58e6cf551dc516}{%
+           family={Si},
+           familyi={S\bibinitperiod},
+           given={Yain-Whar},
+           giveni={Y\bibinithyphendelim W\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \strng{namehash}{6e98fd8f62419d9477182d3f3fa73b90}
+      \strng{fullhash}{2f735b4a66f9e3bbbea0886b680609dd}
+      \strng{fullhashraw}{2f735b4a66f9e3bbbea0886b680609dd}
+      \strng{bibnamehash}{2f735b4a66f9e3bbbea0886b680609dd}
+      \strng{authorbibnamehash}{2f735b4a66f9e3bbbea0886b680609dd}
+      \strng{authornamehash}{6e98fd8f62419d9477182d3f3fa73b90}
+      \strng{authorfullhash}{2f735b4a66f9e3bbbea0886b680609dd}
+      \strng{authorfullhashraw}{2f735b4a66f9e3bbbea0886b680609dd}
+      \field{labelalpha}{LLLS22}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Chatbots are intelligent conversational agents that can interact with users through natural languages. As chatbots can perform a variety of tasks, many companies have committed numerous resources to develop and deploy chatbots to enhance various business processes. However, we lack an up-to-date critical review that thoroughly examines both state-of-the-art technologies and innovative applications of chatbots. In this review, we not only critically analyze the various computational approaches used to develop state-of-the-art chatbots, but also thoroughly review the usability and applications of chatbots for various business sectors. We also identify gaps in chatbot-related studies and propose new research directions to address the shortcomings of existing studies and applications. Our review advances both academic research and practical business applications of state-of-the-art chatbots. We provide guidance for practitioners to fully realize the business value of chatbots and assist in making sensible decisions related to the development and deployment of chatbots in various business contexts. Researchers interested in the design and development of chatbots can also gain useful insights from our critical review and identify fruitful research topics and future research directions based on the research gaps discussed herein. This article is categorized under: Technologies {>} Machine Learning Application Areas {>} Business and Industry}
+      \field{issn}{1942-4795}
+      \field{journaltitle}{WIREs Data Mining and Knowledge Discovery}
+      \field{note}{\_eprint: https://onlinelibrary.wiley.com/doi/pdf/10.1002/widm.1434}
+      \field{number}{1}
+      \field{title}{A critical review of state-of-the-art chatbot designs and applications}
+      \field{urlday}{18}
+      \field{urlmonth}{1}
+      \field{urlyear}{2024}
+      \field{volume}{12}
+      \field{year}{2022}
+      \field{urldateera}{ce}
+      \field{pages}{e1434}
+      \range{pages}{-1}
+      \verb{doi}
+      \verb 10.1002/widm.1434
+      \endverb
+      \verb{file}
+      \verb Snapshot:C\:\\Users\\lop1le\\Zotero\\storage\\5IH7TC98\\widm.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://onlinelibrary.wiley.com/doi/abs/10.1002/widm.1434
+      \endverb
+      \verb{url}
+      \verb https://onlinelibrary.wiley.com/doi/abs/10.1002/widm.1434
+      \endverb
+      \keyw{Chatbot applications,Chatbots,conversational agents,deep learning,machine learning}
+    \endentry
+    \entry{matsui_information_2018}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=7b8152b1130dc62afbda7b90e549a9b3}{%
+           family={Matsui},
+           familyi={M\bibinitperiod},
+           given={Kanae},
+           giveni={K\bibinitperiod}}}%
+      }
+      \strng{namehash}{7b8152b1130dc62afbda7b90e549a9b3}
+      \strng{fullhash}{7b8152b1130dc62afbda7b90e549a9b3}
+      \strng{fullhashraw}{7b8152b1130dc62afbda7b90e549a9b3}
+      \strng{bibnamehash}{7b8152b1130dc62afbda7b90e549a9b3}
+      \strng{authorbibnamehash}{7b8152b1130dc62afbda7b90e549a9b3}
+      \strng{authornamehash}{7b8152b1130dc62afbda7b90e549a9b3}
+      \strng{authorfullhash}{7b8152b1130dc62afbda7b90e549a9b3}
+      \strng{authorfullhashraw}{7b8152b1130dc62afbda7b90e549a9b3}
+      \field{labelalpha}{Mat18}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Smart cities are often discussed in the context of promoting sustainability. A smart city operates using large numbers of networked sensors to collect, store, and analyze massive amounts of data in near-real time; these data may also have secondary applications. This study proposes one such use of the data gathered by home energy management systems (HEMS). Current HEMS focus mainly on energy efficiency, but residents typically value indoor comfort as well. HEMS collect various types of data that can be used to create an index for short-term indoor comfort called the predicted mean vote (PMV). This study implements a system to identify information within the stored data that is relevant to reducing electricity consumption while maintaining indoor comfort according to each resident’s PMV preference. The system was tested in three households in Japan for 12 days in winter. The system reduced electricity consumption by 5.15\% and increased the comfort satisfaction expressed as PMV by 42.3\%. Qualitative assessments of indoor comfort increased by 16.4\%. Providing users with information selected according to their PMV preferences was more effective in reducing electricity consumption and increasing indoor comfort than providing them with random information.}
+      \field{issn}{0167-739X}
+      \field{journaltitle}{Future Generation Computer Systems}
+      \field{month}{5}
+      \field{title}{An information provision system to promote energy conservation and maintain indoor comfort in smart homes using sensed data by {IoT} sensors}
+      \field{urlday}{17}
+      \field{urlmonth}{1}
+      \field{urlyear}{2024}
+      \field{volume}{82}
+      \field{year}{2018}
+      \field{urldateera}{ce}
+      \field{pages}{388\bibrangedash 394}
+      \range{pages}{7}
+      \verb{doi}
+      \verb 10.1016/j.future.2017.10.043
+      \endverb
+      \verb{file}
+      \verb ScienceDirect Snapshot:C\:\\Users\\lop1le\\Zotero\\storage\\4SQUK27Y\\S0167739X17313559.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/S0167739X17313559
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/S0167739X17313559
+      \endverb
+      \keyw{Internet of Things,Feasibility study,Information provision,Intelligent recommendation system,Secondary use of data,Smart home}
+    \endentry
+    \entry{mistral2024function}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=5f46782611de55f109003b4dac1b83e0}{%
+           family={{Mistral AI}},
+           familyi={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{5f46782611de55f109003b4dac1b83e0}
+      \strng{fullhash}{5f46782611de55f109003b4dac1b83e0}
+      \strng{fullhashraw}{5f46782611de55f109003b4dac1b83e0}
+      \strng{bibnamehash}{5f46782611de55f109003b4dac1b83e0}
+      \strng{authorbibnamehash}{5f46782611de55f109003b4dac1b83e0}
+      \strng{authornamehash}{5f46782611de55f109003b4dac1b83e0}
+      \strng{authorfullhash}{5f46782611de55f109003b4dac1b83e0}
+      \strng{authorfullhashraw}{5f46782611de55f109003b4dac1b83e0}
+      \field{labelalpha}{Mis24}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://docs.mistral.ai/capabilities/function_calling/}}
+      \field{note}{Accessed: 2024-07-05}
+      \field{title}{Function calling}
+      \field{year}{2024}
+    \endentry
+    \entry{openai2024function-chatgpt}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=0523b13262b12c215d8009938f5c14f1}{%
+           family={OpenAI},
+           familyi={O\bibinitperiod}}}%
+      }
+      \strng{namehash}{0523b13262b12c215d8009938f5c14f1}
+      \strng{fullhash}{0523b13262b12c215d8009938f5c14f1}
+      \strng{fullhashraw}{0523b13262b12c215d8009938f5c14f1}
+      \strng{bibnamehash}{0523b13262b12c215d8009938f5c14f1}
+      \strng{authorbibnamehash}{0523b13262b12c215d8009938f5c14f1}
+      \strng{authornamehash}{0523b13262b12c215d8009938f5c14f1}
+      \strng{authorfullhash}{0523b13262b12c215d8009938f5c14f1}
+      \strng{authorfullhashraw}{0523b13262b12c215d8009938f5c14f1}
+      \field{extraname}{1}
+      \field{labelalpha}{Ope24}
+      \field{sortinit}{O}
+      \field{sortinithash}{2cd7140a07aea5341f9e2771efe90aae}
+      \field{extraalpha}{1}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://chat.openai.com/}}
+      \field{note}{Accessed: 2024-07-05}
+      \field{title}{Explanation of Function Calling in Language Models}
+      \field{year}{2024}
+    \endentry
+    \entry{openai2024function-article}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=0523b13262b12c215d8009938f5c14f1}{%
+           family={{OpenAI}},
+           familyi={O\bibinitperiod}}}%
+      }
+      \strng{namehash}{0523b13262b12c215d8009938f5c14f1}
+      \strng{fullhash}{0523b13262b12c215d8009938f5c14f1}
+      \strng{fullhashraw}{0523b13262b12c215d8009938f5c14f1}
+      \strng{bibnamehash}{0523b13262b12c215d8009938f5c14f1}
+      \strng{authorbibnamehash}{0523b13262b12c215d8009938f5c14f1}
+      \strng{authornamehash}{0523b13262b12c215d8009938f5c14f1}
+      \strng{authorfullhash}{0523b13262b12c215d8009938f5c14f1}
+      \strng{authorfullhashraw}{0523b13262b12c215d8009938f5c14f1}
+      \field{extraname}{2}
+      \field{labelalpha}{Ope24}
+      \field{sortinit}{O}
+      \field{sortinithash}{2cd7140a07aea5341f9e2771efe90aae}
+      \field{extraalpha}{2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://platform.openai.com/docs/guides/function-calling}}
+      \field{note}{Accessed: 2024-07-05}
+      \field{title}{Function calling}
+      \field{year}{2024}
+    \endentry
+    \entry{patil2023gorillalargelanguagemodel}{misc}{}{}
+      \name{author}{4}{}{%
+        {{hash=0bd9e51a864fb0c4f82924ee344f798b}{%
+           family={Patil},
+           familyi={P\bibinitperiod},
+           given={Shishir\bibnamedelima G.},
+           giveni={S\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+        {{hash=4088b3179b8029fdfca2b8a81ad73482}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Tianjun},
+           giveni={T\bibinitperiod}}}%
+        {{hash=03d3e23852937fa39b0e34246c4ecd1d}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Xin},
+           giveni={X\bibinitperiod}}}%
+        {{hash=80175f489665023b28dbb4cf1775c0ef}{%
+           family={Gonzalez},
+           familyi={G\bibinitperiod},
+           given={Joseph\bibnamedelima E.},
+           giveni={J\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+      }
+      \strng{namehash}{66bf350e4ce57b6562553a37ac0c0561}
+      \strng{fullhash}{374b5a8a3af6cf366b0df28b6981fed8}
+      \strng{fullhashraw}{374b5a8a3af6cf366b0df28b6981fed8}
+      \strng{bibnamehash}{374b5a8a3af6cf366b0df28b6981fed8}
+      \strng{authorbibnamehash}{374b5a8a3af6cf366b0df28b6981fed8}
+      \strng{authornamehash}{66bf350e4ce57b6562553a37ac0c0561}
+      \strng{authorfullhash}{374b5a8a3af6cf366b0df28b6981fed8}
+      \strng{authorfullhashraw}{374b5a8a3af6cf366b0df28b6981fed8}
+      \field{labelalpha}{PZWG23}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{cs.CL}
+      \field{eprinttype}{arXiv}
+      \field{title}{Gorilla: Large Language Model Connected with Massive APIs}
+      \field{year}{2023}
+      \verb{doi}
+      \verb 10.48550/arXiv.2305.15334
+      \endverb
+      \verb{eprint}
+      \verb 2305.15334
+      \endverb
+      \verb{urlraw}
+      \verb https://arxiv.org/abs/2305.15334
+      \endverb
+      \verb{url}
+      \verb https://arxiv.org/abs/2305.15334
+      \endverb
+    \endentry
+    \entry{DBLP:journals/ese/RunesonH09}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=306f73791e107dd9b83d45ee22e6b523}{%
+           family={Runeson},
+           familyi={R\bibinitperiod},
+           given={Per},
+           giveni={P\bibinitperiod}}}%
+        {{hash=4d1752e9463ffc1043c0939de72a9097}{%
+           family={Höst},
+           familyi={H\bibinitperiod},
+           given={Martin},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{d487493fbde07f44f703e74cfc39b73d}
+      \strng{fullhash}{d487493fbde07f44f703e74cfc39b73d}
+      \strng{fullhashraw}{d487493fbde07f44f703e74cfc39b73d}
+      \strng{bibnamehash}{d487493fbde07f44f703e74cfc39b73d}
+      \strng{authorbibnamehash}{d487493fbde07f44f703e74cfc39b73d}
+      \strng{authornamehash}{d487493fbde07f44f703e74cfc39b73d}
+      \strng{authorfullhash}{d487493fbde07f44f703e74cfc39b73d}
+      \strng{authorfullhashraw}{d487493fbde07f44f703e74cfc39b73d}
+      \field{labelalpha}{RH09}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Empir. Softw. Eng.}
+      \field{number}{2}
+      \field{title}{Guidelines for conducting and reporting case study research in software engineering}
+      \field{volume}{14}
+      \field{year}{2009}
+      \field{pages}{131\bibrangedash 164}
+      \range{pages}{34}
+    \endentry
+    \entry{schiefer_smart_2015}{inproceedings}{}{}
+      \name{author}{1}{}{%
+        {{hash=ffe033663e24cef18ce4d55f39c87082}{%
+           family={Schiefer},
+           familyi={S\bibinitperiod},
+           given={Michael},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{ffe033663e24cef18ce4d55f39c87082}
+      \strng{fullhash}{ffe033663e24cef18ce4d55f39c87082}
+      \strng{fullhashraw}{ffe033663e24cef18ce4d55f39c87082}
+      \strng{bibnamehash}{ffe033663e24cef18ce4d55f39c87082}
+      \strng{authorbibnamehash}{ffe033663e24cef18ce4d55f39c87082}
+      \strng{authornamehash}{ffe033663e24cef18ce4d55f39c87082}
+      \strng{authorfullhash}{ffe033663e24cef18ce4d55f39c87082}
+      \strng{authorfullhashraw}{ffe033663e24cef18ce4d55f39c87082}
+      \field{labelalpha}{Sch15}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The home of the future should be a smart one, to support us in our daily life. Up to now only a few security incidents in that area are known. Depending on different security analyses, this fact is rather a result of the low spread of Smart Home products than the success of such systems security. Given that Smart Homes become more and more popular, we will consider current incidents and analyses to estimate potential security threats in the future. The definitions of a Smart Home drift widely apart. Thus we first need to define Smart Home for ourselves and additionally provide a way to categorize the big mass of products into smaller groups.}
+      \field{booktitle}{2015 {Ninth} {International} {Conference} on {IT} {Security} {Incident} {Management} \& {IT} {Forensics}}
+      \field{month}{5}
+      \field{title}{Smart {Home} {Definition} and {Security} {Threats}}
+      \field{urlday}{17}
+      \field{urlmonth}{1}
+      \field{urlyear}{2024}
+      \field{year}{2015}
+      \field{urldateera}{ce}
+      \field{pages}{114\bibrangedash 118}
+      \range{pages}{5}
+      \verb{doi}
+      \verb 10.1109/IMF.2015.17
+      \endverb
+      \verb{file}
+      \verb IEEE Xplore Abstract Record:C\:\\Users\\lop1le\\Zotero\\storage\\YU73W47R\\7195812.html:text/html;IEEE Xplore Full Text PDF:C\:\\Users\\lop1le\\Zotero\\storage\\C2A8QYNK\\Schiefer - 2015 - Smart Home Definition and Security Threats.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://ieeexplore.ieee.org/abstract/document/7195812
+      \endverb
+      \verb{url}
+      \verb https://ieeexplore.ieee.org/abstract/document/7195812
+      \endverb
+    \endentry
+    \entry{srinivasan2023nexusraven}{inproceedings}{}{}
+      \name{author}{9}{}{%
+        {{hash=b86eeabe0f821ec12894fd1a228aafd8}{%
+           family={Srinivasan},
+           familyi={S\bibinitperiod},
+           given={Venkat\bibnamedelima Krishna},
+           giveni={V\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+        {{hash=acc5054a5bc78dfa6ee2c7da37062cd3}{%
+           family={Dong},
+           familyi={D\bibinitperiod},
+           given={Zhen},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=3d63d4834c71acce6be58b8b3dcd21fe}{%
+           family={Zhu},
+           familyi={Z\bibinitperiod},
+           given={Banghua},
+           giveni={B\bibinitperiod}}}%
+        {{hash=41c4a79fba69f26d9bb38e7097b90a34}{%
+           family={Yu},
+           familyi={Y\bibinitperiod},
+           given={Brian},
+           giveni={B\bibinitperiod}}}%
+        {{hash=326137dec73ca7ba28f804a81dd26892}{%
+           family={Mao},
+           familyi={M\bibinitperiod},
+           given={Hanzi},
+           giveni={H\bibinitperiod}}}%
+        {{hash=095cee483ea1c344e3940ad38fc7fdd6}{%
+           family={Mosk-Aoyama},
+           familyi={M\bibinithyphendelim A\bibinitperiod},
+           given={Damon},
+           giveni={D\bibinitperiod}}}%
+        {{hash=994177386e5a63171a7be588e97df7e5}{%
+           family={Keutzer},
+           familyi={K\bibinitperiod},
+           given={Kurt},
+           giveni={K\bibinitperiod}}}%
+        {{hash=e6596b8ab38bb90920ac37d8951b05b6}{%
+           family={Jiao},
+           familyi={J\bibinitperiod},
+           given={Jiantao},
+           giveni={J\bibinitperiod}}}%
+        {{hash=112faefb37293f52cd92c3bb36fcc08b}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Jian},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{9564ee575d035fc1deaa78705a84fb8e}
+      \strng{fullhash}{a04b69ab2a8fb6c93dedf0f5c050d733}
+      \strng{fullhashraw}{a04b69ab2a8fb6c93dedf0f5c050d733}
+      \strng{bibnamehash}{a04b69ab2a8fb6c93dedf0f5c050d733}
+      \strng{authorbibnamehash}{a04b69ab2a8fb6c93dedf0f5c050d733}
+      \strng{authornamehash}{9564ee575d035fc1deaa78705a84fb8e}
+      \strng{authorfullhash}{a04b69ab2a8fb6c93dedf0f5c050d733}
+      \strng{authorfullhashraw}{a04b69ab2a8fb6c93dedf0f5c050d733}
+      \field{labelalpha}{SDZ+23}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{NeurIPS 2023 Foundation Models for Decision Making Workshop}
+      \field{title}{NexusRaven: A Commercially-Permissive Language Model for Function Calling}
+      \field{year}{2023}
+      \verb{urlraw}
+      \verb https://openreview.net/forum?id=5lcPe6DqfI
+      \endverb
+      \verb{url}
+      \verb https://openreview.net/forum?id=5lcPe6DqfI
+      \endverb
+    \endentry
+    \entry{Slimani_2013}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=deaf0dd952c67bcaba6f2c2a5cd3f4b9}{%
+           family={Slimani},
+           familyi={S\bibinitperiod},
+           given={Thabet},
+           giveni={T\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Foundation of Computer Science}%
+      }
+      \strng{namehash}{deaf0dd952c67bcaba6f2c2a5cd3f4b9}
+      \strng{fullhash}{deaf0dd952c67bcaba6f2c2a5cd3f4b9}
+      \strng{fullhashraw}{deaf0dd952c67bcaba6f2c2a5cd3f4b9}
+      \strng{bibnamehash}{deaf0dd952c67bcaba6f2c2a5cd3f4b9}
+      \strng{authorbibnamehash}{deaf0dd952c67bcaba6f2c2a5cd3f4b9}
+      \strng{authornamehash}{deaf0dd952c67bcaba6f2c2a5cd3f4b9}
+      \strng{authorfullhash}{deaf0dd952c67bcaba6f2c2a5cd3f4b9}
+      \strng{authorfullhashraw}{deaf0dd952c67bcaba6f2c2a5cd3f4b9}
+      \field{labelalpha}{Sli13}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0975-8887}
+      \field{journaltitle}{International Journal of Computer Applications}
+      \field{month}{10}
+      \field{number}{10}
+      \field{title}{Description and Evaluation of Semantic Similarity Measures Approaches}
+      \field{volume}{80}
+      \field{year}{2013}
+      \field{pages}{25\bibrangedash 33}
+      \range{pages}{9}
+      \verb{doi}
+      \verb 10.5120/13897-1851
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.5120/13897-1851
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.5120/13897-1851
+      \endverb
+    \endentry
+    \entry{sommerville_software_2011}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=70341b3bfcce7026902f4eb1e4111b58}{%
+           family={Sommerville},
+           familyi={S\bibinitperiod},
+           given={Ian},
+           giveni={I\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \list{publisher}{1}{%
+        {Pearson}%
+      }
+      \strng{namehash}{70341b3bfcce7026902f4eb1e4111b58}
+      \strng{fullhash}{70341b3bfcce7026902f4eb1e4111b58}
+      \strng{fullhashraw}{70341b3bfcce7026902f4eb1e4111b58}
+      \strng{bibnamehash}{70341b3bfcce7026902f4eb1e4111b58}
+      \strng{authorbibnamehash}{70341b3bfcce7026902f4eb1e4111b58}
+      \strng{authornamehash}{70341b3bfcce7026902f4eb1e4111b58}
+      \strng{authorfullhash}{70341b3bfcce7026902f4eb1e4111b58}
+      \strng{authorfullhashraw}{70341b3bfcce7026902f4eb1e4111b58}
+      \field{labelalpha}{Som11}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Intended for a sophomore/junior level course in software engineering. The ninth edition of "Software Engineering" presents a broad perspective of software engineering, focusing on the processes and techniques fundamental to the creation of reliable, software systems. Increased coverage of agile methods and software reuse, along with coverage of 'traditional' plan-driven software engineering, gives readers the most up-to-date view of the field currently available. Practical case studies, a full set of easy-to-access supplements, and extensive web resources make teaching the course easier than ever. The book is now structured into four parts: 1: Introduction to Software Engineering 2: Dependability and Security 3: Advanced Software Engineering 4: Software Engineering Management}
+      \field{isbn}{978-0-13-705346-9}
+      \field{note}{Google-Books-ID: l0egcQAACAAJ}
+      \field{title}{Software {Engineering}}
+      \field{year}{2011}
+      \keyw{Computers / Software Development \& Engineering / General}
+    \endentry
+    \entry{berkeley-function-calling-leaderboard}{misc}{}{}
+      \name{author}{7}{}{%
+        {{hash=50b4e6387b8d33af37d47173505b7854}{%
+           family={Yan},
+           familyi={Y\bibinitperiod},
+           given={Fanjia},
+           giveni={F\bibinitperiod}}}%
+        {{hash=d86bea97f218fbc26c38f074585c0959}{%
+           family={Mao},
+           familyi={M\bibinitperiod},
+           given={Huanzhi},
+           giveni={H\bibinitperiod}}}%
+        {{hash=38238001c5b893ec993523d00ff0a6ec}{%
+           family={Ji},
+           familyi={J\bibinitperiod},
+           given={Charlie\bibnamedelima Cheng-Jie},
+           giveni={C\bibinitperiod\bibinitdelim C\bibinithyphendelim J\bibinitperiod}}}%
+        {{hash=4088b3179b8029fdfca2b8a81ad73482}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Tianjun},
+           giveni={T\bibinitperiod}}}%
+        {{hash=0bd9e51a864fb0c4f82924ee344f798b}{%
+           family={Patil},
+           familyi={P\bibinitperiod},
+           given={Shishir\bibnamedelima G.},
+           giveni={S\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+        {{hash=51d9ef26181e2e8a9dc546b401e0bb26}{%
+           family={Stoica},
+           familyi={S\bibinitperiod},
+           given={Ion},
+           giveni={I\bibinitperiod}}}%
+        {{hash=80175f489665023b28dbb4cf1775c0ef}{%
+           family={Gonzalez},
+           familyi={G\bibinitperiod},
+           given={Joseph\bibnamedelima E.},
+           giveni={J\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+      }
+      \strng{namehash}{3441cbde851a8cb56c70aab3e8078b98}
+      \strng{fullhash}{50e0ba9c56e3d25dc589eff03170d889}
+      \strng{fullhashraw}{50e0ba9c56e3d25dc589eff03170d889}
+      \strng{bibnamehash}{50e0ba9c56e3d25dc589eff03170d889}
+      \strng{authorbibnamehash}{50e0ba9c56e3d25dc589eff03170d889}
+      \strng{authornamehash}{3441cbde851a8cb56c70aab3e8078b98}
+      \strng{authorfullhash}{50e0ba9c56e3d25dc589eff03170d889}
+      \strng{authorfullhashraw}{50e0ba9c56e3d25dc589eff03170d889}
+      \field{labelalpha}{YMJ+24}
+      \field{sortinit}{Y}
+      \field{sortinithash}{fd67ad5a9ef0f7456bdd9aab10fe1495}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html}}
+      \field{title}{Berkeley Function Calling Leaderboard}
+      \field{year}{2024}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

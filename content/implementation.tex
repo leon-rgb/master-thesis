@@ -413,6 +413,18 @@ Based on the 'action', 'deviceID' and eventually the 'value' fields in the JSON,
 The main challenge here was to design a robust parsing mechanism for mapping the received json to the exact fucntionality wanted.
 The Response Handler also manages error scenarios, such as invalid actions or device IDs not present in the current device list. In such cases, it generates appropriate error messages for the user and logs the issues for system maintenance.
 
+\section{Interaction Flow}
+The interaction flow between the user, the client-side application, and the server is illustrated in the sequence diagram below.
+This diagram details the steps involved in processing user queries, constructing API requests, and generating responses based on the smart home device information.
+This is basically a visualization of everything described previously in this chapter.
+
+\begin{figure}
+    \centering
+    \includegraphics{graphics/svgexample.svg}
+    \caption{SVG direkt eingebunden}
+    \label{fig:directSVG}
+  \end{figure}
+
 \section{Challenges and Solutions}
 \label{sec:challenges-solutions}
 There were several challenges and considerations that had to be taken into account when designing and developing the prototype:
