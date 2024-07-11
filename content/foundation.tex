@@ -255,7 +255,7 @@ The owner of the Home LLM repository provided us insights on how to build a mode
 Even if our intention is not on fine-tuning an LLM, such information can be very helpful, for example to get inspired by the training data format. 
 The primary focus in the process is on constructing a comprehensive dataset that represents various scenarios where a personal assistant interacts with Home Assistant. This dataset, which forms the core of the project, consists of thousands of examples demonstrating different interactions, such as controlling devices or responding to user queries.
 
-The dataset is formatted to include all necessary information for the model to understand and execute tasks. An example format might look like this:
+The dataset is formatted to include all necessary information for the model to understand and execute tasks. An example format might look like \cref{lst:homeLLM}
 
 \begin{Listing}[h]
   \begin{lstlisting}
@@ -278,7 +278,7 @@ The dataset is formatted to include all necessary information for the model to u
     { "service": "light.turn_on", "target_device": "light.kitchen" }
     ```<|endoftext|>
   \end{lstlisting}
-  \caption{Classification Metrics}
+  \caption{Example Format for Training a Large Language Model on Smart Home Control}
   \label{lst:homeLLM}
 \end{Listing}
 

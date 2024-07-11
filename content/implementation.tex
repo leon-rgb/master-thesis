@@ -1,6 +1,14 @@
 % !TeX spellcheck = en_US
 
 \chapter{Implementation}
+This chapter delves into the technical implementation of the Smart Home Chatbot system, detailing the various components and processes that bring the described concept from the last chapter to life. It begins by outlining the technology stack, which combines Android Studio for client-side development with Ollama for server-side language model hosting. The chapter then explores the server setup, model customization techniques, and the intricacies of data management within the Bosch Smart Home ecosystem.
+
+A part of the chapter is dedicated to the user interface design, showcasing how the chatbot integrates seamlessly with the existing Bosch Smart Home app while providing an intuitive and responsive chat experience. The implementation of message management, request building, and response handling mechanisms are thoroughly explained, illustrating the system's ability to process user queries, interact with smart home devices, and generate contextually appropriate responses.
+
+The chapter also addresses the challenges encountered during development, such as multilingual support, historical data limitations, and security considerations. It presents the solutions implemented or proposed to overcome these obstacles, providing insights into the decision-making process throughout the project.
+
+By the end of this chapter, readers will have a comprehensive understanding of the technical architecture, key implementation details, and the reasoning behind various design choices in the Smart Home Chatbot system. This implementation forms the foundation for the subsequent evaluation and analysis of the chatbot's performance in the context of smart home management.
+
 \label{chap:implementation}
 
 \section{Technology Stack}
@@ -414,16 +422,37 @@ The main challenge here was to design a robust parsing mechanism for mapping the
 The Response Handler also manages error scenarios, such as invalid actions or device IDs not present in the current device list. In such cases, it generates appropriate error messages for the user and logs the issues for system maintenance.
 
 \section{Interaction Flow}
-The interaction flow between the user, the client-side application, and the server is illustrated in the sequence diagram below.
-This diagram details the steps involved in processing user queries, constructing API requests, and generating responses based on the smart home device information.
-This is basically a visualization of everything described previously in this chapter.
+The interaction flow between the user, the client-side application, and the server is illustrated in the sequence diagram in Figure \ref{fig:sequencedia}. This diagram provides a comprehensive overview of the steps involved in processing user queries, constructing API requests, and generating responses based on the smart home device information.
+The flow begins when a user interacts with the chatbot interface, typically by entering a text query or using speech-to-text functionality. Upon receiving this input, the client-side application initiates a series of actions to process and respond to the user's request.
+First, the application retrieves the current state of the user's smart home devices, ensuring that the most up-to-date information is available for context. This device list, along with the user's query and a limited history of recent messages, is then packaged into a structured API request.
 
+The Request Builder module, as detailed in Section \ref{sec:req-building}, constructs this request in a format compatible with the Ollama API. This includes organizing the message history in a specific order, with the device list always positioned as the first message to provide crucial context for the language model.
+Once the request is built, it is sent to the server hosting the Ollama software and the selected language model. The server processes this input, leveraging the context provided by the device list and message history to generate an appropriate response.
+The server's response is streamed back to the client in real-time, allowing for immediate display of partial responses. This streaming approach enhances the user experience by reducing perceived latency and providing a more dynamic interaction.
+
+As the response is received, the Response Handler module, described in Section \ref{sec:responsehandler}, separates it into two key components: the natural language response and the structured JSON object containing action-related information.
+The natural language portion of the response is immediately forwarded to the UI for display, maintaining a fluid conversation flow. Simultaneously, the JSON object is parsed to extract any action directives, such as turning devices on or off or adjusting temperature settings.
+If an action is specified in the JSON, the Response Handler triggers the corresponding function in the client application. This might involve sending commands to specific smart home devices or updating the application's internal state.
+
+Finally, the UI is updated to reflect both the chatbot's textual response and any changes in device states resulting from the triggered actions. This completes the interaction loop, with the system ready to receive the next user query.
+This entire process, from user input to final response and action, typically occurs within seconds. The sequence diagram visualizes this flow.
+
+\begin{figure}[h]
+    \centering
+    \captionsetup{justification=centering}
+    \includegraphics[width=\textwidth]{graphics/sequencedia.png}
+    \caption{Sequence Diagram of the typical flow of the system}
+    \label{fig:sequencedia}
+\end{figure}
+
+\iffalse
 \begin{figure}
     \centering
     \includegraphics{graphics/svgexample.svg}
     \caption{SVG direkt eingebunden}
     \label{fig:directSVG}
   \end{figure}
+\fi
 
 \section{Challenges and Solutions}
 \label{sec:challenges-solutions}

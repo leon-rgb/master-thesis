@@ -1,0 +1,28 @@
+sequenceDiagram
+    actor User
+    participant Android App (Client Side)
+    participant Server (Language Model)
+
+    User ->> Android App (Client Side): Open Bosch Smart Home app and navigate to chatbot
+    User ->> Android App (Client Side): Send message via chat UI
+    
+    Android App (Client Side) ->> Android App (Client Side): Capture, process, visualize and add user message to chat histor
+    Android App (Client Side) ->> Android App (Client Side): Construct API request with device list and user query
+
+    Android App (Client Side) -) Server (Language Model): Send API request
+    
+    Server (Language Model) ->> Server (Language Model): Process incoming message
+    Server (Language Model) ->> Server (Language Model): Generate response based on user query and device information
+
+    par stream response
+    Server (Language Model) -->> Android App (Client Side): Send response
+    Android App (Client Side) ->> Android App (Client Side): Receive, visualize and parse response 
+    end
+    
+    Android App (Client Side) ->> User: Update chat UI with response
+    User ->> User: View updated chat UI with response from language model
+    opt additional action
+        Android App (Client Side) ->> Android App (Client Side): Update smart home device states (if necessary)
+    end
+
+   
