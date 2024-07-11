@@ -146,10 +146,11 @@ SYSTEM """
 Example conversations:
 For this example assume the user has the following devices:
 '[{"type": "POWER_METER_SWITCH", "name": "TV", "deviceID": "device123", "state": [{"id": "PowerSwitch", "state": {"switchState": "OFF"}}], "room": "Schlafzimmer"}, {"type": "SHUTTER_CONTACT", "name": "WindowSensor-67890", "deviceID": "device456", "state": [{"id": "ShutterContact", "state": {"value": "CLOSED"}}], "room": "Wohnzimmer"}]'
+
 MESSAGE user Can you turn on my TV?
 MESSAGE assistant Sure, turning on the TV now. { "action": "turn-on", "deviceID": "device123", "device": "POWER_METER_SWITCH", "room": "Schlafzimmer", "name": "TV" }
 MESSAGE user Sind alle Fenster geschlossen?
-MESSAGE assistant Ja, alle Tür-Fenster-Kontakte sind geschlossen.
+MESSAGE assistant Ja, alle Fenster sind geschlossen.
 """
 \end{lstlisting}
 \caption{Example Conversations and Device List}
@@ -309,7 +310,8 @@ To ensure a responsive user interface, message loading and processing operations
 
 \section{Request Building}
 \label{sec:req-building}
-As previously described in \cref{subsec:apiclient}, the Request Builder within the API Client \& Request Builder module constructs properly formatted API requests, sends them, parses server responses, and handles asynchronous operations. This section elaborates on the process of building and sending these requests.
+As previously described in \cref{subsec:apiclient}, the Request Builder within the API Client \& Request Builder module constructs properly formatted API requests, sends them, parses server responses, and handles asynchronous operations.
+This section elaborates on the process of building and sending these requests.
 
 To ensure low latency while maintaining context, the system considers only a limited number of recent messages when constructing a request. Importantly, the first message in the history always contains a list of the user's devices, providing crucial context for the language model.
 The message history follows a strict alternating pattern between "user" and "assistant" roles after the initial device list. When a user sends a new message, it is appended to this structured history, ensuring the language model has sufficient context for accurate reasoning.
@@ -373,42 +375,43 @@ The device list, exemplified in the right panel of \cref{lst:post-request}, prov
 
 
 \section{Response Handling and Action Triggering}
-As previously described in \cref{subsec:responsehandler}, the Response Handler module interprets server responses, determining necessary client actions such as response analysis and orchestration. This section elaborates on the implementation details of this crucial functionality.
+As previously described in \cref{subsec:responsehandler}, the Response Handler module interprets server responses, determining necessary client actions such as response analysis and orchestration. The response handling is closely integrated with the API Client, which parses the server responses and initiates the response handling process. This section elaborates on the implementation details of this crucial functionality.
 The response from the server, as initiated by the request detailed in \cref{sec:req-building}, is received as a stream of tokens through the Ollama software. This streaming approach allows for real-time processing and display of the model's output, enhancing the responsiveness of the chatbot interface.
-Upon receiving the complete response, the handler first separates it into two components: the natural language response and, if present, a JSON object. The natural language portion is immediately forwarded to the UI for display, maintaining a fluid conversation flow with the user.
-If a JSON object is detected, typically positioned at the end of the response, it undergoes parsing to extract action-related information. The JSON structure follows a predefined format:
+While receiving the response stream, the handler separates it into two components:
 
-\begin{lstlisting}[caption={Action JSON Structure},label=lst:action-json]
-{
-"action": "intent/action",
-"value": "optional value for an action",
-"deviceID": "ID of the device",
-"device": "device type",
-"room": "device room",
-"name": "device name"
-}
-\end{lstlisting}
+Natural Language Response: This portion is immediately forwarded to the UI for display, maintaining a fluid conversation flow with the user.
+JSON Object: Typically positioned at the end of the response, this structured data undergoes parsing to extract action-related information.
 
-The 'action' field is pivotal, triggering the appropriate function within the client application. The system supports several predefined actions:
+The JSON object, as defined in the modelfile (see \cref{lst:system_message_1}), contains key information for action triggering:
 
 \begin{itemize}
-\item 'none': No specific action required
-\item 'turn-on': Activate a device (applicable to 'socket' type devices)
-\item 'turn-off': Deactivate a device (applicable to 'socket' type devices)
-\item 'change-temperature': Adjust temperature (requires a 'value' and applicable to 'room-climate-control' devices)
+\item 'action': Specifies the intent or action to be performed
+\item 'value': An optional parameter for actions requiring additional data
+\item 'deviceID': Unique identifier of the target device
+\item 'device': Type of the device
+\item 'room': Location of the device
+\item 'name': User-friendly name of the device
 \end{itemize}
 
-Different device types have varying capabilities:
+The Response Handler processes this JSON object to determine the appropriate action. As outlined in \cref{lst:system_message_2}, the system supports several actions:
 
 \begin{itemize}
-\item Socket devices can be turned on or off.
-\item Thermostats provide temperature readings but don't accept direct commands through this interface.
-\item Room Climate Control devices manage the setpoint temperature for all thermostats in a room.
-\item Door-window contacts provide open/closed status but don't accept actions.
+\item 'none': No action required
+\item 'turn-on': Activate a device (e.g., a smart socket)
+\item 'turn-off': Deactivate a device
+\item 'change-temperature': Adjust temperature settings (requires a 'value' parameter)
 \end{itemize}
 
-The Response Handler utilizes the current device list, always provided in the chat history, to validate and execute actions. This ensures that actions are only triggered for existing devices in their current state.
-When an action is identified, the handler invokes the corresponding method in the Smart Home System interface. For instance, a 'turn-on' action for a socket device would call a method to activate that specific device using its deviceID.
+Based on the 'action', 'deviceID' and eventually the 'value' fields in the JSON, the Response Handler triggers the corresponding function in the client application with correct prarameters. For instance:
+
+\begin{itemize}
+\item If the action is 'turn-on' or 'turn-off', it calls the appropriate method to change the state of the specified device (identified by 'deviceID').
+\item For 'change-temperature', it invokes the temperature adjustment function for the room climate control device, using the provided 'value'.
+\item In case of 'none', no further action is taken beyond displaying the natural language response.
+\end{itemize}
+
+The main challenge here was to design a robust parsing mechanism for mapping the received json to the exact fucntionality wanted.
+The Response Handler also manages error scenarios, such as invalid actions or device IDs not present in the current device list. In such cases, it generates appropriate error messages for the user and logs the issues for system maintenance.
 
 \section{Challenges and Solutions}
 \label{sec:challenges-solutions}
