@@ -308,16 +308,107 @@ To ensure a responsive user interface, message loading and processing operations
 
 
 \section{Request Building}
-As previously described in \cref{subsec:apiclient}, the Request Builder within the API Client \& Request Builder module constructs properly formatted API requests, sends them, parses server responses, and handles asynchronous operations.
-For this section we want to explain how the request are built and sent. 
-For the Request only a few of the last messages are considered to ensure low latency and 
+\label{sec:req-building}
+As previously described in \cref{subsec:apiclient}, the Request Builder within the API Client \& Request Builder module constructs properly formatted API requests, sends them, parses server responses, and handles asynchronous operations. This section elaborates on the process of building and sending these requests.
+
+To ensure low latency while maintaining context, the system considers only a limited number of recent messages when constructing a request. Importantly, the first message in the history always contains a list of the user's devices, providing crucial context for the language model.
+The message history follows a strict alternating pattern between "user" and "assistant" roles after the initial device list. When a user sends a new message, it is appended to this structured history, ensuring the language model has sufficient context for accurate reasoning.
+\cref{lst:post-request} illustrates the format of a POST request sent to the server. The 'messages' array encapsulates the condensed message history, with the user's latest message positioned at the end. This structure provides the language model with a concise yet comprehensive context for generating appropriate responses.
+
+\captionsetup[lstlisting]{labelformat=empty}
+\begin{Listing}[h]
+\begin{minipage}{0.53\textwidth}
+    \begin{lstlisting}[caption={Base Structure of each POST Request}, label=lst:first, frame=single]
+POST http://<domain-placeholder>/api/chat
+{
+    "model": "<model-placeholder>",
+    "messages": [
+    {
+        "role": "user",
+        "content": "<device-list-placeholder>"
+    },
+    {
+        "role": "user",
+        "content": "<user-message-placeholder>"
+    }
+    ],
+    "stream": true
+}
+    \end{lstlisting}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.4\textwidth}
+    \vspace{10pt}
+    \begin{lstlisting}[caption={Example Device List containing only a Smart Plug}, label=lst:second, frame=single]
+[{
+    "type": "POWER_METER_SWITCH",
+    "name": "Office Desk Lamp",
+    "deviceID": "12345",
+    "state": [
+        {
+        "id": "PowerMeter",
+        "state": {
+            "powerConsumption": 10,
+            "energyConsumption": 50
+        }
+        },
+        {
+        "id": "PowerSwitch",
+        "state": {
+            "switchState": "ON"
+        }
+        }
+    ],
+    "room": "Office"
+}]
+    \end{lstlisting}
+    \end{minipage}
+    \caption{Components of a POST Request to the Server Running Ollama}
+    \label{lst:post-request}
+\end{Listing}
+\captionsetup{labelformat=default}
+
+The 'model' field specifies the language model to be used, while the 'stream' parameter set to true enables real-time streaming of the model's response. This approach allows for immediate display of partial responses, enhancing the user experience by reducing perceived latency.
+The device list, exemplified in the right panel of \cref{lst:post-request}, provides detailed information about each smart home device, including its type, name, unique identifier, current state, and location. This comprehensive device context enables the language model to generate informed and relevant responses to user queries about their smart home environment.
 
 
 \section{Response Handling and Action Triggering}
-As previously described in \cref{subsec:responsehandler}, the Response Handler module interprets server responses, determining necessary client actions such as response analysis and orchestration. This section explains how we implemented this functionality in more detail.
-% the response is retrieved as a stream of tokens by the Ollama software thorugh the command ""
-% splitting the response string in natural language response and json (if json exists)
+As previously described in \cref{subsec:responsehandler}, the Response Handler module interprets server responses, determining necessary client actions such as response analysis and orchestration. This section elaborates on the implementation details of this crucial functionality.
+The response from the server, as initiated by the request detailed in \cref{sec:req-building}, is received as a stream of tokens through the Ollama software. This streaming approach allows for real-time processing and display of the model's output, enhancing the responsiveness of the chatbot interface.
+Upon receiving the complete response, the handler first separates it into two components: the natural language response and, if present, a JSON object. The natural language portion is immediately forwarded to the UI for display, maintaining a fluid conversation flow with the user.
+If a JSON object is detected, typically positioned at the end of the response, it undergoes parsing to extract action-related information. The JSON structure follows a predefined format:
 
+\begin{lstlisting}[caption={Action JSON Structure},label=lst:action-json]
+{
+"action": "intent/action",
+"value": "optional value for an action",
+"deviceID": "ID of the device",
+"device": "device type",
+"room": "device room",
+"name": "device name"
+}
+\end{lstlisting}
+
+The 'action' field is pivotal, triggering the appropriate function within the client application. The system supports several predefined actions:
+
+\begin{itemize}
+\item 'none': No specific action required
+\item 'turn-on': Activate a device (applicable to 'socket' type devices)
+\item 'turn-off': Deactivate a device (applicable to 'socket' type devices)
+\item 'change-temperature': Adjust temperature (requires a 'value' and applicable to 'room-climate-control' devices)
+\end{itemize}
+
+Different device types have varying capabilities:
+
+\begin{itemize}
+\item Socket devices can be turned on or off.
+\item Thermostats provide temperature readings but don't accept direct commands through this interface.
+\item Room Climate Control devices manage the setpoint temperature for all thermostats in a room.
+\item Door-window contacts provide open/closed status but don't accept actions.
+\end{itemize}
+
+The Response Handler utilizes the current device list, always provided in the chat history, to validate and execute actions. This ensures that actions are only triggered for existing devices in their current state.
+When an action is identified, the handler invokes the corresponding method in the Smart Home System interface. For instance, a 'turn-on' action for a socket device would call a method to activate that specific device using its deviceID.
 
 \section{Challenges and Solutions}
 \label{sec:challenges-solutions}
