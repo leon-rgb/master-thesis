@@ -14,9 +14,9 @@
     showspaces=false,
     showstringspaces=false,
     showtabs=false,
-    keywordstyle=\color{blue}\bfseries,
-    commentstyle=\color{green},
-    stringstyle=\color{red},
+    keywordstyle=\bfseries,
+    commentstyle=\itshape\color{gray},
+    stringstyle=\ttfamily\color{darkgray},
     lineskip=0.1em  % Add space between lines
 }
 
@@ -25,8 +25,81 @@
 
 In this chapter, we present the evaluation methodology and results for the smart home chatbot. The evaluation focuses on two key aspects: the semantic similarity of the responses and the accuracy of the generated JSON commands. Additionally, we discuss the initial approach using classification metrics, the challenges encountered, and the refined approach to address these challenges.
 
+\section{Study Design}
+In this section we want to provide the base study design we came up.
+The design of our evaluation was gathered through clearly defining the goals of the evaluation and coming to measurable metrics in the end via the top-down \gls{gqm} approach.
+Our approach consists of three main goals: assessing the accuracy, the user experience and the explainability of the developed smart home chatbot.
+Based on this we developed the whole evaluation process which consists of a \gls{llm} evaluation approach for the accuracy and a user study for the other two goals.
+Details are provided later within this chapter.
+
+\subsection{Goal Question Metric Paradigm}
+The \gls{gqm} paradigm according to \citet{caldiera1994goal} provides a structured approach to evaluate different works in the area of Software Engineering and therefore is also suitable for evaluating various aspects of the smart home chatbot. 
+The evaluation framework consists of three primary goals, each addressing a specific area of interest: accuracy, user experience, and explainability.
+
+\textbf{Goal 1: Assess the Accuracy of the Smart Home Chatbot}
+
+The first goal focuses on determining how accurately the chatbot can understand and respond to user commands. To achieve this, several questions are formulated:
+
+\begin{itemize}
+    \item \textbf{Q1: How accurate are the natural language answers of the language model?}
+    \item \textbf{Q2: How accurate are the JSON responses of the language model?}
+\end{itemize}
+
+To answer these questions, relevant metrics are identified. Semantic similarity measures are used to evaluate the natural language responses, potentially incorporating other related metrics to ensure comprehensive assessment. JSON accuracy metrics are employed to evaluate the precision of the chatbot's structured responses. A combined metric of semantic similarity and JSON accuracy provides a holistic view of the chatbot's overall accuracy.
+
+\textbf{Goal 2: Evaluate the User Experience of the Smart Home Chatbot}
+
+The second goal is to understand the users' interaction experience with the chatbot. This involves evaluating how intuitive and satisfactory the chatbot is in performing tasks. The questions under this goal include:
+
+\begin{itemize}
+    \item \textbf{Q1: Are typical tasks easy to achieve?}
+    \item \textbf{Q2: How satisfied are users with the chatbot's performance?}
+    \item \textbf{Q3: What could be improved?}
+    \item \textbf{Q4: Does the chatbot add to existing functionality of typical smart home applications?}
+\end{itemize}
+
+The metrics for these questions involve measuring task completion time, the number of attempts, and the success rate of task completion. User satisfaction is gauged through questionnaires administered after the experiment. These questionnaires assess various aspects of the user experience, including ease of use, overall satisfaction, and areas for improvement.
+
+\textbf{Goal 3: Assess the Explainability of the Smart Home Chatbot}
+
+The third goal addresses how well the chatbot can explain its actions and decisions to users, which is crucial for building trust and usability. The questions related to this goal are:
+
+\begin{itemize}
+    \item \textbf{Q1: How clear and understandable are the chatbot's explanations?}
+    \item \textbf{Q2: What could be improved?}
+\end{itemize}
+
+To measure the explainability, semi-structured interviews are conducted after the experiment. These interviews delve into the clarity, transparency, and usefulness of the explanations provided by the chatbot, allowing for detailed qualitative feedback from users.
+
+\begin{figure}[h]
+    \centering
+    \captionsetup{justification=centering}
+    \includegraphics[width=\textwidth]{graphics/gqm.png}
+    \caption{Visualized Goal Question Metric}
+    \label{fig:gqm}
+\end{figure}
+
+\subsection{Resulting Evaluation Process}
+Based on the obtained \gls{gqm}, the evaluation can be split into two parts: evaluating the model performance and a user study for examining User Experience and Explainability.
+the obtained sample user inputs and the developed prototype itself
+
+\begin{figure}[h]
+    \centering
+    \captionsetup{justification=centering}
+    \includegraphics[width=\textwidth]{graphics/eval-process.png}
+    \caption{The whole evaluation process visualized}
+    \label{fig:evalprocess}
+\end{figure}
+
+... what was the settings of your designed study to evaluate your results? e.g., You designed a Questionnaire to assess if your method increases the productivity of a programmer, explain and justify what population you chose, what was the questions/tasks and all necessary details. If you designed an experiment against a software system to collect measures and assess accuracy of your model, i.e., the contribution of your research, here explain e.g., how you collected measurements, what was characteristics of machines, etc.
+
+
 \section{Model Performance}
 \label{sec:modelperform}
+
+... what was the settings of your designed study to evaluate your results? e.g., You designed a Questionnaire to assess if your method increases the productivity of a programmer, explain and justify what population you chose, what was the questions/tasks and all necessary details. If you designed an experiment against a software system to collect measures and assess accuracy of your model, i.e., the contribution of your research, here explain e.g., how you collected measurements, what was characteristics of machines, etc.
+
+
 \subsection{Evaluation Dataset}
 
 \subsection{Evaluation Metrics}
@@ -224,14 +297,12 @@ Using the refined approach, we obtained the following results:
 \end{itemize}
 
 These results indicate that the refined evaluation method provides a more accurate and reliable assessment of the chatbot's performance in handling user queries and controlling smart home devices.
-\section{Conclusion}
 
-In this chapter, we have discussed the evaluation metrics and methods used to assess the performance of our smart home chatbot. We highlighted the challenges faced with the initial classification metrics approach and presented a refined method that better aligns with the unique requirements of our use case. The evaluation results demonstrate the effectiveness of the chatbot in generating semantically accurate responses and correct JSON commands, ensuring a reliable and user-friendly smart home experience.
+\section{User Experience}
 
-Here, you need to discuss about evaluation of your research result. You may wanna take a look at Goal Question Metric (GQM) paradigm that helps you in the process of evaluation \cite{caldiera1994goal}
-
-\section{Study Design}
 ... what was the settings of your designed study to evaluate your results? e.g., You designed a Questionnaire to assess if your method increases the productivity of a programmer, explain and justify what population you chose, what was the questions/tasks and all necessary details. If you designed an experiment against a software system to collect measures and assess accuracy of your model, i.e., the contribution of your research, here explain e.g., how you collected measurements, what was characteristics of machines, etc.
+
+
 
 \section{Results}
 ... what is the result of your e.g., Questionnaire or experimentation.. 
