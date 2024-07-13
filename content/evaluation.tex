@@ -34,7 +34,8 @@ Details are provided later within this chapter.
 
 \subsection{Goal Question Metric Paradigm}
 The \gls{gqm} paradigm according to \citet{caldiera1994goal} provides a structured approach to evaluate different works in the area of Software Engineering and therefore is also suitable for evaluating various aspects of the smart home chatbot. 
-The evaluation framework consists of three primary goals, each addressing a specific area of interest: accuracy, user experience, and explainability.
+Our evaluation framework consists of three primary goals, each addressing a specific area of interest: accuracy, user experience, and explainability.
+This framework is shown in \cref{fig:gqm}
 
 \textbf{Goal 1: Assess the Accuracy of the Smart Home Chatbot}
 
@@ -80,8 +81,19 @@ To measure the explainability, semi-structured interviews are conducted after th
 \end{figure}
 
 \subsection{Resulting Evaluation Process}
+A Visualization of our evaluation process can be seen in \cref{fig:evalprocess}
 Based on the obtained \gls{gqm}, the evaluation can be split into two parts: evaluating the model performance and a user study for examining User Experience and Explainability.
-the obtained sample user inputs and the developed prototype itself
+Besides the developed protoype chatbot the obtained sample user inputs can be greatly used in the evaluation process.
+They could be used to construct the dataset that was essential for the evaluation of the language model.
+This evaluation dataset contains for each sample input an expected natural language output and an eventually expected \gls{json} to measure both the accuracy of the output the user sees and the constructed \gls{json} that is used for further actions in the smart home system.
+
+The other part is the user study in which users have a setup of devices that are supported by our prototype and receive a list of tasks in which the success should be measured and afterwards a questionnaire and a semi-structured interview are used to answer the questions regarding Goal 2 and 3 in the defined \gls{gqm}
+
+Based on these two parts, the takeaway of this thesis can be received and constructed.
+The results emerge directly as an output from the model evaluation and the user study when combined with quantitative and qualitative methods.
+
+Based on this and the detailed evaluation setup the results can be discussed and threats to validity be debated.
+
 
 \begin{figure}[h]
     \centering
@@ -91,8 +103,6 @@ the obtained sample user inputs and the developed prototype itself
     \label{fig:evalprocess}
 \end{figure}
 
-... what was the settings of your designed study to evaluate your results? e.g., You designed a Questionnaire to assess if your method increases the productivity of a programmer, explain and justify what population you chose, what was the questions/tasks and all necessary details. If you designed an experiment against a software system to collect measures and assess accuracy of your model, i.e., the contribution of your research, here explain e.g., how you collected measurements, what was characteristics of machines, etc.
-
 
 \section{Model Performance}
 \label{sec:modelperform}
@@ -101,6 +111,122 @@ the obtained sample user inputs and the developed prototype itself
 
 
 \subsection{Evaluation Dataset}
+To assess the performance and capabilities of our smart home chatbot, we developed a comprehensive evaluation dataset. This dataset is designed to simulate realistic user interactions and test the chatbot's ability to understand context, control devices, and provide informative responses.
+The evaluation dataset consists of a series of input-output pairs, where each input represents a chat history and the output represents the expected response from the chatbot. The structure of each entry in the dataset is as follows:
+
+\begin{enumerate}
+    \item Input: A chat history containing a minimum of two messages from the user. The first message always includes a device list that provides crucial context about the user's smart home environment. For details on the device list structure, refer to \cref{sec:req-building}.
+    \item Expected Output: A natural language response that the chatbot is expected to generate based on the given chat history.
+    \item Expected JSON: A JSON object representing the action the chatbot should take, if any. The JSON includes only the necessary keys for each action:
+    \begin{itemize}
+    \item For 'turn-on' or 'turn-off' actions: 'action' and 'deviceID'
+    \item For 'change-temperature' action: 'action', 'deviceID', and 'value'
+    \item If no action is necessary, the expected JSON is "None"
+    \end{itemize}
+    \end{enumerate}
+
+To create a diverse and representative dataset, we used 10 example device lists as the basis for our scenarios. These lists were carefully crafted to cover various smart home setups:
+
+\begin{itemize}
+    \item 5 edge case device lists, including:
+    \begin{itemize}
+    \item Thermostats in different rooms
+    \item Multiple thermostats in the same room
+    \item Multiple smart plugs with similar names in the same room
+    \item Multiple door/window contacts in the same room
+    \item A setup where the user has no thermostats
+    \end{itemize}
+    \item 3 random German examples with device and room names in German
+    \item 2 random English examples with typical device names and variations of supported devices
+\end{itemize}
+
+These device lists were sometimes modified (e.g., changing variable values) to match specific test cases, ensuring a wide range of scenarios for evaluation.
+The dataset covers various interaction types, including device control commands, queries about device states, requests for information about the smart home setup, and complex questions requiring reasoning about multiple devices or rooms.
+Table \ref{tab:dataset-format} illustrates the format of the dataset and provides two example entries (note that the device lists are shortened here for a better overview, the actual device lists contain 2-6 devices).
+
+\lstset{
+  basicstyle=\ttfamily\small,
+  breaklines=true,
+  postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
+}
+
+\begin{longtable}{@{}p{0.45\textwidth}p{0.3\textwidth}p{0.2\textwidth}@{}}
+    \toprule
+    \textbf{Input} & \textbf{Expected Output} & \textbf{Expected JSON} \\
+    \midrule
+    \endhead
+    
+    \begin{lstlisting}[language=json]
+    [
+      {
+        "role": "user",
+        "content": "[
+          {
+            \"type\":\"POWER_METER_SWITCH\",
+            \"name\":\"Zwischenstecker\",
+            \"deviceID\":\"hdm:HomeMaticIP:3014F711A000049878593469\",
+            \"state\":[
+              {\"id\":\"PowerMeter\",\"state\":{\"powerConsumption\":0,\"energyConsumption\":0}},
+              {\"id\":\"PowerSwitch\",\"state\":{\"switchState\":\"OFF\"}}
+            ],
+            \"room\":\"Schlafzimmer\"
+          }
+        ]"
+      },
+      {
+        "role": "user",
+        "content": "Turn on the Zwischenstecker, please."
+      }
+    ]
+    \end{lstlisting}
+    &
+    The Zwischenstecker in your bedroom is now on.
+    &
+    \begin{lstlisting}[language=json]
+    {
+      "action": "turn-on",
+      "deviceID": "hdm:HomeMaticIP:3014F711A000049878593469"
+    }
+    \end{lstlisting}
+    \\
+    \midrule
+    
+    \begin{lstlisting}[language=json]
+    [
+      {
+        "role": "user",
+        "content": "[
+          {
+            \"type\":\"POWER_METER_SWITCH\",
+            \"name\":\"Wohnzimmerlampe\",
+            \"deviceID\":\"hdm:HomeMaticIP:3014F711A000049878593472\",
+            \"state\":[
+              {\"id\":\"PowerMeter\",\"state\":{\"powerConsumption\":15,\"energyConsumption\":45}},
+              {\"id\":\"PowerSwitch\",\"state\":{\"switchState\":\"ON\"}}
+            ],
+            \"room\":\"Wohnzimmer\"
+          }
+        ]"
+      },
+      {
+        "role": "user",
+        "content": "Can you turn on the Wohnzimmerlampe?"
+      }
+    ]
+    \end{lstlisting}
+    &
+    The Wohnzimmerlampe is already turned on. No need to switch it on.
+    &
+    None
+    \\
+    
+    \bottomrule
+    \caption{Format and Example Entries of the Evaluation Dataset}
+    \label{tab:dataset-format}
+    \end{longtable}
+
+This carefully curated dataset allows us to evaluate the chatbot's performance across multiple dimensions, including accuracy in interpreting user intent, ability to provide relevant responses, correct identification and execution of required actions, contextual understanding, and handling of edge cases and ambiguous requests.
+
 
 \subsection{Evaluation Metrics}
 
@@ -302,6 +428,8 @@ These results indicate that the refined evaluation method provides a more accura
 
 ... what was the settings of your designed study to evaluate your results? e.g., You designed a Questionnaire to assess if your method increases the productivity of a programmer, explain and justify what population you chose, what was the questions/tasks and all necessary details. If you designed an experiment against a software system to collect measures and assess accuracy of your model, i.e., the contribution of your research, here explain e.g., how you collected measurements, what was characteristics of machines, etc.
 
+% tasks were shuffled to compensate learning effects
+% 
 
 
 \section{Results}
@@ -324,6 +452,9 @@ Limitations of the Study
 
 
 \section{Threats to Validity}
+% all participants had either interest in the product by working at Bosch Smart Home or be known by the researchers. Therefore positive resonance may be biased.
+% mistakes in the evaluation datasets could lead to worse results
+
 ... Discuss what threatens validity of your result. In case you could counteract them explain how. For experimentation in software engineering there is already a classification of this threats and a check-list \cite{DBLP:journals/ese/RunesonH09}.   
 %LaTeX-Hinweise stehen in \cref{chap:latexhints}.
 
