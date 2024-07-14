@@ -108,9 +108,10 @@ Based on this and the detailed evaluation setup the results can be discussed and
 \label{sec:modelperform}
 
 
-\subsection{Hardware}
+\subsection{Hardware and Language Models used}
 The hardware setup was the same as described in \cref{subsec:modelcust} since it is very fast for the model sizes we wanted to test as also explained in the same section.
 For measuring the model performance there was no need to have a setup of smart home devices since when the outputed \gls{json} of the model is correct the correct action will be triggered in the underlying system.
+The language models we selected for evaluation are also described in \cref{subsec:modelcust}.
 
 \subsection{Evaluation Dataset}
 To assess the performance and capabilities of our smart home chatbot, we developed a comprehensive evaluation dataset with a total of 80 entries. This dataset is designed to simulate realistic user interactions and test the chatbot's ability to understand context, control devices, and provide informative responses.
@@ -127,6 +128,23 @@ The evaluation dataset consists of a series of input-output pairs, where each in
     \end{itemize}
     \end{enumerate}
 
+Based on the chat history a request can be build with a python script leveraging langchain to easily access Ollama since it is supported by langchain.
+That way we do not have to construct API calls ourself only parse the message history into a langchain function call that does everything in the background.
+We can just create an ChatOllama object like the following:
+\iffalse
+# Initialize language model
+llm = ChatOllama(
+    base_url="http://127.0.0.1:5000",
+    model="sh-llama3-instruct",
+    keep_alive=-1
+)
+
+and therefore easily switch between all models that we want to test out. The keep alive option set to minus one means that the model is loaded undefinetly into memory.
+After parsing the messages of one csv entry we can just use the following code to create the code and invoke the language model:
+
+prompt = ChatPromptTemplate.from_messages(messages)
+result = invoke_language_model(llm, prompt)
+\fi
 To create a diverse and representative dataset, we used 10 example device lists as the basis for our scenarios. These lists were carefully crafted to cover various smart home setups:
 
 \begin{itemize}
