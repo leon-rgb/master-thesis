@@ -75,9 +75,16 @@ To measure the explainability, semi-structured interviews are conducted after th
 \begin{figure}[h]
     \centering
     \captionsetup{justification=centering}
-    \includegraphics[width=\textwidth]{graphics/gqm.png}
+    \includegraphics[width=0.98\textwidth]{graphics/gqm.png}
     \caption{Visualized Goal Question Metric}
     \label{fig:gqm}
+\end{figure}
+\begin{figure}[h]
+    \centering
+    \captionsetup{justification=centering}
+    \includegraphics[width=0.75\textwidth]{graphics/eval-process.png}
+    \caption{The whole evaluation process visualized}
+    \label{fig:evalprocess}
 \end{figure}
 
 \subsection{Resulting Evaluation Process}
@@ -95,15 +102,6 @@ The results emerge directly as an output from the model evaluation and the user 
 Based on this and the detailed evaluation setup the results can be discussed and threats to validity be debated.
 
 
-\begin{figure}[h]
-    \centering
-    \captionsetup{justification=centering}
-    \includegraphics[width=0.9\textwidth]{graphics/eval-process.png}
-    \caption{The whole evaluation process visualized}
-    \label{fig:evalprocess}
-\end{figure}
-
-
 \section{Model Performance}
 \label{sec:modelperform}
 
@@ -115,7 +113,9 @@ The language models we selected for evaluation are also described in \cref{subse
 
 \subsection{Evaluation Dataset}
 To assess the performance and capabilities of our smart home chatbot, we developed a comprehensive evaluation dataset with a total of 80 entries. This dataset is designed to simulate realistic user interactions and test the chatbot's ability to understand context, control devices, and provide informative responses.
-The evaluation dataset consists of a series of input-output pairs, where each input represents a chat history and the output represents the expected response from the chatbot. The structure of each entry in the dataset is as follows:
+The evaluation dataset consists of a series of input-output pairs, where each input represents a chat history and the output represents the expected response from the chatbot. 
+In creating the inputs for our evaluation dataset, we leveraged the user inputs collected during our earlier survey (as described in Section 4.4). These real-world examples provided authentic phrasing and diverse query formulations typical of smart home users. We adapted and expanded upon these collected inputs to ensure they aligned with our specific test scenarios and device setups. This approach allowed us to create a more realistic and challenging evaluation dataset, closely mimicking the variety of natural language inputs a smart home chatbot would encounter in practical use.
+The structure of each entry in the dataset is as follows:
 
 \begin{enumerate}
     \item Input: A chat history containing a minimum of two messages from the user. The first message always includes a device list that provides crucial context about the user's smart home environment. For details on the device list structure, refer to \cref{sec:req-building}.
@@ -128,23 +128,34 @@ The evaluation dataset consists of a series of input-output pairs, where each in
     \end{itemize}
     \end{enumerate}
 
+\begin{table}[htb]
+    \centering
+    \makebox[\textwidth]{\includegraphics[width=1.2\textwidth]{graphics/evaldata.pdf}}
+    \caption{Format and Example Entries of the Evaluation Dataset}
+    \label{tab:dataset-format}
+\end{table}
+    
 Based on the chat history a request can be build with a python script leveraging langchain to easily access Ollama since it is supported by langchain.
 That way we do not have to construct API calls ourself only parse the message history into a langchain function call that does everything in the background.
 We can just create an ChatOllama object like the following:
-\iffalse
+
+\begin{lstlisting}[numbers=none, frame=none]
 # Initialize language model
 llm = ChatOllama(
     base_url="http://127.0.0.1:5000",
     model="sh-llama3-instruct",
     keep_alive=-1
 )
+\end{lstlisting}
 
-and therefore easily switch between all models that we want to test out. The keep alive option set to minus one means that the model is loaded undefinetly into memory.
+Therefore we can easily switch between all models that we want to test out. The keep alive option set to minus one means that the model is loaded undefinetly into memory.
 After parsing the messages of one csv entry we can just use the following code to create the code and invoke the language model:
 
+\begin{lstlisting}[numbers=none, frame=none]
 prompt = ChatPromptTemplate.from_messages(messages)
 result = invoke_language_model(llm, prompt)
-\fi
+\end{lstlisting}
+
 To create a diverse and representative dataset, we used 10 example device lists as the basis for our scenarios. These lists were carefully crafted to cover various smart home setups:
 
 \begin{itemize}
@@ -164,24 +175,24 @@ These device lists were sometimes modified (e.g., changing variable values) to m
 The dataset covers various interaction types, including device control commands, queries about device states, requests for information about the smart home setup, and complex questions requiring reasoning about multiple devices or rooms.
 Table \ref{tab:dataset-format} illustrates the format of the dataset and provides two example entries (note that the device lists are shortened to one device and removed state information here for a better overview, the actual device lists contain 2-6 devices).
 
-\begin{table}[h]
-    \centering
-    \makebox[\textwidth]{\includegraphics[width=1.2\textwidth]{graphics/evaldata.pdf}}
-    \caption{Format and Example Entries of the Evaluation Dataset}
-    \label{tab:dataset-format}
-\end{table}
-
 This carefully created dataset allows us to evaluate the chatbot's performance across multiple dimensions, including accuracy in interpreting user intent, ability to provide relevant responses, correct identification and execution of required actions, contextual understanding, and handling of edge cases and ambiguous requests.
 
 
 \subsection{Evaluation Metrics}
 In this section we describe the metrics we used to measure the accuracy of different language models that we customized with our modelfile as described in \cref{subsec:modelcust}.
+For this we have more deeply analyzed the metrics stated in the related work \cref{sec:relatedeval}.
+We employed a combination of metrics that evaluate both the semantic accuracy of the natural language responses and the correctness of the generated JSON commands to reliably capture the relevant dimensions of our chatbot prototype.
 
 \subsubsection{Semantic Similarity}
 
-Semantic similarity measures how closely the generated responses from the chatbot match the expected outputs in terms of meaning. For this evaluation, we used the \texttt{SentenceTransformer} model, specifically the \texttt{paraphrase-MiniLM-L6-v2} variant, to compute cosine similarity between the embeddings of the generated responses and the expected outputs. A high similarity score indicates that the chatbot's response is semantically close to the expected answer, even if the exact wording differs.
+Semantic similarity is a crucial metric in our evaluation since it measures how closely the generated responses from the chatbot match the expected outputs in terms of meaning. For this evaluation, we used the \texttt{SentenceTransformer} model, specifically the \texttt{paraphrase-MiniLM-L6-v2} variant, to compute cosine similarity between the embeddings of the generated responses and the expected outputs. A high similarity score indicates that the chatbot's response is semantically close to the expected answer, even if the exact wording differs.
 
-\begin{Listing}
+The process of calculating semantic similarity involves the following steps: \\
+Encoding: Both the reference (expected) outputs and the generated responses are encoded into high-dimensional vectors using the SentenceTransformer model.\\
+Similarity Computation: The cosine similarity between the embeddings of the reference and generated responses is calculated. Cosine similarity measures the cosine of the angle between two vectors, providing a value between -1 and 1, where 1 indicates perfect similarity, 0 indicates no similarity, and -1 indicates perfect dissimilarity.\\
+Aggregation: The individual similarity scores are aggregated to produce an average similarity score across all samples in the evaluation dataset.\\
+
+\begin{Listing}[htb]
     \begin{lstlisting}[language=Python]
 def calculate_semantic_similarity(references, generated_responses):
     model = SentenceTransformer('paraphrase-MiniLM-L6-v2')
@@ -196,6 +207,9 @@ def calculate_semantic_similarity(references, generated_responses):
     \caption{Code for calculating the semantic similarity through cosine similarity}
     \label{lst:similarity}
 \end{Listing}
+
+The implementation of this metric is shown in \cref{lst:similarity}. This code defines a function \texttt{calculate\_semantic\_similarity} that takes two lists of sentences (references and generated responses) as input and returns a list of individual similarity scores along with the average similarity score.
+A high average similarity score indicates that the chatbot's responses are semantically close to the expected answers, even if the exact wording differs. This allows for a more flexible evaluation that captures the chatbot's ability to understand and respond to user intents accurately, rather than merely reproducing exact phrases.
 
 
 \subsubsection{JSON Accuracy}
@@ -306,53 +320,27 @@ def compare_jsons(generated_json, expected_json):
     \label{lst:compare-json}   
 \end{Listing}
 
-\subsection{Initial Approach Using Classification Metrics}
 
-\subsubsection{Description of the Approach}
+\subsection{Combined Metric}
 
-Initially, we attempted to evaluate the chatbot using traditional classification metrics: precision, recall, and F1 score. In this context, we defined the true positives (TP), false positives (FP), true negatives (TN), and false negatives (FN) based on the correctness of the JSON outputs and the semantic similarity scores.
+To provide a holistic view of the chatbot's performance, we developed a combined metric that integrates both semantic similarity and \gls{json} accuracy. This approach was inspired by the need to evaluate the chatbot's performance across multiple dimensions simultaneously.
+The combined metric adapts the concepts of precision, recall, and F1 score from traditional classification tasks to our specific use case. Here's how we define the components:
 
-\begin{lstlisting}[language=Python, caption=Classification Metrics]
+\gls{tp}: Cases where the model's output has high semantic similarity (above a defined threshold) and the generated \gls{json} is correct.\\
+\gls{fp}: Cases where the model's output has high semantic similarity but the generated \gls{json} is incorrect.\\
+\gls{tn}: Cases where the model's output has low semantic similarity and the  generated \gls{json} is incorrect.\\
+\gls{fn}: Cases where the model's output has low semantic similarity but the generated \gls{json} is correct.
 
-\end{lstlisting}
+Based on these definitions, we calculate precision, recall, and F1 score as follows:
 
-\begin{Listing}
-    \begin{lstlisting}[language=Python]
-def calculate_classification_metrics(similarities, json_accuracy_flags, similarity_threshold=0.8):
-    y_true = []
-    y_pred = []
+\paragraph{Precision:} Of all the outputs the model that have a high semantic similarity, how many were actually positive cases (generated \gls{json} is also correct).
+\paragraph{Recall:} Of all the actual positive cases (generated \gls{json} is correct), how many did the model correctly identify as positive (semantic similarity is also high).
+\paragraph{F1 Score:} The harmonic mean of precision and recall, providing a single measure of performance.
 
-    for similarity, json_correct in zip(similarities, json_accuracy_flags):
-        y_true.append(1 if json_correct else 0)
-        y_pred.append(1 if similarity >= similarity_threshold and json_correct else 0)
-
-    precision = precision_score(y_true, y_pred)
-    recall = recall_score(y_true, y_pred)
-    f1 = f1_score(y_true, y_pred)
-
-    return precision, recall, f1
-  \end{lstlisting}
-    \caption{Classification Metrics}
-    \label{lst:evalMetrics2}
-\end{Listing}
-
-\subsubsection{Challenges Encountered}
-
-The classification metrics approach presented several challenges:
-\begin{itemize}
-    \item \textbf{Misleading FP Cases}: The approach could not effectively capture false positives because when the JSON was correct, the predictions were always marked as true positive, thus leading to an absence of FP cases.
-    \item \textbf{Definition Misalignment}: The standard definitions of TP, FP, TN, and FN did not perfectly align with our use case, where both semantic similarity and JSON correctness were critical but evaluated differently than in binary classification tasks.
-\end{itemize}
-
-\subsection{Refined Approach}
-
-\subsubsection{Adjustments to the Evaluation Method}
-
-To address the issues with the initial approach, we refined our evaluation method to better capture the nuances of our use case:
-\begin{itemize}
-    \item \textbf{Combined Metric for Positive Predictions}: A positive prediction is now defined as having both a semantic similarity score above 0.65 and a correct JSON output.
-    \item \textbf{Refined Definitions}: We redefined TP, FP, TN, and FN to better suit our chatbot's evaluation context.
-\end{itemize}
+The implementation of this combined metric is shown in \cref{lst:classificationRefined} and based on the scikit-learn library\footnote{\url{https://scikit-learn.org/stable/modules/model\_evaluation.html\#precision-recall-and-f-measures}}. This function, \texttt{calculate\_classification\_metrics}, takes lists of similarity scores and \gls{json} accuracy flags as input, along with a similarity threshold. It then computes the precision, recall, and F1 score based on our adapted definitions.
+It's important to note that this approach, while not standard for non-classification tasks, provides valuable insights into our chatbot's performance. By combining semantic similarity and \gls{json} accuracy, we can evaluate how well the model meets both criteria simultaneously, which is crucial for its functionality in a smart home system.
+The similarity threshold is a critical parameter that determines what constitutes "high" semantic similarity. This threshold should be chosen based on domain knowledge and experimentation to ensure that the similarity measure is robust and meaningful for the specific use case.
+By using this combined metric, we can quantify the chatbot's ability to provide semantically appropriate responses while also generating accurate \gls{json} commands. This approach aligns well with the practical expectations of the chatbot's performance in a real-world smart home setting.
 
 \begin{Listing}
     \begin{lstlisting}[language=Python]
@@ -381,18 +369,21 @@ To address the issues with the initial approach, we refined our evaluation metho
     \label{lst:classificationRefined}
 \end{Listing}
 
-\subsubsection{Evaluation Results}
+\subsubsection{Determining the Similarity Threshold}
+The choice of an appropriate similarity threshold is crucial for the effectiveness of our combined metric. Through careful analysis of the semantic similarity between various generated outputs and their corresponding expected outputs, we determined that a threshold of 0.65 provides the most meaningful differentiation. This decision was based on several key observations:
 
-Using the refined approach, we obtained the following results:
-\begin{itemize}
-    \item \textbf{Precision}: [Value]
-    \item \textbf{Recall}: [Value]
-    \item \textbf{F1 Score}: [Value]
-    \item \textbf{Semantic Similarity}: [Average Similarity]
-    \item \textbf{JSON Accuracy}: [Accuracy Value]
-\end{itemize}
+\textbf{Cross-language Differentiation}: We found that when a generated response was in English but the expected response was in German, the similarity score was consistently below 0.55. This served as a clear demarcation point, even when considering the constraints of the language model size we chose.
 
-These results indicate that the refined evaluation method provides a more accurate and reliable assessment of the chatbot's performance in handling user queries and controlling smart home devices.
+\textbf{Quality Assessment}: After establishing 0.55 as a baseline, we examined cases with higher similarity scores. Our analysis revealed that responses with a similarity score greater than 0.65 were consistently of high quality and relevance.
+
+\textbf{Borderline Cases}: We identified examples that fell just below and above our chosen threshold to validate its appropriateness. For instance, an unacceptable response with a similarity of approximately 0.61 was: "I cannot have a temperature measurement for the kitchen. There are only rooms and devices, but no temperature-taking devices available for the kitchen." The expected response was: "I'm sorry, but no temperature sensors are available in the kitchen." Despite some semantic overlap, this response was deemed insufficient.
+It is worth noting that this is a literal translation from a German example, i.e., when calculating the similarity between those two sentences it will probably differ from the actual one.
+
+\textbf{Acceptable Responses}: Conversely, we found that responses just above the 0.65 threshold were generally acceptable. An example with a similarity of about 0.67 was: "The temperature set point is 18 degrees, and the current temperature is 19 degrees." The expected response was: "The temperature in the Schlafzimmer is set to 18.0 degrees Celsius and the current temperature is 19.0 degrees Celsius." This response, while missing some specifics, captured the essential information accurately.
+
+By setting the threshold at 0.65, we strike to conduct a strict and reliable evaluation. This threshold effectively distinguishes between responses that capture the core meaning and intent of the expected output and those that fall short, providing a robust basis for our combined metric.
+
+
 
 \section{User Experience}
 
@@ -406,6 +397,16 @@ These results indicate that the refined evaluation method provides a more accura
 ... what is the result of your e.g., Questionnaire or experimentation.. 
 Presentation of Findings
 Data Analysis
+
+Using the refined approach, we obtained the following results:
+\begin{itemize}
+    \item \textbf{Precision}: [Value]
+    \item \textbf{Recall}: [Value]
+    \item \textbf{F1 Score}: [Value]
+    \item \textbf{Semantic Similarity}: [Average Similarity]
+    \item \textbf{JSON Accuracy}: [Accuracy Value]
+\end{itemize}
+
 \subsection{User Experience Demonstration}
 % include screenshots of example conversations 
 

@@ -3,12 +3,37 @@
 \chapter{Concept}
 \label{chap:concept}
 
-In this chapter, we describe the intents defined for the smart home system chatbot. These intents aim to provide users with a versatile and intuitive interface for interacting with their smart home devices. 
-The primary focus is on ensuring the chatbot can understand and respond to a wide range of user inputs, offering functionalities that surpass current smart home solutions.
+This chapter outlines the concept for our smart home chatbot. We begin by exploring the intents defined for the chatbot, which form the foundation of its functionality and aim to surpass the capabilities of current smart home solutions.
+
+The chapter then provides insights gained from preliminary interviews with experts from various domains, including AI technologies, smart home systems, and product development. These interviews provided valuable knowledge, requirements, and ideas that shaped our approach.
+
+Following this, we present a comprehensive set of functional and non-functional requirements for the chatbot, derived from the interview insights and tailored to integrate seamlessly with existing smart home systems, particularly the Bosch Smart Home system.
+
+The chapter proceeds to detail the prototype design and architecture, explaining the rationale behind choosing a client-server model with a customized \gls{llm} at its core. We describe the key components of this architecture and their interactions, providing a clear picture of how the chatbot will function within the smart home ecosystem.
+
+Finally, we discuss the process of collecting example inputs for the chatbot through a survey, which helped us gather a diverse range of natural language queries and commands. This data collection effort ensures that our chatbot can understand and respond to a wide variety of user inputs, enhancing its usability and effectiveness.
 
 \section{Intent Engineering}
 
-Intents are fundamental to the functionality of the chatbot. Each intent represents a specific user request or command that the system needs to understand and act upon. The design of these intents considers the limitations of existing voice assistants and aims to provide a more flexible and user-friendly experience.
+Intents are fundamental to the functionality of the chatbot, serving as the core mechanism for understanding and responding to user requests. In the context of our work, an intent represents a specific user goal or action that the chatbot needs to interpret and execute. The careful design and implementation of these intents are crucial for creating a system that can effectively understand and respond to a wide range of user inputs in the smart home domain.
+
+Our approach to intent engineering was systematic and iterative. We began by brainstorming about current smart home systems and voice assistants, focusing on their limitations and potential areas for improvement. This process allowed us to generate a diverse set of ideas for enhancing user interaction with smart home devices.
+
+To organize these ideas and align them with our development strategy, we categorized the proposed intents into three levels of complexity. This categorization was based on the potential implementation challenges and the interdependencies between intents.
+
+For each intent, we developed a structured format consisting of four key elements:
+\begin{itemize}
+    \item A clear definition of the user's goal
+    \item A set of example phrases or queries
+    \item Necessary entities or parameters to be extracted
+    \item The expected action or response from the system
+\end{itemize}
+
+This structured approach ensures consistency across all intents and provides a clear roadmap for implementation.
+
+The decision to define three levels of complexity aligns with our overall iterative approach to prototype development. This strategy allows us to progressively enhance the chatbot's capabilities, starting with basic functionalities and gradually incorporating more advanced features. It also provides natural milestones for testing and evaluation throughout the development process.
+
+In the following subsections, we detail each of these intent categories, showcasing how they collectively contribute to a more flexible and user-friendly smart home interaction experience.
 
 \subsection{Iteration 1: Basic Intents}
 
@@ -31,6 +56,7 @@ Intents are fundamental to the functionality of the chatbot. Each intent represe
 \end{itemize}
 
 This intent aims to provide a more conversational approach to querying device statuses. Unlike existing solutions that require specific device names, our chatbot can understand various formulations, allowing users to ask for the temperature without needing to specify the exact device name or its location.
+This intent is especially interesting for the first iteration since the intents of following interations strongly rely on information about the devices of a user. Without data about the devices a user has a smart home chatbot would be quite pointless.
 
 \paragraph{Changing Device Status}
 
@@ -393,6 +419,28 @@ The selected devices are thermostat, door-window contact and smart plug which al
 The devices match the initial idea of the chatbot to help in the enregy crisis and global warming through analyzing capabilites of a users' smart home.
 The main complexity is generated by the need to filter out relevant information from the real-time-state of each device and especially by the device controlling intent, because the product palette of Bosch is broadly diversified with different functions needed for controlling each device. 
 This selection of devices also makes testing and evaluation of the chatbot easier and serves as a consistent setup throughout the thesis.
+
+\section{Collection of Example Inputs for a Smart Home Chatbot}
+\label{sec:collectinputs}
+To gather a diverse set of example inputs for our smart home chatbot, we conducted a survey using Microsoft Forms\footnote{\url{https://forms.office.com/}}. The survey was designed to collect typical user queries and commands in both German and English. A total of 13 participants contributed to the study, including 6 from Bosch Smart Home and 7 external participants (primarily university students, with some others). The age distribution of the participants varied, with the majority being under 30 years old.
+
+The survey presented participants with a scenario where they owned smart devices as mentioned in \cref{subsec:devices}. They were asked to formulate queries and commands for various situations related to these devices. The questionnaire included the following situations for which the participants should formulate prompts to a smart home chatbot:
+
+\begin{enumerate}
+    \item Check if one or more devices are turned on or off.
+    \item Inquire about the temperature of one or more thermostats.
+    \item Change the status of your favorite device (temperature, on/off).
+    \item Create an automation to save electricity or heating costs.
+    \item Investigate why a device has just been turned on unexpectedly.
+    \item Inquire about increased energy consumption for the current month.
+    \item Analyze if there are specific times when your smart home consumes more energy than at other times and what could be the reason for this (e.g., an automation or different electricity prices at different times). How would you ask the chatbot to help you with this analysis?
+    \item The month before last, your energy costs were higher than last month. You suspect this might be related to weather conditions (temperature, less power generation from your own solar panels) or other external circumstances. However, you don't rule out the possibility that you simply consumed more electricity. How would you ask the chatbot to assist you with this analysis?
+\end{enumerate}
+
+Participants were encouraged to be creative in their responses, using room names or inventing device names as needed. They were also given the option to provide multiple formulations for each situation by filling out the questionnaire multiple times.
+
+This approach allowed us to collect a wide range of natural language inputs, reflecting various user preferences and linguistic styles and specifically matching the Intents we defined for out chatbot. The gathered data serves as a foundation for improving the chatbot's natural language understanding capabilities, ensuring it can handle diverse user queries effectively.
+Additionally we used a big part of it for evaluating the output quality of the chatbot using different language models.
 %\section{further parts of the prototype - NLP Pipeline, Integration into the Bosch SH App,...}
 
 %\blinddocument

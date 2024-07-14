@@ -1,26 +1,25 @@
 % !TeX spellcheck = en_US
 \chapter{Implementation}
-This chapter details the technical implementation of the Smart Home Chatbot system, bringing the concept described in the previous chapter to life. It begins with an overview of the technology stack, which combines Android Studio for client-side development and Ollama for server-side language model hosting. The chapter is structured to clearly distinguish between server-side and client-side components, providing a comprehensive view of the system architecture.
+This chapter details the technical realization of the Smart Home Chatbot system, translating the conceptual framework into a functional application. We begin with an overview of our technology stack, which combines Android Studio for client-side development and Ollama for server-side language model hosting.
 
-The server section explores the setup process, including the challenges faced and solutions implemented. It delves into model customization techniques, explaining how language models were tailored for the smart home context. 
+The chapter is structured to distinctly cover both server-side and client-side components. For the server, we explore the setup process, challenges faced, and model customization techniques. On the client side, we delve into the Android application's development, covering data management within the Bosch Smart Home ecosystem, user interface design, and message handling.
 
-The client section covers various aspects of the Android application, including data management within the Bosch Smart Home ecosystem, user interface design, message handling, request building, and response processing. This section demonstrates how the chatbot integrates with the existing Bosch Smart Home app while providing an intuitive chat experience.
+We then illustrate the interaction flow between user, client, and server, demonstrating how these components collaborate to process queries and generate responses. The chapter concludes by addressing key challenges encountered during development, such as multilingual support and historical data limitations, along with their implemented or proposed solutions.
 
-The chapter then illustrates the interaction flow between user, client, and server, showcasing how these components work together to process queries and generate responses. Finally, it addresses the challenges encountered during development, such as multilingual support and historical data limitations, presenting implemented or proposed solutions.
-By the end of this chapter, readers will gain a thorough understanding of the system's technical architecture, implementation details, and the reasoning behind key design decisions. This implementation serves as the foundation for the subsequent evaluation of the chatbot's performance in smart home management.
+This comprehensive overview provides readers with a thorough understanding of the system's technical architecture and the rationale behind critical design decisions.
 
 \label{chap:implementation}
 
 \section{Technology Stack}
 The implementation of the chatbot system leverages a diverse set of technologies, each chosen for its specific capabilities and compatibility with the existing Bosch Smart Home ecosystem. Figure \ref{fig:techstack} illustrates the technology stack overlaid on the base architecture.
 
-Android Studio serves as the primary integrated development environment, facilitating the extension of the existing Bosch Smart Home Android application. The client-side development utilizes Java programming language in conjunction with Android 14 SDK, ensuring compatibility with the latest Android features and optimizations.
+Android Studio\footnote{\url{https://developer.android.com/studio}} serves as the primary integrated development environment, facilitating the extension of the existing Bosch Smart Home Android application. The client-side development utilizes Java\footnote{\url{https://www.java.com/}} programming language in conjunction with Android 14 SDK\footnote{\url{https://developer.android.com/about/versions/14}}, ensuring compatibility with the latest Android features and optimizations.
 
 To enhance the user interface and manage the chat functionality efficiently, the implementation incorporates modern Android components. RecyclerView is employed for rendering the message exchange between the user and the chatbot, providing smooth scrolling and efficient memory usage. Concurrency tools, specifically ExecutorService and CompletableFuture, are utilized to handle API calls in the background, ensuring a responsive user interface while managing asynchronous operations.
 
-On the server side, Ollama v0.1.47 is deployed for hosting, customizing, and invoking the language model. The Ollama API facilitates seamless interaction between the client application and the server-hosted language model.
+On the server side, Ollama v0.1.47\footnote{\url{https://ollama.com/}} is deployed for hosting, customizing, and invoking the language model. The Ollama API facilitates seamless interaction between the client application and the server-hosted language model.
 
-\gls{json} serves as the primary data exchange format between the server and client components. This lightweight and human-readable format is used both for constructing API calls to the Ollama API and for transmitting the language model's responses back to the client.
+\gls{json}\footnote{\url{https://www.json.org/}} serves as the primary data exchange format between the server and client components. This lightweight and human-readable format is used both for constructing API calls to the Ollama API and for transmitting the language model's responses back to the client.
 \begin{figure}[h]
     \centering
     \captionsetup{justification=centering}
@@ -175,6 +174,9 @@ MESSAGE assistant Ja, alle Fenster sind geschlossen.
 \end{Listing}
 
 Listing \ref{lst:example_conversations} provides example conversations to guide the model's responses. It includes a sample device list and demonstrates how the model should interpret user queries and format its responses, including the use of different languages and the structured JSON output.
+
+\paragraph{Using Example User Inputs for the Modelfiles} 
+A significant aspect of our model customization process involved leveraging the example user inputs collected during our survey mentioned in \cref{sec:collectinputs}. We carefully selected a subset of these inputs to include in the modelfile used for customizing the selected \glspl{llm}. This approach allowed us to fine-tune the models with real-world, domain-specific examples, enhancing their ability to understand and respond to typical smart home queries. By incorporating these authentic user inputs into the model's training data, we aimed to improve its contextual understanding and response accuracy for smart home-related interactions and therefore create a more domain-specfic model.
 
 By incorporating these detailed instructions and examples, as shown in Listings \ref{lst:base_model} through \ref{lst:example_conversations}, the modelfile ensures that the language model can effectively understand and respond to user queries about their Bosch Smart Home devices, providing accurate information and executing commands as needed.
 
