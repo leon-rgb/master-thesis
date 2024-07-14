@@ -107,11 +107,13 @@ Based on this and the detailed evaluation setup the results can be discussed and
 \section{Model Performance}
 \label{sec:modelperform}
 
-... what was the settings of your designed study to evaluate your results? e.g., You designed a Questionnaire to assess if your method increases the productivity of a programmer, explain and justify what population you chose, what was the questions/tasks and all necessary details. If you designed an experiment against a software system to collect measures and assess accuracy of your model, i.e., the contribution of your research, here explain e.g., how you collected measurements, what was characteristics of machines, etc.
 
+\subsection{Hardware}
+The hardware setup was the same as described in \cref{subsec:modelcust} since it is very fast for the model sizes we wanted to test as also explained in the same section.
+For measuring the model performance there was no need to have a setup of smart home devices since when the outputed \gls{json} of the model is correct the correct action will be triggered in the underlying system.
 
 \subsection{Evaluation Dataset}
-To assess the performance and capabilities of our smart home chatbot, we developed a comprehensive evaluation dataset. This dataset is designed to simulate realistic user interactions and test the chatbot's ability to understand context, control devices, and provide informative responses.
+To assess the performance and capabilities of our smart home chatbot, we developed a comprehensive evaluation dataset with a total of 80 entries. This dataset is designed to simulate realistic user interactions and test the chatbot's ability to understand context, control devices, and provide informative responses.
 The evaluation dataset consists of a series of input-output pairs, where each input represents a chat history and the output represents the expected response from the chatbot. The structure of each entry in the dataset is as follows:
 
 \begin{enumerate}
@@ -142,93 +144,20 @@ To create a diverse and representative dataset, we used 10 example device lists 
 
 These device lists were sometimes modified (e.g., changing variable values) to match specific test cases, ensuring a wide range of scenarios for evaluation.
 The dataset covers various interaction types, including device control commands, queries about device states, requests for information about the smart home setup, and complex questions requiring reasoning about multiple devices or rooms.
-Table \ref{tab:dataset-format} illustrates the format of the dataset and provides two example entries (note that the device lists are shortened here for a better overview, the actual device lists contain 2-6 devices).
+Table \ref{tab:dataset-format} illustrates the format of the dataset and provides two example entries (note that the device lists are shortened to one device and removed state information here for a better overview, the actual device lists contain 2-6 devices).
 
-\lstset{
-  basicstyle=\ttfamily\small,
-  breaklines=true,
-  postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
-}
-
-\begin{longtable}{@{}p{0.45\textwidth}p{0.3\textwidth}p{0.2\textwidth}@{}}
-    \toprule
-    \textbf{Input} & \textbf{Expected Output} & \textbf{Expected JSON} \\
-    \midrule
-    \endhead
-    
-    \begin{lstlisting}[language=json]
-    [
-      {
-        "role": "user",
-        "content": "[
-          {
-            \"type\":\"POWER_METER_SWITCH\",
-            \"name\":\"Zwischenstecker\",
-            \"deviceID\":\"hdm:HomeMaticIP:3014F711A000049878593469\",
-            \"state\":[
-              {\"id\":\"PowerMeter\",\"state\":{\"powerConsumption\":0,\"energyConsumption\":0}},
-              {\"id\":\"PowerSwitch\",\"state\":{\"switchState\":\"OFF\"}}
-            ],
-            \"room\":\"Schlafzimmer\"
-          }
-        ]"
-      },
-      {
-        "role": "user",
-        "content": "Turn on the Zwischenstecker, please."
-      }
-    ]
-    \end{lstlisting}
-    &
-    The Zwischenstecker in your bedroom is now on.
-    &
-    \begin{lstlisting}[language=json]
-    {
-      "action": "turn-on",
-      "deviceID": "hdm:HomeMaticIP:3014F711A000049878593469"
-    }
-    \end{lstlisting}
-    \\
-    \midrule
-    
-    \begin{lstlisting}[language=json]
-    [
-      {
-        "role": "user",
-        "content": "[
-          {
-            \"type\":\"POWER_METER_SWITCH\",
-            \"name\":\"Wohnzimmerlampe\",
-            \"deviceID\":\"hdm:HomeMaticIP:3014F711A000049878593472\",
-            \"state\":[
-              {\"id\":\"PowerMeter\",\"state\":{\"powerConsumption\":15,\"energyConsumption\":45}},
-              {\"id\":\"PowerSwitch\",\"state\":{\"switchState\":\"ON\"}}
-            ],
-            \"room\":\"Wohnzimmer\"
-          }
-        ]"
-      },
-      {
-        "role": "user",
-        "content": "Can you turn on the Wohnzimmerlampe?"
-      }
-    ]
-    \end{lstlisting}
-    &
-    The Wohnzimmerlampe is already turned on. No need to switch it on.
-    &
-    None
-    \\
-    
-    \bottomrule
+\begin{table}[h]
+    \centering
+    \makebox[\textwidth]{\includegraphics[width=1.2\textwidth]{graphics/evaldata.pdf}}
     \caption{Format and Example Entries of the Evaluation Dataset}
     \label{tab:dataset-format}
-    \end{longtable}
+\end{table}
 
-This carefully curated dataset allows us to evaluate the chatbot's performance across multiple dimensions, including accuracy in interpreting user intent, ability to provide relevant responses, correct identification and execution of required actions, contextual understanding, and handling of edge cases and ambiguous requests.
+This carefully created dataset allows us to evaluate the chatbot's performance across multiple dimensions, including accuracy in interpreting user intent, ability to provide relevant responses, correct identification and execution of required actions, contextual understanding, and handling of edge cases and ambiguous requests.
 
 
 \subsection{Evaluation Metrics}
+In this section we describe the metrics we used to measure the accuracy of different language models that we customized with our modelfile as described in \cref{subsec:modelcust}.
 
 \subsubsection{Semantic Similarity}
 
@@ -252,8 +181,31 @@ def calculate_semantic_similarity(references, generated_responses):
 
 
 \subsubsection{JSON Accuracy}
+We define \gls{json} accuracy as the percent of correctly generated \glspl{json} by a language model customized to our use case.
+Since our dataset contains only necessary keys of the expected \gls{json}, a correct generated \gls{json} is one which contains each expected key and the correct corresponding value for it.
 
-JSON accuracy evaluates the correctness of the structured data outputs generated by the chatbot. Each generated JSON is compared against the expected JSON to determine if it correctly represents the intended action or response. The accuracy is calculated by the proportion of correct JSONs to the total number of JSONs evaluated.
+Each generated \gls{json} is compared against the expected \gls{json} to determine if it correctly represents the intended action or response. 
+The code in \cref{lst:evalMetrics1} shows how we have implemented this. The accuracy we just explained is represented by the variable ``accuracy''.
+
+The total count (total\_count) is the total number of generated responses, which represents the total number of \glspl{json} evaluated. This is determined by the length of the generated\_responses list.
+The correct\_count is increased in several scenarios:
+\begin{enumerate}
+    \item When both the expected and generated \glspl{json} are None.
+    \item When the expected \gls{json} is None and the generated \gls{json} has an "action" key with the value "none".
+    \item When the generated \gls{json} matches the expected \gls{json} in terms of keys and their corresponding values (determined by the compare\_jsons function).
+\end{enumerate}
+Generated \glspl{json} that would throw an error on parsing are handled as incorrect. This is implemented in the code through the use of try-except blocks. If a JSONDecodeError occurs when trying to parse the expected \gls{json}, or if an AttributeError occurs when comparing the generated and expected \glspl{json}, the \gls{json} is considered incorrect and the json\_accuracy\_flags for that instance is set to False.
+The accuracy is then calculated by dividing the correct\_count by the total\_count.
+
+The code also includes the variable ``key\_accuracy'' which checks how many keys have the correct value as in the expected \gls{json}. It is calculated as follows:
+\begin{itemize}
+    \item total\_keys is incremented for each key in the expected \gls{json}.
+    \item correct\_keys is incremented when a key in the generated \gls{json} matches the corresponding key in the expected \gls{json}.
+    \item The key\_accuracy is then calculated as the ratio of correct\_keys to total\_keys.
+\end{itemize}
+This key\_accuracy provides a more granular measure of how well the generated \glspl{json} match the expected \glspl{json} on a key-by-key basis, even if the entire \gls{json} doesn't match perfectly.
+
+The function shown returns three values: the overall \gls{json} accuracy, the key accuracy, and a list of boolean flags indicating which generated \glspl{json} were correct (json\_accuracy\_flags).
 
 \begin{Listing}
     \begin{lstlisting}[language=Python]
