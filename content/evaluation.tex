@@ -387,10 +387,24 @@ By setting the threshold at 0.65, we strike to conduct a strict and reliable eva
 
 \section{User Experience}
 
-... what was the settings of your designed study to evaluate your results? e.g., You designed a Questionnaire to assess if your method increases the productivity of a programmer, explain and justify what population you chose, what was the questions/tasks and all necessary details. If you designed an experiment against a software system to collect measures and assess accuracy of your model, i.e., the contribution of your research, here explain e.g., how you collected measurements, what was characteristics of machines, etc.
+To evaluate the user experience of our smart home chatbot, we designed and conducted a comprehensive user study. This study aimed to assess the usability, effectiveness, and potential benefits of integrating a chatbot interface into a smart home system.
 
-% tasks were shuffled to compensate learning effects
-% 
+\subsection{Participants}
+We recruited a diverse group of 10 participants for our study, comprising three employees from Bosch Smart Home and seven external participants, including university students and employees from other companies. The participants represented a varied demographic in terms of age and professional background, with 60\% having a technical background and 40\% non-technical. Experience with smart home systems varied among participants, with only one having no prior experience. Familiarity with chatbots was evenly distributed across the spectrum from no experience to regular use.
+
+This diverse group was chosen to represent a range of potential users, from those familiar with smart home technology to novices, ensuring a comprehensive evaluation of the chatbot's accessibility and usefulness.
+
+\subsection{Apparatus}
+The experimental setup consisted of three smart home devices: a smart plug named "TV" and a thermostat, both located in the sleeping room, and a door/window contact in the living room. The language model ran on a PC with specifications described in Section [reference to hardware specs]. Participants interacted with the Bosch smart home app either through a PC emulating Android or a Samsung Galaxy S21 Smartphone. To ensure consistency, all participants used the same setup in the same room.
+
+\subsection{Procedure}
+Participants were asked to complete six tasks using the chatbot interface: inquiring about the chatbot's purpose, determining the state and energy consumption of the TV, checking temperature settings in the bedroom, requesting a summary of available devices, changing the bedroom temperature, and switching the TV's state. To mitigate learning effects, the order of these tasks was randomized for each participant.
+
+\subsection{Metrics and Data Collection}
+We collected both quantitative and qualitative data to evaluate the user experience. Quantitative metrics included task completion time, number of attempts per task, and task success rate. These were collected through automated logging and researcher observation. Qualitative data was gathered through a questionnaire using a 5-point Likert scale to assess various aspects of the chatbot's usability and effectiveness, followed by a semi-structured interview to explore participants' experiences in more depth.
+
+\subsection{Analysis}
+The data analysis plan incorporated both quantitative and qualitative approaches. Quantitative analysis focused on task completion rates, time taken, and survey scores. Qualitative analysis of interview responses aimed to identify common themes and areas for improvement. This mixed-methods approach allows for a comprehensive evaluation of the chatbot's performance and user perception, providing both statistical measures of effectiveness and rich, contextual insights into the user experience.
 
 
 \section{Results}
@@ -398,6 +412,10 @@ By setting the threshold at 0.65, we strike to conduct a strict and reliable eva
 Presentation of Findings
 Data Analysis
 
+% hypothesises: 1. controlling devices tasks generally take longer than tasks were no action needs to be triggered, 2. persons with technical background need less time for the tasks, 3. persons without technical background see more potential in the chatbot 4. Older persons are more concerned about the chatbot 5. The chatbot improves explainabiltiy of the app 6. The chatbot improves usability of the app
+%
+%
+\subsection{Language Model Performance Results}
 Using the refined approach, we obtained the following results:
 \begin{itemize}
     \item \textbf{Precision}: [Value]
@@ -406,6 +424,17 @@ Using the refined approach, we obtained the following results:
     \item \textbf{Semantic Similarity}: [Average Similarity]
     \item \textbf{JSON Accuracy}: [Accuracy Value]
 \end{itemize}
+
+\subsection{Qualitative Analysis Results}
+The semi-structured interviews yielded rich qualitative data, which we analyzed using thematic analysis. Four main themes emerged from the participants' responses to the questions about their experience with the smart home chatbot:
+\subsubsection{Chatbot Limitations and Frustrations}
+Many participants reported frustrations with the chatbot's limitations. Common issues included the chatbot's inability to control devices as expected, misinterpretation of complex queries, and difficulty handling follow-up questions or maintaining appropriate context. One participant noted, "When [the chatbot] should control devices and it doesn't do it," while another mentioned, "Sometimes the chatbot misinterprets complex queries."
+\subsubsection{User Interface and Interaction Preferences}
+Participants expressed various preferences and suggestions for improving the chatbot's user interface and interaction methods. These included requests for example commands, voice input options, and more visual elements. One participant suggested, "Example of possible questions would be nice to show. A voice option would be nice. Maybe more style in the text bold etc." Another recommended "more visual elements like icons or graphics."
+\subsubsection{Utility for Complex Tasks and Device Management}
+Many participants found the chatbot particularly useful for complex tasks involving multiple devices or for obtaining quick overviews of their smart home system. One participant noted the chatbot would be "very helpful if I had many devices (50 windows, outlets), then questions like 'is any window open' [would be useful]." Another mentioned its utility "for complex automations and scenarios involving multiple devices."
+\subsubsection{Interest in Advanced Features and Optimization}
+Participants showed significant interest in advanced features, particularly those related to energy optimization and understanding system behavior. One participant expressed interest in "automatic suggestions/tips for optimizing behavior (usage patterns, power consumption...)." Another was "interested in understanding the logic behind my smart home's operations."
 
 \subsection{User Experience Demonstration}
 % include screenshots of example conversations 
@@ -421,11 +450,37 @@ Interpretation of Results
 Comparison with Previous Studies
 Limitations of the Study
 
+\subsection{Interpretation of Qualitative Findings}
+The qualitative data from our study provides valuable insights into users' experiences with the smart home chatbot and their expectations for such a system.
+\subsubsection{Balancing Simplicity and Complexity}
+Our findings reveal a tension between users' desire for simplicity and their interest in complex functionalities. While some participants found technical language challenging and requested simpler interactions, others were eager for advanced features like energy optimization and complex automations. This suggests that future iterations of the chatbot should offer tiered interaction levels, allowing users to choose between simplified and more advanced interfaces based on their comfort and expertise.
+\subsubsection{Enhancing Contextual Understanding}
+The frustrations expressed regarding the chatbot's contextual understanding and ability to handle complex queries highlight an area for significant improvement. Implementing more sophisticated natural language processing and context retention could greatly enhance the user experience. As one participant suggested, a feature to correct the chatbot's understanding mid-conversation could be particularly valuable.
+\subsubsection{Leveraging Visual and Multi-modal Interactions}
+The requests for more visual elements and voice input options indicate that users desire a more diverse and intuitive interaction experience. Incorporating these elements could make the chatbot more accessible and engaging for a wider range of users, potentially increasing its adoption and regular use.
+\subsubsection{Focusing on High-Value Use Cases}
+The strong interest in using the chatbot for complex tasks, device management, and system optimization suggests these are high-value use cases that should be prioritized in future development. The chatbot's ability to handle scenarios involving multiple devices and provide quick system overviews appears to be a significant advantage over traditional interfaces.
+\subsubsection{Addressing Privacy and Scope Concerns}
+While many participants were enthusiastic about advanced features, some expressed concerns about privacy and the appropriate scope of the chatbot's functionality. This highlights the need for transparent data handling practices and clear communication about the chatbot's capabilities and limitations.
+\subsection{Implications for Future Development}
+Based on these findings, future development of the smart home chatbot should focus on:
+\begin{enumerate}
+    \item Improving natural language processing to handle more complex and contextual queries.
+    \item Developing a tiered interface that caters to both novice and advanced users.
+    \item Incorporating more visual elements and possibly voice interaction capabilities.
+    \item Enhancing capabilities for managing multiple devices and creating complex automations.
+    \item Implementing features for energy optimization and system behavior insights.
+    \item Ensuring robust privacy protections and clear communication about data usage.
+\end{enumerate}
+
+
+These enhancements could significantly improve user satisfaction and the overall utility of the chatbot in smart home environments.
+
 
 \section{Threats to Validity}
 % all participants had either interest in the product by working at Bosch Smart Home or be known by the researchers. Therefore positive resonance may be biased.
-% mistakes in the evaluation datasets could lead to worse results
-
+% mistakes in the evaluation datasets could occur since it was quite complex to build. - Lead to both: artificially better or worse results
+%  classification through the work below?
 ... Discuss what threatens validity of your result. In case you could counteract them explain how. For experimentation in software engineering there is already a classification of this threats and a check-list \cite{DBLP:journals/ese/RunesonH09}.   
 %LaTeX-Hinweise stehen in \cref{chap:latexhints}.
 
