@@ -107,9 +107,12 @@ Based on this and the detailed evaluation setup the results can be discussed and
 
 
 \subsection{Hardware and Language Models used}
+\label{subsec:hardware-llm}
 The hardware setup was the same as described in \cref{subsec:modelcust} since it is very fast for the model sizes we wanted to test as also explained in the same section.
 For measuring the model performance there was no need to have a setup of smart home devices since when the outputed \gls{json} of the model is correct the correct action will be triggered in the underlying system.
 The language models we selected for evaluation are also described in \cref{subsec:modelcust}.
+We pre-filtered these models based on three selected typical user interactions from the evaluation dataset we created. If a model was not able to answer with a suitable \gls{json} or did not even understand the structure of the message history provided we excluded it from further evaluation with the whole dataset since it would not be worth investing the resources for it.
+Only the llama3 model has passed this test (with two version: the normal 8b parameters model and the instruct version of it) and is therefore included in the further evaluation. The other models were not able to answer based on the device list provided with each user request. They usually answered with phrases like ``I can't find a device named 'TV'.''
 
 \subsection{Evaluation Dataset}
 To assess the performance and capabilities of our smart home chatbot, we developed a comprehensive evaluation dataset with a total of 80 entries. This dataset is designed to simulate realistic user interactions and test the chatbot's ability to understand context, control devices, and provide informative responses.
@@ -408,24 +411,147 @@ The data analysis plan incorporated both quantitative and qualitative approaches
 
 
 \section{Results}
-... what is the result of your e.g., Questionnaire or experimentation.. 
-Presentation of Findings
-Data Analysis
 
+\subsection{Language Model Performance Results}
+
+\begin{table}[ht]
+    \centering
+    \resizebox{\textwidth}{!}{
+        \begin{tabular}{|l|c|c|c|c|c|c|c|c|c|c|}
+            \hline
+            \multirow{2}{*}{\textbf{Model}} & \multicolumn{5}{c|}{\textbf{Semantic Similarity Values}} & \multicolumn{2}{c|}{\textbf{JSON Accur}} & \multicolumn{3}{c|}{\textbf{Combined Metrics}} \\ \cline{2-11}
+             & \textbf{Mean} & \textbf{Median} & \textbf{Std Dev} & \textbf{Range} & \textbf{>0.65} & \textbf{Total} & \textbf{Key} & \textbf{Prec} & \textbf{Rec} & \textbf{F1} \\ \hline
+            shllama3 & 0.5667 & 0.5916 & 0.2608 & 1.0737 & 40.24\% & 0.7805 & 0.5789 & 1 & 0.47 & 0.64 \\
+            shllama3instr & 0.6036 & 0.6758 & 0.2878 & 1.0885 & 51.22\% & 0.8049 & 0.8571 & 1 & 0.5606 & 0.7184 \\
+            shllama3-2 & 0.4185 & 0.3909 & 0.2660 & 1.0654 & 19.51\% & 0.8171 & 0.7037 & 1 & 0.1940 & 0.3250 \\
+            shllama3instr-2 & 0.3888 & 0.3857 & 0.2314 & 1.1155 & 13.41\% & 0.8780 & 0.6 & 1 & 0.125 & 0.2222 \\ \hline
+        \end{tabular}
+    }
+    \caption{Descriptive Statistics and Analysis of the semantic similarity and performance metrics for the different llama3 models created.}
+    \label{tab:descr-model}
+\end{table}
+
+In this section we want to show our results from four variations that we created from the \texttt{llama3} model. Even though we tested all models mentioned in cref{subsec:modelcust} only the llama3 model was worth evaluating as described before in \cref{subsec:hardware-llm}.
+what we can see in this table are the four different versions of \texttt{llama3}. Note that we abbreviated the names of our model versions in the table to have a better table layout. Also, the ``sh'' stands for ``Smart Home''. We used the same modelfile for \texttt{shllama3} and \texttt{shllama3instruct} and after analyzing use cases that it can not handle and tried to build an improved modelfile that we used to create \texttt{shllama3instr-2} and \texttt{shllama3instr-2}.
+The initial versions of the models encountered challenges in specific scenarios, including:
+Generation of multiple \glspl{json} in a single response which was not supported by our prototype,
+inconsistent selection of language to answer in,
+inaccurate calculation of average temperatures and
+inconsistent handling of temperature increase/decrease by a certain value commands.
+To address these issues, we developed improved modelfiles for the second generation models (shllama3-2 and shllama3instr-2) that included more precise descriptions and additional example conversations.
+
+
+In the table we can see that the revised modelfiles for the second generation of models we created did improve the total \gls{json} accuracy, but for the \texttt{shllama3instr-2} the key accuracy decreased. For the revised modelfiles also suffer in the overall quality in responses which according to the semantic similarity are much worse with a Mean around 0.4.
+This of course hardly effects the combined metrics with an F1 score of 0.3250 and 0.2222 which is barely half as much as for the first generation models. This means that the models are quite unpredictable or random in their responses which can be seen especially in the semantic similarity values.
+The results demonstrate a trade-off between JSON accuracy and semantic similarity. While the second-generation models showed improved JSON accuracy, they suffered a significant decrease in semantic similarity. This suggests that the modifications made to improve specific functionalities may have compromised the models' overall language understanding and generation capabilities.
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{graphics/shllama3-semantic-distribution.png}
+        \caption{Distribution of Similarity Scores for shllama3}
+        \label{fig:shllama3}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{graphics/shllama3instruct-semantic-distribution.png}
+        \caption{Distribution of Similarity Scores for shllama3instruct}
+        \label{fig:shllama3instruct}
+    \end{minipage}
+    \vskip\baselineskip
+    \begin{minipage}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{graphics/shllama3-2-semantic-distribution.png}
+        \caption{Distribution of Similarity Scores for shllama3-2}
+        \label{fig:shllama3-2}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{graphics/shllama3instruct-2-semantic-distribution.png}
+        \caption{Distribution of Similarity Scores for shllama3instruct-2}
+        \label{fig:shllama3instruct-2}
+    \end{minipage}
+    \caption{Distribution of Similarity Scores for Different Models}
+    \label{fig:similarity-distributions}
+\end{figure}
+
+For individually considering the semantic similarity of the models we created histograms that are shown in \cref{fig:similarity-distributions}. They futher highlight the better performance of our first generation models \texttt{shllama3} and \texttt{shllama3instruct} since the values for those less values are distributed below a similarity score of 0.4 or even 0.5 than the first generation models.
+Especially \texttt{shllama3instruct} shows a good distribution with most values being at least 0.6. Approximately twice as many values are above 0.6 than below.
+
+To further compare the semantic similarity values between the models \texttt{shllama3} and \texttt{shllama3instruct}, we also performed a Wilcoxon signed-rank test. This non-parametric test is used to determine whether there is a statistically significant difference between the paired samples from these two models and has the benefit that we do not assume normality in the distribution of differences like in the typical t-test method. When we have a look at the previous distributions of similarity scores we would assume that no normal distribution is given.
+The results of the Wilcoxon signed-rank test are as follows:
+\begin{itemize}
+    \item \textbf{Wilcoxon signed-rank test statistic}: 1395.0
+    \item \textbf{P-value}: 0.1565
+\end{itemize}
+Given that the p-value (0.1565) is greater than the commonly used significance level of 0.05, we fail to reject the null hypothesis. This indicates that there is no statistically significant difference in the distribution of semantic similarity values between the two models, \texttt{shllama3} and \texttt{shllama3instruct}, at the 0.05 significance level (even if we would use a less strict significance level of 0.1 which could be applicable for comparing the semantic similarity of language models).
+In practical terms, these results suggest that both models perform similarly in terms of semantic similarity for the given data set.
+However, it's important to note that while not statistically significant, there is a noticeable difference in the median values and the percentage of responses above the 0.65 threshold between shllama3 and shllama3instruct. This suggests that shllama3instruct may offer some practical improvements in semantic similarity, even if not statistically significant at the conventional 0.05 level.
+
+To further compare the JSON correctness between the models \texttt{shllama3} and \texttt{shllama3instruct}, we performed McNemar's test. This test is used to evaluate differences on paired binary data, which in this case is whether the generated JSON was correct (1) or not (0).
+The contingency table for the JSON correctness is \cref{tab:conti} and shows that both models correctly generated the expected \gls{json} in 56 cases. \texttt{shllama3instruct} correctly generated 10 \glspl{json} that \texttt{shllama3} did not and vice versa \texttt{shllama3} generated 8 correct that \texttt{shllama3instruct} did not.
+\begin{table}[h]
+    \centering
+    \begin{tabular}{cc|c|c}
+        & & \multicolumn{2}{c}{\texttt{instruct}} \\
+        & & 0 & 1 \\ \hline
+        \multirow{2}{*}{\texttt{shllama3}} & 0 & 8 & 10 \\ 
+        & 1 & 8 & 56 \\ 
+    \end{tabular}
+    \caption{Contingency table for JSON correctness between \texttt{shllama3} and \texttt{shllama3instruct}.}
+    \label{tab:conti}
+\end{table}
+
+The results of McNemar's test are as follows:
+\begin{itemize}
+    \item \textbf{McNemar's test statistic}: 8.0
+    \item \textbf{P-value}: 0.8145
+\end{itemize}
+Given that the p-value (0.8145) is greater than the significance level of 0.05, we fail to reject the null hypothesis. This indicates that there is no statistically significant difference in JSON correctness between the two models. Both models exhibit similar performance in generating correct JSON responses.
+Despite the lack of statistical significance, it's worth noting that shllama3instruct correctly generated 10 JSONs that shllama3 did not, while the reverse occurred only 8 times. This slight edge, although not statistically significant, might indicate a marginal improvement in JSON generation capabilities for shllama3instruct.
+
+Another important part of the results is whether the models generated \glspl{json} that would trigger an action in the smart home when none was expected or generated no \gls{json} when an \gls{json} was expected.
+In \cref{tab:json_summary} we can see that \texttt{shllama3} has the most mistakes in total for this metric while shllama3instruct-2 has the least which also has no unexpectedly generated \gls{json}.
+In contrast \texttt{shllama3-2} generated the most unexpected \glspl{json}.
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{lcc}
+        \toprule
+        Model & Generated JSON (unexpected) & No JSON (but expected one) \\
+        \midrule
+        shllama3       & 4 & 4 \\
+        shllama3instruct  & 3 & 3 \\
+        shllama3-2     & 5 & 0 \\
+        shllama3instruct-2& 0 & 4 \\
+        \bottomrule
+    \end{tabular}
+    \caption{Generated JSONs vs Expected JSONs}
+    \label{tab:json_summary}
+\end{table}
+
+In conclusion, our analysis reveals that while attempts to improve specific functionalities in the second-generation models led to increased JSON accuracy, this came at the cost of reduced semantic similarity and overall performance. The first-generation models, particularly shllama3instruct, demonstrate a better balance between semantic understanding and JSON generation. These findings highlight the challenges in optimizing language models for specific tasks while maintaining general language understanding capabilities.
+
+
+\subsection{Quantitative User Study Results}
 % hypothesises: 1. controlling devices tasks generally take longer than tasks were no action needs to be triggered, 2. persons with technical background need less time for the tasks, 3. persons without technical background see more potential in the chatbot 4. Older persons are more concerned about the chatbot 5. The chatbot improves explainabiltiy of the app 6. The chatbot improves usability of the app
 %
 %
-\subsection{Language Model Performance Results}
-Using the refined approach, we obtained the following results:
+In this section we want to state our results for the quanitative part of our user study. For this we present the following hypothesises:
 \begin{itemize}
-    \item \textbf{Precision}: [Value]
-    \item \textbf{Recall}: [Value]
-    \item \textbf{F1 Score}: [Value]
-    \item \textbf{Semantic Similarity}: [Average Similarity]
-    \item \textbf{JSON Accuracy}: [Accuracy Value]
+    \item[\(H_1\)] The chatbot improves explainability of the app.
+    \item[\(H_2\)] The chatbot improves usability of the app.
+    \item[\(H_3\)] Persons would rather use the chatbot than traditional ways of controlling their smart home.
+    \item[\(H_4\)] Controlling device tasks generally take longer than tasks where no action needs to be triggered.
+    \item[\(H_5\)] The chatbot's ability to handle complex queries involving multiple devices is perceived as more valuable than its performance on simple, single-device tasks.
 \end{itemize}
 
-\subsection{Qualitative Analysis Results}
+
+
+\subsection{Qualitative User Study Results}
 The semi-structured interviews yielded rich qualitative data, which we analyzed using thematic analysis. Four main themes emerged from the participants' responses to the questions about their experience with the smart home chatbot:
 \subsubsection{Chatbot Limitations and Frustrations}
 Many participants reported frustrations with the chatbot's limitations. Common issues included the chatbot's inability to control devices as expected, misinterpretation of complex queries, and difficulty handling follow-up questions or maintaining appropriate context. One participant noted, "When [the chatbot] should control devices and it doesn't do it," while another mentioned, "Sometimes the chatbot misinterprets complex queries."
@@ -449,6 +575,31 @@ Participants showed significant interest in advanced features, particularly thos
 Interpretation of Results
 Comparison with Previous Studies
 Limitations of the Study
+
+----------------------------------------------------------------
+Discussion:
+-The \texttt{shllama3instr} version is by far the best customization of a model we were able to create even though both statistical tests we conducted showed no significant differences to the \texttt{shllama3} vresion. The semantic similarity is overall much better than every other model version when we look at especially at the similarity values percentage that was greater than 0.65. It also has the highest F1 score which is with over 70\% a good starting point. With fine tuning the model will probably perform even better for the intents we were able to implement. 
+-Mistakes will always happen, but for out chatbot it is more critical to generate a \gls{json} that would trigger an action when none is expected than the other way around. \texttt{shllama3-2} was the words model according to this rule and \texttt{shllama3instr-2} the best with no unexpectedly generated \gls{json}. However, the semantic similarity is much worse than in every other model and really makes the model unsuitable.
+
+-For \texttt{shllama3instr-2} the \gls{json} key accuracy is so bad because even though it is able to generate the correct \gls{json} in more complex scenarios sometimes hallucinates a \gls{json} were no \gls{json} is needed which directly influences the key accuracy.
+
+-The second generation models probably got worse because the models got stuck with too much examples shown in the revised modelfiles and only tries to repeat the examples instead of understanding the structure of generic user requests, it just doesn't understand the provided device list. Maybe the device data should be preprocessed to a more readable format like (Device List:
+%1. Type: POWER\_METER\_SWITCH, Name: Zwischenstecker, Room: Schlafzimmer
+   - Power consumption: 0, Energy consumption: 0
+   - Switch state: OFF
+%2. Type: SHUTTER\_CONTACT, Name: Fenster Esszimmer, Room: Wohnzimmer
+   - Contact state: CLOSED
+...) since Each device has multiple attributes and nested state information, which adds to the complexity. Other approaches could be: Explicit instructions: Include clear instructions on how to use the device list. For example:
+"The following is a list of smart home devices. Use this information to answer user queries about device states and controls."
+Separate message: Instead of including the device list in the user message, you could create a separate system message containing this information.
+
+-compared to the discussed work of \citet{acon96_home_llm} who claims a ``97.11\% score for JSON function calling accuracy'' for his most recent model ``Home-3B-v3'' while we achieved an accuracy of 80.49\% with the model we selected as having the best overall performance. While our model seems to perform significantly worse on this accuracy our model is proabably able to answer more complex questions and intentions of users. Another point is that we can not really compare the quality of answers since no metrics are stated on this for the ``Home-3B-v3''. Also the purpose of this model is limited to achieve perfect accuracy in controlling devices while our purposes are much more diversified. 
+
+-It is interesting that out of all models we selected only llama3 was able to understand the logic behind our approach but other models were not, especially when we take in cosinderation that we even tested much bigger models. It could be that llama3 is more deeply trained on \gls{json} data
+
+-The problem with the language not matching the language of a users message also occured when trying around with other models than llama3. So it is either a typical problem in the parameter sizes of models we used or because the provided device list is in english.
+ 
+----------------------------------------------------------------
 
 \subsection{Interpretation of Qualitative Findings}
 The qualitative data from our study provides valuable insights into users' experiences with the smart home chatbot and their expectations for such a system.
@@ -480,8 +631,11 @@ These enhancements could significantly improve user satisfaction and the overall
 \section{Threats to Validity}
 % all participants had either interest in the product by working at Bosch Smart Home or be known by the researchers. Therefore positive resonance may be biased.
 % mistakes in the evaluation datasets could occur since it was quite complex to build. - Lead to both: artificially better or worse results
-%  classification through the work below?
-... Discuss what threatens validity of your result. In case you could counteract them explain how. For experimentation in software engineering there is already a classification of this threats and a check-list \cite{DBLP:journals/ese/RunesonH09}.   
+%  classification through the work here? ... Discuss what threatens validity of your result. In case you could counteract them explain how. For experimentation in software engineering there is already a classification of this threats and a check-list \cite{DBLP:journals/ese/RunesonH09}.
+% A very case that however can influence the results is the following: The model generates multiple jsons (which was not supported by our prototype). Than our evaluation script puts an error as generated json even though the generated jsons by the model were actually all including a ``none action'' and would therfore do nothing which is correct. Also the similarity is quite good but in the end this would be classified as negative case. "Generated: I can't find a thermostat device installed. So I can't change the temperature. Expected: "I can't find any device to control the temperature.,	Generated JSON: {"error": "response contains multiple JSONs which is invalid"},	Expected Json: null	 Similarity: 0.7633,	is_json_correct: FALSCH
+
+
+
 %LaTeX-Hinweise stehen in \cref{chap:latexhints}.
 
 %noch etwas Fülltext
