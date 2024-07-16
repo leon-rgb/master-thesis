@@ -398,7 +398,15 @@ We recruited a diverse group of 10 participants for our study, comprising three 
 This diverse group was chosen to represent a range of potential users, from those familiar with smart home technology to novices, ensuring a comprehensive evaluation of the chatbot's accessibility and usefulness.
 
 \subsection{Apparatus}
-The experimental setup consisted of three smart home devices: a smart plug named "TV" and a thermostat, both located in the sleeping room, and a door/window contact in the living room. The language model ran on a PC with specifications described in Section [reference to hardware specs]. Participants interacted with the Bosch smart home app either through a PC emulating Android or a Samsung Galaxy S21 Smartphone. To ensure consistency, all participants used the same setup in the same room.
+The experimental setup consisted of three smart home devices: a smart plug named ``TV'' and a thermostat, both located in the sleeping room, and a door/window contact in the living room. The language model ran on a PC with specifications described in \cref{subsec:hardware}. Participants interacted with the Bosch smart home app either through a PC emulating Android or a Samsung Galaxy S21 Smartphone. To ensure consistency, all participants used the same setup in the same room.
+How the devices look like in the Bosch Smart Home app can be seen in \cref{fig:devicesstudy}
+\begin{figure}[h]
+    \centering
+    \captionsetup{justification=centering}
+    \includegraphics[width=0.4\textwidth]{graphics/devices.jpeg}
+    \caption{Devices for the User Study Shown in the App}
+    \label{fig:devicesstudy}
+\end{figure}
 
 \subsection{Procedure}
 Participants were asked to complete six tasks using the chatbot interface: inquiring about the chatbot's purpose, determining the state and energy consumption of the TV, checking temperature settings in the bedroom, requesting a summary of available devices, changing the bedroom temperature, and switching the TV's state. To mitigate learning effects, the order of these tasks was randomized for each participant.
@@ -537,18 +545,105 @@ In conclusion, our analysis reveals that while attempts to improve specific func
 
 
 \subsection{Quantitative User Study Results}
-% hypothesises: 1. controlling devices tasks generally take longer than tasks were no action needs to be triggered, 2. persons with technical background need less time for the tasks, 3. persons without technical background see more potential in the chatbot 4. Older persons are more concerned about the chatbot 5. The chatbot improves explainabiltiy of the app 6. The chatbot improves usability of the app
-%
-%
 In this section we want to state our results for the quanitative part of our user study. For this we present the following hypothesises:
 \begin{itemize}
     \item[\(H_1\)] The chatbot improves explainability of the app.
     \item[\(H_2\)] The chatbot improves usability of the app.
     \item[\(H_3\)] Persons would rather use the chatbot than traditional ways of controlling their smart home.
     \item[\(H_4\)] Controlling device tasks generally take longer than tasks where no action needs to be triggered.
-    \item[\(H_5\)] The chatbot's ability to handle complex queries involving multiple devices is perceived as more valuable than its performance on simple, single-device tasks.
 \end{itemize}
 
+We want to start with some descriptive statistics about the task completion times during the user study and the questionnaire conducted.
+\cref{tab:descrTime} shows the descriptive statistics for task completion time of each task. Task completion time refers to the amount of time it took users to complete each task using the chatbot. As can be seen from the table, Task 3 (Find temperature or set temperature) had the longest mean completion time (34.0 seconds), with a large standard deviation (23.28 seconds),  indicating a high variability in completion time. Task 1 (Ask what the chatbot is for) had the shortest mean completion time (16.7 seconds).
+
+\cref{tab:descrQ} shows the descriptive statistics for the Likert scale questionnaire. The questionnaire asked users to rate their agreement with six statements on a scale of 1 (strongly disagree) to 5 (strongly agree). The table shows that users were generally neutral on the ease of accomplishing the tasks (Q1: mean = 4.10), finding the chatbot (Q2: mean = 4.40), and understanding the smart home behavior (Q5: mean = 3.90). Users agreed that the chatbot is easy to use (Q3: mean = 4.20) and that the chatbot responses were clear (Q4: mean = 4.20). The strongest agreement was with the statement that they would use the chatbot if it was added to the official app (Q6: mean = 3.00)
+
+\begin{table}[h!]
+    \centering
+\begin{tabular}{lrrrrr}
+    \toprule
+    Task & mean & median & mode & std\_dev & range \\
+    \midrule
+    T1-time & 16.7 & 14.5 & 12 & 6.09 & 20 \\
+    T2-time & 22.9 & 21.5 & 10 & 9.41 & 28 \\
+    T3-time & 34.0 & 26.5 & 11 & 23.28 & 81 \\
+    T4-time & 26.8 & 25.0& 25 & 11.15 & 37 \\
+    T5-time & 45.9 & 35.0 & 29 & 28.47 & 79 \\
+    T6-time & 28.5 & 30.0 & 7 & 15.1 & 45 \\
+    \bottomrule
+\end{tabular}
+\caption{Descriptive Statistics of the Task Completion Time of each Task}
+\label{tab:descrTime}
+\end{table}
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{lrrrr}
+        \toprule
+        Question & mean & median & mode & std\_dev \\
+        \midrule
+        Q1 & 4.10 & 4.00 & 4 & 0.74 \\
+        Q2 & 4.40 & 4.50 & 5 & 0.70 \\
+        Q3 & 3.70 & 4.00 & 4 & 0.95 \\
+        Q4 & 4.20 & 4.00 & 4 & 0.79 \\
+        Q5 & 3.90 & 4.00 & 4 & 0.74 \\
+        Q6 & 3.00 & 3.00 & 3 & 0.94 \\
+        \bottomrule
+        \end{tabular}   
+\caption{Descriptive Statistics of the Likert Scale Questionnaire}
+\label{tab:descrQ}
+\end{table}
+
+\cref{fig:task-attempts} shows the number of attempts users needed to complete each task. The x-axis represents the task (T1-T6), and the y-axis represents the number of attempts. As can be seen from the figure, users needed the fewest attempts (an average of 1.1 and 1.2 attempts respectively) to complete Task 1 (Ask the chatbot what it is for) and Task 2 (Find out TV state and consumption). Tasks 6 (Switch TV state) and 5 (Change bedroom temperature) required the most attempts, with an average of 2.2 attempts.
+Only T3, T5 and T6 needed a third attempt with 7 third attempsts in total which equals $7.\bar{7}\%$ of the total attempts taken of all participants. In total 90 attempts were taken for 60 tasks (1.5 per participant and task). 
+
+\cref{fig:task-success} shows the number of participants that were successful for each task. The x-axis represents the task (T1-T6), and the y-axis represents the number of participants. As can be seen from the figure, all participants were successful in completing Tasks 1, 2, and 4. Tasks 5 and 6 had the lowest success rates, with only 8 participants being successful. Overall 5 out of 60 tasks were not successfully finnished which is a failure rate of $8.\bar{3}\%$ and a success rate of $91.\bar{6}\%$ respectively.
+
+\begin{figure}[h]
+    \centering
+    \captionsetup{justification=centering}
+    \includegraphics[width=0.9\textwidth]{graphics/task-attempts.png}
+    \caption{Number of Attempts User needed for each Task}
+    \label{fig:task-attempts}
+\end{figure}
+\begin{figure}[h]
+    \centering
+    \captionsetup{justification=centering}
+    \includegraphics[width=0.9\textwidth]{graphics/task-success.png}
+    \caption{Number of Participants that were Successful for each Task}
+    \label{fig:task-success}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \captionsetup{justification=centering}
+    \includegraphics[width=0.85\textwidth]{graphics/time-boxplots.png}
+    \caption{Boxplots showing the Distribution of Time needed per Task}
+    \label{fig:task-boxplots}
+\end{figure}
+
+\cref{fig:task-boxplots} is a box plot showing the distribution of time needed per task. The x-axis represents the task (T1-T6), and the y-axis represents the time in seconds. The box shows the 25th and 75th percentiles of the data, with the line in the middle representing the median. The whiskers extend to the most extreme data points that are not considered outliers, and outliers are plotted as individual points. As can be seen from the figure, there is a high variability in completion time for all tasks. Task 5 (Find temperature or set temperature) has the longest median completion time (around 35 seconds), with a large \gls{iqr}  indicating a wide spread of data in the middle quartiles even though it is less than for other tasks. Task 1 (Ask what the chatbot is for) has the shortest median completion time (around 14.5 seconds) and the smallest \gls{iqr}, indicating that most users completed this task quickly and with similar times.
+The boxplot also reveals a possible positive skew in the completion time for Task 3 but especially for Task 6, with a longer whisker extending to the right, suggesting a few users might have encountered difficulties that significantly increased their time.
+For task 3 the outlier at approximately 90 seconds further supports this theory.
+Compared to task 6 and 3 the range of the whiskers of task 5 is low. Only compared to task 6 also the \gls{iqr} is low, suggesting higher confidence that the task takes longer than other task in general.
+
+To evaluate our hypotheses, we conducted a series of Wilcoxon signed-rank tests, given our small sample size (n = 10). This non-parametric test was chosen over t-tests due to the limited number of participants, which makes assumptions about normal distribution untenable.
+\subsubsection{Explainability and Usability (\(H_1\) and \(H_2\))}
+To assess whether the chatbot improves explainability and usability of the app (\(H_1\) and \(H_2\)), we analyzed responses to questions Q3, Q4, and Q5.
+For Q3 (The chatbot enhances the usability of the app), the Wilcoxon test yielded a test statistic of 3.0 and a p-value of 0.0532. While this result is not significant at the conventional $\alpha = 0.05$ level, it is very close, suggesting a trend towards improved usability.
+
+For Q4 (The chatbot's responses were clear and helpful), the test statistic was 0.0000 with a p-value of 0.0097. This result is statistically significant, indicating strong agreement that the chatbot's responses were clear and helpful.
+
+Q5 (The smart home's behavior after the chatbot's responses was understandable) also showed a significant result with a test statistic of 0.0000 and a p-value of 0.0139. This supports the hypothesis that the chatbot improves explainability of the app's actions.
+These results provide strong support for \(H_1\) and moderate to strong support for \(H_2\).
+\subsubsection{Preference for Chatbot (\(H_3\))}
+To evaluate whether users would prefer the chatbot over traditional control methods (\(H_3\)), we analyzed responses to Q6 ("I would use the chatbot if it was added to the official app"). The Wilcoxon test resulted in a test statistic of 7.5000 and a p-value of 1.0000. This non-significant result suggests that there is no strong preference for the chatbot over traditional methods among our participants. Thus, we do not find support for \(H_3\).
+\subsubsection{Task Duration Comparison (\(H_4\))}
+To test whether controlling device tasks take longer than information retrieval tasks (\(H_4\)), we compared the completion times of tasks T5 and T6 (device control) against T1-T4 (information retrieval).
+For T5 vs T1-T4, the Wilcoxon signed-rank test yielded a test statistic of 1.0000 and a p-value of 0.0039. For T6 vs T1-T4, the test statistic was 0.0000 with a p-value of 0.0020. Both results are highly significant, indicating that device control tasks indeed took longer than information retrieval tasks. This provides strong support for \(H_4\).
+\subsubsection{Summary of Hypothesis Testing}
+Our analysis provides strong evidence for the chatbot's ability to improve explainability (\(H_1\)) and moderate to strong evidence for improved usability (\(H_2\)). We found no support for user preference of the chatbot over traditional control methods (\(H_3\)). Lastly, we found strong evidence that device control tasks take longer than information retrieval tasks (\(H_4\)).
+These findings, combined with the descriptive statistics presented earlier, provide a comprehensive view of the chatbot's performance and user perceptions. While the chatbot shows promise in improving usability and explainability, there is room for improvement in convincing users to adopt it as a preferred method of smart home control. It may not yet be perceived as a preferable alternative to traditional control methods. The longer duration for device control tasks might be a factor in this perception and could be an area for future optimization.
 
 
 \subsection{Qualitative User Study Results}
@@ -562,44 +657,50 @@ Many participants found the chatbot particularly useful for complex tasks involv
 \subsubsection{Interest in Advanced Features and Optimization}
 Participants showed significant interest in advanced features, particularly those related to energy optimization and understanding system behavior. One participant expressed interest in "automatic suggestions/tips for optimizing behavior (usage patterns, power consumption...)." Another was "interested in understanding the logic behind my smart home's operations."
 
-\subsection{User Experience Demonstration}
-% include screenshots of example conversations 
 
 \section{Discussion}
-% not always response in correct language --> could be solved in telling the model in 
-% which language to answer through the system language of the phone/app
 
-% This work shows how a chatbot application for smart homes can be built. It could be transferred into a framwework where it would only be necessary to specify the domain to a self hosted language model or an commercial API with API key and the mapping functionality for parsing and mapping the output \gls{json} of the language model to the actions of the smart home system
+\subsection{Discussion of Model Performance}
+The evaluation of our language models reveals several interesting insights:
+\subsubsection{Trade-offs in Model Optimization}
+The results demonstrate a clear trade-off between JSON accuracy and semantic similarity in our model iterations. While the second-generation models (shllama3-2 and shllama3instruct-2) showed improved JSON accuracy, they suffered a significant decrease in semantic similarity. This suggests that our attempts to optimize for specific functionalities may have inadvertently compromised the models' overall language understanding and generation capabilities.
+\subsubsection{Balancing Precision and Versatility}
+The \texttt{shllama3instr} version emerged as the best-performing model, despite statistical tests showing no significant differences compared to the \texttt{shllama3} version. Its superior semantic similarity, particularly for scores above 0.65, and the highest F1 score (over 70\%) indicate a good balance between precision and versatility. This suggests that fine-tuning the model could lead to even better performance for the implemented intents.
+\subsubsection{Error Patterns and Implications}
+In the context of a smart home chatbot, generating a JSON that would trigger an unexpected action is more critical than failing to generate a JSON when one is expected. The \texttt{shllama3instr-2} model performed best in this regard, generating no unexpected JSONs. However, its poor semantic similarity makes it unsuitable overall. This highlights the challenge of optimizing for multiple performance criteria simultaneously.
+\subsubsection{Impact of Training Approach}
+The decline in performance of the second-generation models might be attributed to overfitting on the examples provided in the revised modelfiles. This suggests that the models may have learned to repeat specific examples rather than understanding the structure of generic user requests. Future iterations should focus on improving the models' ability to generalize from examples.
+\subsubsection{Comparison with Existing Work}
+Our best-performing model achieved an accuracy of 80.49\% for JSON function calling, which is lower than the 97.11\% reported by \citet{acon96_home_llm} for their ``Home-3B-v3'' model. However, it's important to note that our model aims to handle more complex questions and diverse user intentions, making a direct comparison challenging. The lack of comparable metrics for answer quality in the cited work further complicates the comparison.
+\subsubsection{Language Model Selection}
+Interestingly, only the llama3 model family was able to understand the logic behind our approach, despite testing larger models. This could indicate that llama3 has been more extensively trained on JSON-related tasks, making it particularly suitable for our use case.
+\subsubsection{Language Consistency Issues}
+The inconsistent language use in responses (not always matching the user's input language) was observed across multiple models, not just llama3. This could be due to the limited parameter sizes of the models we used or the English-language device list provided. Future work could explore using the system language of the phone/app for responses or fine-tuning the model with multilingual example conversations.
+\subsection{Framework Potential}
+This work demonstrates the potential for creating a generalizable framework for smart home chatbots. Such a framework could allow developers to specify their domain to a self-hosted language model or a commercial API, with mapping functionality to parse and map the output JSON to specific smart home system actions. This approach could significantly streamline the development of chatbots for various smart home ecosystems
 
-... Based on the results argue about acceptance or rejection of your research hypothesis   .. 
-Interpretation of Results
-Comparison with Previous Studies
-Limitations of the Study
+\subsection{Discussion of Quantitative User Study Findings}
+The quantitative results from our user study provide valuable insights into the performance and user perception of the smart home chatbot.
+\subsubsection{Task Completion and Efficiency}
+The overall task success rate of 91.67\% indicates that the chatbot was generally effective in helping users complete their assigned tasks. However, the variation in task completion times and number of attempts across different tasks reveals areas for improvement:
 
-----------------------------------------------------------------
-Discussion:
--The \texttt{shllama3instr} version is by far the best customization of a model we were able to create even though both statistical tests we conducted showed no significant differences to the \texttt{shllama3} vresion. The semantic similarity is overall much better than every other model version when we look at especially at the similarity values percentage that was greater than 0.65. It also has the highest F1 score which is with over 70\% a good starting point. With fine tuning the model will probably perform even better for the intents we were able to implement. 
--Mistakes will always happen, but for out chatbot it is more critical to generate a \gls{json} that would trigger an action when none is expected than the other way around. \texttt{shllama3-2} was the words model according to this rule and \texttt{shllama3instr-2} the best with no unexpectedly generated \gls{json}. However, the semantic similarity is much worse than in every other model and really makes the model unsuitable.
+Information Retrieval vs. Device Control: Tasks involving device control (T5 and T6) required more attempts and had lower success rates compared to information retrieval tasks (T1-T4). This aligns with our hypothesis H4 and suggests that the chatbot's ability to execute commands needs refinement.
+Complex Tasks: Task 3 (finding or setting temperature) had the longest mean completion time (34 seconds) and highest variability, indicating that more complex queries pose a challenge for users and/or the chatbot. This could be addressed by improving the chatbot's natural language understanding for multi-step commands.
+Consistency: The wide range in completion times for most tasks suggests inconsistent performance or user experience. Efforts should be made to ensure more uniform response quality and interaction flow.
 
--For \texttt{shllama3instr-2} the \gls{json} key accuracy is so bad because even though it is able to generate the correct \gls{json} in more complex scenarios sometimes hallucinates a \gls{json} were no \gls{json} is needed which directly influences the key accuracy.
+\subsubsection{User Perceptions}
+The Likert scale questionnaire results provide insights into user perceptions:
 
--The second generation models probably got worse because the models got stuck with too much examples shown in the revised modelfiles and only tries to repeat the examples instead of understanding the structure of generic user requests, it just doesn't understand the provided device list. Maybe the device data should be preprocessed to a more readable format like (Device List:
-%1. Type: POWER\_METER\_SWITCH, Name: Zwischenstecker, Room: Schlafzimmer
-   - Power consumption: 0, Energy consumption: 0
-   - Switch state: OFF
-%2. Type: SHUTTER\_CONTACT, Name: Fenster Esszimmer, Room: Wohnzimmer
-   - Contact state: CLOSED
-...) since Each device has multiple attributes and nested state information, which adds to the complexity. Other approaches could be: Explicit instructions: Include clear instructions on how to use the device list. For example:
-"The following is a list of smart home devices. Use this information to answer user queries about device states and controls."
-Separate message: Instead of including the device list in the user message, you could create a separate system message containing this information.
+Usability and Clarity: With mean scores of 4.20 for ease of use (Q3) and clarity of responses (Q4), users generally found the chatbot intuitive and understandable. This supports our hypotheses H1 and H2 regarding improved explainability and usability.
+Integration Potential: The neutral mean score (3.00) for willingness to use the chatbot if added to the official app (Q6) suggests that while users see value in the chatbot, they're not yet fully convinced of its superiority over traditional interfaces. This aligns with our finding that H3 was not supported.
+Understanding Smart Home Behavior: The relatively high mean score (3.90) for understanding smart home behavior after chatbot responses (Q5) indicates that the chatbot effectively improves system explainability, further supporting H1.
 
--compared to the discussed work of \citet{acon96_home_llm} who claims a ``97.11\% score for JSON function calling accuracy'' for his most recent model ``Home-3B-v3'' while we achieved an accuracy of 80.49\% with the model we selected as having the best overall performance. While our model seems to perform significantly worse on this accuracy our model is proabably able to answer more complex questions and intentions of users. Another point is that we can not really compare the quality of answers since no metrics are stated on this for the ``Home-3B-v3''. Also the purpose of this model is limited to achieve perfect accuracy in controlling devices while our purposes are much more diversified. 
+\subsubsection{Statistical Significance}
+The Wilcoxon signed-rank tests provided statistical support for several of our hypotheses:
 
--It is interesting that out of all models we selected only llama3 was able to understand the logic behind our approach but other models were not, especially when we take in cosinderation that we even tested much bigger models. It could be that llama3 is more deeply trained on \gls{json} data
-
--The problem with the language not matching the language of a users message also occured when trying around with other models than llama3. So it is either a typical problem in the parameter sizes of models we used or because the provided device list is in english.
- 
-----------------------------------------------------------------
+Strong evidence was found for the chatbot's ability to improve explainability (H1) and moderate to strong evidence for improved usability (H2). This suggests that the chatbot is effective in making the smart home system more understandable and user-friendly.
+The lack of support for H3 (preference for chatbot over traditional methods) indicates that while the chatbot improves certain aspects of the user experience, it has not yet reached a point where users prefer it over conventional interfaces. This presents an opportunity for further refinement and feature development.
+The strong evidence supporting H4 (device control tasks taking longer than information retrieval) highlights a key area for improvement in the chatbot's functionality.
 
 \subsection{Interpretation of Qualitative Findings}
 The qualitative data from our study provides valuable insights into users' experiences with the smart home chatbot and their expectations for such a system.
@@ -612,31 +713,56 @@ The requests for more visual elements and voice input options indicate that user
 \subsubsection{Focusing on High-Value Use Cases}
 The strong interest in using the chatbot for complex tasks, device management, and system optimization suggests these are high-value use cases that should be prioritized in future development. The chatbot's ability to handle scenarios involving multiple devices and provide quick system overviews appears to be a significant advantage over traditional interfaces.
 \subsubsection{Addressing Privacy and Scope Concerns}
-While many participants were enthusiastic about advanced features, some expressed concerns about privacy and the appropriate scope of the chatbot's functionality. This highlights the need for transparent data handling practices and clear communication about the chatbot's capabilities and limitations.
+While many participants were enthusiastic about advanced features, some expressed concerns about privacy and the appropriate scope of the chatbot's functionality, especially participants from the Bosch company saw this from a  potential customer point of view. This highlights the need for transparent data handling practices and clear communication about the chatbot's capabilities and limitations.
+
+\subsection{User Experience Demonstration}
+% include screenshots of example conversations that were good/bad
+
+\subsection{Summary}
+Our evaluation of the smart home chatbot reveals both promising results and areas for improvement. The \texttt{shllama3instr} model showed the best overall performance, balancing semantic understanding with accurate JSON generation. However, the challenges in optimizing for multiple criteria simultaneously highlight the complexity of developing effective language models for specific applications.
+The user study results indicate that while the chatbot improves explainability and usability of the smart home app, there's still work to be done in making it the preferred method of interaction. The qualitative feedback provides valuable insights into user preferences and expectations, suggesting directions for future enhancements.
+Key areas for future development include improving natural language processing capabilities, especially for complex queries and contextual understanding, developing tiered interfaces for users with different levels of expertise, and focusing on high-value use cases such as managing multiple devices and creating complex automations.
+The potential for creating a generalizable framework for smart home chatbots is an exciting prospect that could significantly impact the field of smart home technology. As we continue to refine our approach, addressing the challenges identified in this study will be crucial in developing a more effective, user-friendly, and versatile smart home chatbot system.
+
 \subsection{Implications for Future Development}
-Based on these findings, future development of the smart home chatbot should focus on:
+Based on these findings, future development of a production ready smart home chatbot should focus on:
 \begin{enumerate}
-    \item Improving natural language processing to handle more complex and contextual queries.
+    \item Enhancing technical accuracy and performance:
+    \begin{enumerate}
+    \item Fine-tuning techniques to improve JSON accuracy without compromising semantic similarity.
+    \item Exploring larger parameter models or fine-tuning approaches.
+    \end{enumerate}
+    \item Developing more robust generalization capabilities to handle a wider range of user requests and improve natural language processing for complex and contextual queries.
+    \item Improving multilingual support and language consistency in responses.
+    \item Implementing a more readable format for device data presentation to the model instead of a complex, nested \gls{json}
     \item Developing a tiered interface that caters to both novice and advanced users.
-    \item Incorporating more visual elements and possibly voice interaction capabilities.
-    \item Enhancing capabilities for managing multiple devices and creating complex automations.
+    \item Incorporating more visual elements and possibly voice interaction capabilities (may not be necessary since most modern smartphones have a build-in voice assistant for dictating text)
+    \item Enhancing capabilities for managing multiple devices and creating automations.
     \item Implementing features for energy optimization and system behavior insights.
     \item Ensuring robust privacy protections and clear communication about data usage.
-\end{enumerate}
-
+    \end{enumerate}
 
 These enhancements could significantly improve user satisfaction and the overall utility of the chatbot in smart home environments.
 
 
 \section{Threats to Validity}
-% all participants had either interest in the product by working at Bosch Smart Home or be known by the researchers. Therefore positive resonance may be biased.
-% mistakes in the evaluation datasets could occur since it was quite complex to build. - Lead to both: artificially better or worse results
-%  classification through the work here? ... Discuss what threatens validity of your result. In case you could counteract them explain how. For experimentation in software engineering there is already a classification of this threats and a check-list \cite{DBLP:journals/ese/RunesonH09}.
-% A very case that however can influence the results is the following: The model generates multiple jsons (which was not supported by our prototype). Than our evaluation script puts an error as generated json even though the generated jsons by the model were actually all including a ``none action'' and would therfore do nothing which is correct. Also the similarity is quite good but in the end this would be classified as negative case. "Generated: I can't find a thermostat device installed. So I can't change the temperature. Expected: "I can't find any device to control the temperature.,	Generated JSON: {"error": "response contains multiple JSONs which is invalid"},	Expected Json: null	 Similarity: 0.7633,	is_json_correct: FALSCH
+In this section, we discuss potential threats to the validity of our study results, following the classification proposed by Runeson and Höst \cite{DBLP:journals/ese/RunesonH09}. We consider four main types of threats: construct validity, internal validity, external validity, and reliability.
 
+\subsection{Construct Validity}
 
+Construct validity concerns the extent to which our study measures what we intend to measure. One potential threat is related to the complexity of building our evaluation dataset, which could have introduced errors and led to artificially better or worse results, potentially affecting the accuracy of our model performance metrics. To mitigate this risk, we conducted multiple reviews of the dataset and cross-validated entries. Another issue is the limitation of our JSON evaluation script, which classified responses with multiple JSONs as errors, even when all generated JSONs included a "none" action. This could have resulted in an underestimation of model performance in cases where the semantic similarity was high, but the JSON was marked incorrect. Future evaluations should consider more nuanced JSON parsing and evaluation methods.
 
-%LaTeX-Hinweise stehen in \cref{chap:latexhints}.
+\subsection{Internal Validity}
+
+Internal validity relates to the extent to which we can ensure that our observed effects are due to our manipulated variables and not other factors. One threat is participant bias, as all study participants either worked at Bosch Smart Home or were known to the researchers. This connection could have led to positively biased responses due to familiarity with the product or a desire to please the researchers. To counteract this, we emphasized the importance of honest feedback and anonymized response analysis. Another potential threat is the learning effect, despite randomizing the order of tasks, participants could have become more familiar with the chatbot over time, influencing task completion times and success rates for later tasks.
+
+\subsection{External Validity}
+
+External validity concerns the generalizability of our results to other contexts. One threat is the limited participant diversity; our sample size was relatively small (n=10) and not necessarily representative of the broader population of smart home users, which limits the generalizability of our user study results to a wider user base. Additionally, the study was conducted with a specific set of smart home devices and scenarios, meaning the performance and user experience might vary with different device configurations or in real-world settings with more complex setups.
+
+\subsection{Reliability}
+
+Reliability refers to the extent to which the data and analysis are dependent on the specific researchers. One threat is the subjectivity in qualitative analysis, as the thematic analysis of interview responses could be influenced by researcher bias. To mitigate this, multiple coders and the calculation of inter-rater reliability could have been employed. Furthermore, while we used established metrics for evaluating model performance, the choice and implementation of these metrics could affect the results. Replication studies with different evaluation approaches could help validate our findings.
 
 %noch etwas Fülltext
 %\blinddocument
