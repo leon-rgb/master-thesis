@@ -662,10 +662,41 @@ Participants showed significant interest in advanced features, particularly thos
 \subsection{Example Chatbot Interactions}
 % include screenshots of example conversations that were good/bad
 As a last part of this section about evaluation results we want to present some example conversations that occured with using the \texttt{shllama3instruct} model when testing the capabilities of it outside a study setting.
+Starting with unpleasant conversation. In \cref{fig:differentlanguages} we can see a chat where the chatbot communicates that the socker ``TV'' is off but it is actually on. Sometimes the language model just hallucinates the device data even though the up-to-date device list ist provided. After communicating this it sends the request to turn it on. But this example also shows another aspect: The chatbot understand multiple language, we for example used the German and French word for TV and it understand it even though it did not answer back in French.
+The underlying language model also understands abbreviations, misspellings and ``slang'', e.g., it understands the word ``telly''.
 
+In the other picture of \cref{fig:screens} we can see that the chatbot can give great summary of devices or even analyze the devices of a specific room. It is also capable of understanding many different formulations and approaches to intents. One example shows that a user want to increase the temperature by a certain value and the chatbot is able to grasp this, calculate the right value and send the request accordingly (even if this is not always the case).
 
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}{.4\textwidth}
+        \includegraphics[width=\textwidth]{graphics/analysis-on-context.jpg}
+        \caption{Analysis based on Context}
+        \label{fig:analysis-on-context}
+    \end{subfigure} 
+    \hfill
+    \begin{subfigure}{.44\textwidth}
+        \includegraphics[width=\textwidth]{graphics/devicesummary.jpg}
+        \caption{Device Summary}
+        \label{fig:devicesummary}
+    \end{subfigure}
+    \vfill
+    \begin{subfigure}{.48\textwidth}
+        \includegraphics[width=\textwidth]{graphics/variousways.jpg}
+        \caption{Various Ways to Adress Intens}
+        \label{fig:variousways}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{.4\textwidth}
+        \includegraphics[width=\textwidth]{graphics/differentlanguages.jpg}
+        \caption{Different Languages}
+        \label{fig:differentlanguages}
+    \end{subfigure}   
+    \caption{Four Example Conversations with the Chatbot Showing its Capabilities}
+    \label{fig:screens}
+\end{figure}
 
-
+\newpage
 
 \section{Discussion}
 This section interprets the results of our evaluation, examining the implications of our findings for the development and implementation of smart home chatbots. We analyze the trade-offs observed in model performance, discuss the insights gained from user feedback, and consider the potential for creating a generalizable chatbot framework. 
