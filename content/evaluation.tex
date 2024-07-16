@@ -23,7 +23,7 @@
 \chapter{Evaluation}
 \label{chap:evaluation}
 
-In this chapter, we present the evaluation methodology and results for the smart home chatbot. The evaluation focuses on two key aspects: the semantic similarity of the responses and the accuracy of the generated JSON commands. Additionally, we discuss the initial approach using classification metrics, the challenges encountered, and the refined approach to address these challenges.
+This chapter presents a comprehensive evaluation of our smart home chatbot prototype. We begin by outlining our study design, which employs the \gls{gqm} paradigm to assess the chatbot. The evaluation process combines quantitative analysis of model performance with a user study to gather both objective metrics and subjective feedback. We then detail our evaluation methodology, including the selection of language models, creation of an evaluation dataset, and the metrics used to assess performance. The results section presents our findings from both the model evaluation and user study. Finally, we discuss these results, interpreting their implications for the effectiveness of our chatbot and identifying areas for future improvement. This multi-faceted approach provides a thorough understanding of our prototype's strengths and limitations.
 
 \section{Study Design}
 In this section we want to provide the base study design we came up.
@@ -104,7 +104,7 @@ Based on this and the detailed evaluation setup the results can be discussed and
 
 \section{Model Performance}
 \label{sec:modelperform}
-
+This section details our approach to evaluating the performance of language models for our smart home chatbot. We describe the hardware setup and model selection process, explain the construction of our evaluation dataset, and outline the metrics used to assess both semantic similarity and JSON accuracy. This evaluation framework allows us to compare different model iterations and identify the most suitable configuration for our chatbot prototype.
 
 \subsection{Hardware and Language Models used}
 \label{subsec:hardware-llm}
@@ -419,6 +419,7 @@ The data analysis plan incorporated both quantitative and qualitative approaches
 
 
 \section{Results}
+In this section, we present the findings from our evaluation of the smart home chatbot. We begin with the quantitative results of our language model performance tests, comparing different model versions across various metrics. We then detail the outcomes of our user study, including task completion rates, user satisfaction scores, and qualitative feedback from participants. These results provide a holistic view of the chatbot's effectiveness and user perception.
 
 \subsection{Language Model Performance Results}
 
@@ -658,7 +659,16 @@ Many participants found the chatbot particularly useful for complex tasks involv
 Participants showed significant interest in advanced features, particularly those related to energy optimization and understanding system behavior. One participant expressed interest in "automatic suggestions/tips for optimizing behavior (usage patterns, power consumption...)." Another was "interested in understanding the logic behind my smart home's operations."
 
 
+\subsection{Example Chatbot Interactions}
+% include screenshots of example conversations that were good/bad
+As a last part of this section about evaluation results we want to present some example conversations that occured with using the \texttt{shllama3instruct} model when testing the capabilities of it outside a study setting.
+
+
+
+
+
 \section{Discussion}
+This section interprets the results of our evaluation, examining the implications of our findings for the development and implementation of smart home chatbots. We analyze the trade-offs observed in model performance, discuss the insights gained from user feedback, and consider the potential for creating a generalizable chatbot framework. 
 
 \subsection{Discussion of Model Performance}
 The evaluation of our language models reveals several interesting insights:
@@ -666,18 +676,26 @@ The evaluation of our language models reveals several interesting insights:
 The results demonstrate a clear trade-off between JSON accuracy and semantic similarity in our model iterations. While the second-generation models (shllama3-2 and shllama3instruct-2) showed improved JSON accuracy, they suffered a significant decrease in semantic similarity. This suggests that our attempts to optimize for specific functionalities may have inadvertently compromised the models' overall language understanding and generation capabilities.
 \subsubsection{Balancing Precision and Versatility}
 The \texttt{shllama3instr} version emerged as the best-performing model, despite statistical tests showing no significant differences compared to the \texttt{shllama3} version. Its superior semantic similarity, particularly for scores above 0.65, and the highest F1 score (over 70\%) indicate a good balance between precision and versatility. This suggests that fine-tuning the model could lead to even better performance for the implemented intents.
-\subsubsection{Error Patterns and Implications}
-In the context of a smart home chatbot, generating a JSON that would trigger an unexpected action is more critical than failing to generate a JSON when one is expected. The \texttt{shllama3instr-2} model performed best in this regard, generating no unexpected JSONs. However, its poor semantic similarity makes it unsuitable overall. This highlights the challenge of optimizing for multiple performance criteria simultaneously.
+
+
 \subsubsection{Impact of Training Approach}
 The decline in performance of the second-generation models might be attributed to overfitting on the examples provided in the revised modelfiles. This suggests that the models may have learned to repeat specific examples rather than understanding the structure of generic user requests. Future iterations should focus on improving the models' ability to generalize from examples.
 \subsubsection{Comparison with Existing Work}
 Our best-performing model achieved an accuracy of 80.49\% for JSON function calling, which is lower than the 97.11\% reported by \citet{acon96_home_llm} for their ``Home-3B-v3'' model. However, it's important to note that our model aims to handle more complex questions and diverse user intentions, making a direct comparison challenging. The lack of comparable metrics for answer quality in the cited work further complicates the comparison.
-\subsubsection{Language Model Selection}
+
+In general there are no absolute ``good'' values for metrics like semantic similarity \cite{muhammad2022_similarity} or the classification metrics \cite{yacouby-axman-2020-probabilistic,dasExplainableActivityRecognition2023} we adopted (Precision, Recall, F1) and have to be carefully evaluated for individual use cases.
+We think that the similarity threshold of 0.65 we used is well-founded and a F1 score (how we adopted it) of 0.7 is a good starting point, but a prouction ready code a F1 score of around 0.8 or even 0.9 should be aimed at.
+Speaking about classification metrics you typically decide whether Precision or Recall is more important for the use case. In the context of a smart home chatbot, generating a JSON that would trigger an unexpected action is more critical than failing to generate a \gls{json} when one is expected. Therefore, from the classical definition (not how we adopted it) \gls{fp} cases are worse for this use case.
+The \texttt{shllama3instr-2} model performed best in this regard, generating no unexpected \glspl{json}. 
+However, its poor semantic similarity makes it unsuitable overall. This highlights the challenge of optimizing for multiple performance criteria simultaneously.
+
+\subsubsection{Language Model Selection and Language Consistency Issues}
 Interestingly, only the llama3 model family was able to understand the logic behind our approach, despite testing larger models. This could indicate that llama3 has been more extensively trained on JSON-related tasks, making it particularly suitable for our use case.
-\subsubsection{Language Consistency Issues}
+
 The inconsistent language use in responses (not always matching the user's input language) was observed across multiple models, not just llama3. This could be due to the limited parameter sizes of the models we used or the English-language device list provided. Future work could explore using the system language of the phone/app for responses or fine-tuning the model with multilingual example conversations.
+
 \subsection{Framework Potential}
-This work demonstrates the potential for creating a generalizable framework for smart home chatbots. Such a framework could allow developers to specify their domain to a self-hosted language model or a commercial API, with mapping functionality to parse and map the output JSON to specific smart home system actions. This approach could significantly streamline the development of chatbots for various smart home ecosystems
+This work demonstrates the potential for creating a generalizable framework for smart home chatbots. Such a framework could allow developers to specify their domain to a self-hosted language model or a commercial API, with mapping functionality to parse and map the output JSON to specific smart home system actions. Essentially you could just use the modelfile of our work to get the model functionality we had and the Java code we developed, just input your models' host adress and create a mapper class that matches the chatbots output to your smart home functionality.
 
 \subsection{Discussion of Quantitative User Study Findings}
 The quantitative results from our user study provide valuable insights into the performance and user perception of the smart home chatbot.
@@ -714,9 +732,6 @@ The requests for more visual elements and voice input options indicate that user
 The strong interest in using the chatbot for complex tasks, device management, and system optimization suggests these are high-value use cases that should be prioritized in future development. The chatbot's ability to handle scenarios involving multiple devices and provide quick system overviews appears to be a significant advantage over traditional interfaces.
 \subsubsection{Addressing Privacy and Scope Concerns}
 While many participants were enthusiastic about advanced features, some expressed concerns about privacy and the appropriate scope of the chatbot's functionality, especially participants from the Bosch company saw this from a  potential customer point of view. This highlights the need for transparent data handling practices and clear communication about the chatbot's capabilities and limitations.
-
-\subsection{User Experience Demonstration}
-% include screenshots of example conversations that were good/bad
 
 \subsection{Summary}
 Our evaluation of the smart home chatbot reveals both promising results and areas for improvement. The \texttt{shllama3instr} model showed the best overall performance, balancing semantic understanding with accurate JSON generation. However, the challenges in optimizing for multiple criteria simultaneously highlight the complexity of developing effective language models for specific applications.
