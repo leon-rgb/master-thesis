@@ -97,16 +97,38 @@
 
 \section*{Abstract}
 %Your abstract should have the following strcuture. This means your asbtract should contain context, problem,... conclusion explicitly as given here. You just need to add your statement in front.
-\textit{Context.} Write one or two statements here on which software engineering area your thesis is about...\\
-\textit{Problem.} Write one or two statements here on your problem statements that you are tackling...\\
-\textit{Objective.} Write one or two statements here on your objective(s)...\\
-\textit{Method.} Write one or two statements here on what is your method to achieve the objective...\\
-\textit{Result.} Write one or two statements here on results...\\
-\textit{Conclusion.} Write one or two statements here on conclusion...
+This thesis explores the development and integration of a chatbot system for smart home environments, focusing on enhancing system explainability and user interaction within the Bosch Smart Home ecosystem. As smart home technologies grow increasingly complex, users face challenges in fully understanding and utilizing their capabilities. To address this, we propose a novel approach integrating large language models (LLMs) without extensive fine-tuning to support diverse intents, including device control and data analysis.
+
+The primary objectives of this research are threefold: first, to comprehensively identify the essential components for creating a functional smart home chatbot; second, to push the boundaries of chatbot capabilities by developing and testing a prototype within the Bosch Smart Home app, exploring the feasibility of answering complex questions and managing devices; and third, to enhance system explainability for users, developing features that offer transparent explanations for smart home actions and decisions.
+
+Our methodology involved an iterative development process, combining expert interviews, user surveys, and rigorous evaluation metrics. We implemented a client-server model using Android Studio and Ollama, demonstrating practical deployment potential. The evaluation employed a unique combination of semantic similarity and an metric for function calling accuracy to assess chatbot performance across different model iterations.
+
+Results show that our custom "shllama3instruct" model achieved the best balance between semantic understanding and precise function execution. User studies validated the chatbot's positive impact on system explainability and usability, while also highlighting challenges in user preference and efficiency for certain tasks.
+
+This research contributes an architecture blueprint for integrating LLMs into smart home systems and offers insights into potential standardized frameworks for smart home chatbots. It addresses key industry concerns while advancing academic understanding of complex question-answering in smart home contexts. The findings provide valuable direction for future developments in enhancing user experience and system transparency in smart home technologies, benefiting both technical professionals and business stakeholders in the rapidly evolving smart home sector.
 \cleardoublepage
 
 \section*{Kurzfassung}
-... Short summary of the thesis in German, it should follow the same structure as in English version including context, problem, objective, method, result and conclusion (but translate them in German) ...
+Diese Arbeit untersucht die Entwicklung und Integration eines Chatbot-Systems für Smart-Home-Umgebungen mit Fokus auf die Verbesserung der Systemerklärbarkeit und Benutzerinteraktion im Bosch Smart Home Ökosystem. Mit zunehmender Komplexität von Smart-Home-Technologien stehen Nutzer vor Herausforderungen, deren Fähigkeiten vollständig zu verstehen und zu nutzen. Um dies zu adressieren, schlagen wir einen neuartigen Ansatz vor, der large language models (LLMs) ohne umfangreiches Fine-Tuning integriert, um verschiedene Absichten, einschließlich Gerätesteuerung und Datenanalyse, zu unterstützen.
+
+Die Hauptziele dieser Forschung lassen sich in drei verschiedene einordnen: Erstens, die wesentlichen Komponenten für die Erstellung eines funktionsfähigen Smart-Home-Chatbots umfassend zu identifizieren; zweitens, die Grenzen der Chatbot-Fähigkeiten zu erweitern, indem ein Prototyp innerhalb der Bosch Smart Home App entwickelt und getestet wird, um die Realisierbarkeit der Beantwortung komplexer Fragen und der Geräteverwaltung zu untersuchen; und drittens, die Erklärbarkeit für Benutzer zu verbessern, indem Funktionen entwickelt werden, die transparente Erklärungen für Smart-Home-Aktionen und -Entscheidungen bieten.
+
+Unsere Methodik umfasste einen iterativen Entwicklungsprozess, der Experteninterviews, Benutzerumfragen und rigorose Bewertungsmetriken kombinierte. Wir implementierten ein Client-Server-Modell mit Android Studio und Ollama, das praktisches Einsatzpotenzial demonstriert. Für die Evaluation wurde eine Kombination aus semantischer Ähnlichkeit und einer Metrik für die Präzision von Funktionsaufrufen verwendet, um die Chatbot-Leistung zu bewerten.
+
+Die Ergebnisse zeigen, dass unser angepasstes "shllama3instruct"-Modell die beste Balance zwischen semantischem Verständnis und präziser Funktionsausführung erreichte. Benutzerstudien bestätigten den positiven Einfluss des Chatbots auf die Systemerklärbarkeit und Benutzerfreundlichkeit, während auch Herausforderungen in Bezug auf Benutzerpräferenzen und Effizienz bei bestimmten Aufgaben hervorgehoben wurden.
+
+Diese Forschung trägt eine Art Architektur-Bauplan für die Integration von LLMs in Smart-Home-Systeme bei und bietet Einblicke in potenzielle standardisierte Frameworks für Smart-Home-Chatbots. Sie adressiert wichtige Branchenbedenken und fördert gleichzeitig das akademische Verständnis komplexer Frage-Antwort-Szenarien im Smart-Home-Kontext. Die Erkenntnisse liefern wertvolle Richtungen für zukünftige Entwicklungen zur Verbesserung der Benutzererfahrung und Systemtransparenz in Smart-Home-Technologien und kommen sowohl technischen Fachleuten als auch anderen Stakeholdern in der sich schnell entwickelnden Smart-Home-Branche zugute.
+\cleardoublepage
+
+
+\section*{Acknowledgment}
+I would like to express my deepest gratitude to Sandro Speth, who made this thesis possible by establishing contact with Steffen Becker. I also want to extend my sincere thanks to Steffen Becker for supervising this thesis and for his invaluable support through weekly meetings and regular discussions of my ideas.
+
+A huge thank you to Stefanie Bergner from Bosch Smart Home for her significant contributions and assistance, especially for providing me with contacts to individuals who addressed all my concerns within Bosch Smart Home during my thesis. Her support was further invaluable as she assisted me by recommending me for job applications after the completion of my thesis.
+
+I also want to give special thanks to my partner, Nancy Topalovic, for her unwavering mental support and for making my life easier during stressful phases.
+
+Additionally, I extend my special thanks to everyone who participated in the preliminary interviews and the subsequent user study to explore the developed chatbot. Your contributions were essential to this research. Lastly, I would like to thank the entire team at Bosch Smart Home, with whom I have had the pleasure of working in the past. Your collaboration and support have been greatly appreciated.
 \cleardoublepage
 % BEGIN: Verzeichnisse
 
@@ -228,6 +250,7 @@
 
 \input{content/introduction}
 \input{content/foundation}
+\input{content/method}
 \input{content/concept}
 \input{content/implementation}
 \input{content/evaluation}

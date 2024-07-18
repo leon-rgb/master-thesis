@@ -16,10 +16,10 @@ Including key elements for this thesis such as a definition for a Smart Home and
 Other elements such as a general architecture and typical building blocks for chatbots are also presented.
 
 \subsection{Smart Home} 
-A smart home devices main aspect is that its original functionality is augmented through network capabilities \cite{schiefer_smart_2015,balakrishnan_smart_2018} and should enhance especially comfort\cite{matsui_information_2018, balakrishnan_smart_2018} but also security\cite{balakrishnan_smart_2018} or energy efficiency\cite{matsui_information_2018, balakrishnan_smart_2018} for example. 
+A smart home devices main aspect is that its original functionality is augmented through network capabilities \cite{schiefer_smart_2015,balakrishnan_smart_2018} and should enhance especially comfort \cite{matsui_information_2018, balakrishnan_smart_2018} but also security \cite{balakrishnan_smart_2018} or energy efficiency \cite{matsui_information_2018, balakrishnan_smart_2018} for example. 
 Therefore a smart home consists of such devices and provides additional infrastructure like an app to control the devices. 
 These infrastructures often allow automation of the devices.
-Since its functionality is based on connected devices and often sensors it is often named in the context of the Internet of Things (IoT) \cite{atzori_internet_2010}. 
+Since its functionality is based on connected devices and often sensors it is often named in the context of the \gls{iot} \cite{atzori_internet_2010}. 
 
 \subsection{Chatbot Types and Classifications}
 % lehmann
@@ -29,7 +29,7 @@ Keyword-based bots recognize specific keywords, making decisions and providing r
 Advanced context-aware virtual assistants engage in free-flowing conversations, learning from interactions and offering versatile responses.
 
 % adamopoulou
-Additionally, according to Adamopoulou and Moussiades\cite{adamopoulou_overview_2020} chatbots can be classified based on their \textbf{knowledge domain}, with open domain bots discussing general topics and closed domain bots focusing on specific knowledge domains. 
+Additionally, according to Adamopoulou and Moussiades \cite{adamopoulou_overview_2020} chatbots can be classified based on their \textbf{knowledge domain}, with open domain bots discussing general topics and closed domain bots focusing on specific knowledge domains. 
 In terms of \textbf{service}, interpersonal chatbots act as information intermediaries, offering communication services like restaurant or flight booking. 
 Intrapersonal chatbots, existing within the user's personal domain, function as companions, understanding users like humans. 
 Inter-agent chatbots, omnipresent in nature, facilitate inter-chatbot communication. 
@@ -43,13 +43,13 @@ In this subsection building blocks and architectural insights that can be identi
 It is mostly based on Lehmann \cite{lehmann_chatbot-guide_2021} and \cite{adamopoulou_overview_2020} if not mentioned otherwise.
 
 \subsubsection{Natural Language Understanding (NLU) and Machine Learning}
-NLU, a subset of Natural Language Processing (NLP), is essential for chatbots.
+\gls{nlu}, a subset of \gls{nlp}, is essential for chatbots.
 It involves training algorithms to understand and process natural language, bridging the gap between human language and artificial intelligence. 
 NLU is critical for successful chatbot operation, enabling the machine to comprehend user intents and contexts.
 
-Machine learning and NLP also play roles in the evolution of virtual assistants. 
+Machine learning and \gls{nlp} also play roles in the evolution of virtual assistants. 
 Machine learning algorithms, based on training data, build statistical models and autonomously improve over time.
-NLP focuses on processing and understanding natural language, incorporating elements from computer science, AI, linguistics, and data mining. 
+\gls{nlp} focuses on processing and understanding natural language, incorporating elements from computer science, AI, linguistics, and data mining. 
 These technologies empower chatbots to interpret complex human language, allowing for more sophisticated and context-aware interactions.
 
 \subsubsection{Intents}
@@ -67,7 +67,7 @@ Knowledge bases serve as a crucial component for chatbots, providing them with t
 These databases store domain-specific data, facts, and contextual information that enable chatbots to understand and address user requests accurately.
 
 \subsubsection{General Chatbot Architecture}
-In general, the chatbot architecture by Adamopoulou and Moussiades\cite{adamopoulou_overview_2020} which can be seen in \cref{fig:chatbot-architecture-general} consists of components such as the Language Understanding Component, which interprets user requests and identifies intentions and associated information, and the Dialogue Management Component, which keeps track of the conversation context, processes clarifications, and asks follow-up questions. After understanding the user's request, the chatbot executes actions or retrieves data from its Knowledge Base or external resources, and the Response Generation Component generates natural language responses based on the intent and context information.
+In general, the chatbot architecture by Adamopoulou and Moussiades \cite{adamopoulou_overview_2020} which can be seen in \cref{fig:chatbot-architecture-general} consists of components such as the Language Understanding Component, which interprets user requests and identifies intentions and associated information, and the Dialogue Management Component, which keeps track of the conversation context, processes clarifications, and asks follow-up questions. After understanding the user's request, the chatbot executes actions or retrieves data from its Knowledge Base or external resources, and the Response Generation Component generates natural language responses based on the intent and context information.
 
 
 \iffalse
@@ -84,7 +84,7 @@ In general, the chatbot architecture by Adamopoulou and Moussiades\cite{adamopou
 
 \subsection{Prototype and Iterative Development}
 
-This subsection is based on Sommerville \cite{sommerville_software_2011} according to who "iterative development of the prototype is essential".
+This subsection is based on Sommerville \cite{sommerville_software_2011} according to who ``iterative development of the prototype is essential''.
 The process for developing a prototype is shown in \cref{fig:prototype-process} and summed up consists of planning, developing and evaluating.
 Another iterative process is the extreme programming release cycle which is shown in \cref{fig:extreme-prog-cycle} and consists of user stories that are selected and developed throughout one cycle.
 Based on this concepts and needs for our chatbot prototype we built the iterative development cycle that is shown in \cref{fig:iterative-design} which could be seen as a combination of the both processes presented in this subsection.
@@ -139,7 +139,7 @@ The process of function calling typically involves the following steps:
 \end{itemize}
 This approach allows language models to overcome limitations such as accessing real-time data or performing specific computations, making them more versatile and powerful in various applications \cite{google2024function}.
 
-Function calling is particularly relevant to a smart home chatbot as it significantly enhances the bot's capabilities and usefulness. In the context of a smart home, function calling enables the chatbot to interact directly with various devices, APIs, and databases, allowing it to perform tasks such as controlling devices, retrieving real-time information about device states, and analyzing power consumption data \cite{google2024function}. For instance, when a user asks to "turn off the living room lights," the chatbot can use function calling to execute the appropriate command on the smart home system. Similarly, for queries about power consumption or device information, the chatbot can call specific functions to access and analyze the relevant data, providing accurate and up-to-date responses \cite{mistral2024function, openai2024function-article}. This integration of function calling makes the chatbot a more effective interface between the user and the smart home ecosystem, enhancing the user's ability to understand and control their smart home environment.
+Function calling is particularly relevant to a smart home chatbot as it significantly enhances the bot's capabilities and usefulness. In the context of a smart home, function calling enables the chatbot to interact directly with various devices, APIs, and databases, allowing it to perform tasks such as controlling devices, retrieving real-time information about device states, and analyzing power consumption data \cite{google2024function}. For instance, when a user asks to ``turn off the living room lights'' the chatbot can use function calling to execute the appropriate command on the smart home system. Similarly, for queries about power consumption or device information, the chatbot can call specific functions to access and analyze the relevant data, providing accurate and up-to-date responses \cite{mistral2024function, openai2024function-article}. This integration of function calling makes the chatbot a more effective interface between the user and the smart home ecosystem, enhancing the user's ability to understand and control their smart home environment.
 
 \newpage
 \section{Related work}
@@ -151,9 +151,9 @@ Some literature has the nice side effect that it also presents the architecture 
 Various literature exists that contains some kind of chatbot in the context of Smart Homes.
 Most of these chatbots perform the same task as nowadays common Voice assistants as for example the Google Assistant\footnote{\href{https://assistant.google.com/}{assistant.google.com}} which is capable of understanding written request but also transforming speech into written requests which also includes managing smart devices added to Google Home\footnote{\href{https://home.google.com/intl/de_de/the-latest/}{home.google.com}}, an app for managing a smart home.
 
-Baby et al.\cite{baby_home_2017} presented an approach for a chatbot that can control multiple smart devices in a smart home.
+Baby et al. \cite{baby_home_2017} presented an approach for a chatbot that can control multiple smart devices in a smart home.
 The developed prototype is capable of answering simple questions that regard the devices or change variables of the devices.
-It is able to answer questions like "What is the temperature in room 1" or "Set the temperature to 19 degrees celsius".
+It is able to answer questions like ``What is the temperature in room 1'' or ``Set the temperature to 19 degrees celsius''.
 The architecture includes multiple building blocks that were explained in \cref{sec:foundation}: An NLP Pipeline which in the end identifies the intent of a message and matches an action to.
 The pipeline can be seen in \cref{fig:chatbot-pipeline-baby}
 The intents and pipeline of this chatbot could inspire the inital iteration of our prototype. 
@@ -198,7 +198,7 @@ This can be mapped to this thesis where one aim is to enable even users with les
 
 A different work \cite{carlander-reuterfelt_jaicob_2020} approached to develop a chatbot that helps to gain knowledge about Data Science and Machine Learning.
 The architecture includes information retrieval from a knowledge base, parsing the received document and answering a query based on the search in the knowledge base.
-It also includes a "Small Talk Module" which improves users satisfaction with the system and increase the overall interest in chatting with it.
+It also includes a ``Small Talk Module'' which improves users satisfaction with the system and increase the overall interest in chatting with it.
 
 \subsection{Advancements in Function Calling of Language Models}
 
@@ -220,7 +220,7 @@ A solution to this could be to use the fact that most models are able to generat
 \subsection{Similar Approaches to this thesis for Home Assistant}
 A project very similar to what we want to achieve with this work is the Home LLM project which integrates a local \gls{llm} with Home Assistant\footnote{\url{https://www.home-assistant.io/}} (a widely used open source solution for home automation) to act as a personal assistant for controlling smart home devices \cite{acon96_home_llm}. It consists of two main components: the Home \gls{llm} models and the Local \gls{llm} Conversation integration.
 
-The Local \gls{llm} Conversation integration provides a custom component that allows the locally running \gls{llm} to function as a "conversation agent" within Home Assistant. Users can interact with the model via a chat interface or through Speech-to-Text and Text-to-Speech addons. The integration supports running the model either directly within Home Assistant or on a separate machine using various backends such as Ollama or LocalAI.
+The Local \gls{llm} Conversation integration provides a custom component that allows the locally running \gls{llm} to function as a ``conversation agent'' within Home Assistant. Users can interact with the model via a chat interface or through Speech-to-Text and Text-to-Speech addons. The integration supports running the model either directly within Home Assistant or on a separate machine using various backends such as Ollama or LocalAI.
 
 The Home \gls{llm} models are fine-tuned versions of various large language models under 5 billion parameters, designed to control smart home devices and perform basic question-answering tasks. The fine-tuning was done using a custom synthetic dataset that teaches the model function calling based on device information. Models are available on HuggingFace in different sizes and languages.
 

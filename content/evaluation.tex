@@ -43,10 +43,10 @@ The first goal focuses on determining how accurately the chatbot can understand 
 
 \begin{itemize}
     \item \textbf{Q1: How accurate are the natural language answers of the language model?}
-    \item \textbf{Q2: How accurate are the JSON responses of the language model?}
+    \item \textbf{Q2: How accurate are the \gls{json} responses of the language model?}
 \end{itemize}
 
-To answer these questions, relevant metrics are identified. Semantic similarity measures are used to evaluate the natural language responses, potentially incorporating other related metrics to ensure comprehensive assessment. JSON accuracy metrics are employed to evaluate the precision of the chatbot's structured responses. A combined metric of semantic similarity and JSON accuracy provides a holistic view of the chatbot's overall accuracy.
+To answer these questions, relevant metrics are identified. Semantic similarity measures are used to evaluate the natural language responses, potentially incorporating other related metrics to ensure comprehensive assessment. \gls{json} accuracy metrics are employed to evaluate the precision of the chatbot's structured responses. A combined metric of semantic similarity and JSON accuracy provides a holistic view of the chatbot's overall accuracy.
 
 \textbf{Goal 2: Evaluate the User Experience of the Smart Home Chatbot}
 
@@ -104,7 +104,7 @@ Based on this and the detailed evaluation setup the results can be discussed and
 
 \section{Model Performance}
 \label{sec:modelperform}
-This section details our approach to evaluating the performance of language models for our smart home chatbot. We describe the hardware setup and model selection process, explain the construction of our evaluation dataset, and outline the metrics used to assess both semantic similarity and JSON accuracy. This evaluation framework allows us to compare different model iterations and identify the most suitable configuration for our chatbot prototype.
+This section details our approach to evaluating the performance of language models for our smart home chatbot. We describe the hardware setup and model selection process, explain the construction of our evaluation dataset, and outline the metrics used to assess both semantic similarity and \gls{json} accuracy. This evaluation framework allows us to compare different model iterations and identify the most suitable configuration for our chatbot prototype.
 
 \subsection{Hardware and Language Models used}
 \label{subsec:hardware-llm}
@@ -123,11 +123,11 @@ The structure of each entry in the dataset is as follows:
 \begin{enumerate}
     \item Input: A chat history containing a minimum of two messages from the user. The first message always includes a device list that provides crucial context about the user's smart home environment. For details on the device list structure, refer to \cref{sec:req-building}.
     \item Expected Output: A natural language response that the chatbot is expected to generate based on the given chat history.
-    \item Expected JSON: A JSON object representing the action the chatbot should take, if any. The JSON includes only the necessary keys for each action:
+    \item Expected \gls{json}: A \gls{json} object representing the action the chatbot should take, if any. The \gls{json} includes only the necessary keys for each action:
     \begin{itemize}
     \item For 'turn-on' or 'turn-off' actions: 'action' and 'deviceID'
     \item For 'change-temperature' action: 'action', 'deviceID', and 'value'
-    \item If no action is necessary, the expected JSON is "None"
+    \item If no action is necessary, the expected \gls{json} is ``None''
     \end{itemize}
     \end{enumerate}
 
@@ -184,7 +184,7 @@ This carefully created dataset allows us to evaluate the chatbot's performance a
 \subsection{Evaluation Metrics}
 In this section we describe the metrics we used to measure the accuracy of different language models that we customized with our modelfile as described in \cref{subsec:modelcust}.
 For this we have more deeply analyzed the metrics stated in the related work \cref{sec:relatedeval}.
-We employed a combination of metrics that evaluate both the semantic accuracy of the natural language responses and the correctness of the generated JSON commands to reliably capture the relevant dimensions of our chatbot prototype.
+We employed a combination of metrics that evaluate both the semantic accuracy of the natural language responses and the correctness of the generated \gls{json} commands to reliably capture the relevant dimensions of our chatbot prototype.
 
 \subsubsection{Semantic Similarity}
 
@@ -226,7 +226,7 @@ The total count (total\_count) is the total number of generated responses, which
 The correct\_count is increased in several scenarios:
 \begin{enumerate}
     \item When both the expected and generated \glspl{json} are None.
-    \item When the expected \gls{json} is None and the generated \gls{json} has an "action" key with the value "none".
+    \item When the expected \gls{json} is None and the generated \gls{json} has an ``action'' key with the value ``none''.
     \item When the generated \gls{json} matches the expected \gls{json} in terms of keys and their corresponding values (determined by the compare\_jsons function).
 \end{enumerate}
 Generated \glspl{json} that would throw an error on parsing are handled as incorrect. This is implemented in the code through the use of try-except blocks. If a JSONDecodeError occurs when trying to parse the expected \gls{json}, or if an AttributeError occurs when comparing the generated and expected \glspl{json}, the \gls{json} is considered incorrect and the json\_accuracy\_flags for that instance is set to False.
@@ -379,10 +379,10 @@ The choice of an appropriate similarity threshold is crucial for the effectivene
 
 \textbf{Quality Assessment}: After establishing 0.55 as a baseline, we examined cases with higher similarity scores. Our analysis revealed that responses with a similarity score greater than 0.65 were consistently of high quality and relevance.
 
-\textbf{Borderline Cases}: We identified examples that fell just below and above our chosen threshold to validate its appropriateness. For instance, an unacceptable response with a similarity of approximately 0.61 was: "I cannot have a temperature measurement for the kitchen. There are only rooms and devices, but no temperature-taking devices available for the kitchen." The expected response was: "I'm sorry, but no temperature sensors are available in the kitchen." Despite some semantic overlap, this response was deemed insufficient.
+\textbf{Borderline Cases}: We identified examples that fell just below and above our chosen threshold to validate its appropriateness. For instance, an unacceptable response with a similarity of approximately 0.61 was: ``I cannot have a temperature measurement for the kitchen. There are only rooms and devices, but no temperature-taking devices available for the kitchen.'' The expected response was: ``I'm sorry, but no temperature sensors are available in the kitchen.'' Despite some semantic overlap, this response was deemed insufficient.
 It is worth noting that this is a literal translation from a German example, i.e., when calculating the similarity between those two sentences it will probably differ from the actual one.
 
-\textbf{Acceptable Responses}: Conversely, we found that responses just above the 0.65 threshold were generally acceptable. An example with a similarity of about 0.67 was: "The temperature set point is 18 degrees, and the current temperature is 19 degrees." The expected response was: "The temperature in the Schlafzimmer is set to 18.0 degrees Celsius and the current temperature is 19.0 degrees Celsius." This response, while missing some specifics, captured the essential information accurately.
+\textbf{Acceptable Responses}: Conversely, we found that responses just above the 0.65 threshold were generally acceptable. An example with a similarity of about 0.67 was: ``The temperature set point is 18 degrees, and the current temperature is 19 degrees.'' The expected response was: "The temperature in the Schlafzimmer is set to 18.0 degrees Celsius and the current temperature is 19.0 degrees Celsius." This response, while missing some specifics, captured the essential information accurately.
 
 By setting the threshold at 0.65, we strike to conduct a strict and reliable evaluation. This threshold effectively distinguishes between responses that capture the core meaning and intent of the expected output and those that fall short, providing a robust basis for our combined metric.
 
@@ -452,7 +452,7 @@ To address these issues, we developed improved modelfiles for the second generat
 
 In the table we can see that the revised modelfiles for the second generation of models we created did improve the total \gls{json} accuracy, but for the \texttt{shllama3instr-2} the key accuracy decreased. For the revised modelfiles also suffer in the overall quality in responses which according to the semantic similarity are much worse with a Mean around 0.4.
 This of course hardly effects the combined metrics with an F1 score of 0.3250 and 0.2222 which is barely half as much as for the first generation models. This means that the models are quite unpredictable or random in their responses which can be seen especially in the semantic similarity values.
-The results demonstrate a trade-off between JSON accuracy and semantic similarity. While the second-generation models showed improved JSON accuracy, they suffered a significant decrease in semantic similarity. This suggests that the modifications made to improve specific functionalities may have compromised the models' overall language understanding and generation capabilities.
+The results demonstrate a trade-off between \gls{json} accuracy and semantic similarity. While the second-generation models showed improved JSON accuracy, they suffered a significant decrease in semantic similarity. This suggests that the modifications made to improve specific functionalities may have compromised the models' overall language understanding and generation capabilities.
 
 \begin{figure}[H]
     \centering
@@ -490,7 +490,7 @@ The results demonstrate a trade-off between JSON accuracy and semantic similarit
 For individually considering the semantic similarity of the models we created histograms that are shown in \cref{fig:similarity-distributions}. They futher highlight the better performance of our first generation models \texttt{shllama3} and \texttt{shllama3instruct} since the values for those less values are distributed below a similarity score of 0.4 or even 0.5 than the first generation models.
 Especially \texttt{shllama3instruct} shows a good distribution with most values being at least 0.6. Approximately twice as many values are above 0.6 than below.
 
-To further compare the semantic similarity values between the models \texttt{shllama3} and \texttt{shllama3instruct}, we also performed a Wilcoxon signed-rank test. This non-parametric test is used to determine whether there is a statistically significant difference between the paired samples from these two models and has the benefit that we do not assume normality in the distribution of differences like in the typical t-test method. When we have a look at the previous distributions of similarity scores we would assume that no normal distribution is given.
+To further compare the semantic similarity values between the models \texttt{shllama3} and \texttt{shllama3instruct}, we also performed a Wilcoxon signed-rank test \cite{fahrmeir2024statistik, sheskin2011handbook}. This non-parametric test is used to determine whether there is a statistically significant difference between the paired samples from these two models and has the benefit that we do not assume normality in the distribution of differences like in the typical t-test method. When we have a look at the previous distributions of similarity scores we would assume that no normal distribution is given.
 The results of the Wilcoxon signed-rank test are as follows:
 \begin{itemize}
     \item \textbf{Wilcoxon signed-rank test statistic}: 1395.0
@@ -500,8 +500,8 @@ Given that the p-value (0.1565) is greater than the commonly used significance l
 In practical terms, these results suggest that both models perform similarly in terms of semantic similarity for the given data set.
 However, it's important to note that while not statistically significant, there is a noticeable difference in the median values and the percentage of responses above the 0.65 threshold between shllama3 and shllama3instruct. This suggests that shllama3instruct may offer some practical improvements in semantic similarity, even if not statistically significant at the conventional 0.05 level.
 
-To further compare the JSON correctness between the models \texttt{shllama3} and \texttt{shllama3instruct}, we performed McNemar's test. This test is used to evaluate differences on paired binary data, which in this case is whether the generated JSON was correct (1) or not (0).
-The contingency table for the JSON correctness is \cref{tab:conti} and shows that both models correctly generated the expected \gls{json} in 56 cases. \texttt{shllama3instruct} correctly generated 10 \glspl{json} that \texttt{shllama3} did not and vice versa \texttt{shllama3} generated 8 correct that \texttt{shllama3instruct} did not.
+To further compare the \gls{json} correctness between the models \texttt{shllama3} and \texttt{shllama3instruct}, we performed McNemar's test \cite{sheskin2011handbook}. This test is used to evaluate differences on paired binary data, which in this case is whether the generated \gls{json} was correct (1) or not (0).
+The contingency table for the \gls{json} correctness is \cref{tab:conti} and shows that both models correctly generated the expected \gls{json} in 56 cases. \texttt{shllama3instruct} correctly generated 10 \glspl{json} that \texttt{shllama3} did not and vice versa \texttt{shllama3} generated 8 correct that \texttt{shllama3instruct} did not.
 \begin{table}[h]
     \centering
     \begin{tabular}{cc|c|c}
@@ -519,8 +519,8 @@ The results of McNemar's test are as follows:
     \item \textbf{McNemar's test statistic}: 8.0
     \item \textbf{P-value}: 0.8145
 \end{itemize}
-Given that the p-value (0.8145) is greater than the significance level of 0.05, we fail to reject the null hypothesis. This indicates that there is no statistically significant difference in JSON correctness between the two models. Both models exhibit similar performance in generating correct JSON responses.
-Despite the lack of statistical significance, it's worth noting that shllama3instruct correctly generated 10 JSONs that shllama3 did not, while the reverse occurred only 8 times. This slight edge, although not statistically significant, might indicate a marginal improvement in JSON generation capabilities for shllama3instruct.
+Given that the p-value (0.8145) is greater than the significance level of 0.05, we fail to reject the null hypothesis. This indicates that there is no statistically significant difference in \gls{json} correctness between the two models. Both models exhibit similar performance in generating correct \gls{json} responses.
+Despite the lack of statistical significance, it's worth noting that shllama3instruct correctly generated 10 \glspl{json} that shllama3 did not, while the reverse occurred only 8 times. This slight edge, although not statistically significant, might indicate a marginal improvement in \gls{json} generation capabilities for shllama3instruct.
 
 Another important part of the results is whether the models generated \glspl{json} that would trigger an action in the smart home when none was expected or generated no \gls{json} when an \gls{json} was expected.
 In \cref{tab:json_summary} we can see that \texttt{shllama3} has the most mistakes in total for this metric while shllama3instruct-2 has the least which also has no unexpectedly generated \gls{json}.
@@ -542,7 +542,7 @@ In contrast \texttt{shllama3-2} generated the most unexpected \glspl{json}.
     \label{tab:json_summary}
 \end{table}
 
-In conclusion, our analysis reveals that while attempts to improve specific functionalities in the second-generation models led to increased JSON accuracy, this came at the cost of reduced semantic similarity and overall performance. The first-generation models, particularly shllama3instruct, demonstrate a better balance between semantic understanding and JSON generation. These findings highlight the challenges in optimizing language models for specific tasks while maintaining general language understanding capabilities.
+In conclusion, our analysis reveals that while attempts to improve specific functionalities in the second-generation models led to increased \gls{json} accuracy, this came at the cost of reduced semantic similarity and overall performance. The first-generation models, particularly shllama3instruct, demonstrate a better balance between semantic understanding and \gls{json} generation. These findings highlight the challenges in optimizing language models for specific tasks while maintaining general language understanding capabilities.
 
 
 \subsection{Quantitative User Study Results}
@@ -628,7 +628,7 @@ The boxplot also reveals a possible positive skew in the completion time for Tas
 For task 3 the outlier at approximately 90 seconds further supports this theory.
 Compared to task 6 and 3 the range of the whiskers of task 5 is low. Only compared to task 6 also the \gls{iqr} is low, suggesting higher confidence that the task takes longer than other task in general.
 
-To evaluate our hypotheses, we conducted a series of Wilcoxon signed-rank tests, given our small sample size (n = 10). This non-parametric test was chosen over t-tests due to the limited number of participants, which makes assumptions about normal distribution untenable.
+To evaluate our hypotheses, we conducted a series of Wilcoxon signed-rank tests \cite{sheskin2011handbook}, given our small sample size (n = 10). This non-parametric test was chosen over t-tests due to the limited number of participants, which makes assumptions about normal distribution untenable.
 \subsubsection{Explainability and Usability (\(H_1\) and \(H_2\))}
 To assess whether the chatbot improves explainability and usability of the app (\(H_1\) and \(H_2\)), we analyzed responses to questions Q3, Q4, and Q5.
 For Q3 (The chatbot enhances the usability of the app), the Wilcoxon test yielded a test statistic of 3.0 and a p-value of 0.0532. While this result is not significant at the conventional $\alpha = 0.05$ level, it is very close, suggesting a trend towards improved usability.
@@ -638,7 +638,7 @@ For Q4 (The chatbot's responses were clear and helpful), the test statistic was 
 Q5 (The smart home's behavior after the chatbot's responses was understandable) also showed a significant result with a test statistic of 0.0000 and a p-value of 0.0139. This supports the hypothesis that the chatbot improves explainability of the app's actions.
 These results provide strong support for \(H_1\) and moderate to strong support for \(H_2\).
 \subsubsection{Preference for Chatbot (\(H_3\))}
-To evaluate whether users would prefer the chatbot over traditional control methods (\(H_3\)), we analyzed responses to Q6 ("I would use the chatbot if it was added to the official app"). The Wilcoxon test resulted in a test statistic of 7.5000 and a p-value of 1.0000. This non-significant result suggests that there is no strong preference for the chatbot over traditional methods among our participants. Thus, we do not find support for \(H_3\).
+To evaluate whether users would prefer the chatbot over traditional control methods (\(H_3\)), we analyzed responses to Q6 (``I would use the chatbot if it was added to the official app''). The Wilcoxon test resulted in a test statistic of 7.5000 and a p-value of 1.0000. This non-significant result suggests that there is no strong preference for the chatbot over traditional methods among our participants. Thus, we do not find support for \(H_3\).
 \subsubsection{Task Duration Comparison (\(H_4\))}
 To test whether controlling device tasks take longer than information retrieval tasks (\(H_4\)), we compared the completion times of tasks T5 and T6 (device control) against T1-T4 (information retrieval).
 For T5 vs T1-T4, the Wilcoxon signed-rank test yielded a test statistic of 1.0000 and a p-value of 0.0039. For T6 vs T1-T4, the test statistic was 0.0000 with a p-value of 0.0020. Both results are highly significant, indicating that device control tasks indeed took longer than information retrieval tasks. This provides strong support for \(H_4\).
@@ -650,13 +650,13 @@ These findings, combined with the descriptive statistics presented earlier, prov
 \subsection{Qualitative User Study Results}
 The semi-structured interviews yielded rich qualitative data, which we analyzed using thematic analysis. Four main themes emerged from the participants' responses to the questions about their experience with the smart home chatbot:
 \subsubsection{Chatbot Limitations and Frustrations}
-Many participants reported frustrations with the chatbot's limitations. Common issues included the chatbot's inability to control devices as expected, misinterpretation of complex queries, and difficulty handling follow-up questions or maintaining appropriate context. One participant noted, "When [the chatbot] should control devices and it doesn't do it," while another mentioned, "Sometimes the chatbot misinterprets complex queries."
+Many participants reported frustrations with the chatbot's limitations. Common issues included the chatbot's inability to control devices as expected, misinterpretation of complex queries, and difficulty handling follow-up questions or maintaining appropriate context. One participant noted, ``When [the chatbot] should control devices and it doesn't do it'' while another mentioned, ``Sometimes the chatbot misinterprets complex queries.''
 \subsubsection{User Interface and Interaction Preferences}
-Participants expressed various preferences and suggestions for improving the chatbot's user interface and interaction methods. These included requests for example commands, voice input options, and more visual elements. One participant suggested, "Example of possible questions would be nice to show. A voice option would be nice. Maybe more style in the text bold etc." Another recommended "more visual elements like icons or graphics."
+Participants expressed various preferences and suggestions for improving the chatbot's user interface and interaction methods. These included requests for example commands, voice input options, and more visual elements. One participant suggested, ``Example of possible questions would be nice to show. A voice option would be nice. Maybe more style in the text bold etc.'' Another recommended ``more visual elements like icons or graphics.''
 \subsubsection{Utility for Complex Tasks and Device Management}
-Many participants found the chatbot particularly useful for complex tasks involving multiple devices or for obtaining quick overviews of their smart home system. One participant noted the chatbot would be "very helpful if I had many devices (50 windows, outlets), then questions like 'is any window open' [would be useful]." Another mentioned its utility "for complex automations and scenarios involving multiple devices."
+Many participants found the chatbot particularly useful for complex tasks involving multiple devices or for obtaining quick overviews of their smart home system. One participant noted the chatbot would be ``very helpful if I had many devices (50 windows, outlets), then questions like 'is any window open' [would be useful].'' Another mentioned its utility ``for complex automations and scenarios involving multiple devices.''
 \subsubsection{Interest in Advanced Features and Optimization}
-Participants showed significant interest in advanced features, particularly those related to energy optimization and understanding system behavior. One participant expressed interest in "automatic suggestions/tips for optimizing behavior (usage patterns, power consumption...)." Another was "interested in understanding the logic behind my smart home's operations."
+Participants showed significant interest in advanced features, particularly those related to energy optimization and understanding system behavior. One participant expressed interest in ``automatic suggestions/tips for optimizing behavior (usage patterns, power consumption...).'' Another was ``interested in understanding the logic behind my smart home's operations.''
 
 
 \subsection{Example Chatbot Interactions}
@@ -704,7 +704,7 @@ This section interprets the results of our evaluation, examining the implication
 \subsection{Discussion of Model Performance}
 The evaluation of our language models reveals several interesting insights:
 \subsubsection{Trade-offs in Model Optimization}
-The results demonstrate a clear trade-off between JSON accuracy and semantic similarity in our model iterations. While the second-generation models (shllama3-2 and shllama3instruct-2) showed improved JSON accuracy, they suffered a significant decrease in semantic similarity. This suggests that our attempts to optimize for specific functionalities may have inadvertently compromised the models' overall language understanding and generation capabilities.
+The results demonstrate a clear trade-off between \gls{json} accuracy and semantic similarity in our model iterations. While the second-generation models (shllama3-2 and shllama3instruct-2) showed improved \gls{json} accuracy, they suffered a significant decrease in semantic similarity. This suggests that our attempts to optimize for specific functionalities may have inadvertently compromised the models' overall language understanding and generation capabilities.
 \subsubsection{Balancing Precision and Versatility}
 The \texttt{shllama3instr} version emerged as the best-performing model, despite statistical tests showing no significant differences compared to the \texttt{shllama3} version. Its superior semantic similarity, particularly for scores above 0.65, and the highest F1 score (over 70\%) indicate a good balance between precision and versatility. This suggests that fine-tuning the model could lead to even better performance for the implemented intents.
 
@@ -712,21 +712,21 @@ The \texttt{shllama3instr} version emerged as the best-performing model, despite
 \subsubsection{Impact of Training Approach}
 The decline in performance of the second-generation models might be attributed to overfitting on the examples provided in the revised modelfiles. This suggests that the models may have learned to repeat specific examples rather than understanding the structure of generic user requests. Future iterations should focus on improving the models' ability to generalize from examples.
 \subsubsection{Comparison with Existing Work}
-Our best-performing model achieved an accuracy of 80.49\% for JSON function calling, which is lower than the 97.11\% reported by \citet{acon96_home_llm} for their ``Home-3B-v3'' model. However, it's important to note that our model aims to handle more complex questions and diverse user intentions, making a direct comparison challenging. The lack of comparable metrics for answer quality in the cited work further complicates the comparison.
+Our best-performing model achieved an accuracy of 80.49\% for \gls{json} function calling, which is lower than the 97.11\% reported by \citet{acon96_home_llm} for their ``Home-3B-v3'' model. However, it's important to note that our model aims to handle more complex questions and diverse user intentions, making a direct comparison challenging. The lack of comparable metrics for answer quality in the cited work further complicates the comparison.
 
 In general there are no absolute ``good'' values for metrics like semantic similarity \cite{muhammad2022_similarity} or the classification metrics \cite{yacouby-axman-2020-probabilistic,dasExplainableActivityRecognition2023} we adopted (Precision, Recall, F1) and have to be carefully evaluated for individual use cases.
 We think that the similarity threshold of 0.65 we used is well-founded and a F1 score (how we adopted it) of 0.7 is a good starting point, but a prouction ready code a F1 score of around 0.8 or even 0.9 should be aimed at.
-Speaking about classification metrics you typically decide whether Precision or Recall is more important for the use case. In the context of a smart home chatbot, generating a JSON that would trigger an unexpected action is more critical than failing to generate a \gls{json} when one is expected. Therefore, from the classical definition (not how we adopted it) \gls{fp} cases are worse for this use case.
+Speaking about classification metrics you typically decide whether Precision or Recall is more important for the use case. In the context of a smart home chatbot, generating a \gls{json} that would trigger an unexpected action is more critical than failing to generate a \gls{json} when one is expected. Therefore, from the classical definition (not how we adopted it) \gls{fp} cases are worse for this use case.
 The \texttt{shllama3instr-2} model performed best in this regard, generating no unexpected \glspl{json}. 
 However, its poor semantic similarity makes it unsuitable overall. This highlights the challenge of optimizing for multiple performance criteria simultaneously.
 
 \subsubsection{Language Model Selection and Language Consistency Issues}
-Interestingly, only the llama3 model family was able to understand the logic behind our approach, despite testing larger models. This could indicate that llama3 has been more extensively trained on JSON-related tasks, making it particularly suitable for our use case.
+Interestingly, only the llama3 model family was able to understand the logic behind our approach, despite testing larger models. This could indicate that llama3 has been more extensively trained on \gls{json}-related tasks, making it particularly suitable for our use case.
 
 The inconsistent language use in responses (not always matching the user's input language) was observed across multiple models, not just llama3. This could be due to the limited parameter sizes of the models we used or the English-language device list provided. Future work could explore using the system language of the phone/app for responses or fine-tuning the model with multilingual example conversations.
 
 \subsection{Framework Potential}
-This work demonstrates the potential for creating a generalizable framework for smart home chatbots. Such a framework could allow developers to specify their domain to a self-hosted language model or a commercial API, with mapping functionality to parse and map the output JSON to specific smart home system actions. Essentially you could just use the modelfile of our work to get the model functionality we had and the Java code we developed, just input your models' host adress and create a mapper class that matches the chatbots output to your smart home functionality.
+This work demonstrates the potential for creating a generalizable framework for smart home chatbots. Such a framework could allow developers to specify their domain to a self-hosted language model or a commercial API, with mapping functionality to parse and map the output \gls{json} to specific smart home system actions. Essentially you could just use the modelfile of our work to get the model functionality we had and the Java code we developed, just input your models' host adress and create a mapper class that matches the chatbots output to your smart home functionality.
 
 \subsection{Discussion of Quantitative User Study Findings}
 The quantitative results from our user study provide valuable insights into the performance and user perception of the smart home chatbot.
@@ -765,7 +765,7 @@ The strong interest in using the chatbot for complex tasks, device management, a
 While many participants were enthusiastic about advanced features, some expressed concerns about privacy and the appropriate scope of the chatbot's functionality, especially participants from the Bosch company saw this from a  potential customer point of view. This highlights the need for transparent data handling practices and clear communication about the chatbot's capabilities and limitations.
 
 \subsection{Summary}
-Our evaluation of the smart home chatbot reveals both promising results and areas for improvement. The \texttt{shllama3instr} model showed the best overall performance, balancing semantic understanding with accurate JSON generation. However, the challenges in optimizing for multiple criteria simultaneously highlight the complexity of developing effective language models for specific applications.
+Our evaluation of the smart home chatbot reveals both promising results and areas for improvement. The \texttt{shllama3instr} model showed the best overall performance, balancing semantic understanding with accurate \gls{json} generation. However, the challenges in optimizing for multiple criteria simultaneously highlight the complexity of developing effective language models for specific applications.
 The user study results indicate that while the chatbot improves explainability and usability of the smart home app, there's still work to be done in making it the preferred method of interaction. The qualitative feedback provides valuable insights into user preferences and expectations, suggesting directions for future enhancements.
 Key areas for future development include improving natural language processing capabilities, especially for complex queries and contextual understanding, developing tiered interfaces for users with different levels of expertise, and focusing on high-value use cases such as managing multiple devices and creating complex automations.
 The potential for creating a generalizable framework for smart home chatbots is an exciting prospect that could significantly impact the field of smart home technology. As we continue to refine our approach, addressing the challenges identified in this study will be crucial in developing a more effective, user-friendly, and versatile smart home chatbot system.
@@ -775,7 +775,7 @@ Based on these findings, future development of a production ready smart home cha
 \begin{enumerate}
     \item Enhancing technical accuracy and performance:
     \begin{enumerate}
-    \item Fine-tuning techniques to improve JSON accuracy without compromising semantic similarity.
+    \item Fine-tuning techniques to improve \gls{json} accuracy without compromising semantic similarity.
     \item Exploring larger parameter models or fine-tuning approaches.
     \end{enumerate}
     \item Developing more robust generalization capabilities to handle a wider range of user requests and improve natural language processing for complex and contextual queries.
@@ -796,7 +796,7 @@ In this section, we discuss potential threats to the validity of our study resul
 
 \subsection{Construct Validity}
 
-Construct validity concerns the extent to which our study measures what we intend to measure. One potential threat is related to the complexity of building our evaluation dataset, which could have introduced errors and led to artificially better or worse results, potentially affecting the accuracy of our model performance metrics. To mitigate this risk, we conducted multiple reviews of the dataset and cross-validated entries. Another issue is the limitation of our JSON evaluation script, which classified responses with multiple JSONs as errors, even when all generated JSONs included a "none" action. This could have resulted in an underestimation of model performance in cases where the semantic similarity was high, but the JSON was marked incorrect. Future evaluations should consider more nuanced JSON parsing and evaluation methods.
+Construct validity concerns the extent to which our study measures what we intend to measure. One potential threat is related to the complexity of building our evaluation dataset, which could have introduced errors and led to artificially better or worse results, potentially affecting the accuracy of our model performance metrics. To mitigate this risk, we conducted multiple reviews of the dataset and cross-validated entries. Another issue is the limitation of our \gls{json} evaluation script, which classified responses with multiple \glspl{json} as errors, even when all generated \glspl{json} included a ``none'' action. This could have resulted in an underestimation of model performance in cases where the semantic similarity was high, but the \gls{json} was marked incorrect. Future evaluations should consider more nuanced \gls{json} parsing and evaluation methods.
 
 \subsection{Internal Validity}
 

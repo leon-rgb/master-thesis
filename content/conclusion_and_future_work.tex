@@ -1,29 +1,76 @@
 % !TeX spellcheck = en_US
 
 \chapter{Conclusion}\label{chap:conclusion}
-
+In this final chapter of the thesis we provide a brief summary of the most important apsect and insights. We also go over benefits of our results but also limitations where our work does not hold. 
+Lastly we we mention lessons learned and additionally suggestions for future work.
 
 \section{Summary}
-... Summarize key aspects and insights, i.e., do not repeat your thesis...
+This thesis explored the development and evaluation of an innovative chatbot system designed to enhance user interaction and system explainability in smart home environments. The research focused on integrating \glspl{llm} without fine-tuning to support diverse intents within the Bosch Smart Home ecosystem, addressing the growing complexity of smart home technologies.
+
+A novel approach combining natural language processing with \gls{json} function calling was implemented, enabling the chatbot to handle both device control and data analysis tasks. The system architecture, utilizing a client-server model with Android Studio and Ollama, demonstrated practical deployment potential in real-world scenarios.
+
+The evaluation process introduced a comprehensive metric that combined semantic similarity and \gls{json} accuracy, providing a nuanced assessment of the chatbot's performance. This revealed interesting trade-offs between \gls{json} accuracy and semantic understanding across different model iterations. 
+The \texttt{shllama3instruct} model (as we named our customized model) emerged as the top performer, balancing high semantic similarity with good precision in \gls{json} function calling.
+
+User studies validated the chatbot's positive impact on system explainability and usability. However, challenges remained in user preference for the chatbot over traditional interfaces and in optimizing device control task efficiency. Qualitative feedback highlighted the importance of balancing simplicity with advanced functionality and addressing privacy concerns in smart home applications.
+
+The research uncovered potential for developing a generalized framework for smart home chatbots, which could significantly impact future developments in smart home technology. Areas for improvement were identified, including enhanced contextual understanding, integration of multimodal inputs or evenoutputs, better customization of the language model to always answer in the language of the last user message and the addressing of complex use cases, especially on the topic energy consumption.
+
+This thesis contributes to the field by demonstrating the feasibility and benefits of integrating recent \glspl{llm} into smart home systems. It offers valuable insights into the challenges and opportunities in enhancing user interaction with complex smart home ecosystems, paving the way for more intuitive and explainable smart home technologies.
+
 \section{Benefits}
-... Who (software testers, software developers, software architects,etc.) benefits from your result? In what way?   ..
+% ... Who (software testers, software developers, software architects,etc.) benefits from your result? In what way?   ..
+% I am missing the ``in what way'' for the most points here, please add
+% software architects and software developers through identifying especially open source tools and building blocks for implementing a chatbot in the smart home domain
+% people that want to customize models without fine tuning
+% gls{llm} interested people / researches that are interested in the performance of models in the size range we tested
+% Companies like Bosch Smart Home that are interested in which data is interesting for such a chatbot while at the same time have company central goals like preserving high customer data security/privacy. Our approach does not let customer data leave the company since the customized gls{llm} is running on an internal server.
+The thesis results benefit various stakeholders in the smart home and software development domains. Software architects and developers gain insights into open-source tools and building blocks for implementing chatbots in smart home systems. Individuals interested in customizing models without fine-tuning can leverage the approach demonstrated. 
+\gls{llm} researchers benefit from performance data on models within the tested size range, providing valuable benchmarks for future studies. 
+Companies like Bosch Smart Home, focused on maintaining high customer data security and privacy, can utilize the approach that keeps customer data within the company by running customized \glspl{llm} on internal servers. 
+This addresses the crucial balance between functionality and data protection. Additionally, the research offers insights into which data types are most relevant for smart home chatbots, helping companies prioritize data collection and usage. 
+Overall, the thesis contributes to advancing smart home technology while addressing key industry concerns, making it valuable for both technical professionals and business stakeholders in the smart home sector.
+
 \section{Limitations}
-In what settings your approach/method/theory does not hold/work?
+% In what settings your approach/method/theory does not hold/work?
+% we only used open-source language models. commercial/Proprietary models may perform much different
+% our function calling approach is only tried out with mapping JSONs to functionality although other modern ways of function calling are available but only for few models (e.g. Mistral). So we don't know how these other approaches would perform. Also, we don't know if our approach is suitable for other domains than smart home since our focus and data is specialices for this.
+The study's limitations primarily stem from its focused scope and methodological choices. 
+Firstly, the exclusive use of open-source language models means that the performance of commercial or proprietary models remains unexplored, potentially offering different results. 
+The function calling approach, centered on mapping JSONs to functionality, doesn't account for newer methods available in select models like Mistral. This limitation raises questions about the approach's effectiveness in other domains beyond smart homes. 
+Additionally, the specialization of data and focus on smart home applications may limit the generalizability of findings to other fields. 
+Lastly, the study doesn't address the scalability of the approach for larger, more complex smart home systems with a wider range of devices and functionalities.
+
 \section{Lessons Learned}
-... What lessons did you learn throughout your thesis that is interesting to be mentioned? For example during experiment setup, or literature review, etc. ... 
+% ... What lessons did you learn throughout your thesis that is interesting to be mentioned? For example during experiment setup, or literature review, etc. ... 
+% a multi-faceted evaluation approach like ours takes a lot of time. Even if it gives useful insights we would only focus on more certain aspects in a future work or split the work in two works were one focuses on the system archtitecture and model performance while a second work focuses on the user-centric side.
+% Manual creation of the evaluation (or a training) dataset is also very time consuming. There exist
+% There are tools for monitoring / regular evaluation of \gls{llm} models for Ollama. For example ollama-grid-search (https://github.com/dezoito/ollama-grid-search) or promptfoo (https://www.promptfoo.dev/). We didnt use such tools but they can speed up and improve the process. 
+% The selection of evaluation metrics for use case of a developed \gls{llm} need to be carefully chosen. It is good to plan enough time for the selection and implementation of this.
+The thesis process yielded valuable insights for future research endeavors. A key lesson was the time-intensive nature of multi-faceted evaluation approaches. 
+While providing comprehensive insights, such methods demand significant resources. 
+Future work might benefit from focusing on specific aspects or dividing the research into separate studies - one concentrating on system architecture and model performance, another on user-centric aspects. 
+The manual creation of evaluation or training datasets proved exceptionally time-consuming, highlighting the need for more efficient data generation methods. 
+The existence of tools for monitoring and regularly evaluating \gls{llm} models (for Ollama), such as ollama-grid-search\footnote{\url{https://github.com/dezoito/ollama-grid-search}} and promptfoo\footnote{\url{https://www.promptfoo.dev/}}, was noted as potentially beneficial for future studies to accelerate and enhance the process. 
+Lastly, the importance of carefully selecting evaluation metrics for \gls{llm} use cases became evident. Allocating sufficient time for metric selection and implementation is crucial for ensuring the relevance and accuracy of research outcomes in this rapidly evolving field.
+
 \section{Future Work}
-What is your suggestion for future work?
-Technical Improvements:
-Exploring larger parameter models or advanced fine-tuning approaches to enhance both JSON accuracy and semantic similarity.
-Developing more robust generalization capabilities to handle a wider range of user requests.
-Implementing a more readable format for device data presentation to the model.
-For Bosch Smart Home especially further functionality that includes system logs and historical data would be benefital. It would be need to researched what a good aproach is to provide the system logs to a chatbot and how to filter relevant data out of it. Also for historical data it would be necessary to get insights into how the data has to look to answer specific questions. Another point here would be to investigate how and where to store this data.
+% What is your suggestion for future work?
+% Exploring larger parameter models or advanced fine-tuning/training approaches to enhance both JSON accuracy and semantic similarity.
+% Developing more robust generalization capabilities to handle a wider range of user requests.
+% Implementing a more readable format for device data presentation to the model to see if this affects the performance especially of other models than llama3
+% For Bosch Smart Home especially further functionality that includes system logs and historical data would be benefital. It would be need to researched what a good aproach is to provide the system logs to a chatbot and how to filter relevant data out of it. Also for historical data it would be necessary to get insights into how the data has to look to answer specific questions. Another point here would be to investigate how and where to store this data.
+% Investigat whether Incorporating more visual elements and voice interaction capabilities improve the user acceptance of such a chatbot
+% Developing and evaluating features for energy optimization and system behavior insights.
+% Conducting larger-scale user studies with more diverse participants and smart home setups.
 
-User Experience Enhancements:
+There are various directions in which future research could go.
+Exploring larger parameter models or advanced fine-tuning/training approaches could enhance both \gls{json} accuracy and semantic similarity. 
+Developing more robust generalization capabilities would enable handling a wider range of intents and user requests.
+Implementing a more readable format for device data presentation to the model could potentially improve performance, especially for models other than llama3. 
 
-Designing and testing tiered interfaces for different user expertise levels.
-Incorporating more visual elements and voice interaction capabilities.
-Developing and evaluating features for energy optimization and system behavior insights.
+For Bosch Smart Home specifically, incorporating system logs and historical data functionality would be beneficial, necessitating research into effective data presentation and filtering methods for chatbots.
+Developing and evaluating features for energy optimization and system behavior insights could add significant value to the Bosch Smart Home system.
 
-Extended Research:
-Conducting larger-scale user studies with more diverse participants and smart home setups.
+Investigating the impact of visual elements and voice interaction capabilities on user acceptance is another area that could be researched. 
+Finally, conducting larger-scale user studies with diverse participants and smart home setups would provide more comprehensive insights. 

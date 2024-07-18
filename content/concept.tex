@@ -43,9 +43,9 @@ In the following subsections, we detail each of these intent categories, showcas
     \item \textbf{Intent Name:} GetDeviceStatus
     \item \textbf{Examples:}
     \begin{itemize}
-        \item "What is the temperature in the living room?"
-        \item "What is the status of the thermostat in the living room?"
-        \item "Is it warm in the living room?"
+        \item ``What is the temperature in the living room?''
+        \item ``What is the status of the thermostat in the living room?''
+        \item ``Is it warm in the living room?''
     \end{itemize}
     \item \textbf{Entities:}
     \begin{itemize}
@@ -64,9 +64,9 @@ This intent is especially interesting for the first iteration since the intents 
     \item \textbf{Intent Name:} SetDeviceStatus
     \item \textbf{Examples:}
     \begin{itemize}
-        \item "Set the temperature to 22 degrees in the living room."
-        \item "Turn off the lights in the bedroom."
-        \item "Make it cooler in the kitchen."
+        \item ``Set the temperature to 22 degrees in the living room.''
+        \item ``Turn off the lights in the bedroom.''
+        \item ``Make it cooler in the kitchen.''
     \end{itemize}
     \item \textbf{Entities:}
     \begin{itemize}
@@ -88,10 +88,10 @@ This intent enhances user experience by allowing natural language commands to co
     \item \textbf{Intent Name:} CreateAutomation
     \item \textbf{Examples:}
     \begin{itemize}
-        \item "Set up an automation for turning off lights at 10 PM."
-        \item "Create a rule to adjust thermostat settings when I leave home."
-        \item "Can you help me with automating my smart blinds?"
-        \item "Notify me if any windows are open."
+        \item ``Set up an automation for turning off lights at 10 PM.''
+        \item ``Create a rule to adjust thermostat settings when I leave home.''
+        \item ``Can you help me with automating my smart blinds?''
+        \item ``Notify me if any windows are open.''
     \end{itemize}
     \item \textbf{Entities:}
     \begin{itemize}
@@ -112,9 +112,9 @@ Creating automations is a common use case in smart home systems. This intent aim
     \item \textbf{Intent Name:} DeviceControlInterpretation
     \item \textbf{Examples:}
     \begin{itemize}
-        \item "Why did the lights in the bathroom turn on just now?"
-        \item "Can you explain the reason for the thermostat adjusting the temperature?"
-        \item "What triggered the blinds to open in the living room?"
+        \item ``Why did the lights in the bathroom turn on just now?''
+        \item ``Can you explain the reason for the thermostat adjusting the temperature?''
+        \item ``What triggered the blinds to open in the living room?''
     \end{itemize}
     \item \textbf{Entities:}
     \begin{itemize}
@@ -138,9 +138,9 @@ This intent addresses a gap in current systems by explaining the reasons behind 
     \item \textbf{Intent Name:} AnalyzeEnergyConsumption
     \item \textbf{Examples:}
     \begin{itemize}
-        \item "Can you analyze the energy consumption in my home?"
-        \item "Provide insights into power usage over the last week."
-        \item "How can I optimize energy consumption in the living room?"
+        \item ``Can you analyze the energy consumption in my home?''
+        \item ``Provide insights into power usage over the last week.''
+        \item ``How can I optimize energy consumption in the living room?''
     \end{itemize}
     \item \textbf{Entities:}
     \begin{itemize}
@@ -199,7 +199,7 @@ The following summary captures the insights and recommendations from these inter
 The feasibility of implementing a smart home chatbot was generally supported by all interviewees, albeit with some caveats:
 
 \begin{itemize}
-    \item \textbf{Technical Feasibility}: It is crucial to use proven frameworks and consider whether an LLM is necessary or if Named Entity Recognition (NER) would suffice, particularly given budget constraints. LLMs require significant resources, which may be impractical without a robust client-server architecture.
+    \item \textbf{Technical Feasibility}: It is crucial to use proven frameworks and consider whether an \gls{llm} is necessary or if Named Entity Recognition (NER) would suffice, particularly given budget constraints. \glspl{llm} require significant resources, which may be impractical without a robust client-server architecture.
     \item \textbf{User Experience}: The chatbot must simplify user interactions with smart home devices, removing the need for exact device names and understanding user patterns for better automation.
     \item \textbf{Market Viability}: There are concerns about privacy and trust, which affect the acceptance of AI and chatbots in the market.
 \end{itemize}
@@ -220,7 +220,7 @@ The interviewees proposed several useful intents for the chatbot:
 Several tools and technologies were recommended for developing the chatbot:
 
 \begin{itemize}
-    \item \textbf{LLM vs. NER}: While LLMs offer broad capabilities, NER may be sufficient for specific use cases. But a LLm fine-tuned or customized to suit a specific application can also work out great.
+    \item \textbf{LLM vs. NER}: While \glspl{llm} offer broad capabilities, \gls{ner} may be sufficient for specific use cases. But a \gls{llm} fine-tuned or customized to suit a specific application can also work out great.
     \item \textbf{Frameworks and Platforms}:  Tools like Microsoft Bot Framework\footnote{\url{https://github.com/microsoft/botframework-sdk}}, Conversational Language Understanding\footnote{\url{https://learn.microsoft.com/en-us/azure/ai-services/language-service/conversational-language-understanding/overview}}, Dialogflow\footnote{\url{https://cloud.google.com/dialogflow}}, and LangChain\footnote{\url{https://www.langchain.com/}} were mentioned as tools for different use cases. Except Dialogflow and the Azure Service Conversational Language Understanding they are open source. Potentially a Spring Boot\footnote{\url{https://spring.io/}} or Node.js\footnote{\url{https://nodejs.org/}} application could suit the use case of this thesis.
     \item \textbf{Data Management}: Organizing data with configurations that map intents to actions, and ensuring the chatbot can correctly interpret inputs is vital.
 \end{itemize}
@@ -243,7 +243,7 @@ Several potential challenges were highlighted:
 \begin{itemize}
     \item \textbf{Complexity of Automations}: Creating sophisticated automations might be challenging and require a balance between simplicity and functionality.
     \item \textbf{Data Privacy and Trust}: Addressing user concerns about privacy and the reliability of AI-generated information is crucial.
-    \item \textbf{Resource Constraints}: Ensuring sufficient computational resources for LLMs, if used, and managing the cost of development.
+    \item \textbf{Resource Constraints}: Ensuring sufficient computational resources for \glspl{llm}, if used, and managing the cost of development.
 \end{itemize}
 
 \subsubsection{Evaluation of Success}
@@ -281,7 +281,7 @@ The following requirements provide a comprehensive foundation for developing a s
     
     \item \textbf{Language Support}: The chatbot should support both German and English languages. It should respond in the same language as the user's input. For example, if a user query is in German, the chatbot should reply in German, and likewise for English.
     
-    \item \textbf{Integrability}: The chatbot should be easily integrable into existing smart home systems, particularly the Bosch Smart Home system. Integration should require only a mapper class/code capable of splitting the chatbot's output into the natural language response for the user and a system output (a JSON in this work) that maps to the smart home system's functionalities.
+    \item \textbf{Integrability}: The chatbot should be easily integrable into existing smart home systems, particularly the Bosch Smart Home system. Integration should require only a mapper class/code capable of splitting the chatbot's output into the natural language response for the user and a system output (a \gls{json} in this work) that maps to the smart home system's functionalities.
     
     \item \textbf{Context Awareness}: The chatbot should maintain context within a session to handle follow-up questions and commands effectively, providing a more natural interaction experience.
     
@@ -293,9 +293,9 @@ The following requirements provide a comprehensive foundation for developing a s
 \subsection{Non-Functional Requirements}
 
 \begin{itemize}
-    \item \textbf{Security and Safety}: The chatbot may handle sensitive data, including information about users' devices and smart home system logs. It is crucial to ensure this information is not exposed to unauthorized parties. Self-hosting the LLM could enhance security.
+    \item \textbf{Security and Safety}: The chatbot may handle sensitive data, including information about users' devices and smart home system logs. It is crucial to ensure this information is not exposed to unauthorized parties. Self-hosting the \gls{llm} could enhance security.
     
-    \item \textbf{Cost-Effectiveness}: The solution should be cost-effective since LLM-based software can get expensive easily. Self-hosting the LLM could reduce costs associated with third-party services.
+    \item \textbf{Cost-Effectiveness}: The solution should be cost-effective since \gls{llm}-based software can get expensive easily. Self-hosting the \gls{llm} could reduce costs associated with third-party services.
     
     \item \textbf{Usability}: The chatbot should be user-friendly, providing clear and concise responses. The interface should be intuitive for users with varying levels of technical expertise. 
     
@@ -352,7 +352,7 @@ The Model is represented by the Data Manager, which encapsulates the business lo
 
 The View component is primarily implemented in the UI module, handling the user interface and interaction elements, including the chat message display and input field. The Message Adapter facilitates efficient rendering of chat messages.
 
-The Controller role is distributed across multiple components. The API Client and Request Builder acts as a primary controller, mediating between the UI and the Data Manager. It processes user inputs, constructs API requests, and manages communication with the Customized LLM server. The Response Handler processes server responses, updating the UI and Data Manager as needed.
+The Controller role is distributed across multiple components. The API Client and Request Builder acts as a primary controller, mediating between the UI and the Data Manager. It processes user inputs, constructs API requests, and manages communication with the Customized \gls{llm} server. The Response Handler processes server responses, updating the UI and Data Manager as needed.
 
 This architecture incorporates modern Android development practices, such as asynchronous operations for API calls and efficient list rendering, enhancing performance and user experience while maintaining a clear separation of concerns aligned with the MVC pattern.
 
@@ -382,7 +382,7 @@ This module enhances the user experience by ensuring smooth scrolling and effici
 
 \subsubsection{API Client \& Request Builder}
 \label{subsec:apiclient}
-The API Client \& Request Builder module serves as the communication bridge between the client application and the server-side LLM. Its key responsibilities include:
+The API Client \& Request Builder module serves as the communication bridge between the client application and the server-side \gls{llm}. Its key responsibilities include:
 \begin{itemize}
     \item Request Formation: Constructs properly formatted API requests based on user inputs and system state.
     \item Communication Protocol Management: Handles HTTP/HTTPS requests, including authentication and error handling.
