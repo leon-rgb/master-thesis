@@ -16,11 +16,11 @@ The implementation of the chatbot system leverages a diverse set of technologies
 
 Android Studio\footnote{\url{https://developer.android.com/studio}} serves as the primary integrated development environment, facilitating the extension of the existing Bosch Smart Home Android application. The client-side development utilizes Java\footnote{\url{https://www.java.com/}} programming language in conjunction with Android 14 SDK\footnote{\url{https://developer.android.com/about/versions/14}}, ensuring compatibility with the latest Android features and optimizations.
 
-To enhance the user interface and manage the chat functionality efficiently, the implementation incorporates modern Android components. RecyclerView is employed for rendering the message exchange between the user and the chatbot, providing smooth scrolling and efficient memory usage. Concurrency tools, specifically ExecutorService and CompletableFuture, are utilized to handle API calls in the background, ensuring a responsive user interface while managing asynchronous operations.
+To enhance the user interface and manage the chat functionality efficiently, the implementation incorporates modern Android components. RecyclerView is employed for rendering the message exchange between the user and the chatbot, providing smooth scrolling and efficient memory usage. Concurrency tools, specifically ExecutorService and CompletableFuture, are utilized to handle gls{api} calls in the background, ensuring a responsive user interface while managing asynchronous operations.
 
-On the server side, Ollama v0.1.47\footnote{\url{https://ollama.com/}} is deployed for hosting, customizing, and invoking the language model. The Ollama API facilitates seamless interaction between the client application and the server-hosted language model.
+On the server side, Ollama v0.1.47\footnote{\url{https://ollama.com/}} is deployed for hosting, customizing, and invoking the language model. The Ollama gls{api} facilitates seamless interaction between the client application and the server-hosted language model.
 
-\gls{json}\footnote{\url{https://www.json.org/}} serves as the primary data exchange format between the server and client components. This lightweight and human-readable format is used both for constructing API calls to the Ollama API and for transmitting the language model's responses back to the client.
+\gls{json}\footnote{\url{https://www.json.org/}} serves as the primary data exchange format between the server and client components. This lightweight and human-readable format is used both for constructing gls{api} calls to the Ollama gls{api} and for transmitting the language model's responses back to the client.
 \begin{figure}[h]
     \centering
     \captionsetup{justification=centering}
@@ -46,7 +46,7 @@ However, when testing customized models through HTTP Requests the response times
 Especially the first response often took over one minute with preceeding requests taking minimum 30 seconds depending on the length of the generated respone.
 The first request usually takes longer when the model used is not allready loaded into the RAM.
 
-Because of the occuring difficulties and with wanting to use as low budget as possible we decided to use an existing private Computer with more Ressources and used IPv6 Host Exposure for a specific port on which the Ollama API was running.
+Because of the occuring difficulties and with wanting to use as low budget as possible we decided to use an existing private Computer with more Ressources and used IPv6 Host Exposure for a specific port on which the Ollama gls{api} was running.
 The computer had an NVIDIA GeForce 980 ti graphics card with 6GB VRAM and 32GB RAM with 3600MHz.
 Even longer model responses usually only took a few seconds to receive.
 
@@ -141,10 +141,7 @@ Listing \ref{lst:system_message_1} shows the first part of the system message, w
 \begin{lstlisting}[language=bash]
 SYSTEM """
 Available Actions:
-'none'
-'turn-on'
-'turn-off'
-'change-temperature(value needed)'
+'none', 'turn-on', 'turn-off', 'change-temperature(value needed)'
 Devices:
 'socket': can use 'turn-on' and 'turn-off'
 'thermostat' or 'RADIATOR_THERMOSTAT': The measured temperature can be viewed on each individual thermostat (RADIATOR_THERMOSTAT). It is typically structured like this: "id": "TemperatureLevel", "state": { "temperature": 22.5 }
@@ -208,7 +205,7 @@ Due to our objective of testing different models, the first option of using cont
 
 The ``mode'' approach showed promise in initial tests but proved complex to implement fully. Determining when to switch between modes and managing background calls to the model when it needed more data presented significant challenges.
 
-Dynamically changing the SYSTEM message for each interaction was considered inefficient due to the overhead of updating and sending the entire message via API for every request. We briefly considered implementing a server-side function to update the modelfile with the device list, but ultimately chose a different method.
+Dynamically changing the SYSTEM message for each interaction was considered inefficient due to the overhead of updating and sending the entire message via gls{api} for every request. We briefly considered implementing a server-side function to update the modelfile with the device list, but ultimately chose a different method.
 
 The final approach we adopted was building a message history. This method proved to be intuitive and straightforward to implement on the client side. By including the device list as the first message in the history, followed by the user's actual query, we could provide the necessary context to the model without overly complicating the implementation or limiting our ability to test different models.
 
@@ -224,7 +221,7 @@ Each component plays a vital role in creating a seamless and efficient chatbot e
 \subsection{Data Management}
 Additionally to the \gls{json} data exchange between client and server the data of the smart home itself has to be managed in order to put it into the \gls{json} and transmit it and also handle the \gls{json} received from the server.
 The Bosch Smart Home app has an internal data model to store the current state of the users smart home. It updates this model when starting the app and on certain events.
-Therefore, two options were available for managing the device data: either using the available data model or sending requests through the available internal API of the system.
+Therefore, two options were available for managing the device data: either using the available data model or sending requests through the available internal gls{api} of the system.
 To keep the latency low we deviced to use the internal data model and filter relevant data out. As described in \cref{subsec:devices} three devices were considered for the prototype.
 Therefore we only used data relevant for the user from this devices. Since there was much unnecessary data in each device state we collected only the data described in \cref{tab:device_state_data_detailed}
 \begin{table}[h!]
@@ -280,19 +277,21 @@ Below the toolbar, we implemented a development feature that allows selection of
 
 \begin{figure}[t]
     \centering
-      \begin{subfigure}{.48\textwidth}
+      \begin{subfigure}[t]{.44\textwidth}
+        \vspace*{0pt}
         \includegraphics[width=\textwidth]{graphics/homescreen.jpg}
         \caption{Availability of the chatbot in the main app activity}
         \label{fig:ui-homescreen}
       \end{subfigure} \hfill
-      \begin{subfigure}{.48\textwidth}
+      \begin{subfigure}[t]{.44\textwidth}
+        \vspace*{0pt}
         \includegraphics[width=\textwidth]{graphics/chatactivity.jpg}
         \caption{View of the chatbot activity}
         \label{fig:ui-chatactivity}
         \end{subfigure}
       \caption{Overview of the User Interface}
       \label{fig:ui-overview}
-    \end{figure}
+\end{figure}
 
 The core of the chatbot \gls{ui} is the chat history, displayed below the model selection. User messages appear on the right side in olive green, while responses from ``SHBot'' (Smart Home Chatbot) are shown on the left with a white background. Each message includes a timestamp indicating when it was sent or received.
 A notable feature of the chatbot's response mechanism is the real-time display of each token as it is received from the language model. This creates the effect of the chatbot ``writing'' its response in real-time, enhancing the interactive feel of the conversation and providing immediate feedback to the user.
@@ -307,7 +306,7 @@ It's worth noting that the chat history is only maintained for the current sessi
         \caption{Expanded Model Selection}
         \label{fig:model-select}
       \end{subfigure} \hfill
-      \begin{subfigure}[t]{.48\textwidth}
+      \begin{subfigure}[t]{.43\textwidth}
         \vspace*{0pt}
         \includegraphics[width=\textwidth]{graphics/keyboard.jpg}
         \caption{View when writing a message}
@@ -323,20 +322,20 @@ Figure \ref{fig:ui-details} provides additional details of the chatbot user inte
 This user interface design, built on AppCompatActivity, ensures that the Smart Home Chatbot is easily accessible, intuitive to use, and seamlessly integrated with the existing Bosch Smart Home app functionality. The real-time token display feature adds a dynamic and engaging element to the user experience.
 
 \subsection{Message Management}
-As previously described in \cref{subsec:messageadapter}, the Message Adapter module manages and triggers the displaying of chat messages in the UI, making it possible to render message data, managing chat history, visually differentiating user and assistant messages, and enabling dynamic updates without full UI refreshes. \\
+As previously described in \cref{subsec:messageadapter}, the Message Adapter module manages and triggers the displaying of chat messages in the gls{ui}, making it possible to render message data, managing chat history, visually differentiating user and assistant messages, and enabling dynamic updates without full gls{ui} refreshes. \\
 The implementation of this module leverages Android's RecyclerView component, which provides an efficient and flexible way to display large sets of data. RecyclerView is particularly well-suited for chat applications due to its ability to recycle and reuse view holders, minimizing memory usage and enhancing scrolling performance.
 
 
 The Message Adapter extends RecyclerView.Adapter and implements a custom ViewHolder pattern. This pattern allows for efficient view recycling and type-specific rendering of messages. Two main types of ViewHolders are defined: one for user messages and another for assistant responses. This differentiation enables distinct visual styling for each message type as shown in , enhancing readability and user experience.\\
-To manage the chat history, the adapter maintains an internal list of message objects. Each message object encapsulates data such as the message content, timestamp, and sender type (user or assistant). The adapter provides methods to add new messages and update existing ones, triggering appropriate UI updates through notifyItemInserted() and notifyItemChanged() methods respectively.
+To manage the chat history, the adapter maintains an internal list of message objects. Each message object encapsulates data such as the message content, timestamp, and sender type (user or assistant). The adapter provides methods to add new messages and update existing ones, triggering appropriate gls{ui} updates through notifyItemInserted() and notifyItemChanged() methods respectively.
 
-Dynamic updates are achieved through the use of DiffUtil, an Android utility class that calculates the difference between two lists. When new messages are added or existing ones are updated (even thought updating mussages is not supported in our prototype), DiffUtil computes the minimal set of changes needed to update the UI, allowing for smooth animations and efficient rendering.
+Dynamic updates are achieved through the use of DiffUtil, an Android utility class that calculates the difference between two lists. When new messages are added or existing ones are updated (even thought updating mussages is not supported in our prototype), DiffUtil computes the minimal set of changes needed to update the gls{ui}, allowing for smooth animations and efficient rendering.
 To ensure a responsive user interface, message loading and processing operations are performed asynchronously using Java's ExecutorService. This approach prevents blocking the main thread from tasks like waiting for building the request to the chatbot and awaiting its answer.
 
 
 \subsection{Request Building}
 \label{sec:req-building}
-As previously described in \cref{subsec:apiclient}, the Request Builder within the API Client \& Request Builder module constructs properly formatted API requests, sends them, parses server responses, and handles asynchronous operations.
+As previously described in \cref{subsec:apiclient}, the Request Builder within the gls{api} Client \& Request Builder module constructs properly formatted gls{api} requests, sends them, parses server responses, and handles asynchronous operations.
 This section elaborates on the process of building and sending these requests.
 
 To ensure low latency while maintaining context, the system considers only a limited number of recent messages when constructing a request. Importantly, the first message in the history always contains a list of the user's devices, providing crucial context for the language model.
@@ -401,22 +400,19 @@ The device list, exemplified in the right panel of \cref{lst:post-request}, prov
 
 
 \subsection{Response Handling and Action Triggering}
-As previously described in \cref{subsec:responsehandler}, the Response Handler module interprets server responses, determining necessary client actions such as response analysis and orchestration. The response handling is closely integrated with the API Client, which parses the server responses and initiates the response handling process. This section elaborates on the implementation details of this crucial functionality.
+As previously described in \cref{subsec:responsehandler}, the Response Handler module interprets server responses, determining necessary client actions such as response analysis and orchestration. The response handling is closely integrated with the gls{api} Client, which parses the server responses and initiates the response handling process. This section elaborates on the implementation details of this crucial functionality.
 The response from the server, as initiated by the request detailed in \cref{sec:req-building}, is received as a stream of tokens through the Ollama software. This streaming approach allows for real-time processing and display of the model's output, enhancing the responsiveness of the chatbot interface.
 While receiving the response stream, the handler separates it into two components:
 
-Natural Language Response: This portion is immediately forwarded to the UI for display, maintaining a fluid conversation flow with the user.\\
+Natural Language Response: This portion is immediately forwarded to the gls{ui} for display, maintaining a fluid conversation flow with the user.\\
 \gls{json} Object: Typically positioned at the end of the response, this structured data undergoes parsing to extract action-related information.
 
-The \gls{json} object, as defined in the modelfile (see \cref{lst:system_message_1}), contains key information for action triggering:
+The \gls{json} object, as defined in the modelfile (see \cref{lst:system_message_1}), contains key information for action triggering (only listed the important ones here):
 
 \begin{itemize}
 \item 'action': Specifies the intent or action to be performed
 \item 'value': An optional parameter for actions requiring additional data
 \item 'deviceID': Unique identifier of the target device
-\item 'device': Type of the device
-\item 'room': Location of the device
-\item 'name': User-chosen name of the device
 \end{itemize}
 
 The Response Handler processes this \gls{json} object to determine the appropriate action. As outlined in \cref{lst:system_message_2}, the system supports several actions:
@@ -440,20 +436,15 @@ The main challenge here was to design a robust parsing mechanism for mapping the
 The Response Handler also manages error scenarios, such as invalid actions or device IDs not present in the current device list. In such cases, it generates appropriate error messages for the user and logs the issues for system maintenance.
 
 \section{Interaction Flow}
-The interaction flow between the user, the client-side application, and the server is illustrated in the sequence diagram in Figure \ref{fig:sequencedia}. This diagram provides a comprehensive overview of the steps involved in processing user queries, constructing API requests, and generating responses based on the smart home device information.
-The flow begins when a user interacts with the chatbot interface, typically by entering a text query or using speech-to-text functionality. Upon receiving this input, the client-side application initiates a series of actions to process and respond to the user's request.
-First, the application retrieves the current state of the user's smart home devices, ensuring that the most up-to-date information is available for context. This device list, along with the user's query and a limited history of recent messages, is then packaged into a structured API request.
+The interaction flow between the user, client-side application, and server is illustrated in Figure \ref{fig:sequencedia}. This sequence diagram outlines the process of handling user queries, constructing gls{api} requests, and generating responses based on smart home device information.
 
-The Request Builder module, as detailed in Section \ref{sec:req-building}, constructs this request in a format compatible with the Ollama API. This includes organizing the message history in a specific order, with the device list always positioned as the first message to provide crucial context for the language model.
-Once the request is built, it is sent to the server hosting the Ollama software and the selected language model. The server processes this input, leveraging the context provided by the device list and message history to generate an appropriate response.
-The server's response is streamed back to the client in real-time, allowing for immediate display of partial responses. This streaming approach enhances the user experience by reducing perceived latency and providing a more dynamic interaction.
+The flow begins with user input via the chatbot interface. The client-side application then retrieves the current state of smart home devices and packages this information, along with the user's query and recent message history, into a structured gls{api} request using the Request Builder module.
+This request is sent to the server hosting the Ollama software and language model, which processes the input and generates a response. The response is streamed back to the client in real-time, enhancing user experience by reducing perceived latency.
 
-As the response is received, the Response Handler module, described in Section \ref{subsec:responsehandler}, separates it into two key components: the natural language response and the structured \gls{json} object containing action-related information.
-The natural language portion of the response is immediately forwarded to the UI for display, maintaining a fluid conversation flow. Simultaneously, the \gls{json} object is parsed to extract any action directives, such as turning devices on or off or adjusting temperature settings.
-If an action is specified in the \gls{json}, the Response Handler triggers the corresponding function in the client application. This might involve sending commands to specific smart home devices or updating the application's internal state.
+The Response Handler module separates the incoming response into a natural language component and a structured gls{json} object. The natural language portion is displayed in the gls{ui}, while the gls{json} object is parsed for any action directives.
 
-Finally, the UI is updated to reflect both the chatbot's textual response and any changes in device states resulting from the triggered actions. This completes the interaction loop, with the system ready to receive the next user query.
-This entire process, from user input to final response and action, typically occurs within seconds. The sequence diagram visualizes this flow.
+If actions are specified, the Response Handler triggers the corresponding functions in the client application, potentially sending commands to smart home devices or updating the application's state. The gls{ui} is then updated to reflect both the chatbot's response and any changes in device states.
+This finnishes the interaction loop. The entire process typically occurs within seconds.
 
 \begin{figure}[h]
     \centering
@@ -462,15 +453,6 @@ This entire process, from user input to final response and action, typically occ
     \caption{Sequence Diagram of the typical flow of the system}
     \label{fig:sequencedia}
 \end{figure}
-
-\iffalse
-\begin{figure}
-    \centering
-    \includegraphics{graphics/svgexample.svg}
-    \caption{SVG direkt eingebunden}
-    \label{fig:directSVG}
-  \end{figure}
-\fi
 
 \section{Challenges and Solutions}
 \label{sec:challenges-solutions}
@@ -487,7 +469,7 @@ There were several challenges and considerations that had to be taken into accou
 
     \item \textbf{Data from External Sources}: Integrating data from external sources, such as the ``Statistisches Bundesamt'' (Federal Statistical Office of Germany), could have provided valuable insights for energy cost analysis in the user's home. This data, including information on inflation in energy costs (gas, district heating, electricity, etc.), could have been used to analyze why energy costs increased and offer suggestions for energy savings based on unnecessary automations. Implementing this would require data retrieval and ingestion from defined sources (URLs), potentially using \gls{rag} with Ollama or Langchain. While time constraints prevented the implementation of this feature in our prototype, we explored the necessary data and methods. Our experiments showed that providing the language model with a list of devices containing (artificial) historical data, information on related automations, and inflation indices gave sufficient context for reasoning, although not always with perfect accuracy.
     
-    \item \textbf{Security Issue}: The Bosch Smart Home app initially did not support API calls to arbitrary domains. To address this, we needed to modify the security settings for the prototype to enable calls to the Ollama API on a specific device. This change was implemented only for the chatbot functionality, while the rest of the app maintained its original security configuration.
+    \item \textbf{Security Issue}: The Bosch Smart Home app initially did not support gls{api} calls to arbitrary domains. To address this, we needed to modify the security settings for the prototype to enable calls to the Ollama gls{api} on a specific device. This change was implemented only for the chatbot functionality, while the rest of the app maintained its original security configuration.
 
     \item \textbf{Model Performance}: Incrementally improving model outputs proved challenging. In our case, this was achieved by analyzing the output of our evaluation script, identifying low-quality outputs, and addressing them in the modelfile by adding more examples or instructive text. The evaluation script itself is described in \cref{sec:modelperform}.
 \end{itemize}
