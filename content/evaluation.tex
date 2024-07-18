@@ -83,7 +83,7 @@ To measure the explainability, semi-structured interviews are conducted after th
     \centering
     \captionsetup{justification=centering}
     \includegraphics[width=0.75\textwidth]{graphics/eval-process.png}
-    \caption{The whole evaluation process visualized}
+    \caption{The Evaluation Process Visualized}
     \label{fig:evalprocess}
 \end{figure}
 
@@ -242,87 +242,6 @@ This key\_accuracy provides a more granular measure of how well the generated \g
 
 The function shown returns three values: the overall \gls{json} accuracy, the key accuracy, and a list of boolean flags indicating which generated \glspl{json} were correct (json\_accuracy\_flags).
 
-\begin{Listing}
-    \begin{lstlisting}[language=Python]
-def evaluate_jsons(generated_responses, generated_jsons, expected_json_values):
-    correct_count = total_keys = correct_keys = 0
-    total_count = len(generated_responses)
-    json_accuracy_flags = []
-
-    for response, generated_json, expected_json in zip(generated_responses, generated_jsons, expected_json_values):
-        if expected_json is not None and isinstance(expected_json, str):
-            try:
-                expected_json = json.loads(expected_json)
-            except json.JSONDecodeError:
-                json_accuracy_flags.append(False)
-                continue        
-        if expected_json is None and generated_json is None:
-            correct_count += 1
-            json_accuracy_flags.append(True)
-            continue
-        if expected_json is None:
-            if generated_json.get("action") == "none": 
-                correct_count += 1
-                json_accuracy_flags.append(True)
-                continue
-            json_accuracy_flags.append(False)
-            continue        
-        if generated_json is None:
-            json_accuracy_flags.append(False)
-            continue
-        try:
-            keys_correct = compare_jsons(generated_json, expected_json)
-            if keys_correct:
-                correct_count += 1
-                json_accuracy_flags.append(True)
-            else:
-                json_accuracy_flags.append(False)
-            
-            for key in expected_json:
-                total_keys += 1
-                if generated_json.get(key) == expected_json.get(key):
-                    correct_keys += 1
-        except AttributeError:
-            json_accuracy_flags.append(False)
-    
-    accuracy = correct_count / total_count
-    key_accuracy = correct_keys / total_keys if total_keys > 0 else 0
-    return accuracy, key_accuracy, json_accuracy_flags
-  \end{lstlisting}
-    \caption{Code for Classificiation of the models responded JSONs}
-    \label{lst:evalMetrics1}
-\end{Listing}
-
-\begin{Listing}
-    \begin{lstlisting}[language=Python]
-def normalize_value(value):
-    """Normalize the value for comparison."""
-    try:
-        # Try to convert strings that represent numbers to float
-        return float(value)
-    except (ValueError, TypeError):
-        # If it's not a number or it's already a number, return it as is
-        return value
-
-def compare_jsons(generated_json, expected_json):
-    """Compare two JSON objects with normalized values."""
-    if generated_json is None or expected_json is None:
-        return generated_json == expected_json
-    
-    for key in expected_json:
-        if key not in generated_json:
-            return False
-        # normalize value if the key is "value"
-        if key == "value":
-            return normalize_value(generated_json[key]) == normalize_value(expected_json[key])
-        else:
-            return generated_json[key] == expected_json[key]
-    return True
-    \end{lstlisting}
-    \caption{Code for comparing actual and expected JSONs}
-    \label{lst:compare-json}   
-\end{Listing}
-
 
 \subsection{Combined Metric}
 
@@ -336,41 +255,13 @@ The combined metric adapts the concepts of precision, recall, and F1 score from 
 
 Based on these definitions, we calculate precision, recall, and F1 score as follows:
 
-\paragraph{Precision:} Of all the outputs the model that have a high semantic similarity, how many were actually positive cases (generated \gls{json} is also correct).
-\paragraph{Recall:} Of all the actual positive cases (generated \gls{json} is correct), how many did the model correctly identify as positive (semantic similarity is also high).
-\paragraph{F1 Score:} The harmonic mean of precision and recall, providing a single measure of performance.
+\textbf{Precision:} Of all the outputs the model that have a high semantic similarity, how many were actually positive cases (generated \gls{json} is also correct).
 
-The implementation of this combined metric is shown in \cref{lst:classificationRefined} and based on the scikit-learn library\footnote{\url{https://scikit-learn.org/stable/modules/model\_evaluation.html\#precision-recall-and-f-measures}}. This function, \texttt{calculate\_classification\_metrics}, takes lists of similarity scores and \gls{json} accuracy flags as input, along with a similarity threshold. It then computes the precision, recall, and F1 score based on our adapted definitions.
-It's important to note that this approach, while not standard for non-classification tasks, provides valuable insights into our chatbot's performance. By combining semantic similarity and \gls{json} accuracy, we can evaluate how well the model meets both criteria simultaneously, which is crucial for its functionality in a smart home system.
-The similarity threshold is a critical parameter that determines what constitutes "high" semantic similarity. This threshold should be chosen based on domain knowledge and experimentation to ensure that the similarity measure is robust and meaningful for the specific use case.
-By using this combined metric, we can quantify the chatbot's ability to provide semantically appropriate responses while also generating accurate \gls{json} commands. This approach aligns well with the practical expectations of the chatbot's performance in a real-world smart home setting.
+\textbf{Recall:} Of all the actual positive cases (generated \gls{json} is correct), how many did the model correctly identify as positive (semantic similarity is also high).
 
-\begin{Listing}
-    \begin{lstlisting}[language=Python]
-    def calculate_classification_metrics(similarities, json_accuracy_flags, similarity_threshold=0.8):
-    y_true = []
-    y_pred = []
+\textbf{F1 Score:} The harmonic mean of precision and recall, providing a single measure of performance.
 
-    for similarity, json_correct in zip(similarities, json_accuracy_flags):
-        # True label is positive if JSON is correct
-        y_true.append(1 if json_correct else 0)
-
-        # Predicted positive if similarity is above threshold and JSON is correct
-        if similarity >= similarity_threshold and json_correct:
-            y_pred.append(1)
-        else:
-            y_pred.append(0)
-
-    # Calculate precision, recall, and F1 score
-    precision = precision_score(y_true, y_pred)
-    recall = recall_score(y_true, y_pred)
-    f1 = f1_score(y_true, y_pred)
-
-    return precision, recall, f1
-  \end{lstlisting}
-    \caption{Refined Classification Metrics}
-    \label{lst:classificationRefined}
-\end{Listing}
+Details on how we have implemented this can be seen in \cref{sec:impl-combinedeval}.
 
 \subsubsection{Determining the Similarity Threshold}
 The choice of an appropriate similarity threshold is crucial for the effectiveness of our combined metric. Through careful analysis of the semantic similarity between various generated outputs and their corresponding expected outputs, we determined that a threshold of 0.65 provides the most meaningful differentiation. This decision was based on several key observations:
@@ -395,31 +286,60 @@ To evaluate the user experience of our smart home chatbot, we designed and condu
 \subsection{Participants}
 We recruited a diverse group of 10 participants for our study, comprising three employees from Bosch Smart Home and seven external participants, including university students and employees from other companies. The participants represented a varied demographic in terms of age and professional background, with 60\% having a technical background and 40\% non-technical. Experience with smart home systems varied among participants, with only one having no prior experience. Familiarity with chatbots was evenly distributed across the spectrum from no experience to regular use.
 
-This diverse group was chosen to represent a range of potential users, from those familiar with smart home technology to novices, ensuring a comprehensive evaluation of the chatbot's accessibility and usefulness.
+This diverse group was chosen to represent a range of potential users, from those familiar with smart home technology to novices, ensuring a comprehensive evaluation of the chatbot's accessibility and usefulness. A Visualization showing different aspects of the participants can be found in \cref{sec:participant-vis}
 
 \subsection{Apparatus}
 The experimental setup consisted of three smart home devices: a smart plug named ``TV'' and a thermostat, both located in the sleeping room, and a door/window contact in the living room. The language model ran on a PC with specifications described in \cref{subsec:hardware}. Participants interacted with the Bosch smart home app either through a PC emulating Android or a Samsung Galaxy S21 Smartphone. To ensure consistency, all participants used the same setup in the same room.
-How the devices look like in the Bosch Smart Home app can be seen in \cref{fig:devicesstudy}
+How the devices look like in the Bosch Smart Home app and how analog can be seen in \cref{fig:devicesstudy}.
 \begin{figure}[h]
     \centering
-    \captionsetup{justification=centering}
-    \includegraphics[width=0.4\textwidth]{graphics/devices.jpeg}
-    \caption{Devices for the User Study Shown in the App}
-    \label{fig:devicesstudy}
+      \begin{subfigure}{.35\textwidth}
+        \captionsetup{justification=centering}
+        \includegraphics[width=\textwidth]{graphics/devices.jpeg}
+        \caption{Shown in the App}
+        \label{fig:devicesapp}
+      \end{subfigure} \hfill
+      \begin{subfigure}{.6\textwidth}
+        \includegraphics[width=\textwidth]{graphics/devices-rl.jpeg}
+        \caption{Shown Analog}
+        \label{fig:devicesrl}
+        \end{subfigure}
+      \caption{Devices for the User Study}
+      \label{fig:devicesstudy}
 \end{figure}
 
 \subsection{Procedure}
-Participants were asked to complete six tasks using the chatbot interface: inquiring about the chatbot's purpose, determining the state and energy consumption of the TV, checking temperature settings in the bedroom, requesting a summary of available devices, changing the bedroom temperature, and switching the TV's state. To mitigate learning effects, the order of these tasks was randomized for each participant.
+Participants were asked to complete six tasks using the chatbot interface. To mitigate learning effects, the order of these tasks was randomized for each participant.
+The following shows the tasks of the experiment:
+\begin{itemize}
+    \item[T1.] Ask the chatbot what it is for.
+    \item[T2.] Try to find out the state of the TV. Is it on? How much energy does it consume?
+    \item[T3.] Try to find out what the temperature is in the bedroom or what the temperature is set to (or both).
+    \item[T4.] Ask the chatbot to give a summary of devices.
+    \item[T5.] Use the chatbot to change the temperature in the bedroom.
+    \item[T6.] Ask the chatbot to switch the state of the TV.
+\end{itemize}
 
-\subsection{Metrics and Data Collection}
-We collected both quantitative and qualitative data to evaluate the user experience. Quantitative metrics included task completion time, number of attempts per task, and task success rate. These were collected through automated logging and researcher observation. Qualitative data was gathered through a questionnaire using a 5-point Likert scale to assess various aspects of the chatbot's usability and effectiveness, followed by a semi-structured interview to explore participants' experiences in more depth.
+\subsection{Metrics, Data Collection and Analysis}
+We collected both quantitative and qualitative data to evaluate the user experience. Quantitative metrics included task completion time, number of attempts per task, and task success rate. These were collected through researcher observation. Further quantiative data was gathered through a questionnaire using a 5-point Likert scale to assess various aspects of the chatbot's usability and effectiveness, followed by gathering qualitative data through a semi-structured interview to explore participants' experiences in more depth. The interview explored participants' experiences with confusion or frustration, preference for chatbot interactions, suggestions for improvement, and opinions on potential additional functionalities to enhance understanding of their smart home systems.
+The following shows the questions of the Questionnaire:
+\begin{itemize}
+    \item[Q1.] The tasks were easy to accomplish.
+    \item[Q2.] The chatbot is easy to find and to use.
+    \item[Q3.] The chatbot enhances the usability of the app.
+    \item[Q4.] The chatbot's responses were clear and helpful.
+    \item[Q5.] The smart home's behavior after the chatbot's responses was understandable.
+    \item[Q6.] I would use the chatbot if it was added to the official app.
+\end{itemize}
 
-\subsection{Analysis}
 The data analysis plan incorporated both quantitative and qualitative approaches. Quantitative analysis focused on task completion rates, time taken, and survey scores. Qualitative analysis of interview responses aimed to identify common themes and areas for improvement. This mixed-methods approach allows for a comprehensive evaluation of the chatbot's performance and user perception, providing both statistical measures of effectiveness and rich, contextual insights into the user experience.
 
 
 \section{Results}
+\label{sec:results}
 In this section, we present the findings from our evaluation of the smart home chatbot. We begin with the quantitative results of our language model performance tests, comparing different model versions across various metrics. We then detail the outcomes of our user study, including task completion rates, user satisfaction scores, and qualitative feedback from participants. These results provide a holistic view of the chatbot's effectiveness and user perception.
+
+Additionally to this section we also show example conversations with the developed prototype under \cref{sec:chatbot-conv} and highlight what works well and what does not.
 
 \subsection{Language Model Performance Results}
 
@@ -603,14 +523,14 @@ Only T3, T5 and T6 needed a third attempt with 7 third attempsts in total which 
 \begin{figure}[h]
     \centering
     \captionsetup{justification=centering}
-    \includegraphics[width=0.9\textwidth]{graphics/task-attempts.png}
+    \includegraphics[width=0.75\textwidth]{graphics/task-attempts.png}
     \caption{Number of Attempts User needed for each Task}
     \label{fig:task-attempts}
 \end{figure}
 \begin{figure}[h]
     \centering
     \captionsetup{justification=centering}
-    \includegraphics[width=0.9\textwidth]{graphics/task-success.png}
+    \includegraphics[width=0.75\textwidth]{graphics/task-success.png}
     \caption{Number of Participants that were Successful for each Task}
     \label{fig:task-success}
 \end{figure}
@@ -659,44 +579,6 @@ Many participants found the chatbot particularly useful for complex tasks involv
 Participants showed significant interest in advanced features, particularly those related to energy optimization and understanding system behavior. One participant expressed interest in ``automatic suggestions/tips for optimizing behavior (usage patterns, power consumption...).'' Another was ``interested in understanding the logic behind my smart home's operations.''
 
 
-\subsection{Example Chatbot Interactions}
-% include screenshots of example conversations that were good/bad
-As a last part of this section about evaluation results we want to present some example conversations that occured with using the \texttt{shllama3instruct} model when testing the capabilities of it outside a study setting.
-Starting with unpleasant conversation. In \cref{fig:differentlanguages} we can see a chat where the chatbot communicates that the socker ``TV'' is off but it is actually on. Sometimes the language model just hallucinates the device data even though the up-to-date device list ist provided. After communicating this it sends the request to turn it on. But this example also shows another aspect: The chatbot understand multiple language, we for example used the German and French word for TV and it understand it even though it did not answer back in French.
-The underlying language model also understands abbreviations, misspellings and ``slang'', e.g., it understands the word ``telly''.
-
-In the other picture of \cref{fig:screens} we can see that the chatbot can give great summary of devices or even analyze the devices of a specific room. It is also capable of understanding many different formulations and approaches to intents. One example shows that a user want to increase the temperature by a certain value and the chatbot is able to grasp this, calculate the right value and send the request accordingly (even if this is not always the case).
-
-\begin{figure}[htbp]
-    \centering
-    \begin{subfigure}{.4\textwidth}
-        \includegraphics[width=\textwidth]{graphics/analysis-on-context.jpg}
-        \caption{Analysis based on Context}
-        \label{fig:analysis-on-context}
-    \end{subfigure} 
-    \hfill
-    \begin{subfigure}{.44\textwidth}
-        \includegraphics[width=\textwidth]{graphics/devicesummary.jpg}
-        \caption{Device Summary}
-        \label{fig:devicesummary}
-    \end{subfigure}
-    \vfill
-    \begin{subfigure}{.48\textwidth}
-        \includegraphics[width=\textwidth]{graphics/variousways.jpg}
-        \caption{Various Ways to Adress Intens}
-        \label{fig:variousways}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}{.4\textwidth}
-        \includegraphics[width=\textwidth]{graphics/differentlanguages.jpg}
-        \caption{Different Languages}
-        \label{fig:differentlanguages}
-    \end{subfigure}   
-    \caption{Four Example Conversations with the Chatbot Showing its Capabilities}
-    \label{fig:screens}
-\end{figure}
-
-\newpage
 
 \section{Discussion}
 This section interprets the results of our evaluation, examining the implications of our findings for the development and implementation of smart home chatbots. We analyze the trade-offs observed in model performance, discuss the insights gained from user feedback, and consider the potential for creating a generalizable chatbot framework. 
@@ -725,31 +607,28 @@ Interestingly, only the llama3 model family was able to understand the logic beh
 
 The inconsistent language use in responses (not always matching the user's input language) was observed across multiple models, not just llama3. This could be due to the limited parameter sizes of the models we used or the English-language device list provided. Future work could explore using the system language of the phone/app for responses or fine-tuning the model with multilingual example conversations.
 
-\subsection{Framework Potential}
-This work demonstrates the potential for creating a generalizable framework for smart home chatbots. Such a framework could allow developers to specify their domain to a self-hosted language model or a commercial API, with mapping functionality to parse and map the output \gls{json} to specific smart home system actions. Essentially you could just use the modelfile of our work to get the model functionality we had and the Java code we developed, just input your models' host adress and create a mapper class that matches the chatbots output to your smart home functionality.
-
 \subsection{Discussion of Quantitative User Study Findings}
 The quantitative results from our user study provide valuable insights into the performance and user perception of the smart home chatbot.
 \subsubsection{Task Completion and Efficiency}
 The overall task success rate of 91.67\% indicates that the chatbot was generally effective in helping users complete their assigned tasks. However, the variation in task completion times and number of attempts across different tasks reveals areas for improvement:
 
-Information Retrieval vs. Device Control: Tasks involving device control (T5 and T6) required more attempts and had lower success rates compared to information retrieval tasks (T1-T4). This aligns with our hypothesis H4 and suggests that the chatbot's ability to execute commands needs refinement.
+Information Retrieval vs. Device Control: Tasks involving device control (T5 and T6) required more attempts and had lower success rates compared to information retrieval tasks (T1-T4). This aligns with our hypothesis \(H_4\) and suggests that the chatbot's ability to execute commands needs refinement.
 Complex Tasks: Task 3 (finding or setting temperature) had the longest mean completion time (34 seconds) and highest variability, indicating that more complex queries pose a challenge for users and/or the chatbot. This could be addressed by improving the chatbot's natural language understanding for multi-step commands.
 Consistency: The wide range in completion times for most tasks suggests inconsistent performance or user experience. Efforts should be made to ensure more uniform response quality and interaction flow.
 
 \subsubsection{User Perceptions}
 The Likert scale questionnaire results provide insights into user perceptions:
 
-Usability and Clarity: With mean scores of 4.20 for ease of use (Q3) and clarity of responses (Q4), users generally found the chatbot intuitive and understandable. This supports our hypotheses H1 and H2 regarding improved explainability and usability.
-Integration Potential: The neutral mean score (3.00) for willingness to use the chatbot if added to the official app (Q6) suggests that while users see value in the chatbot, they're not yet fully convinced of its superiority over traditional interfaces. This aligns with our finding that H3 was not supported.
-Understanding Smart Home Behavior: The relatively high mean score (3.90) for understanding smart home behavior after chatbot responses (Q5) indicates that the chatbot effectively improves system explainability, further supporting H1.
+Usability and Clarity: With mean scores of 4.20 for ease of use (Q3) and clarity of responses (Q4), users generally found the chatbot intuitive and understandable. This supports our hypotheses \(H_1\) and \(H_2\) regarding improved explainability and usability.
+Integration Potential: The neutral mean score (3.00) for willingness to use the chatbot if added to the official app (Q6) suggests that while users see value in the chatbot, they're not yet fully convinced of its superiority over traditional interfaces. This aligns with our finding that \(H_3\) was not supported.
+Understanding Smart Home Behavior: The relatively high mean score (3.90) for understanding smart home behavior after chatbot responses (Q5) indicates that the chatbot effectively improves system explainability, further supporting \(H_1\).
 
 \subsubsection{Statistical Significance}
 The Wilcoxon signed-rank tests provided statistical support for several of our hypotheses:
 
-Strong evidence was found for the chatbot's ability to improve explainability (H1) and moderate to strong evidence for improved usability (H2). This suggests that the chatbot is effective in making the smart home system more understandable and user-friendly.
-The lack of support for H3 (preference for chatbot over traditional methods) indicates that while the chatbot improves certain aspects of the user experience, it has not yet reached a point where users prefer it over conventional interfaces. This presents an opportunity for further refinement and feature development.
-The strong evidence supporting H4 (device control tasks taking longer than information retrieval) highlights a key area for improvement in the chatbot's functionality.
+Strong evidence was found for the chatbot's ability to improve explainability (\(H_1\)) and moderate to strong evidence for improved usability (\(H_2\)). This suggests that the chatbot is effective in making the smart home system more understandable and user-friendly.
+The lack of support for \(H_3\) (preference for chatbot over traditional methods) indicates that while the chatbot improves certain aspects of the user experience, it has not yet reached a point where users prefer it over conventional interfaces. This presents an opportunity for further refinement and feature development.
+The strong evidence supporting \(H_4\) (device control tasks taking longer than information retrieval) highlights a key area for improvement in the chatbot's functionality.
 
 \subsection{Interpretation of Qualitative Findings}
 The qualitative data from our study provides valuable insights into users' experiences with the smart home chatbot and their expectations for such a system.
@@ -763,6 +642,9 @@ The requests for more visual elements and voice input options indicate that user
 The strong interest in using the chatbot for complex tasks, device management, and system optimization suggests these are high-value use cases that should be prioritized in future development. The chatbot's ability to handle scenarios involving multiple devices and provide quick system overviews appears to be a significant advantage over traditional interfaces.
 \subsubsection{Addressing Privacy and Scope Concerns}
 While many participants were enthusiastic about advanced features, some expressed concerns about privacy and the appropriate scope of the chatbot's functionality, especially participants from the Bosch company saw this from a  potential customer point of view. This highlights the need for transparent data handling practices and clear communication about the chatbot's capabilities and limitations.
+
+\subsection{Framework Potential}
+This work demonstrates the potential for creating a generalizable framework for smart home chatbots. Such a framework could allow developers to specify their domain to a self-hosted language model or a commercial API, with mapping functionality to parse and map the output \gls{json} to specific smart home system actions. Essentially you could just use the modelfile of our work to get the model functionality we had and the Java code we developed, just input your models' host adress and create a mapper class that matches the chatbots output to your smart home functionality.
 
 \subsection{Summary}
 Our evaluation of the smart home chatbot reveals both promising results and areas for improvement. The \texttt{shllama3instr} model showed the best overall performance, balancing semantic understanding with accurate \gls{json} generation. However, the challenges in optimizing for multiple criteria simultaneously highlight the complexity of developing effective language models for specific applications.

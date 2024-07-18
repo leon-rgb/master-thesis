@@ -6,7 +6,8 @@
 
 In the exploration of chatbot technology and its applications, this section delves into foundational aspects and related work that form the basis of effective chatbot development. 
 The foundations include concepts such as smart homes, chatbot types, and building blocks, providing insights into the underlying principles and methodologies. 
-As the foundation is established, the discussion extends to related work, examining existing literature on chatbots in smart homes and their applications in complex scenarios. 
+As the foundation is established, the discussion extends to related work, examining existing literature on chatbots in smart homes and their applications in complex scenarios.
+We also dive into evaluation techniques that could inspire our own evaluation framework for this thesis. 
 By understanding these foundational elements and existing research, the subsequent sections aim to contribute novel insights and advancements in the field of chatbot development.
 
 \section{Foundations}
@@ -226,6 +227,8 @@ The Home \gls{llm} models are fine-tuned versions of various large language mode
 
 The project includes a synthetic dataset aimed at covering basic operations in Home Assistant, such as turning devices on and off, supporting various entity types like light, media player, climate and switch. Training for the models involved fine-tuning, and an experimental Home Assistant Add-on facilitates running the project entirely on the Home Assistant system.
 
+The owner of the Home LLM project also provided us with an explanation of how to train a model the way he did. While this is useful we did not directly use it in our implementation. For details have a look at \cref{sec:relatedwork-appendix}
+
 Another project, exemplified by \texttt{dadaloop82/MyHomeSmart-HASS-AppDeamon} on GitHub \cite{dadaloop82_MyHomeSmart_HASS_AppDeamon}, focuses on enhancing home automation capabilities through the integration of artificial intelligence techniques. This repository leverages AppDaemon within the Home Assistant framework to autonomously create and execute dynamic automations. Central to its functionality is the use of decision tree models implemented with Python's scikit-learn library. These models analyze sensor data to make informed decisions, such as adjusting temperatures or controlling devices based on predefined objectives and user habits.
 
 The repository provides configuration files for specifying entities and defining automation rules tailored to user preferences.
@@ -249,41 +252,6 @@ While the Home \gls{llm} project provides a solid foundation for integrating \gl
 \end{itemize}
 
 By addressing these areas, this thesis aims to provide a more robust and versatile solution for integrating \glspl{llm} into smart home systems, pushing the boundaries of what these models can achieve in terms of functionality and user interaction.
-
-\subsubsection{Training a Large Language Model for Smart Home Automation}
-The owner of the Home LLM repository provided us insights on how to build a model similar to his upon request.
-Even if our intention is not on fine-tuning an LLM, such information can be very helpful, for example to get inspired by the training data format. 
-The primary focus in the process is on constructing a comprehensive dataset that represents various scenarios where a personal assistant interacts with Home Assistant. This dataset, which forms the core of the project, consists of thousands of examples demonstrating different interactions, such as controlling devices or responding to user queries.
-
-The dataset is formatted to include all necessary information for the model to understand and execute tasks. An example format might look like \cref{lst:homeLLM}
-
-\begin{Listing}[h]
-  \begin{lstlisting}
-    <|system|>You are 'Al', a helpful AI Assistant that controls the devices in a house. Complete the following task as instructed or answer the following question with the information provided only.
-    The current time and date is 08:12 AM on Thursday March 14, 2024
-    
-    Services: light.turn_off(), light.turn_on(rgb_color,brightness), fan.turn_on(), fan.turn_off()
-    
-    Devices:
-    light.office 'Office Light' = on;80%
-    fan.office 'Office fan' = off
-    light.kitchen 'Kitchen Light' = on;80%;red
-    light.bedroom 'Bedroom Light' = off<|endoftext|>
-    
-    <|user|>
-    please turn on the lights in the kitchen now<|endoftext|>
-
-    <|assistant|>I'll turn the lights on for you right way
-    ```homeassistant
-    { "service": "light.turn_on", "target_device": "light.kitchen" }
-    ```<|endoftext|>
-  \end{lstlisting}
-  \caption{Example Format for Training a Large Language Model on Smart Home Control}
-  \label{lst:homeLLM}
-\end{Listing}
-
-Training involves instruct fine-tuning using HuggingFace Trainer scripts, ensuring the model learns to complete tasks based on user requests by providing variations of these scenarios. Critical steps include matching the model's instruct/chat format, masking out the context during training, and fine-tuning hyper-parameters like learning rate and training schedule.
-An evaluation framework is essential to measure model accuracy and compare training runs, ensuring effective model performance.
 
 
 \subsection{Evaluating Language Models}
