@@ -20,7 +20,7 @@ Intents are fundamental to the functionality of the chatbot, serving as the core
 Our approach to intent engineering was systematic and iterative. We began by brainstorming about current smart home systems and voice assistants, focusing on their limitations and potential areas for improvement. This process allowed us to generate a diverse set of ideas for enhancing user interaction with smart home devices.
 
 To organize these ideas and align them with our development strategy, we categorized the proposed intents into three levels of complexity. This categorization was based on the potential implementation challenges and the interdependencies between intents.
-
+\newpage
 For each intent, we developed a structured format consisting of four key elements:
 \begin{itemize}
     \item A clear definition of the user's goal
@@ -95,7 +95,7 @@ However, they represent potential areas for future expansion and enhancement of 
 \section{Preliminary Interviews to Gain Knowledge, Requirements and Ideas}
 Before proceeding with further actions, interviews with a few individuals were conducted to gather knowledge, requirements, and ideas for this thesis.
 All of the four interviewed were from different domains: One is a researcher and has knowledge in \gls{ai} technologies or more precisely about \glspl{llm} while the three other interviewees are from Bosch.
-One of them is working in \qq{AskBosch} but also has expertise in the Smart Home and \gls{iot}. 
+One of them is working in \qq{AskBosch} (Bosch internal \gls{ai}-assisted search engine) but also has expertise in the Smart Home and \gls{iot}. 
 The other two are both from Bosch Smart Home where one is a Software Developer and the other a Product Developer.
 Therefore a diverse group of interviewees has been formed.
 
@@ -123,7 +123,6 @@ In the following all guided questions are listed:
     Can you identify potential sources from which data for the chatbot could be extracted to address user queries about the smart home?
     \item \textbf{Accessibility of Data}
     Do you foresee any challenges or limitations in accessing the identified data sources for the chatbot development?
-           
 \end{enumerate}
 
 \subsection{Interview Summary}
@@ -169,7 +168,7 @@ Effective data organization and source identification are a key aspect for achie
 \begin{itemize}
     \item \textbf{Configurations and Scenarios}: Initial iterations should use predefined configurations, mapping intents to device actions.
     \item \textbf{Data Collection}: Gathering diverse user inputs to train models and create accurate annotations is essential for generalizability. They are also useful for the evaluation of the performance of the chatbot.
-    \item \textbf{Potential Sources}: Logs from smart home devices , external services, and user behavior data should be considered. For the beginning the most important data is about the devices of a user since it is crucial for all of the defined intents and the most essential part of a smart home.
+    \item \textbf{Potential Sources}: Logs from smart home devices, external services, and user behavior data should be considered. For the beginning the most important data is about the devices of a user since it is crucial for all of the defined intents and the most essential part of a smart home.
 \end{itemize}
 
 \subsubsection{Common Issues and Pitfalls}
@@ -250,7 +249,7 @@ Two primary design options were available for this thesis: creating a \gls{nlp} 
 
 The \gls{llm} approach simplifies the process by requiring only the customization or fine-tuning of the model, necessitating the provision of an appropriate prompt and the relevant data for the prompt. This is particularly advantageous for intents that involve complex analyses, such as determining the reasons behind higher energy consumption in the current month compared to the previous one. Using a \gls{llm} eliminates the need to develop intricate deterministic functions to achieve such complex tasks. In essence, a \gls{llm} can handle a broader range of messages and data formats without the necessity of meticulously defining each scenario.
 
-For the base architecture of the application using the aforementioned approach, three main options were considered:
+For the base architecture of the application using the before mentioned approach, three main options were considered:
 \begin{enumerate}
     \item \textbf{Using an API from an \gls{llm} provider like OpenAI}: This option provides access to powerful, state-of-the-art models without the need for extensive infrastructure. However, it involves recurring costs and reliance on third-party services.
     \item \textbf{Self-hosting an \gls{llm}}: This approach offers more control over the model and data, potentially enhancing privacy and customization. Nonetheless, it requires significant resources for infrastructure and maintenance.
@@ -281,7 +280,7 @@ The Smart Home Data component integrates with various smart home devices to prov
 
 
 \subsection{System Architecture}
-
+In this section we want to provide a more detailed explanation of the architecture of our chatbot application.
 The chatbot application implements an architecture inspired by the Model-View-Controller (MVC) pattern, adapted for Android development and aligned with the conceptual architecture diagram.
 It can be seen in \cref{fig:architecture}.
 
@@ -376,7 +375,7 @@ The survey presented participants with a scenario where they owned smart devices
 
 Participants were encouraged to be creative in their responses, using room names or inventing device names as needed. They were also given the option to provide multiple formulations for each situation by filling out the questionnaire multiple times.
 
-This approach allowed us to collect a wide range of natural language inputs, reflecting various user preferences and linguistic styles and specifically matching the Intents we defined for out chatbot. The gathered data serves as a foundation for improving the chatbot's natural language understanding capabilities, ensuring it can handle diverse user queries effectively.
+This approach allowed us to collect a wide range of natural language inputs, reflecting various user preferences and linguistic styles and specifically matching the intents we defined for out chatbot. The gathered data serves as a foundation for improving the chatbot's natural language understanding capabilities, ensuring it can handle diverse user queries effectively.
 Additionally we used a big part of it for evaluating the output quality of the chatbot using different language models.
 %\section{further parts of the prototype - NLP Pipeline, Integration into the Bosch SH App,...}
 

@@ -13,11 +13,11 @@ By understanding these foundational elements and existing research, the subseque
 \section{Foundations}
 \label{sec:foundation}
 In this subsection, the focus are the specific foundations that are crucial for the development of chatbots.
-Including key elements for this thesis such as a definition for a Smart Home and Natural Language Understanding which enables chatbots to understand a users input message.
+Including key elements for this thesis such as a definition for a Smart Home and \gls{nlu} which enables chatbots to understand a users input message.
 Other elements such as a general architecture and typical building blocks for chatbots are also presented.
 
 \subsection{Smart Home} 
-A smart home devices main aspect is that its original functionality is augmented through network capabilities \cite{schiefer_smart_2015,balakrishnan_smart_2018} and should enhance especially comfort \cite{matsui_information_2018, balakrishnan_smart_2018} but also security \cite{balakrishnan_smart_2018} or energy efficiency \cite{matsui_information_2018, balakrishnan_smart_2018} for example. 
+A smart home device's main aspect is that its original functionality is augmented through network capabilities \cite{schiefer_smart_2015,balakrishnan_smart_2018} and should enhance especially comfort \cite{matsui_information_2018, balakrishnan_smart_2018} but also security \cite{balakrishnan_smart_2018} or energy efficiency \cite{matsui_information_2018, balakrishnan_smart_2018} for example. 
 Therefore a smart home consists of such devices and provides additional infrastructure like an app to control the devices. 
 These infrastructures often allow automation of the devices.
 Since its functionality is based on connected devices and often sensors it is often named in the context of the \gls{iot} \cite{atzori_internet_2010}. 
@@ -35,7 +35,7 @@ In terms of \textbf{service}, interpersonal chatbots act as information intermed
 Intrapersonal chatbots, existing within the user's personal domain, function as companions, understanding users like humans. 
 Inter-agent chatbots, omnipresent in nature, facilitate inter-chatbot communication. 
 \textbf{Goal-based} classification includes informative chatbots providing stored information, chat-based bots conversing like humans, and task-based bots performing specific functions intelligently. 
-\textbf{Input processing and response generation} methods vary, from rule-based models relying on predefined rules to retrieval-based models using APIs, and generative models employing machine learning techniques. 
+\textbf{Input processing and response generation} methods vary, from rule-based models relying on predefined rules to retrieval-based models using \glspl{api}, and generative models employing machine learning techniques. 
 \textbf{Human-aided} chatbots incorporate human computation for flexibility and robustness.
 The \textbf{build method} distinguishes between open-source platforms allowing intervention and closed platforms acting as black boxes but providing immediate access to advanced technologies, often found in large companies.
 
@@ -43,7 +43,7 @@ The \textbf{build method} distinguishes between open-source platforms allowing i
 In this subsection building blocks and architectural insights that can be identified in different literature are collected and explained. 
 It is mostly based on Lehmann \cite{lehmann_chatbot-guide_2021} and \cite{adamopoulou_overview_2020} if not mentioned otherwise.
 
-\subsubsection{Natural Language Understanding (NLU) and Machine Learning}
+\subsubsection{Natural Language Understanding and Machine Learning}
 \gls{nlu}, a subset of \gls{nlp}, is essential for chatbots.
 It involves training algorithms to understand and process natural language, bridging the gap between human language and artificial intelligence. 
 NLU is critical for successful chatbot operation, enabling the machine to comprehend user intents and contexts.
@@ -120,11 +120,11 @@ It is useful to start projects like this thesis with a prototype with thought ou
 Based on ChatGPT \cite{openai2024function-chatgpt} function calling can be summarized as:
 
 \begin{quote}
-Function calling in language models refers to the ability of a language model to interact with external functions or APIs during a conversation. This feature enhances the model's capabilities by allowing it to perform specific tasks, retrieve real-time information, or execute actions beyond its built-in knowledge base.
+Function calling in language models refers to the ability of a language model to interact with external functions or \glspl{api} during a conversation. This feature enhances the model's capabilities by allowing it to perform specific tasks, retrieve real-time information, or execute actions beyond its built-in knowledge base.
 \end{quote} 
 
 \noindent
-Function calling in language models allows the model to interact with external tools, APIs, or functions during the generation process. This capability enables the model to access up-to-date information, perform specific tasks, and provide more accurate and contextually relevant responses \cite{mistral2024function, openai2024function-article, google2024function}.
+Function calling in language models allows the model to interact with external tools, \glspl{api}, or functions during the generation process. This capability enables the model to access up-to-date information, perform specific tasks, and provide more accurate and contextually relevant responses \cite{mistral2024function, openai2024function-article, google2024function}.
 The process of function calling typically involves the following steps:
 
 \begin{itemize}
@@ -134,13 +134,13 @@ The process of function calling typically involves the following steps:
 
 \item \textbf{Function Call Generation:} If the model decides to use a function, it generates a structured output (usually in JSON format) containing the function name and necessary arguments \cite{mistral2024function, openai2024function-article}.
 
-\item \textbf{External Execution:} The application receives the function call details from the model and executes the corresponding function or API call \cite{mistral2024function, google2024function}.
+\item \textbf{External Execution:} The application receives the function call details from the model and executes the corresponding function or \gls{api} call \cite{mistral2024function, google2024function}.
 
 \item \textbf{Response Integration:} The result from the external function is then provided back to the model, which uses this information to generate a final response \cite{mistral2024function, google2024function}.
 \end{itemize}
 This approach allows language models to overcome limitations such as accessing real-time data or performing specific computations, making them more versatile and powerful in various applications \cite{google2024function}.
 
-Function calling is particularly relevant to a smart home chatbot as it significantly enhances the bot's capabilities and usefulness. In the context of a smart home, function calling enables the chatbot to interact directly with various devices, APIs, and databases, allowing it to perform tasks such as controlling devices, retrieving real-time information about device states, and analyzing power consumption data \cite{google2024function}. For instance, when a user asks to ``turn off the living room lights'' the chatbot can use function calling to execute the appropriate command on the smart home system. Similarly, for queries about power consumption or device information, the chatbot can call specific functions to access and analyze the relevant data, providing accurate and up-to-date responses \cite{mistral2024function, openai2024function-article}. This integration of function calling makes the chatbot a more effective interface between the user and the smart home ecosystem, enhancing the user's ability to understand and control their smart home environment.
+Function calling is particularly relevant to a smart home chatbot as it significantly enhances the bot's capabilities and usefulness. In the context of a smart home, function calling enables the chatbot to interact directly with various devices, \glspl{api}, and databases, allowing it to perform tasks such as controlling devices, retrieving real-time information about device states, and analyzing power consumption data \cite{google2024function}. For instance, when a user asks to ``turn off the living room lights'' the chatbot can use function calling to execute the appropriate command on the smart home system. Similarly, for queries about power consumption or device information, the chatbot can call specific functions to access and analyze the relevant data, providing accurate and up-to-date responses \cite{mistral2024function, openai2024function-article}. This integration of function calling makes the chatbot a more effective interface between the user and the smart home ecosystem, enhancing the user's ability to understand and control their smart home environment.
 
 \newpage
 \section{Related work}
@@ -166,7 +166,7 @@ The intents and pipeline of this chatbot could inspire the inital iteration of o
 \label{fig:chatbot-pipeline-baby}
 \end{figure}
 
-Another work developed and connected a chatbot to the facebook (today called meta) messenger for controling smart home devices fans and lights but also gas leakage detection or humidity monitoring \cite{ahmed_smart_2020}.
+Another work developed and connected a chatbot to the Facebook (today called meta) messenger for controlling smart home devices fans and lights but also gas leakage detection or humidity monitoring \cite{ahmed_smart_2020}.
 Intents are not clearly defined or at least not stated but it seems to be a simple decision-tree-based chatbot.
 This is probably due to focus of the work laying more in the systems architecture and a limited amount of intents.
 
@@ -179,7 +179,7 @@ The learning is purely based on natural languages in contrast to chatbots that f
 Various chatbots for many different use cases exist. 
 As the intention of this work is to test how far a chatbot can go in answering complex queries to a smart home the question aligns if approaches exist for answering (complex) questions in a closed domain based on available data.
 An example for this is the work of Ait-Mlouk and Jiang \cite{ait-mlouk_kbot_2020} which approached to develop a knowledge graph based chatbot that can find information in linked data through NLU.
-The researches in this work address challenges like understanding many different queries (and intents) and making the use of multiple languages and knowledge bases available.
+The researchers in this work address challenges like understanding many different queries (and intents) and making the use of multiple languages and knowledge bases available.
 The system developed is able to be extended with new domains.
 The architecture of it can be seen in \cref{fig:kbot}.
 While it is too complex to explain in detail, it processes queries into intents and entities (through Named Entity Recognition) which in combination make it possible to retrieve information from connected knowledge bases by transforming it into queries and selects a response based on a knowledge graph.
@@ -203,20 +203,20 @@ It also includes a ``Small Talk Module'' which improves users satisfaction with 
 
 \subsection{Advancements in Function Calling of Language Models}
 
-Recent advancements in large language models (LLMs) have demonstrated significant potential across a range of tasks, including mathematical reasoning, natural dialogue, and program synthesis. Despite these advancements, current state-of-the-art models like GPT-4 still face challenges in accurately utilizing tools via API calls. These challenges include generating precise input arguments and avoiding the hallucination of incorrect API usages.
+Recent advancements in \glspl{llm} have demonstrated significant potential across a range of tasks, including mathematical reasoning, natural dialogue, and program synthesis. Despite these advancements, current state-of-the-art models like GPT-4 still face challenges in accurately utilizing tools via \gls{api} calls. These challenges include generating precise input arguments and avoiding the hallucination of incorrect \gls{api} usages.
 
-To address these limitations, \citet{patil2023gorillalargelanguagemodel} introduced Gorilla, a fine-tuned LLaMA-based model specifically designed to enhance the performance of LLMs in writing API calls. Gorilla leverages a document retriever to adapt to test-time document changes, significantly mitigating hallucination issues and improving the accuracy of API call generation. The model's capabilities were rigorously evaluated using APIBench (a comprehensive dataset of APIs from HuggingFace, TorchHub, and TensorHub).
+To address these limitations, \citet{patil2023gorillalargelanguagemodel} introduced Gorilla, a fine-tuned LLaMA-based model specifically designed to enhance the performance of \glspl{llm} in writing \gls{api} calls. Gorilla leverages a document retriever to adapt to test-time document changes, significantly mitigating hallucination issues and improving the accuracy of \gls{api} call generation. The model's capabilities were rigorously evaluated using APIBench (a comprehensive dataset of \glspl{api} from HuggingFace, TorchHub, and TensorHub).
 
-Gorilla's innovative approach integrates retrieval-aware training, which allows it to remain updated with frequently changing documentation and thus ensures more reliable and applicable outputs. The model outperforms GPT-4 in functional correctness of API calls, demonstrating good adaptability and reduced error rates. This makes Gorilla an advancement in the field of tool usage by LLMs, potentially transforming the way these models interact with a dynamic set of cloud APIs and other computational tools.
+Gorilla's innovative approach integrates retrieval-aware training, which allows it to remain updated with frequently changing documentation and thus ensures more reliable and applicable outputs. The model outperforms GPT-4 in functional correctness of \gls{api} calls, demonstrating good adaptability and reduced error rates. This makes Gorilla an advancement in the field of tool usage by \glspl{llm}, potentially transforming the way these models interact with a dynamic set of cloud \glspl{api} and other computational tools.
 
-Further contributing to this field, \citet{srinivasan2023nexusraven} introduced NexusRaven-13B, an open-source LLM for function calls that originates from the CodeLLAMA-13B lineage. NexusRaven-13B employs a unique data curation via multi-step refinement, ensuring high-quality training data without relying on GPT-4 distillation. It matches GPT-3.5 in zero-shot function-calling accuracy and significantly surpasses GPT-4 when combined with a demonstration retrieval augmentation. NexusRaven-13B achieves 60\% higher function call success rate compared to Gorilla in the cybersecurity domain and 30\% higher than GPT-4 when using a demonstration retrieval system.
+Further contributing to this field, \citet{srinivasan2023nexusraven} introduced NexusRaven-13B, an open-source \gls{llm} for function calls that originates from the CodeLLAMA-13B lineage. NexusRaven-13B employs a unique data curation via multi-step refinement, ensuring high-quality training data without relying on GPT-4 distillation. It matches GPT-3.5 in zero-shot function-calling accuracy and significantly surpasses GPT-4 when combined with a demonstration retrieval augmentation. NexusRaven-13B achieves 60\% higher function call success rate compared to Gorilla in the cybersecurity domain and 30\% higher than GPT-4 when using a demonstration retrieval system.
 
 In general much research is done in the area of function calling with \glspl{llm}.
-The success of models like Gorilla and NexusRaven-13B shows that using retrieval systems and fine-tuning can make LLMs more useful in real-world tasks and with that indicate a promising direction of future research.
+The success of models like Gorilla and NexusRaven-13B shows that using retrieval systems and fine-tuning can make \glspl{llm} more useful in real-world tasks and with that indicate a promising direction of future research.
 
 However, a problem for this thesis is that different current language models should be tried out to find the model that suits the use case the best. But there is no standard of how function calling is achieved and also not every model supports function calling per se.
 
-A solution to this could be to use the fact that most models are able to generate \gls{json} and map it to actual function calls with parameters. This approach leverages the inherent structure and flexibility of JSON, making it a versatile and effective method for implementing function calling across various LLMs.
+A solution to this could be to use the fact that most models are able to generate \gls{json} and map it to actual function calls with parameters. This approach leverages the inherent structure and flexibility of JSON, making it a versatile and effective method for implementing function calling across various \glspl{llm}.
 
 \subsection{Similar Approaches to this thesis for Home Assistant}
 A project very similar to what we want to achieve with this work is the Home LLM project which integrates a local \gls{llm} with Home Assistant\footnote{\url{https://www.home-assistant.io/}} (a widely used open source solution for home automation) to act as a personal assistant for controlling smart home devices \cite{acon96_home_llm}. It consists of two main components: the Home \gls{llm} models and the Local \gls{llm} Conversation integration.
@@ -229,7 +229,7 @@ The project includes a synthetic dataset aimed at covering basic operations in H
 
 The owner of the Home LLM project also provided us with an explanation of how to train a model the way he did. While this is useful we did not directly use it in our implementation. For details have a look at \cref{sec:relatedwork-appendix}
 
-Another project, exemplified by \texttt{dadaloop82/MyHomeSmart-HASS-AppDeamon} on GitHub \cite{dadaloop82_MyHomeSmart_HASS_AppDeamon}, focuses on enhancing home automation capabilities through the integration of artificial intelligence techniques. This repository leverages AppDaemon within the Home Assistant framework to autonomously create and execute dynamic automations. Central to its functionality is the use of decision tree models implemented with Python's scikit-learn library. These models analyze sensor data to make informed decisions, such as adjusting temperatures or controlling devices based on predefined objectives and user habits.
+Another project, exemplified by \texttt{dadaloop82/MyHomeSmart-HASS-AppDeamon} on GitHub \cite{dadaloop82_MyHomeSmart_HASS_AppDeamon}, focuses on enhancing home automation capabilities through the integration of artificial intelligence techniques. This repository leverages AppDaemon within the Home Assistant framework to autonomously create and execute dynamic automations. Central to its functionality is the use of decision-tree models implemented with Python's scikit-learn library. These models analyze sensor data to make informed decisions, such as adjusting temperatures or controlling devices based on predefined objectives and user habits.
 
 The repository provides configuration files for specifying entities and defining automation rules tailored to user preferences.
 
@@ -242,11 +242,11 @@ While the Home \gls{llm} project provides a solid foundation for integrating \gl
 
 \item \textbf{Diverse and Complex Intents:} The scope of the Home LLM project is largely confined to basic device control and simple question-answering. This thesis extends beyond these functionalities and the MyHomeSmart-HASS-AppDeamon approach to address more diverse and complex intents. This includes creating automations, querying the rationale behind system actions, and performing analytical tasks. These additional capabilities require the \gls{llm} to understand and process more intricate commands and contextual information, demonstrating a higher level of intelligence and utility.
 
-\item \textbf{Advanced Interaction Capabilities:} While the Home LLM project enables interaction through chat interfaces and Speech-to-Text and Text-to-Speech addons and MyHomeSmart-HASS-AppDeamon tries to reason from user actions and preferences, This thesis investigates more advanced interaction paradigms. This includes understanding user queries at a deeper semantic level and providing more accurate and contextually relevant responses.
+\item \textbf{Advanced Interaction Capabilities:} While the Home LLM project enables interaction through chat interfaces and Speech-to-Text and Text-to-Speech addons and MyHomeSmart-HASS-AppDeamon tries to reason from user actions and preferences, this thesis investigates more advanced interaction paradigms. This includes understanding user queries at a deeper semantic level and providing more accurate and contextually relevant responses.
 
 \item \textbf{Evaluating Generalization Without Fine-Tuning:} A key focus of this thesis is to determine how far larger models can be pushed without the need for fine-tuning, by leveraging pre-trained capabilities and customizing them for specific use cases. This approach aims to save on computational resources and time, offering a more efficient pathway to deploying sophisticated \glspl{llm} in smart home environments.
 
-\item \textbf{Comprehensive Evaluation Metrics:} In addition to the standard metrics used for evaluating \glspl{llm}, This thesis incorporates a broader set of evaluation criteria to assess the performance of these models in real-world scenarios. This includes metrics for natural language understanding, function calling accuracy, and user satisfaction, ensuring a holistic evaluation of the model's capabilities.
+\item \textbf{Comprehensive Evaluation Metrics:} In addition to the standard metrics used for evaluating \glspl{llm}, this thesis incorporates a broader set of evaluation criteria to assess the performance of these models in real-world scenarios. This includes metrics for \gls{nlu}, function calling accuracy, and user satisfaction, ensuring a holistic evaluation of the model's capabilities.
 
 \item \textbf{Providing a ready-to-use solution:} While both mentioned projects are rather for technology interested and knowing persons this thesis aims to develop an chatbot that is seemlessly integrated into the Bosch Smart Home App, enabling also users without technical expertise to use this technology and in general prevent the need for a manual setup.
 \end{itemize}
@@ -283,14 +283,14 @@ Additionally, human evaluation metrics can be valuable in assessing the chatbot'
 The \gls{bfcl} provides a comprehensive evaluation of the ability of \glspl{llm} to generate accurate function calls \cite{berkeley-function-calling-leaderboard}. 
 This work introduces a dataset of 2,000 question-function-answer pairs covering multiple programming languages and diverse application domains. 
 The leaderboard evaluates models on various function calling scenarios, including simple, multiple, parallel, and parallel multiple functions, as well as function relevance detection and support for different programming languages. 
-Two main evaluation methods are employed: \gls{ast} Evaluation, which assesses the structural correctness of generated function calls, and Executable Function Evaluation, which tests the actual execution of generated function calls, including API responses for REST calls.
+Two main evaluation methods are employed: \gls{ast} Evaluation, which assesses the structural correctness of generated function calls, and Executable Function Evaluation, which tests the actual execution of generated function calls, including \gls{api} responses for REST calls.
 The \gls{ast} can be seen in \cref{fig:ast} and checks for an outputed function by a model if the correct function, parameters and values were generated.
 
 The leaderboard compares various models, both proprietary (e.g., GPT-4, Claude) and open-source (e.g., Gorilla OpenFunctions, Llama3), on function calling tasks. 
 Additionally, it considers practical aspects of model deployment by measuring cost and latency for different models. 
-The study identifies several common challenges faced by LLMs in function calling, such as handling complex parameter conversions and generating malformed function calls. 
+The study identifies several common challenges faced by \glspl{llm} in function calling, such as handling complex parameter conversions and generating malformed function calls. 
 Importantly, the research suggests that fine-tuned open-source models can be competitive with proprietary models for simple function calling tasks, though more complex scenarios may still favor larger proprietary models. 
-This work provides valuable insights into the current state of function calling capabilities in LLMs and offers a standardized benchmark for evaluating and comparing different models in this critical area of AI application development.
+This work provides valuable insights into the current state of function calling capabilities in \glspl{llm} and offers a standardized benchmark for evaluating and comparing different models in this critical area of AI application development.
 
 \begin{figure}[h]
   \centering

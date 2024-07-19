@@ -146,14 +146,14 @@ This approach allowed us to maintain flexibility in our model selection while ef
 
 
 \subsection{Message Management}
-As previously described in \cref{subsec:messageadapter}, the Message Adapter module manages and triggers the displaying of chat messages in the gls{ui}, making it possible to render message data, managing chat history, visually differentiating user and assistant messages, and enabling dynamic updates without full gls{ui} refreshes. \\
+As previously described in \cref{subsec:messageadapter}, the Message Adapter module manages and triggers the displaying of chat messages in the \gls{ui}, making it possible to render message data, managing chat history, visually differentiating user and assistant messages, and enabling dynamic updates without full \gls{ui} refreshes. \\
 The implementation of this module leverages Android's RecyclerView component, which provides an efficient and flexible way to display large sets of data. RecyclerView is particularly well-suited for chat applications due to its ability to recycle and reuse view holders, minimizing memory usage and enhancing scrolling performance.
 
 
 The Message Adapter extends RecyclerView.Adapter and implements a custom ViewHolder pattern. This pattern allows for efficient view recycling and type-specific rendering of messages. Two main types of ViewHolders are defined: one for user messages and another for assistant responses. This differentiation enables distinct visual styling for each message type as shown in , enhancing readability and user experience.\\
-To manage the chat history, the adapter maintains an internal list of message objects. Each message object encapsulates data such as the message content, timestamp, and sender type (user or assistant). The adapter provides methods to add new messages and update existing ones, triggering appropriate gls{ui} updates through notifyItemInserted() and notifyItemChanged() methods respectively.
+To manage the chat history, the adapter maintains an internal list of message objects. Each message object encapsulates data such as the message content, timestamp, and sender type (user or assistant). The adapter provides methods to add new messages and update existing ones, triggering appropriate \gls{ui} updates through notifyItemInserted() and notifyItemChanged() methods respectively.
 
-Dynamic updates are achieved through the use of DiffUtil, an Android utility class that calculates the difference between two lists. When new messages are added or existing ones are updated (even thought updating mussages is not supported in our prototype), DiffUtil computes the minimal set of changes needed to update the gls{ui}, allowing for smooth animations and efficient rendering.
+Dynamic updates are achieved through the use of DiffUtil, an Android utility class that calculates the difference between two lists. When new messages are added or existing ones are updated (even thought updating mussages is not supported in our prototype), DiffUtil computes the minimal set of changes needed to update the \gls{ui}, allowing for smooth animations and efficient rendering.
 To ensure a responsive user interface, message loading and processing operations are performed asynchronously using Java's ExecutorService. This approach prevents blocking the main thread from tasks like waiting for building the request to the chatbot and awaiting its answer.
 
 

@@ -6,7 +6,7 @@
 % Context / Motivation
 In the dynamic field of smart home technologies, users are increasingly turning to sophisticated automation systems to optimize their everyday lives.
 As the complexity of these systems continues to grow \cite{technologies11010009}, there arises a pressing need for innovative solutions that empower users with a deeper understanding of their environments \cite{baby_home_2017}. 
-Picture a user with a huge amount of automations in their smart home, occupying with complex questions like, ``Why did I have higher heating costs this winter?'' or ``What was the intention behind the light just turning on in the kitchen?''
+Picture a user with a huge amount of automations in their smart home, occupyied with complex questions like, ``Why did I have higher heating costs this winter?'' or ``What was the intention behind the light just turning on in the kitchen?''
 While technology-interested users may attempt to answer such questions themselves through self-analysis of their smart home systems, the complexity of such tasks can be time-consuming and may not be simply feasible for everyone.
 These scenarios encapsulate the motivation behind this thesis, which centers on the development of a chatbot for smart home systems and home automation.
 The primary focus is increasing system explainability and addressing the unique challenges users encounter in analyzing the intricacies of their smart homes.
@@ -28,7 +28,7 @@ Therefore it has to be analyzed if there exist related work on chatbots which an
 
 Another problem for the thesis is the lack of available data in the Bosch Smart Home system in which the chatbot should be integrated.
 This deficiency manifests in several dimensions, beginning with the cost-intensive nature of cloud services and the consequential limitations imposed by a surge in user requests that could occur in requests to a chatbot. 
-Compounding this issue, smart home devices have constrained computing resources due to their compact sizes which may make the accumulation of data about the system difficult or slow. 
+Compounding this issue, smart home devices have constrained computing resources due to their compact size which may make the accumulation of data about the system difficult or slow. 
 The integral role of a knowledge base for chatbot functionality is the center of these problems, as it heavily relies on data. 
 In the current state of the Bosch Smart Home System, although valuable data concerning device resources and system logs exists, accessibility remains restricted since logs only get available when users send a support request.
 The data of individual smart homes would represent an excellent source for chatbot functionality, including resource metrics such as CPU and RAM usage and logs detailing system actions.
@@ -46,7 +46,7 @@ These data-related challenges come together to the pressing need for innovative 
 % Objective
 The objectives of this thesis are multifaceted, aiming to find important aspects in developing a functional chatbot tailored for answering complex questions and managing devices in the area of smart homes. The first goal is to understand the key components needed to create a functioning chatbot. This involves identifying requirements and evaluating tools suitable for building a chatbot, with a specific focus on the feasibility of utilizing open-source options to answer if they effectively can contribute to such a project.
 
-Subsequently, the research attempts to push the boundaries of chatbot capabilities by exemplary developing a chatbot into the Bosch Smart Home app and testing how far such a system can go in answering complex questions. The general question here is whether it is even plausible to develop a chatbot for the mentioned application. This objective involves finding and assessing the technical limitations and potential breakthroughs in creating an adaptable chatbot for this specific domain.
+Subsequently, the research attempts to push the boundaries of chatbot capabilities by exemplarily developing a chatbot into the Bosch Smart Home app and testing how far such a system can go in answering complex questions. The general question here is whether it is even plausible to develop a chatbot for the mentioned application. This objective involves finding and assessing the technical limitations and potential breakthroughs in creating an adaptable chatbot for this specific domain.
 
 Finally, by providing explainability for users, the thesis seeks to satisfy the user-centric aspect of smart home technologies. This objective involves developing features within the chatbot that not only answer questions but also offer transparent and understandable explanations regarding the actions and decisions made by the smart home system. This user-focused approach seeks to enhance the overall user experience and potentially bring benefits as comprehension and trust to users about their own smart home. 
 
@@ -62,7 +62,7 @@ The research methodology for this thesis involves an iterative development proce
 % todo Result
 The thesis employs a strict evaluation methodology, combining quantitative metrics for model performance with qualitative user studies to assess the chatbot's impact on system explainability and user satisfaction.
 The  findings indicate that the implemented chatbot enhances the usability and explainability of smart home systems within the Bosch Smart Home environment. Evaluation metrics combining semantic similarity and JSON accuracy demonstrate the chatbot's capability to handle diverse intents such as device control and data analysis tasks effectively. One of our customized models (``shllama3instruct'') emerged as the top performer, achieving a balanced approach between helpful answers and precise \gls{json} function execution to control devices.
-However, participants of our study expressed uncertainty about preferring the chatbot over traditional interfaces and challenges remain as our chatbot does not always answer in the same language the user wrote for example.
+However, participants of our study expressed uncertainty about preferring the chatbot over traditional interfaces. Additionally, challenges remain, such as the chatbot not always responding in the same language used by the user.
 
 % Contributions [explicit]
 \section{Explicit Contributions}

@@ -46,7 +46,15 @@ The first goal focuses on determining how accurately the chatbot can understand 
     \item \textbf{Q2: How accurate are the \gls{json} responses of the language model?}
 \end{itemize}
 
-To answer these questions, relevant metrics are identified. Semantic similarity measures are used to evaluate the natural language responses, potentially incorporating other related metrics to ensure comprehensive assessment. \gls{json} accuracy metrics are employed to evaluate the precision of the chatbot's structured responses. A combined metric of semantic similarity and JSON accuracy provides a holistic view of the chatbot's overall accuracy.
+To answer these questions, relevant metrics are identified. Semantic similarity measures are used to evaluate the natural language responses, potentially incorporating other related metrics to ensure comprehensive assessment. \gls{json} accuracy metrics are employed to evaluate the precision of the chatbot's structured responses. A combined metric of semantic similarity and \gls{json} accuracy provides a holistic view of the chatbot's overall accuracy.
+
+\begin{figure}[b]
+    \centering
+    \captionsetup{justification=centering}
+    \includegraphics[width=0.98\textwidth]{graphics/gqm.png}
+    \caption{Visualized Goal Question Metric}
+    \label{fig:gqm}
+\end{figure}
 
 \textbf{Goal 2: Evaluate the User Experience of the Smart Home Chatbot}
 
@@ -72,14 +80,8 @@ The third goal addresses how well the chatbot can explain its actions and decisi
 
 To measure the explainability, semi-structured interviews are conducted after the experiment. These interviews delve into the clarity, transparency, and usefulness of the explanations provided by the chatbot, allowing for detailed qualitative feedback from users.
 
-\begin{figure}[h]
-    \centering
-    \captionsetup{justification=centering}
-    \includegraphics[width=0.98\textwidth]{graphics/gqm.png}
-    \caption{Visualized Goal Question Metric}
-    \label{fig:gqm}
-\end{figure}
-\begin{figure}[h]
+
+\begin{figure}[b]
     \centering
     \captionsetup{justification=centering}
     \includegraphics[width=0.75\textwidth]{graphics/eval-process.png}
@@ -131,15 +133,15 @@ The structure of each entry in the dataset is as follows:
     \end{itemize}
     \end{enumerate}
 
-\begin{table}[htb]
+\begin{table}[!b]
     \centering
     \makebox[\textwidth]{\includegraphics[width=1.2\textwidth]{graphics/evaldata.pdf}}
     \caption{Format and Example Entries of the Evaluation Dataset}
     \label{tab:dataset-format}
 \end{table}
     
-Based on the chat history a request can be build with a python script leveraging langchain to easily access Ollama since it is supported by langchain.
-That way we do not have to construct API calls ourself only parse the message history into a langchain function call that does everything in the background.
+Based on the chat history a request can be build with a python script leveraging LangChain easily access Ollama since it is supported by LangChain.
+That way we do not have to construct API calls ourself only parse the message history into a LangChain function call that does everything in the background.
 We can just create an ChatOllama object like the following:
 
 \begin{lstlisting}[numbers=none, frame=none]
@@ -289,7 +291,9 @@ We recruited a diverse group of 10 participants for our study, comprising three 
 This diverse group was chosen to represent a range of potential users, from those familiar with smart home technology to novices, ensuring a comprehensive evaluation of the chatbot's accessibility and usefulness. A Visualization showing different aspects of the participants can be found in \cref{sec:participant-vis}
 
 \subsection{Apparatus}
-The experimental setup consisted of three smart home devices: a smart plug named ``TV'' and a thermostat, both located in the sleeping room, and a door/window contact in the living room. The language model ran on a PC with specifications described in \cref{subsec:hardware}. Participants interacted with the Bosch smart home app either through a PC emulating Android or a Samsung Galaxy S21 Smartphone. To ensure consistency, all participants used the same setup in the same room.
+The experimental setup consisted of three smart home devices: a smart plug named ``TV'' and a thermostat, both located in the sleeping room, and a door/window contact in the living room. 
+It is worth noting that a Bosch Smart Home Controller is necessary for the use of these devices (smart plug, door/window contact, thermostat). 
+The language model ran on a PC with specifications described in \cref{subsec:hardware}. Participants interacted with the Bosch smart home app either through a PC emulating Android or a Samsung Galaxy S21 Smartphone. To ensure consistency, all participants used the same setup in the same room. 
 How the devices look in the Bosch Smart Home app and their analog representations can be seen in \cref{fig:devicesstudy}.
 \begin{figure}[h]
     \centering
@@ -372,7 +376,7 @@ To address these issues, we developed improved modelfiles for the second generat
 
 In the table we can see that the revised modelfiles for the second generation of models we created did improve the total \gls{json} accuracy, but for the \texttt{shllama3instr-2} the key accuracy decreased. For the revised modelfiles also suffer in the overall quality in responses which according to the semantic similarity are much worse with a Mean around 0.4.
 This of course hardly effects the combined metrics with an F1 score of 0.3250 and 0.2222 which is barely half as much as for the first generation models. This means that the models are quite unpredictable or random in their responses which can be seen especially in the semantic similarity values.
-The results demonstrate a trade-off between \gls{json} accuracy and semantic similarity. While the second-generation models showed improved JSON accuracy, they suffered a significant decrease in semantic similarity. This suggests that the modifications made to improve specific functionalities may have compromised the models' overall language understanding and generation capabilities.
+The results demonstrate a trade-off between \gls{json} accuracy and semantic similarity. While the second-generation models showed improved \gls{json} accuracy, they suffered a significant decrease in semantic similarity. This suggests that the modifications made to improve specific functionalities may have compromised the models' overall language understanding and generation capabilities.
 
 \begin{figure}[H]
     \centering
@@ -475,9 +479,13 @@ In this section we want to state our results for the quanitative part of our use
 \end{itemize}
 
 We want to start with some descriptive statistics about the task completion times during the user study and the questionnaire conducted.
-\cref{tab:descrTime} shows the descriptive statistics for task completion time of each task. Task completion time refers to the amount of time it took users to complete each task using the chatbot. As can be seen from the table, Task 3 (Find temperature or set temperature) had the longest mean completion time (34.0 seconds), with a large standard deviation (23.28 seconds),  indicating a high variability in completion time. Task 1 (Ask what the chatbot is for) had the shortest mean completion time (16.7 seconds).
+\cref{tab:descrTime} shows the descriptive statistics for task completion time (in seconds) of each task. Task completion time refers to the amount of time it took users to complete each task using the chatbot. As can be seen from the table, Task 3 (Find temperature or set temperature) had the longest mean completion time (34.0 seconds), with a large standard deviation (23.28 seconds),  indicating a high variability in completion time. Task 1 (Ask what the chatbot is for) had the shortest mean completion time (16.7 seconds).
 
-\cref{tab:descrQ} shows the descriptive statistics for the Likert scale questionnaire. The questionnaire asked users to rate their agreement with six statements on a scale of 1 (strongly disagree) to 5 (strongly agree). The table shows that users were generally neutral on the ease of accomplishing the tasks (Q1: mean = 4.10), finding the chatbot (Q2: mean = 4.40), and understanding the smart home behavior (Q5: mean = 3.90). Users agreed that the chatbot is easy to use (Q3: mean = 4.20) and that the chatbot responses were clear (Q4: mean = 4.20). The strongest agreement was with the statement that they would use the chatbot if it was added to the official app (Q6: mean = 3.00)
+\cref{tab:descrQ} shows the descriptive statistics for the Likert scale questionnaire, which assessed various aspects of the chatbot's usability and effectiveness on a scale of 1 (strongly disagree) to 5 (strongly agree).
+The results indicate that users found the chatbot easy to find and use (Q2: mean = 4.40), showing the highest level of agreement. This was followed by positive perceptions of the chatbot's response clarity and helpfulness (Q4: mean = 4.20) and the ease of accomplishing tasks (Q1: mean = 4.10).
+Users also agreed, though to a slightly lesser extent, that the smart home's behavior after the chatbot's responses was understandable (Q5: mean = 3.90) and that the chatbot enhanced the app's usability (Q3: mean = 3.70).
+The statement with the lowest agreement, though still neutral, was about using the chatbot if it were added to the official app (Q6: mean = 3.00). This suggests that while users generally found the chatbot helpful and easy to use, they were less certain about incorporating it into their regular app usage.
+The standard deviations (ranging from 0.70 to 0.95) indicate some variation in responses across participants, with Q3 and Q6 showing the most diverse opinions.
 
 \begin{table}[h!]
     \centering
@@ -515,10 +523,10 @@ We want to start with some descriptive statistics about the task completion time
 \label{tab:descrQ}
 \end{table}
 
-\cref{fig:task-attempts} shows the number of attempts users needed to complete each task. The x-axis represents the task (T1-T6), and the y-axis represents the number of attempts. As can be seen from the figure, users needed the fewest attempts (an average of 1.1 and 1.2 attempts respectively) to complete Task 1 (Ask the chatbot what it is for) and Task 2 (Find out TV state and consumption). Tasks 6 (Switch TV state) and 5 (Change bedroom temperature) required the most attempts, with an average of 2.2 attempts.
+\cref{fig:task-attempts} shows the number of attempts users needed to complete each task. The x-axis represents the number of attempts per task (T1-T6), and the y-axis represents the corresponding frequency. As can be seen from the figure, users needed the fewest attempts (an average of 1.1 and 1.2 attempts respectively) to complete Task 1 (Ask the chatbot what it is for) and Task 2 (Find out TV state and consumption). Tasks 6 (Switch TV state) and 5 (Change bedroom temperature) required the most attempts, with an average of 2.2 attempts.
 Only T3, T5 and T6 needed a third attempt with 7 third attempsts in total which equals $7.\bar{7}\%$ of the total attempts taken of all participants. In total 90 attempts were taken for 60 tasks (1.5 per participant and task). 
 
-\cref{fig:task-success} shows the number of participants that were successful for each task. The x-axis represents the task (T1-T6), and the y-axis represents the number of participants. As can be seen from the figure, all participants were successful in completing Tasks 1, 2, and 4. Tasks 5 and 6 had the lowest success rates, with only 8 participants being successful. Overall 5 out of 60 tasks were not successfully finnished which is a failure rate of $8.\bar{3}\%$ and a success rate of $91.\bar{6}\%$ respectively.
+\cref{fig:task-success} shows the number of participants that were successful for each task. The x-axis represents the success status of each task (T1-T6), and the y-axis represents the number of participants. As can be seen from the figure, all participants were successful in completing Tasks 1, 2, and 4. Tasks 5 and 6 had the lowest success rates, with only 8 participants being successful. Overall 5 out of 60 tasks were not successfully finnished which is a failure rate of $8.\bar{3}\%$ and a success rate of $91.\bar{6}\%$ respectively.
 
 \begin{figure}[h]
     \centering
@@ -539,11 +547,12 @@ Only T3, T5 and T6 needed a third attempt with 7 third attempsts in total which 
     \centering
     \captionsetup{justification=centering}
     \includegraphics[width=0.85\textwidth]{graphics/time-boxplots.png}
-    \caption{Boxplots Showing the Distribution of Time Needed per Task}
+    \caption{Boxplots Showing the Distribution of Time Needed per Task (in Seconds)}
     \label{fig:task-boxplots}
 \end{figure}
 
-\cref{fig:task-boxplots} is a box plot showing the distribution of time needed per task. The x-axis represents the task (T1-T6), and the y-axis represents the time in seconds. The box shows the 25th and 75th percentiles of the data, with the line in the middle representing the median. The whiskers extend to the most extreme data points that are not considered outliers, and outliers are plotted as individual points. As can be seen from the figure, there is a high variability in completion time for all tasks. Task 5 (Find temperature or set temperature) has the longest median completion time (around 35 seconds), with a large \gls{iqr}  indicating a wide spread of data in the middle quartiles even though it is less than for other tasks. Task 1 (Ask what the chatbot is for) has the shortest median completion time (around 14.5 seconds) and the smallest \gls{iqr}, indicating that most users completed this task quickly and with similar times.
+\cref{fig:task-boxplots} is a box plot showing the distribution of time needed per task. The x-axis represents time in seconds, and the y-axis represents the tasks (T1-T6). The box shows the 25th and 75th percentiles of the data, with the line in the middle representing the median. The whiskers extend to the most extreme data points that are not considered outliers, and outliers are plotted as individual points. 
+As can be seen from the figure, there is a high variability in completion time for all tasks except Task 1 (Asking the chatbot what it is for). Task 5 (Find temperature or set temperature) has the longest median completion time (around 35 seconds), with a large \gls{iqr}  indicating a wide spread of data in the middle quartiles even though it is less than for other tasks. Task 1 (Ask what the chatbot is for) has the shortest median completion time (around 14.5 seconds) and the smallest \gls{iqr}, indicating that most users completed this task quickly and with similar times.
 The boxplot also reveals a possible positive skew in the completion time for Task 3 but especially for Task 6, with a longer whisker extending to the right, suggesting a few users might have encountered difficulties that significantly increased their time.
 For task 3 the outlier at approximately 90 seconds further supports this theory.
 Compared to task 6 and 3 the range of the whiskers of task 5 is low. Only compared to task 6 also the \gls{iqr} is low, suggesting higher confidence that the task takes longer than other task in general.
@@ -610,22 +619,21 @@ The inconsistent language use in responses (not always matching the user's input
 \subsection{Discussion of Quantitative User Study Findings}
 The quantitative results from our user study provide valuable insights into the performance and user perception of the smart home chatbot.
 \subsubsection{Task Completion and Efficiency}
-The overall task success rate of 91.67\% indicates that the chatbot was generally effective in helping users complete their assigned tasks. However, the variation in task completion times and number of attempts across different tasks reveals areas for improvement:
+The overall task success rate of 91.67\% indicates that the chatbot was generally effective in helping users complete their assigned tasks. However, the variation in task completion times and number of attempts across different tasks reveals areas for improvement.
 
-Information Retrieval vs. Device Control: Tasks involving device control (T5 and T6) required more attempts and had lower success rates compared to information retrieval tasks (T1-T4). This aligns with our hypothesis \(H_4\) and suggests that the chatbot's ability to execute commands needs refinement.
-Complex Tasks: Task 3 (finding or setting temperature) had the longest mean completion time (34 seconds) and highest variability, indicating that more complex queries pose a challenge for users and/or the chatbot. This could be addressed by improving the chatbot's natural language understanding for multi-step commands.
-Consistency: The wide range in completion times for most tasks suggests inconsistent performance or user experience. Efforts should be made to ensure more uniform response quality and interaction flow.
+\textbf{Information Retrieval vs. Device Control:} Tasks involving device control (T5 and T6) required more attempts and had lower success rates compared to information retrieval tasks (T1-T4). This aligns with our hypothesis \(H_4\) and suggests that the chatbot's ability to execute commands needs refinement.\\
+\textbf{Complex Tasks:} Task 3 (finding or setting temperature) had the longest mean completion time (34 seconds) and highest variability, indicating that more complex queries pose a challenge for users and/or the chatbot. This could be addressed by improving the chatbot's natural language understanding for multi-step commands.\\
+\textbf{Consistency:} The wide range in completion times for most tasks suggests inconsistent performance or user experience. Efforts should be made to ensure more uniform response quality and interaction flow.
 
 \subsubsection{User Perceptions}
 The Likert scale questionnaire results provide insights into user perceptions:
 
-Usability and Clarity: With mean scores of 4.20 for ease of use (Q3) and clarity of responses (Q4), users generally found the chatbot intuitive and understandable. This supports our hypotheses \(H_1\) and \(H_2\) regarding improved explainability and usability.
-Integration Potential: The neutral mean score (3.00) for willingness to use the chatbot if added to the official app (Q6) suggests that while users see value in the chatbot, they're not yet fully convinced of its superiority over traditional interfaces. This aligns with our finding that \(H_3\) was not supported.
-Understanding Smart Home Behavior: The relatively high mean score (3.90) for understanding smart home behavior after chatbot responses (Q5) indicates that the chatbot effectively improves system explainability, further supporting \(H_1\).
+\textbf{Usability and Clarity:} With mean scores of 4.20 for ease of use (Q3) and clarity of responses (Q4), users generally found the chatbot intuitive and understandable. This supports our hypotheses \(H_1\) and \(H_2\) regarding improved explainability and usability.\\
+\textbf{Integration Potential:} The neutral mean score (3.00) for willingness to use the chatbot if added to the official app (Q6) suggests that while users see value in the chatbot, they're not yet fully convinced of its superiority over traditional interfaces. This aligns with our finding that \(H_3\) was not supported.\\
+\textbf{Understanding Smart Home Behavior:} The relatively high mean score (3.90) for understanding smart home behavior after chatbot responses (Q5) indicates that the chatbot effectively improves system explainability, further supporting \(H_1\).
 
 \subsubsection{Statistical Significance}
 The Wilcoxon signed-rank tests provided statistical support for several of our hypotheses:
-
 Strong evidence was found for the chatbot's ability to improve explainability (\(H_1\)) and moderate to strong evidence for improved usability (\(H_2\)). This suggests that the chatbot is effective in making the smart home system more understandable and user-friendly.
 The lack of support for \(H_3\) (preference for chatbot over traditional methods) indicates that while the chatbot improves certain aspects of the user experience, it has not yet reached a point where users prefer it over conventional interfaces. This presents an opportunity for further refinement and feature development.
 The strong evidence supporting \(H_4\) (device control tasks taking longer than information retrieval) highlights a key area for improvement in the chatbot's functionality.
@@ -690,7 +698,7 @@ External validity concerns the generalizability of our results to other contexts
 
 \subsection{Reliability}
 
-Reliability refers to the extent to which the data and analysis are dependent on the specific researchers. One threat is the subjectivity in qualitative analysis, as the thematic analysis of interview responses could be influenced by researcher bias. To mitigate this, multiple coders and the calculation of inter-rater reliability could have been employed. Furthermore, while we used established metrics for evaluating model performance, the choice and implementation of these metrics could affect the results. Replication studies with different evaluation approaches could help validate our findings.
+Reliability refers to the extent to which the data and analysis are dependent on the specific researchers. One threat is the subjectivity in qualitative analysis, as the thematic analysis of interview responses could be influenced by researcher bias. Furthermore, while we used established metrics for evaluating model performance, the choice and implementation of these metrics could affect the results. Replication studies with different evaluation approaches could help validate our findings.
 
 %noch etwas Fülltext
 %\blinddocument

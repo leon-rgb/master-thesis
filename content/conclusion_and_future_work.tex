@@ -7,8 +7,7 @@ Lastly we mention lessons learned and additionally suggestions for future work.
 \section{Summary}
 This thesis explored the development and evaluation of an innovative chatbot system designed to enhance user interaction and system explainability in smart home environments. The research focused on integrating \glspl{llm} without fine-tuning to support diverse intents within the Bosch Smart Home ecosystem, addressing the growing complexity of smart home technologies.
 
-A novel approach combining natural language processing with \gls{json} function calling was implemented, enabling the chatbot to handle both device control and data analysis tasks. The system architecture, utilizing a client-server model with Android Studio and Ollama, demonstrated practical deployment potential in real-world scenarios.
-
+A novel approach combining natural language processing with \gls{json} function calling was implemented, enabling the chatbot to handle both device control and data analysis tasks. The system architecture, utilizing a client-server model with Android Studio and Ollama, demonstrated practical deployment potential in real-world scenarios. However, for a production environment, tools like LangChain offer additional features like scalability and deployment tools that are crucial for handling larger user bases and simplifying the deployment process (it also supports the use of Ollama).
 The evaluation process introduced a comprehensive metric that combined semantic similarity and \gls{json} accuracy, providing a nuanced assessment of the chatbot's performance. This revealed interesting trade-offs between \gls{json} accuracy and semantic understanding across different model iterations. 
 The \texttt{shllama3instruct} model (as we named our customized model) emerged as the top performer, balancing high semantic similarity with good precision in \gls{json} function calling.
 
@@ -28,7 +27,7 @@ Overall, the thesis contributes to advancing smart home technology while address
 \section{Limitations}
 The study's limitations primarily stem from its focused scope and methodological choices. 
 Firstly, the exclusive use of open-source language models means that the performance of commercial or proprietary models remains unexplored, potentially offering different results. 
-The function calling approach, centered on mapping JSONs to functionality, doesn't account for newer methods available in select models like Mistral. This limitation raises questions about the approach's effectiveness in other domains beyond smart homes. 
+The function calling approach, centered on mapping \glspl{json} to functionality, doesn't account for newer methods available in select models like Mistral. This limitation raises questions about the approach's effectiveness in other domains beyond smart homes. 
 Additionally, the specialization of data and focus on smart home applications may limit the generalizability of findings to other fields. 
 Lastly, the study doesn't address the scalability of the approach for larger, more complex smart home systems with a wider range of devices and functionalities.
 
