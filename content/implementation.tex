@@ -58,7 +58,7 @@ However, it makes sense to try out other models and see how they perform therefo
 The model selection was based on parameter count, popularity, ranking in the \gls{bfcl} and availability in the ollama models library.
 Another condition for the model was to support German.
 The parameter count should be lower than 15 Billion since it wouldn't really run on the server setup described in the last section.
-The model should be either under the most popular models filter on the Ollama library website \footnote{\url{https://ollama.com/library?sort=popular}}
+The model should be either under the most popular models filter on the Ollama library website \footnote{\url{https://ollama.com/library?sort=popular}} or be in the \gls{bfcl}.
 
 % Define a new column type 'Y' for wider last column
 \newcolumntype{Y}{>{\hsize=1.2\hsize}X}
@@ -66,7 +66,7 @@ The model should be either under the most popular models filter on the Ollama li
     \centering
     \begin{tabularx}{\textwidth}{lXXp{3cm}Xl}
     \toprule
-    Model & Parameters & Size & Popularity \newline (Ollama) & BFCL \newline Accuracy & Organization \\
+    Model & Params & Size & Popularity \newline (Ollama) & BFCL \newline Accuracy & Organization \\
     \midrule
     home-3b-v3 & 3b & 1.7GB & 2.3K & - & - \\
     qwen2-7b-instruct & 7b & 4.4GB & 281.6K & - & Alibaba \\
