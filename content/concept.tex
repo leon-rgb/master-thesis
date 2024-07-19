@@ -93,7 +93,7 @@ However, they represent potential areas for future expansion and enhancement of 
 
 %% Auslagern in eigenes chapter??? %%
 \section{Preliminary Interviews to Gain Knowledge, Requirements and Ideas}
-Preceding to further actions Interviews with a few individuals were conducted to gain knowledge, requirements and ideas for this thesis.
+Before proceeding with further actions, interviews with a few individuals were conducted to gather knowledge, requirements, and ideas for this thesis.
 All of the four interviewed were from different domains: One is a researcher and has knowledge in \gls{ai} technologies or more precisely about \glspl{llm} while the three other interviewees are from Bosch.
 One of them is working in \qq{AskBosch} but also has expertise in the Smart Home and \gls{iot}. 
 The other two are both from Bosch Smart Home where one is a Software Developer and the other a Product Developer.
@@ -133,10 +133,10 @@ The following summary captures the insights and recommendations from these inter
 
 \subsubsection{Feasibility and Key Considerations}
 
-The feasibility of implementing a smart home chatbot was generally supported by all interviewees, albeit with some caveats:
+The feasibility of implementing a smart home chatbot was generally supported by all interviewees, despite some caveats:
 
 \begin{itemize}
-    \item \textbf{Technical Feasibility}: It is crucial to use proven frameworks and consider whether an \gls{llm} is necessary or if Named Entity Recognition (NER) would suffice, particularly given budget constraints. \glspl{llm} require significant resources, which may be impractical without a robust client-server architecture.
+    \item \textbf{Technical Feasibility}: It is crucial to use proven frameworks and consider whether an \gls{llm} is necessary or if \gls{ner} would suffice, particularly given budget constraints. \glspl{llm} require significant resources, which may be impractical without a robust client-server architecture.
     \item \textbf{User Experience}: The chatbot must simplify user interactions with smart home devices, removing the need for exact device names and understanding user patterns for better automation.
     \item \textbf{Market Viability}: There are concerns about privacy and trust, which affect the acceptance of AI and chatbots in the market.
 \end{itemize}
@@ -168,7 +168,7 @@ Effective data organization and source identification are a key aspect for achie
 
 \begin{itemize}
     \item \textbf{Configurations and Scenarios}: Initial iterations should use predefined configurations, mapping intents to device actions.
-    \item \textbf{Data Collection}: Gathering diverse user inputs to train models and create accurate annotations is essential for generalizability. They are also useful for the evaluation of the performance of the chatbot
+    \item \textbf{Data Collection}: Gathering diverse user inputs to train models and create accurate annotations is essential for generalizability. They are also useful for the evaluation of the performance of the chatbot.
     \item \textbf{Potential Sources}: Logs from smart home devices , external services, and user behavior data should be considered. For the beginning the most important data is about the devices of a user since it is crucial for all of the defined intents and the most essential part of a smart home.
 \end{itemize}
 
@@ -241,7 +241,7 @@ The following requirements provide a comprehensive foundation for developing a s
     \item \textbf{Maintainability}: The chatbot system should be easy to maintain and update. Clear documentation and modular design can facilitate easier maintenance and the addition of new features which is always nice to have but also necessary for the Iterative approach of this thesis.
 \end{itemize}
 
-\section{Protoype Design and Architecture}
+\section{Prototype Design and Architecture}
 \label{sec:design}
 In this section, we outline the design and architecture of the smart home chatbot prototype. This prototype aims to facilitate seamless and intuitive interactions between users and their smart home devices by leveraging advanced natural language processing (NLP) techniques and smart home integration capabilities.
 
@@ -254,7 +254,7 @@ For the base architecture of the application using the aforementioned approach, 
 \begin{enumerate}
     \item \textbf{Using an API from an \gls{llm} provider like OpenAI}: This option provides access to powerful, state-of-the-art models without the need for extensive infrastructure. However, it involves recurring costs and reliance on third-party services.
     \item \textbf{Self-hosting an \gls{llm}}: This approach offers more control over the model and data, potentially enhancing privacy and customization. Nonetheless, it requires significant resources for infrastructure and maintenance.
-    \item \textbf{Integrating the \gls{llm} directly into the corresponding Smart Home App}: This would allow for seamless integration and potentially faster response times. However, the constraints of mobile devices, such as limited processing power and storage, could pose significant challenges. A tiny model would probably be needed to use.
+    \item \textbf{Integrating the \gls{llm} directly into the corresponding Smart Home App}: This would allow for seamless integration and potentially faster response times. However, the constraints of mobile devices, such as limited processing power and storage, could pose significant challenges. A tiny model will likely be needed.
 \end{enumerate}
 
 After evaluating these options, a client-server architecture was chosen as the most suitable approach. This architecture involves hosting the \gls{llm} on a server and having the client application communicate with the server to access the \gls{llm}'s capabilities. The client-server model offers several advantages:
@@ -268,8 +268,8 @@ After evaluating these options, a client-server architecture was chosen as the m
 
 Overall, the client-server architecture was selected to balance the benefits of leveraging advanced \gls{llm} capabilities while maintaining cost-efficiency, scalability, and enhanced control over the application's functionality and data management. This architecture serves as the foundation for implementing the smart home application's intelligent features, ensuring robust and efficient operation.
 
-The client-server architecture, depicted in Figure \ref{fig:client-server-architecture}, illustrates the fundamental components and their interactions. The server hosts a customized \gls{llm} that handles the complex natural language processing tasks. The client side, which is part of the smart home application, includes the Chat UI, Chat History, and Smart Home Data. 
-The Chat UI enables and is essential for user interaction, while the Chat History maintains a record of the conversation that is also shown in the UI of course. 
+The client-server architecture, depicted in Figure \ref{fig:client-server-architecture}, illustrates the fundamental components and their interactions. The server hosts a customized \gls{llm} that handles the complex natural language processing tasks. The client side, which is part of the smart home application, includes the Chat \gls{ui}, Chat History, and Smart Home Data. 
+The Chat \gls{ui} enables and is essential for user interaction, while the Chat History maintains a record of the conversation that is also shown in the \gls{ui} of course. 
 The Smart Home Data component integrates with various smart home devices to provide the necessary context and information for the \gls{llm}.
 
 \begin{figure}[h]
@@ -287,9 +287,9 @@ It can be seen in \cref{fig:architecture}.
 
 The Model is represented by the Data Manager, which encapsulates the business logic and data operations related to smart home devices. It interfaces with the Smart Home System to manage device states and communications.
 
-The View component is primarily implemented in the UI module, handling the user interface and interaction elements, including the chat message display and input field. The Message Adapter facilitates efficient rendering of chat messages.
+The View component is primarily implemented in the \gls{ui} module, handling the user interface and interaction elements, including the chat message display and input field. The Message Adapter facilitates efficient rendering of chat messages.
 
-The Controller role is distributed across multiple components. The API Client and Request Builder acts as a primary controller, mediating between the UI and the Data Manager. It processes user inputs, constructs API requests, and manages communication with the Customized \gls{llm} server. The Response Handler processes server responses, updating the UI and Data Manager as needed.
+The Controller role is distributed across multiple components. The API Client and Request Builder acts as a primary controller, mediating between the \gls{ui} and the Data Manager. It processes user inputs, constructs API requests, and manages communication with the Customized \gls{llm} server. The Response Handler processes server responses, updating the \gls{ui} and Data Manager as needed.
 
 This architecture incorporates modern Android development practices, such as asynchronous operations for API calls and efficient list rendering, enhancing performance and user experience while maintaining a clear separation of concerns aligned with the MVC pattern.
 
@@ -302,18 +302,18 @@ This architecture incorporates modern Android development practices, such as asy
 \end{figure}
 
 \subsubsection{UI Module}
-The UI module serves as the primary interface between the user and the smart home chatbot system.
-The UI module is designed to be intuitive and responsive, providing real-time updates as users interact with the system or as device states change.
+The \gls{ui} module serves as the primary interface between the user and the smart home chatbot system.
+The \gls{ui} module is designed to be intuitive and responsive, providing real-time updates as users interact with the system or as device states change.
 It displays each token of the \gls{llm} when received and therefore creates the impression that it is writing with the user.
 
 \subsubsection{Message Adapter}
 \label{subsec:messageadapter}
-The Message Adapter is responsible for efficiently managing and displaying chat messages within the UI. Its primary functions include:
+The Message Adapter is responsible for efficiently managing and displaying chat messages within the \gls{ui}. Its primary functions include:
 \begin{itemize}
-    \item Message Rendering: Converts message data into viewable UI elements.
+    \item Message Rendering: Converts message data into viewable \gls{ui} elements.
     \item Chat History Management: Handles loading, storing, and displaying conversation history.
     \item Message Differentiation: Visually distinguishes between user messages and assistant messages
-    \item Dynamic Updates: Allows for real-time addition and modification of messages without requiring a full UI refresh.
+    \item Dynamic Updates: Allows for real-time addition and modification of messages without requiring a full \gls{ui} refresh.
 \end{itemize}
 This module enhances the user experience by ensuring smooth scrolling and efficient memory usage, even with long conversations.
 
@@ -344,8 +344,8 @@ The Response Handler module processes the responses received from the server and
 \begin{itemize}
     \item Response Interpretation and Splitting: Analyzes the server's response to determine required actions. For this the response needs to splitted into a natural language answer and a format that can be transformed into system actions.
     \item Action Execution: Triggers appropriate functions in other modules based on the interpreted response.
-    \item UI Update Coordination: Ensures the user interface reflects the latest system state and server responses.
-    \item Error Handling: Manages and communicates any errors or unexpected responses from the server which in the end should be displayed by the UI.
+    \item \gls{ui} Update Coordination: Ensures the user interface reflects the latest system state and server responses.
+    \item Error Handling: Manages and communicates any errors or unexpected responses from the server which in the end should be displayed by the \gls{ui}.
 \end{itemize}
 This module plays a critical role in translating server responses into meaningful actions and feedback within the client application.
 

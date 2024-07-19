@@ -40,13 +40,13 @@ Finally, we explore the techniques used for model customization, including the c
 \subsection{Hardware and Performance}
 \label{subsec:hardware}
 The initial plan was to use the bwCloud\footnote{\url{https://www.bw-cloud.org/}}, a currently free service that can be used of students and researchers of different institutions accross Baden-Württemberg, Germany.
-It was easy to get the needed ressources for this project which where eigth VCPUs, 16GB RAM and also enough memory for the size of the \glspl{llm} that were planned to use.
-When trying out to run models directly on the server the response times were okay for models up to approximately 10 Billion perameters although the used server has no GPU.
+It was easy to get the needed resources for this project which where eigth VCPUs, 16GB RAM and also enough memory for the size of the \glspl{llm} that were planned to use.
+When trying out to run models directly on the server the response times were okay for models up to approximately 10 Billion parameters although the used server has no GPU.
 However, when testing customized models through HTTP Requests the response times were much higher than expected.
 Especially the first response often took over one minute with preceeding requests taking minimum 30 seconds depending on the length of the generated respone.
-The first request usually takes longer when the model used is not allready loaded into the RAM.
+The first request usually takes longer when the model used is not already loaded into the RAM.
 
-Because of the occuring difficulties and with wanting to use as low budget as possible we decided to use an existing private Computer with more Ressources and used IPv6 Host Exposure for a specific port on which the Ollama \gls{api} was running.
+Because of the occuring difficulties and with wanting to use as low budget as possible we decided to use an existing private Computer with more Resources and used IPv6 Host Exposure for a specific port on which the Ollama \gls{api} was running.
 The computer had an NVIDIA GeForce 980 ti graphics card with 6GB VRAM and 32GB RAM with 3600MHz.
 Even longer model responses usually only took a few seconds to receive.
 
@@ -55,7 +55,7 @@ Even longer model responses usually only took a few seconds to receive.
 This section is all about the language models themselves. It covers which model where selected and why, how the models where customized with so called ``Modelfiles'' and an engineered prompt.
 \subsubsection{Model Selection}
 Initially the model in the focus of this work was llama3 since it was one of the most recent models and seen everywhere when starting with the .
-However, it makes sense to try out other models and see how they perform therfore we came up with a solid model selection.
+However, it makes sense to try out other models and see how they perform therefore we came up with a solid model selection.
 The model selection was based on parameter count, popularity, ranking in the \gls{bfcl} and availability in the ollama models library.
 Another condition for the model was to support German.
 The parameter count should be lower than 15 Billion since it wouldn't really run on the server setup described in the last section.
@@ -85,7 +85,7 @@ The model should be either under the most popular models filter on the Ollama li
     gorilla-openfunctions-v2 & 6.9b & 2.7GB & <1K & 84.65 & Gorilla LLM \\
     \bottomrule
     \end{tabularx}
-    \caption{Overview of the models used.}
+    \caption{Overview of the Models Used}
 \end{table}
 
 Here are some additional notes to this table:
@@ -103,7 +103,7 @@ Here are some additional notes to this table:
 Modelfiles are configuration files used to customize and fine-tune language models for specific applications. They allow developers to define instructions, examples, and parameters that guide the model's behavior, ensuring more accurate and contextually appropriate responses. In the context of this project, modelfiles were crucial for tailoring the language model to understand and interact with the Bosch Smart Home system effectively.
 The Ollama software uses modelfiles to create and share models. Let's examine the key components of our custom modelfile for the Bosch Smart Home chatbot:
 
-\begin{Listing}
+\begin{Listing}[b]
 \begin{lstlisting}[language=bash]
 FROM llama3:instruct
 PARAMETER temperature 0.95
@@ -196,7 +196,7 @@ Each component plays a vital role in creating a seamless and efficient chatbot e
 Additionally to the \gls{json} data exchange between client and server the data of the smart home itself has to be managed in order to put it into the \gls{json} and transmit it and also handle the \gls{json} received from the server.
 The Bosch Smart Home app has an internal data model to store the current state of the users smart home. It updates this model when starting the app and on certain events.
 Therefore, two options were available for managing the device data: either using the available data model or sending requests through the available internal \gls{api} of the system.
-To keep the latency low we deviced to use the internal data model and filter relevant data out. As described in \cref{subsec:devices} three devices were considered for the prototype.
+To keep the latency low we decided to use the internal data model and filter relevant data out. As described in \cref{subsec:devices} three devices were considered for the prototype.
 Therefore we only used data relevant for the user from this devices. Since there was much unnecessary data in each device state we collected only the data described in \cref{tab:device_state_data_detailed}
 \begin{table}[h!]
     \centering
@@ -221,11 +221,11 @@ Therefore we only used data relevant for the user from this devices. Since there
     Door Window Contact & 
     \textbf{contactState}: Whether the window or door is OPEN or CLOSED \\ \hline
     \end{tabularx}
-    \caption{Detailed state data collected from different smart home devices}
+    \caption{Detailed State Data Collected from Different Smart Home Devices}
     \label{tab:device_state_data_detailed}
 \end{table}
 
-Of course when controling devices the data model has to be updated in parallel to updating the devices themselves.
+Of course when controlling devices the data model has to be updated in parallel to updating the devices themselves.
 
 Another point for data management are the system logs of the Bosch Smart Home system to for example reason why something happened in the system and data from external sources to for example analyze how the electricity price changed.
 Since we were not able to implement this it is mentioned in \cref{sec:challenges-solutions}.
@@ -395,7 +395,7 @@ Based on the 'action', 'deviceID' and eventually the 'value' fields in the \gls{
 \item In case of 'none', no further action is taken beyond displaying the natural language response.
 \end{itemize}
 
-The main challenge here was to design a robust parsing mechanism for mapping the received \gls{json} to the exact fucntionality wanted.
+The main challenge here was to design a robust parsing mechanism for mapping the received \gls{json} to the exact functionality wanted.
 The Response Handler also manages error scenarios, such as invalid actions or device IDs not present in the current device list. In such cases, it generates appropriate error messages for the user and logs the issues for system maintenance.
 
 \section{Interaction Flow}
@@ -407,7 +407,7 @@ This request is sent to the server hosting the Ollama software and language mode
 The Response Handler module separates the incoming response into a natural language component and a structured \gls{json} object. The natural language portion is displayed in the \gls{ui}, while the \gls{json} object is parsed for any action directives.
 
 If actions are specified, the Response Handler triggers the corresponding functions in the client application, potentially sending commands to smart home devices or updating the application's state. The \gls{ui} is then updated to reflect both the chatbot's response and any changes in device states.
-This finnishes the interaction loop. The entire process typically occurs within seconds.
+This finishes the interaction loop. The entire process typically occurs within seconds.
 
 \begin{figure}[h]
     \centering

@@ -290,7 +290,7 @@ This diverse group was chosen to represent a range of potential users, from thos
 
 \subsection{Apparatus}
 The experimental setup consisted of three smart home devices: a smart plug named ``TV'' and a thermostat, both located in the sleeping room, and a door/window contact in the living room. The language model ran on a PC with specifications described in \cref{subsec:hardware}. Participants interacted with the Bosch smart home app either through a PC emulating Android or a Samsung Galaxy S21 Smartphone. To ensure consistency, all participants used the same setup in the same room.
-How the devices look like in the Bosch Smart Home app and how analog can be seen in \cref{fig:devicesstudy}.
+How the devices look in the Bosch Smart Home app and their analog representations can be seen in \cref{fig:devicesstudy}.
 \begin{figure}[h]
     \centering
       \begin{subfigure}{.35\textwidth}
@@ -356,7 +356,7 @@ Additionally to this section we also show example conversations with the develop
             shllama3instr-2 & 0.3888 & 0.3857 & 0.2314 & 1.1155 & 13.41\% & 0.8780 & 0.6 & 1 & 0.125 & 0.2222 \\ \hline
         \end{tabular}
     }
-    \caption{Descriptive Statistics and Analysis of the semantic similarity and performance metrics for the different llama3 models created.}
+    \caption{Descriptive Statistics and Analysis of the Semantic Similarity and Performance Metrics for the Different Llama3 Models Created}
     \label{tab:descr-model}
 \end{table}
 
@@ -430,7 +430,7 @@ The contingency table for the \gls{json} correctness is \cref{tab:conti} and sho
         \multirow{2}{*}{\texttt{shllama3}} & 0 & 8 & 10 \\ 
         & 1 & 8 & 56 \\ 
     \end{tabular}
-    \caption{Contingency table for JSON correctness between \texttt{shllama3} and \texttt{shllama3instruct}.}
+    \caption{Contingency Table for JSON Correctness Between \texttt{shllama3} and \texttt{shllama3instruct}.}
     \label{tab:conti}
 \end{table}
 
@@ -493,7 +493,7 @@ We want to start with some descriptive statistics about the task completion time
     T6-time & 28.5 & 30.0 & 7 & 15.1 & 45 \\
     \bottomrule
 \end{tabular}
-\caption{Descriptive Statistics of the Task Completion Time of each Task}
+\caption{Descriptive Statistics of the Task Completion Time of Each Task}
 \label{tab:descrTime}
 \end{table}
 
@@ -605,7 +605,7 @@ However, its poor semantic similarity makes it unsuitable overall. This highligh
 \subsubsection{Language Model Selection and Language Consistency Issues}
 Interestingly, only the llama3 model family was able to understand the logic behind our approach, despite testing larger models. This could indicate that llama3 has been more extensively trained on \gls{json}-related tasks, making it particularly suitable for our use case.
 
-The inconsistent language use in responses (not always matching the user's input language) was observed across multiple models, not just llama3. This could be due to the limited parameter sizes of the models we used or the English-language device list provided. Future work could explore using the system language of the phone/app for responses or fine-tuning the model with multilingual example conversations.
+The inconsistent language use in responses (not always matching the user's input language) was observed across multiple models, not just llama3. This could be due to the limited parameter sizes of the models we used, or the English-language device list provided. Future work could explore using the system language of the phone/app for responses or fine-tuning the model with multilingual example conversations.
 
 \subsection{Discussion of Quantitative User Study Findings}
 The quantitative results from our user study provide valuable insights into the performance and user perception of the smart home chatbot.
@@ -682,7 +682,7 @@ Construct validity concerns the extent to which our study measures what we inten
 
 \subsection{Internal Validity}
 
-Internal validity relates to the extent to which we can ensure that our observed effects are due to our manipulated variables and not other factors. One threat is participant bias, as all study participants either worked at Bosch Smart Home or were known to the researchers. This connection could have led to positively biased responses due to familiarity with the product or a desire to please the researchers. To counteract this, we emphasized the importance of honest feedback and anonymized response analysis. Another potential threat is the learning effect, despite randomizing the order of tasks, participants could have become more familiar with the chatbot over time, influencing task completion times and success rates for later tasks.
+Internal validity relates to the extent to which we can ensure that our observed effects are due to our manipulated variables and not other factors. One threat is participant bias, as all study participants either worked at Bosch Smart Home or were known to the researchers. This connection could have led to positively biased responses due to familiarity with the product or a desire to please the researchers. To counteract this, we emphasized the importance of honest feedback and anonymized response analysis. Another potential threat is the learning effect. Despite randomizing the order of tasks, participants could have become more familiar with the chatbot over time, influencing task completion times and success rates for later tasks.
 
 \subsection{External Validity}
 
