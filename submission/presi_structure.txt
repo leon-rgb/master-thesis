@@ -1,0 +1,43 @@
+1. Introduction (2 minutes)
+Greeting and Introduction: Briefly introduce yourself and your thesis topic.
+Thesis Title: Present the title of your thesis.
+Overview: Outline the key points you will cover in the presentation.
+
+2. Motivation and Problem Statement (3 minutes)
+Motivation: Use the example discussed earlier (Alex and his smart home challenges).
+Problem Statement: Clearly articulate the main problems: lack of transparency, complexity, and data overload.
+
+3. Goal of the Thesis (2 minutes)
+Clear Statement of Goal: Explain the primary goal of your thesis, which is to develop a chatbot to enhance explainability in smart homes.
+
+4. Relation to the State of the Art (3 minutes)
+Current State of Smart Home Technologies: Briefly describe the existing technologies and their limitations.
+Explainability and NLP: Discuss the importance of explainability in smart home systems and the role of natural language processing.
+Related Work: Mention key research and solutions that have influenced your work.
+
+5. Conducted Work and Applied Methods (3 minutes)
+Research Approach: Describe the iterative development process.
+Intent Engineering: Explain how you defined user intents.
+Preliminary Research: Summarize findings from user interviews and surveys.
+Prototype Design and Implementation: Provide an overview of the design and implementation phases.
+
+6. In-Depth Presentation of Selected Results (4 minutes)
+Chatbot Concept: Explain the main components of the chatbot.
+User Interface: Show mockups or screenshots of the chatbot interface.
+Evaluation Method: Describe the evaluation methodology, including user studies and performance metrics.
+Results: Present key findings from the evaluations.
+User Feedback: Share qualitative feedback from users.
+
+7. Limitations and Threats to Validity (2 minutes)
+Technical Challenges: Highlight key technical challenges and how you addressed them.
+Limitations: Discuss the limitations of your research, such as sample size or generalizability.
+Threats to Validity: Acknowledge potential biases or threats to the validity of your findings.
+
+8. Future Work (2 minutes)
+Future Research Directions: Suggest areas for future research and potential improvements.
+Enhancements: Mention any planned or potential enhancements to the chatbot system.
+
+9. Conclusion (1 minute)
+Summary of Findings: Summarize the main findings of your research.
+Contributions: Highlight the contributions of your thesis to the field.
+Final Remarks: Thank the audience and transition to the Q&A session.
